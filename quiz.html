@@ -247,6 +247,128 @@
         .badge.bronze { background: #fff0e0; color: #a0522d; border: 1px solid #e6c9a8; }
         .badge.special { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
 
+        /* ── True / False ── */
+        .tf-card {
+            background: white; border-radius: 14px; padding: 32px;
+            box-shadow: var(--card-shadow); margin-bottom: 20px;
+        }
+        .tf-statement {
+            text-align: center; padding: 30px; background: #f8fafc;
+            border-radius: 12px; margin-bottom: 24px;
+        }
+        .tf-statement .statement-icon { font-size: 40px; margin-bottom: 12px; }
+        .tf-statement .statement-text {
+            font-size: 1.15rem; font-weight: 600; line-height: 1.6;
+        }
+        .tf-buttons {
+            display: flex; gap: 16px; justify-content: center; margin-bottom: 16px;
+        }
+        .tf-btn {
+            padding: 16px 48px; border: 3px solid var(--gray-200);
+            border-radius: 14px; cursor: pointer; font-size: 18px; font-weight: 700;
+            transition: all 0.2s; background: white;
+        }
+        .tf-btn.true-btn:hover { border-color: var(--success); background: var(--success-bg); }
+        .tf-btn.false-btn:hover { border-color: var(--danger); background: var(--danger-bg); }
+        .tf-btn.correct { border-color: var(--success); background: var(--success-bg); }
+        .tf-btn.wrong { border-color: var(--danger); background: var(--danger-bg); }
+        .tf-btn.disabled { pointer-events: none; opacity: 0.6; }
+
+        /* ── Scenario Challenge ── */
+        .scenario-card {
+            background: white; border-radius: 14px; padding: 32px;
+            box-shadow: var(--card-shadow); margin-bottom: 20px;
+        }
+        .scenario-context {
+            background: #f0f7ff; border-left: 4px solid var(--primary);
+            padding: 16px 20px; border-radius: 0 10px 10px 0;
+            margin-bottom: 20px; font-size: 14px; line-height: 1.6;
+        }
+        .scenario-context .scenario-role {
+            font-weight: 700; color: var(--primary); font-size: 13px;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+        }
+        .scenario-question {
+            font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; line-height: 1.5;
+        }
+        .scenario-options { display: flex; flex-direction: column; gap: 10px; }
+        .scenario-option {
+            padding: 14px 18px; border: 2px solid var(--gray-200);
+            border-radius: 10px; cursor: pointer; font-size: 14px;
+            transition: all 0.2s; background: white; text-align: left;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .scenario-option:hover { border-color: var(--primary); background: #f0f7ff; }
+        .scenario-option.correct { border-color: var(--success); background: var(--success-bg); }
+        .scenario-option.wrong { border-color: var(--danger); background: var(--danger-bg); }
+        .scenario-option.disabled { pointer-events: none; opacity: 0.7; }
+        .scenario-option .tool-icon { font-size: 20px; flex-shrink: 0; }
+
+        /* ── Fill in the Blank ── */
+        .blank-card {
+            background: white; border-radius: 14px; padding: 32px;
+            box-shadow: var(--card-shadow); margin-bottom: 20px;
+        }
+        .blank-sentence {
+            font-size: 1.15rem; font-weight: 500; line-height: 1.8;
+            text-align: center; padding: 24px; background: #f8fafc;
+            border-radius: 12px; margin-bottom: 24px;
+        }
+        .blank-sentence .blank-slot {
+            display: inline-block; min-width: 120px; border-bottom: 3px solid var(--primary);
+            padding: 2px 8px; margin: 0 4px; font-weight: 700; color: var(--primary);
+            text-align: center;
+        }
+        .blank-sentence .blank-slot.correct { border-color: var(--success); color: var(--success); }
+        .blank-sentence .blank-slot.wrong { border-color: var(--danger); color: var(--danger); }
+        .blank-options {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        }
+        .blank-option {
+            padding: 14px 18px; border: 2px solid var(--gray-200);
+            border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600;
+            transition: all 0.2s; background: white; text-align: center;
+        }
+        .blank-option:hover { border-color: var(--primary); background: #f0f7ff; }
+        .blank-option.correct { border-color: var(--success); background: var(--success-bg); }
+        .blank-option.wrong { border-color: var(--danger); background: var(--danger-bg); }
+        .blank-option.disabled { pointer-events: none; opacity: 0.7; }
+
+        /* ── Survival Mode ── */
+        .survival-card {
+            background: white; border-radius: 14px; padding: 32px;
+            box-shadow: var(--card-shadow); margin-bottom: 20px;
+        }
+        .survival-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; padding: 12px 16px; background: #f8fafc; border-radius: 10px;
+        }
+        .survival-header .lives {
+            font-size: 20px; letter-spacing: 4px;
+        }
+        .survival-header .survival-count {
+            font-size: 14px; font-weight: 700; color: var(--primary);
+        }
+        .survival-question {
+            font-size: 1.1rem; font-weight: 600; line-height: 1.5;
+            margin-bottom: 20px; text-align: center;
+        }
+        .survival-options { display: flex; flex-direction: column; gap: 10px; }
+        .survival-option {
+            padding: 14px 18px; border: 2px solid var(--gray-200);
+            border-radius: 10px; cursor: pointer; font-size: 14px;
+            transition: all 0.2s; background: white; text-align: left;
+        }
+        .survival-option:hover { border-color: var(--primary); background: #f0f7ff; }
+        .survival-option.correct { border-color: var(--success); background: var(--success-bg); }
+        .survival-option.wrong { border-color: var(--danger); background: var(--danger-bg); }
+        .survival-option.disabled { pointer-events: none; opacity: 0.7; }
+        @keyframes loseLife {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.4); color: var(--danger); }
+        }
+        .survival-header .lives.shake { animation: loseLife 0.4s ease; }
+
         /* ── Buttons ── */
         .btn {
             padding: 10px 24px; border: none; border-radius: 8px;
@@ -428,7 +550,7 @@
 
     <div class="hero">
         <h1>🎮 TrackForcePro Challenge</h1>
-        <p>Test your knowledge of the ultimate Salesforce toolkit — play quizzes, match features, and race against the clock!</p>
+        <p>Test your knowledge of the ultimate Salesforce toolkit — 7 game modes including quizzes, speed rounds, true/false, fill-in-the-blank, scenarios, and survival mode!</p>
     </div>
 
     <div class="container">
@@ -465,6 +587,18 @@
             </button>
             <button class="mode-btn" onclick="switchMode('speed')">
                 <span class="emoji">⚡</span> Speed Round
+            </button>
+            <button class="mode-btn" onclick="switchMode('truefalse')">
+                <span class="emoji">✅</span> True or False
+            </button>
+            <button class="mode-btn" onclick="switchMode('scenario')">
+                <span class="emoji">🎯</span> Scenario Challenge
+            </button>
+            <button class="mode-btn" onclick="switchMode('blank')">
+                <span class="emoji">🧩</span> Fill the Blank
+            </button>
+            <button class="mode-btn" onclick="switchMode('survival')">
+                <span class="emoji">💀</span> Survival Mode
             </button>
             <button class="mode-btn" onclick="switchMode('leaderboard')">
                 <span class="emoji">🏆</span> Leaderboard
@@ -521,6 +655,85 @@
             </div>
         </div>
 
+        <!-- ═══════════════ TRUE/FALSE MODE ═══════════════ -->
+        <div class="game-area" id="game-truefalse">
+            <div class="tf-card">
+                <div class="timer-bar"><div class="timer-fill" id="tfTimerFill" style="width:100%"></div></div>
+                <div class="quiz-progress" id="tfProgress"></div>
+                <div class="tf-statement" id="tfStatement">
+                    <div class="statement-icon">✅</div>
+                    <div class="statement-text">Ready to test your knowledge?</div>
+                </div>
+                <div class="tf-buttons" id="tfButtons">
+                    <button class="tf-btn true-btn" onclick="selectTrueFalse(true)">✅ True</button>
+                    <button class="tf-btn false-btn" onclick="selectTrueFalse(false)">❌ False</button>
+                </div>
+                <div class="quiz-feedback" id="tfFeedback"></div>
+                <div class="quiz-nav">
+                    <span id="tfScore" style="font-size:13px;color:var(--gray-600)"></span>
+                    <button class="btn btn-primary" id="tfNextBtn" onclick="nextTrueFalse()" style="display:none">Next →</button>
+                </div>
+                <div style="text-align:center;margin-top:16px">
+                    <button class="btn btn-primary btn-lg" id="tfStartBtn" onclick="startTrueFalse()">✅ Start True or False</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ SCENARIO MODE ═══════════════ -->
+        <div class="game-area" id="game-scenario">
+            <div class="scenario-card">
+                <div class="quiz-progress" id="scenarioProgress"></div>
+                <div class="scenario-context" id="scenarioContext">
+                    <div class="scenario-role">📋 Scenario</div>
+                    <div id="scenarioContextText">Choose the right TrackForcePro tool for real-world Salesforce admin challenges.</div>
+                </div>
+                <div class="scenario-question" id="scenarioQuestion">Ready to begin?</div>
+                <div class="scenario-options" id="scenarioOptions"></div>
+                <div class="quiz-feedback" id="scenarioFeedback"></div>
+                <div class="quiz-nav">
+                    <span id="scenarioScore" style="font-size:13px;color:var(--gray-600)"></span>
+                    <button class="btn btn-primary" id="scenarioNextBtn" onclick="nextScenario()" style="display:none">Next →</button>
+                </div>
+                <div style="text-align:center;margin-top:16px">
+                    <button class="btn btn-primary btn-lg" id="scenarioStartBtn" onclick="startScenario()">🎯 Start Scenario Challenge</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ FILL IN THE BLANK MODE ═══════════════ -->
+        <div class="game-area" id="game-blank">
+            <div class="blank-card">
+                <div class="quiz-progress" id="blankProgress"></div>
+                <div class="blank-sentence" id="blankSentence"></div>
+                <div class="blank-options" id="blankOptions"></div>
+                <div class="quiz-feedback" id="blankFeedback"></div>
+                <div class="quiz-nav">
+                    <span id="blankScore" style="font-size:13px;color:var(--gray-600)"></span>
+                    <button class="btn btn-primary" id="blankNextBtn" onclick="nextBlank()" style="display:none">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ SURVIVAL MODE ═══════════════ -->
+        <div class="game-area" id="game-survival">
+            <div class="survival-card">
+                <div class="survival-header">
+                    <div class="survival-count" id="survivalCount">Answered: 0</div>
+                    <div class="lives" id="survivalLives">❤️❤️❤️</div>
+                </div>
+                <div class="survival-question" id="survivalQuestion">How far can you go? Answer until you run out of lives!</div>
+                <div class="survival-options" id="survivalOptions"></div>
+                <div class="quiz-feedback" id="survivalFeedback"></div>
+                <div class="quiz-nav">
+                    <span id="survivalScore" style="font-size:13px;color:var(--gray-600)"></span>
+                    <button class="btn btn-primary" id="survivalNextBtn" onclick="nextSurvival()" style="display:none">Next →</button>
+                </div>
+                <div style="text-align:center;margin-top:16px">
+                    <button class="btn btn-primary btn-lg" id="survivalStartBtn" onclick="startSurvival()">💀 Start Survival</button>
+                </div>
+            </div>
+        </div>
+
         <!-- ═══════════════ LEADERBOARD ═══════════════ -->
         <div class="game-area" id="game-leaderboard">
             <div class="leaderboard-card">
@@ -553,7 +766,7 @@
     </div>
 
     <footer class="footer">
-        <p>TrackForcePro v1.3.6 — Salesforce Developer Toolkit</p>
+        <p>TrackForcePro v1.3.7 — Salesforce Developer Toolkit</p>
         <p style="margin-top:8px">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> |
             <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a> |
@@ -687,7 +900,7 @@ function renderLeaderboard() {
     });
     var sorted = Object.values(best).sort(function(a, b) { return b.score - a.score; });
 
-    var modeLabels = { quiz: '🧠 Quiz', match: '🔗 Match', speed: '⚡ Speed' };
+    var modeLabels = { quiz: '🧠 Quiz', match: '🔗 Match', speed: '⚡ Speed', truefalse: '✅ T/F', scenario: '🎯 Scenario', blank: '🧩 Blank', survival: '💀 Survival' };
     var html = '<table class="leaderboard-table">' +
         '<thead><tr>' +
             '<th class="rank-col">#</th>' +
@@ -755,7 +968,7 @@ function escapeHtmlLocal(str) {
     return d.innerHTML;
 }
 
-// ── Quiz Data (15 questions) ──
+// ── Quiz Data (30 questions) ──
 const quizQuestions = [
     {
         q: "Where is the TF Sidebar button located on a Salesforce page?",
@@ -846,10 +1059,101 @@ const quizQuestions = [
         opts: ["It opens a new browser tab with Salesforce Setup", "It opens TrackForcePro directly to that specific tool or panel", "It shows a tooltip with instructions", "Nothing — it's just informational"],
         answer: 1,
         explanation: "Clicking a sidebar shortcut <strong>opens TrackForcePro directly to that tool</strong>. For example, clicking 'Custom Labels' opens the Org Tools panel with Custom Labels already selected."
+    },
+    // ── New questions ──
+    {
+        q: "How do you open TrackForcePro as a standalone window?",
+        opts: ["Right-click the extension icon", "Hold Shift and click the pop button (⧉)", "Press Ctrl+Shift+T", "Use the Chrome menu"],
+        answer: 1,
+        explanation: "Hold <strong>Shift and click the pop button (⧉)</strong> in the header to open TrackForcePro in a separate standalone window. A regular click opens it as a browser tab."
+    },
+    {
+        q: "What does the User Manager's Permission Matrix show?",
+        opts: ["A grid of user passwords", "All permissions assigned to a user across Profiles, Permission Sets, and PS Groups", "A list of login attempts", "Database schema permissions"],
+        answer: 1,
+        explanation: "The Permission Matrix shows a <strong>comprehensive grid of all permissions</strong> assigned to a user — tracing them across their Profile, Permission Sets, and Permission Set Groups."
+    },
+    {
+        q: "What does the Metadata Explorer in Data Explorer Tools do?",
+        opts: ["Exports metadata to XML", "Browse and inspect org metadata types, components, and dependencies", "Deploys metadata packages", "Only shows custom objects"],
+        answer: 1,
+        explanation: "The Metadata Explorer lets you <strong>browse and inspect metadata types, components, and their dependencies</strong> — a powerful way to understand your org's configuration."
+    },
+    {
+        q: "What does the Automation Inspector analyze?",
+        opts: ["Only Apex triggers", "Flows, Process Builders, Workflow Rules, and other automation", "Only scheduled jobs", "Email alerts only"],
+        answer: 1,
+        explanation: "The Automation Inspector provides a <strong>comprehensive view of all automation</strong> in your org — Flows, Process Builders, Workflow Rules, Apex Triggers, and more."
+    },
+    {
+        q: "What information does the Org Limits tool display?",
+        opts: ["Only storage limits", "API call usage, storage, and all governor limits with usage percentages", "Only Apex execution limits", "License count only"],
+        answer: 1,
+        explanation: "Org Limits shows <strong>all governor limits</strong> including API call usage, data/file storage, and other platform limits with current usage percentages."
+    },
+    {
+        q: "How does TrackForcePro detect your Salesforce session?",
+        opts: ["You enter credentials manually", "It uses an OAuth login popup", "A content script on Salesforce pages detects the session automatically", "It reads saved passwords"],
+        answer: 2,
+        explanation: "A <strong>content script</strong> injected into Salesforce pages automatically detects your session — no manual login or credential entry needed!"
+    },
+    {
+        q: "What does the Schema Visualizer show?",
+        opts: ["Database table schemas", "Visual relationship diagrams between Salesforce objects", "Only field data types", "SQL execution plans"],
+        answer: 1,
+        explanation: "The Schema Visualizer shows <strong>visual relationship diagrams</strong> between Salesforce objects — parent-child and lookup relationships displayed graphically."
+    },
+    {
+        q: "What does the Freeze/Unfreeze feature in User Manager do?",
+        opts: ["Locks the user's browser", "Temporarily prevents a user from logging into Salesforce", "Deletes the user account", "Pauses email notifications"],
+        answer: 1,
+        explanation: "Freeze <strong>temporarily prevents a user from logging in</strong> without deactivating their account — useful during investigations or employee transitions."
+    },
+    {
+        q: "What is the Login As feature in Org Tools?",
+        opts: ["Creates a new user account", "Opens a Salesforce session as another user, with optional incognito mode and history tracking", "Changes your username", "Shares login credentials via email"],
+        answer: 1,
+        explanation: "Login As lets you <strong>open a session as another user</strong> to troubleshoot their experience. Incognito mode keeps it isolated, and Login History tracks all usage."
+    },
+    {
+        q: "What does the SOQL Builder's query history feature do?",
+        opts: ["Deletes old queries automatically", "Saves and lets you replay previously executed SOQL queries", "Shows Salesforce's internal query log", "Exports query execution plans"],
+        answer: 1,
+        explanation: "Query History <strong>saves your previously executed queries</strong> so you can quickly recall, replay, and modify them without retyping."
+    },
+    {
+        q: "What can you do with Debug Logs in Org Tools?",
+        opts: ["Only view existing logs", "View, create, and manage debug log trace flags for users", "Only delete old logs", "Download Apex source code"],
+        answer: 1,
+        explanation: "Debug Logs in Org Tools lets you <strong>view active trace flags, create new ones, and manage debug logging</strong> for specific users — all without leaving TrackForcePro."
+    },
+    {
+        q: "What does single-instance enforcement mean?",
+        opts: ["Only one user can use the extension", "One TrackForcePro window per org — prevents duplicate windows for the same org", "The extension can only run on one computer", "It limits API calls to one at a time"],
+        answer: 1,
+        explanation: "TrackForcePro enforces <strong>one window per org</strong> — if you try to open a second window for the same org, it focuses the existing one instead of creating a duplicate."
+    },
+    {
+        q: "What is the Access Summary in User Manager?",
+        opts: ["A list of all users who accessed a record", "A comprehensive view of a user's object, field, and record-level access", "Login history for the org", "An IP address whitelist"],
+        answer: 1,
+        explanation: "Access Summary provides a <strong>comprehensive view</strong> of all object-level, field-level, and record-level access for a specific user — everything in one place."
+    },
+    {
+        q: "What does the Deployment tracker in Org Tools show?",
+        opts: ["Only past deployments", "Active, queued, and completed deployment status with component details", "Only failed deployments", "Code coverage results only"],
+        answer: 1,
+        explanation: "The Deployment tracker shows <strong>active, queued, and completed deployments</strong> — including status, component counts, and error details in real time."
+    },
+    {
+        q: "What does the SOQL Builder's FIELDS() mode do?",
+        opts: ["Manually lists all fields", "Automatically queries all fields on an object using FIELDS(ALL), FIELDS(STANDARD), or FIELDS(CUSTOM)", "Creates new fields", "Deletes unused fields"],
+        answer: 1,
+        explanation: "FIELDS() mode uses Salesforce's <strong>FIELDS(ALL), FIELDS(STANDARD), or FIELDS(CUSTOM)</strong> keywords to automatically include all matching fields — no need to select them individually."
     }
 ];
 
-// ── Match Data (8 pairs) ──
+// ── Match Data (20 pairs) ──
 const matchPairs = [
     { feature: "🧭 TF Sidebar", desc: "Floating button at bottom-right of every Salesforce page" },
     { feature: "📊 SOQL Builder", desc: "Visual query builder with inline edit and row delete" },
@@ -862,10 +1166,18 @@ const matchPairs = [
     { feature: "👥 User Manager", desc: "Permission Matrix, Sessions, Freeze, Bulk Update" },
     { feature: "💾 Cache Manager", desc: "Org-scoped caching to prevent cross-org data leaks" },
     { feature: "🔍 Audit Extractor", desc: "Filter and export setup audit trail events to CSV" },
-    { feature: "📦 Data Explorer Tools", desc: "Metadata Explorer, Schema Visualizer, API Dashboard" }
+    { feature: "📦 Data Explorer Tools", desc: "Metadata Explorer, Schema Visualizer, API Dashboard" },
+    { feature: "🧊 Freeze/Unfreeze", desc: "Temporarily prevent a user from logging in" },
+    { feature: "🔄 Automation Inspector", desc: "View all Flows, Triggers, and Workflow Rules" },
+    { feature: "📈 Schema Visualizer", desc: "Visual object relationship diagrams" },
+    { feature: "🏷️ Custom Labels", desc: "Search, edit, translate, and bulk import/export labels" },
+    { feature: "📋 FIELDS() Mode", desc: "Auto-query all fields with FIELDS(ALL/STANDARD/CUSTOM)" },
+    { feature: "🔑 Login As", desc: "Open a session as another user with incognito option" },
+    { feature: "📊 API Usage", desc: "Monitor API request counts and governor limits" },
+    { feature: "🚀 Deployment Tracker", desc: "View active, queued, and completed deployments" }
 ];
 
-// ── Speed Data (12 questions) ──
+// ── Speed Data (22 questions) ──
 const speedQuestions = [
     { icon: "🧭", feature: "TF Sidebar location?", opts: ["Top-left", "Bottom-right", "Center", "Top-right"], answer: 1 },
     { icon: "📊", feature: "SOQL result editing?", opts: ["Copy only", "Inline Edit", "Download only", "Read-only"], answer: 1 },
@@ -878,7 +1190,17 @@ const speedQuestions = [
     { icon: "🔐", feature: "Security Manager browses?", opts: ["Passwords", "Profiles & Perm Sets", "Encryption", "Cookies"], answer: 1 },
     { icon: "👥", feature: "User comparison?", opts: ["Not available", "Side-by-side diff", "List view", "Chart"], answer: 1 },
     { icon: "🌐", feature: "Published on?", opts: ["Chrome only", "Chrome + Edge", "Firefox only", "Safari only"], answer: 1 },
-    { icon: "📋", feature: "Child CSV export?", opts: ["JSON in cell", "Separate rows", "Skipped", "Separate file"], answer: 1 }
+    { icon: "📋", feature: "Child CSV export?", opts: ["JSON in cell", "Separate rows", "Skipped", "Separate file"], answer: 1 },
+    { icon: "⧉", feature: "Standalone window?", opts: ["Right-click", "Shift+click pop", "Ctrl+W", "Double-click"], answer: 1 },
+    { icon: "🧊", feature: "Freeze user does what?", opts: ["Delete account", "Block login", "Reset password", "Send email"], answer: 1 },
+    { icon: "🔑", feature: "Login As supports?", opts: ["Chrome only", "Incognito mode", "Mobile only", "SSO only"], answer: 1 },
+    { icon: "📈", feature: "Schema Visualizer shows?", opts: ["SQL tables", "Object relationships", "Apex code", "Page layouts"], answer: 1 },
+    { icon: "🏷️", feature: "Label translation langs?", opts: ["5", "10", "20", "50"], answer: 2 },
+    { icon: "🔍", feature: "Audit Trail export?", opts: ["PDF", "CSV", "XML", "Excel"], answer: 1 },
+    { icon: "📊", feature: "FIELDS() auto-query?", opts: ["ALL only", "ALL/STANDARD/CUSTOM", "STANDARD only", "Not supported"], answer: 1 },
+    { icon: "🔄", feature: "Session detection?", opts: ["Manual login", "OAuth popup", "Content script", "API key"], answer: 2 },
+    { icon: "🏢", feature: "Org Limits shows?", opts: ["Storage only", "All governor limits", "Users only", "Apex limits"], answer: 1 },
+    { icon: "🚀", feature: "Deployment tracker?", opts: ["Past only", "Active + queued", "Failed only", "Not available"], answer: 1 }
 ];
 
 // ── Fun Facts ──
@@ -892,7 +1214,532 @@ const funFacts = [
     "💡 <strong>Did you know?</strong> The Favicon Manager lets you use 6 different shapes (circle, square, cloud, diamond, hexagon, badge) with custom 3-character labels.",
     "💡 <strong>Fun fact:</strong> TrackForcePro's SOQL Builder supports inline editing — click a cell in the query results to edit and save directly to Salesforce!",
     "💡 <strong>Pro tip:</strong> The TF Sidebar button is at the bottom-right corner of every Salesforce page — no toolbar pinning needed.",
-    "💡 <strong>Did you know?</strong> TrackForcePro automatically scopes all cached data by org ID to prevent cross-org data leaks when switching between orgs."
+    "💡 <strong>Did you know?</strong> TrackForcePro automatically scopes all cached data by org ID to prevent cross-org data leaks when switching between orgs.",
+    "💡 <strong>Pro tip:</strong> Hold Shift and click the pop button to open TrackForcePro as a standalone window — great for multi-monitor setups!",
+    "💡 <strong>Did you know?</strong> The User Manager can freeze a user's login without deactivating their account — perfect for security investigations.",
+    "💡 <strong>Fun fact:</strong> The Automation Inspector shows all Flows, Triggers, Process Builders, and Workflow Rules in one unified view.",
+    "💡 <strong>Pro tip:</strong> Use Login As with incognito mode to troubleshoot another user's experience without affecting your own session.",
+    "💡 <strong>Did you know?</strong> TrackForcePro enforces one window per org — no more accidentally opening duplicate windows for the same Salesforce org!",
+    "💡 <strong>Fun fact:</strong> The Schema Visualizer creates visual relationship diagrams between Salesforce objects — parent-child and lookups at a glance.",
+    "💡 <strong>Pro tip:</strong> SOQL Builder's FIELDS(ALL) mode queries every field on an object automatically — no more selecting dozens of fields manually.",
+    "💡 <strong>Did you know?</strong> The Permission Matrix traces a user's permissions across their Profile, Permission Sets, and Permission Set Groups in one grid.",
+    "💡 <strong>Fun fact:</strong> TrackForcePro works on Chrome, Edge, Brave, Opera, and other Chromium-based browsers — not just Chrome!",
+    "💡 <strong>Pro tip:</strong> The Deployment tracker shows active, queued, and completed deployments in real time — catch failures before they escalate."
+];
+
+// ── True/False Data (20 questions) ──
+const trueFalseQuestions = [
+    {
+        statement: "The TF Sidebar button appears at the top-left corner of Salesforce pages.",
+        answer: false,
+        explanation: "False! It appears at the <strong>bottom-right corner</strong> of every Salesforce page."
+    },
+    {
+        statement: "TrackForcePro uses CometD for Platform Event streaming.",
+        answer: true,
+        explanation: "Correct! TrackForcePro uses <strong>CometD</strong> (Salesforce's Bayeux-based streaming protocol) for real-time Platform Event streaming."
+    },
+    {
+        statement: "The GraphQL Builder uses Monaco Editor for syntax highlighting.",
+        answer: false,
+        explanation: "False! It uses <strong>CodeMirror 6</strong>, not Monaco Editor. CodeMirror 6 provides syntax highlighting, bracket matching, and schema-aware autocomplete."
+    },
+    {
+        statement: "You can inline-edit query results directly in the SOQL Builder's results table.",
+        answer: true,
+        explanation: "Correct! The SOQL Builder supports <strong>inline editing</strong> — click any cell to edit, and changes are saved back to Salesforce via the REST API."
+    },
+    {
+        statement: "TrackForcePro only works in Google Chrome.",
+        answer: false,
+        explanation: "False! It works on <strong>Chrome, Edge, Brave, Opera</strong>, and other Chromium-based browsers."
+    },
+    {
+        statement: "The Favicon Manager supports 6 different shapes for custom org icons.",
+        answer: true,
+        explanation: "Correct! Six shapes: <strong>circle, square, cloud, sfcloud, diamond, hexagon</strong> — each with custom colors and labels."
+    },
+    {
+        statement: "Cache keys in TrackForcePro are global and shared across all orgs.",
+        answer: false,
+        explanation: "False! Cache keys are <strong>scoped by org ID</strong> (e.g., <code>cache_{orgId}_{key}</code>) to prevent cross-org data leaks."
+    },
+    {
+        statement: "The Security Manager can browse Profiles, Permission Sets, and Permission Set Groups.",
+        answer: true,
+        explanation: "Correct! The Security Manager provides a <strong>split-pane browser</strong> for all three — Profiles, Permission Sets, and Permission Set Groups."
+    },
+    {
+        statement: "Holding Shift and clicking the pop button opens TrackForcePro as a browser tab.",
+        answer: false,
+        explanation: "False! Shift+click opens it as a <strong>standalone window</strong>. A regular click opens it as a browser tab."
+    },
+    {
+        statement: "The User Manager includes a Permission Matrix that shows all permissions across Profiles and Permission Sets.",
+        answer: true,
+        explanation: "Correct! The Permission Matrix shows a <strong>comprehensive grid of all permissions</strong> tracing them across Profile, Permission Sets, and PS Groups."
+    },
+    {
+        statement: "TrackForcePro requires you to enter your Salesforce credentials manually.",
+        answer: false,
+        explanation: "False! A <strong>content script</strong> automatically detects your Salesforce session — no manual login needed."
+    },
+    {
+        statement: "Custom Labels in Org Tools support translation into 20 languages.",
+        answer: true,
+        explanation: "Correct! Custom Labels supports <strong>translation into 20 languages</strong> with duplicate detection and bulk import/export."
+    },
+    {
+        statement: "The Record Scanner can compare two records side-by-side with diff highlighting.",
+        answer: true,
+        explanation: "Correct! Compare mode shows a <strong>side-by-side field comparison</strong> with green for matches and red for differences."
+    },
+    {
+        statement: "TrackForcePro allows opening multiple windows for the same Salesforce org.",
+        answer: false,
+        explanation: "False! Single-instance enforcement means <strong>one window per org</strong> — duplicates are prevented and the existing window is focused instead."
+    },
+    {
+        statement: "The Freeze feature in User Manager permanently deletes a user account.",
+        answer: false,
+        explanation: "False! Freeze only <strong>temporarily prevents login</strong> without deactivating or deleting the account."
+    },
+    {
+        statement: "The Login As feature supports opening sessions in incognito mode.",
+        answer: true,
+        explanation: "Correct! Login As supports <strong>incognito mode</strong> to keep the impersonated session isolated from your main session."
+    },
+    {
+        statement: "The SOQL Builder's FIELDS() mode can automatically include all standard fields on an object.",
+        answer: true,
+        explanation: "Correct! FIELDS() mode supports <strong>FIELDS(ALL), FIELDS(STANDARD), and FIELDS(CUSTOM)</strong> to auto-include matching fields."
+    },
+    {
+        statement: "The Schema Visualizer shows visual relationship diagrams between Salesforce objects.",
+        answer: true,
+        explanation: "Correct! It displays <strong>parent-child and lookup relationships</strong> as visual diagrams."
+    },
+    {
+        statement: "Favicon labels are limited to 1 character.",
+        answer: false,
+        explanation: "False! Favicon labels support up to <strong>3 characters</strong> — enough for abbreviations like 'PRD', 'DEV', or 'QA'."
+    },
+    {
+        statement: "The Automation Inspector only shows Apex Triggers.",
+        answer: false,
+        explanation: "False! It shows <strong>all automation</strong> — Flows, Process Builders, Workflow Rules, Apex Triggers, and more."
+    },
+    // ── New T/F questions ──
+    {
+        statement: "The SOQL Builder saves your query history so you can replay previous queries.",
+        answer: true,
+        explanation: "Correct! Query History <strong>saves your previously executed queries</strong> so you can quickly recall and replay them."
+    },
+    {
+        statement: "Debug Logs in Org Tools can only view existing logs, not create new trace flags.",
+        answer: false,
+        explanation: "False! You can <strong>view, create, and manage debug log trace flags</strong> for specific users directly from Org Tools."
+    },
+    {
+        statement: "The API Usage dashboard monitors API request counts and governor limits.",
+        answer: true,
+        explanation: "Correct! The API Usage dashboard shows <strong>API request counts, remaining limits, and usage patterns</strong>."
+    },
+    {
+        statement: "TrackForcePro stores all data on external servers for backup.",
+        answer: false,
+        explanation: "False! All extension data is stored <strong>locally in your browser</strong> — no external servers are involved."
+    },
+    {
+        statement: "The Deployment Tracker can show active, queued, and completed deployments.",
+        answer: true,
+        explanation: "Correct! It shows <strong>active, queued, and completed deployments</strong> with component details and error information."
+    },
+    {
+        statement: "You can bulk update multiple users at once using the User Manager.",
+        answer: true,
+        explanation: "Correct! The User Manager includes <strong>Bulk Update</strong> capabilities for updating multiple user records simultaneously."
+    },
+    {
+        statement: "The Record Scanner only works with standard objects like Account and Contact.",
+        answer: false,
+        explanation: "False! The Record Scanner works with <strong>any Salesforce object</strong> — standard or custom — as long as you have a valid Record ID."
+    },
+    {
+        statement: "LMS stands for Lightning Message Service, used for inter-component communication.",
+        answer: true,
+        explanation: "Correct! LMS (<strong>Lightning Message Service</strong>) enables communication between Lightning components, Aura components, and Visualforce pages."
+    },
+    {
+        statement: "The Scheduled Jobs panel in Org Tools can only view jobs, not manage them.",
+        answer: false,
+        explanation: "False! You can <strong>view and manage scheduled jobs</strong> — including seeing next execution times and job details."
+    },
+    {
+        statement: "TrackForcePro can detect sessions from cookies as a fallback if the service worker crashes.",
+        answer: true,
+        explanation: "Correct! If the service worker is unavailable, <strong>getSessionFromCookies()</strong> retrieves the session directly via the chrome.cookies API as a critical fallback."
+    }
+];
+
+// ── Scenario Data (15 scenarios) ──
+const scenarioQuestions = [
+    {
+        role: "Salesforce Admin",
+        context: "A user reports they can edit records they shouldn't have access to. You need to investigate which permissions are granting this access.",
+        question: "Which TrackForcePro tool would help you investigate?",
+        opts: [
+            { icon: "🔍", text: "Audit Trail Extractor" },
+            { icon: "👥", text: "Permission Matrix in User Manager" },
+            { icon: "🎨", text: "Favicon Manager" },
+            { icon: "🔗", text: "GraphQL Builder" }
+        ],
+        answer: 1,
+        explanation: "The <strong>Permission Matrix</strong> in User Manager shows all permissions assigned to a user — tracing them across their Profile, Permission Sets, and PS Groups to find exactly where the access is coming from."
+    },
+    {
+        role: "DevOps Engineer",
+        context: "Your team just deployed a change set to production. You need to verify the deployment completed successfully and check for any errors.",
+        question: "Which tool would you use to monitor the deployment?",
+        opts: [
+            { icon: "📡", text: "Platform Events" },
+            { icon: "🚀", text: "Deployment Tracker in Org Tools" },
+            { icon: "📊", text: "SOQL Builder" },
+            { icon: "🔬", text: "Record Scanner" }
+        ],
+        answer: 1,
+        explanation: "The <strong>Deployment Tracker</strong> in Org Tools shows active, queued, and completed deployments with component details and error information — exactly what you need."
+    },
+    {
+        role: "Security Analyst",
+        context: "An employee is leaving the company today. You need to immediately prevent them from logging into Salesforce while HR processes the offboarding.",
+        question: "What's the fastest way to block their access?",
+        opts: [
+            { icon: "🧊", text: "Freeze the user in User Manager" },
+            { icon: "🏷️", text: "Edit Custom Labels" },
+            { icon: "🔍", text: "Run an Audit Trail export" },
+            { icon: "📈", text: "Check Schema Visualizer" }
+        ],
+        answer: 0,
+        explanation: "<strong>Freeze the user</strong> in User Manager — this immediately prevents login without deactivating the account, giving HR time to complete the offboarding process."
+    },
+    {
+        role: "Salesforce Developer",
+        context: "You want to quickly query all fields on the Contact object to understand its schema, without manually selecting each field.",
+        question: "Which SOQL Builder feature would you use?",
+        opts: [
+            { icon: "📊", text: "FIELDS() Mode — FIELDS(ALL)" },
+            { icon: "🔗", text: "GraphQL Builder" },
+            { icon: "🔬", text: "Record Scanner" },
+            { icon: "📈", text: "Schema Visualizer" }
+        ],
+        answer: 0,
+        explanation: "<strong>FIELDS(ALL) mode</strong> in the SOQL Builder automatically queries every field on the object — no need to select dozens of fields manually."
+    },
+    {
+        role: "Release Manager",
+        context: "Your org is hitting API limits. You need to identify how many API calls have been consumed and how much headroom remains.",
+        question: "Which tool gives you this information?",
+        opts: [
+            { icon: "🔐", text: "Security Manager" },
+            { icon: "📡", text: "Platform Events" },
+            { icon: "📊", text: "Org Limits in Org Tools" },
+            { icon: "🎨", text: "Favicon Manager" }
+        ],
+        answer: 2,
+        explanation: "<strong>Org Limits</strong> in Org Tools shows all governor limits including API call usage, data storage, and other platform limits with current usage percentages."
+    },
+    {
+        role: "Support Engineer",
+        context: "A user is experiencing issues with a specific record. You need to compare the current values of two related records to find discrepancies.",
+        question: "Which tool provides side-by-side record comparison?",
+        opts: [
+            { icon: "📊", text: "SOQL Builder" },
+            { icon: "🔬", text: "Record Scanner — Compare Mode" },
+            { icon: "👥", text: "User Comparison" },
+            { icon: "🔍", text: "Audit Trail Extractor" }
+        ],
+        answer: 1,
+        explanation: "<strong>Record Scanner's Compare Mode</strong> takes two Record IDs and shows a side-by-side field comparison with diff highlighting — green for matches, red for differences."
+    },
+    {
+        role: "QA Engineer",
+        context: "You need to troubleshoot a Salesforce issue by logging in as a specific user to see exactly what they see, without affecting your own session.",
+        question: "Which approach would you use?",
+        opts: [
+            { icon: "🔑", text: "Login As with Incognito Mode" },
+            { icon: "👥", text: "User Manager — Search" },
+            { icon: "🔐", text: "Security Manager" },
+            { icon: "📋", text: "SOQL Query History" }
+        ],
+        answer: 0,
+        explanation: "<strong>Login As with Incognito Mode</strong> opens a session as another user in an isolated incognito window — you see exactly what they see without affecting your own session."
+    },
+    {
+        role: "Salesforce Admin",
+        context: "You manage 5 Salesforce orgs (Production, 3 Sandboxes, Developer). You keep accidentally making changes in the wrong org because the browser tabs look identical.",
+        question: "Which tool solves this problem?",
+        opts: [
+            { icon: "📊", text: "SOQL Builder" },
+            { icon: "🏷️", text: "Custom Labels" },
+            { icon: "🎨", text: "Favicon Manager — Custom Org Icons" },
+            { icon: "🔍", text: "Audit Trail Extractor" }
+        ],
+        answer: 2,
+        explanation: "The <strong>Favicon Manager</strong> lets you assign distinct colors, shapes, and labels to each org's browser tab — so you can instantly tell Production (🔴 PRD) from Sandbox (🟢 SBX) at a glance."
+    },
+    {
+        role: "Integration Specialist",
+        context: "You need to monitor Platform Events being published by an integration in real-time to verify the data payloads are correct.",
+        question: "Which tool provides real-time event monitoring?",
+        opts: [
+            { icon: "🔍", text: "Audit Trail Extractor" },
+            { icon: "📊", text: "SOQL Builder" },
+            { icon: "📡", text: "Platform Events — CometD Streaming" },
+            { icon: "📈", text: "API Usage Dashboard" }
+        ],
+        answer: 2,
+        explanation: "<strong>Platform Events</strong> uses CometD streaming to subscribe to events in real-time — you can see payloads as they arrive and verify the integration is working correctly."
+    },
+    {
+        role: "Compliance Officer",
+        context: "An auditor is requesting a complete log of all admin changes made to the Salesforce org in the last 90 days for a compliance review.",
+        question: "Which tool provides this audit data?",
+        opts: [
+            { icon: "🔍", text: "Audit Trail Extractor — Filter & Export to CSV" },
+            { icon: "👥", text: "User Manager" },
+            { icon: "🔐", text: "Security Manager" },
+            { icon: "🏢", text: "Debug Logs" }
+        ],
+        answer: 0,
+        explanation: "The <strong>Audit Trail Extractor</strong> lets you filter Setup Audit Trail events by date range, user, and action — then export the results to CSV for the compliance review."
+    },
+    // ── New scenarios ──
+    {
+        role: "Data Architect",
+        context: "You need to understand how objects in the org are related — which objects have lookups to Account, what master-detail relationships exist, etc.",
+        question: "Which tool visualizes object relationships?",
+        opts: [
+            { icon: "📈", text: "Schema Visualizer" },
+            { icon: "📊", text: "SOQL Builder" },
+            { icon: "🔍", text: "Audit Trail Extractor" },
+            { icon: "🏷️", text: "Custom Labels" }
+        ],
+        answer: 0,
+        explanation: "The <strong>Schema Visualizer</strong> shows visual relationship diagrams between Salesforce objects — parent-child and lookup relationships displayed graphically."
+    },
+    {
+        role: "Salesforce Admin",
+        context: "You need to translate all custom labels in the org into Spanish and French, and export the results for review by the localization team.",
+        question: "Which tool handles bulk label translation and export?",
+        opts: [
+            { icon: "📊", text: "SOQL Builder" },
+            { icon: "🏷️", text: "Custom Labels in Org Tools" },
+            { icon: "🔐", text: "Security Manager" },
+            { icon: "📡", text: "Platform Events" }
+        ],
+        answer: 1,
+        explanation: "<strong>Custom Labels</strong> in Org Tools supports translation into 20 languages with duplicate detection, plus bulk export as CSV/JSON for external review."
+    },
+    {
+        role: "Security Admin",
+        context: "You need to review which Permission Sets are assigned to users in a specific Profile, and check what permissions each PS grants.",
+        question: "Which tool provides this split-pane browsing experience?",
+        opts: [
+            { icon: "🔐", text: "Security Manager" },
+            { icon: "👥", text: "User Manager — Search" },
+            { icon: "🔍", text: "Audit Trail Extractor" },
+            { icon: "📊", text: "SOQL Builder" }
+        ],
+        answer: 0,
+        explanation: "The <strong>Security Manager</strong> provides a split-pane browser for Profiles, Permission Sets, and Permission Set Groups — view assignments, permissions, and details at a glance."
+    },
+    {
+        role: "Salesforce Developer",
+        context: "You want to query Salesforce data using GraphQL with autocomplete and syntax highlighting, then export the results including nested child records as a flat CSV.",
+        question: "Which tool provides this workflow?",
+        opts: [
+            { icon: "📊", text: "SOQL Builder" },
+            { icon: "🔗", text: "GraphQL Builder with CodeMirror 6" },
+            { icon: "🔬", text: "Record Scanner" },
+            { icon: "🔍", text: "Audit Trail Extractor" }
+        ],
+        answer: 1,
+        explanation: "The <strong>GraphQL Builder</strong> uses CodeMirror 6 for schema-aware autocomplete and syntax highlighting, and exports child records as expanded CSV rows with parent fields repeated."
+    },
+    {
+        role: "IT Manager",
+        context: "You suspect an admin made unauthorized changes to validation rules last week. You need evidence of exactly what was changed and by whom.",
+        question: "Which tool provides the change log?",
+        opts: [
+            { icon: "🏢", text: "Debug Logs" },
+            { icon: "🔐", text: "Security Manager" },
+            { icon: "🔍", text: "Audit Trail Extractor — Filter by date and action" },
+            { icon: "👥", text: "User Manager" }
+        ],
+        answer: 2,
+        explanation: "The <strong>Audit Trail Extractor</strong> lets you filter by date range, user, and action type — then export the evidence to CSV for your investigation."
+    }
+];
+
+// ── Fill in the Blank Data (16 questions) ──
+const blankQuestions = [
+    {
+        sentence: "The TF Sidebar button appears at the _____ of every Salesforce page.",
+        blank: "bottom-right corner",
+        opts: ["top-left corner", "bottom-right corner", "center of the screen", "browser toolbar"],
+        answer: 1,
+        explanation: "The TF Sidebar is a floating button at the <strong>bottom-right corner</strong> — always accessible, no toolbar pinning needed."
+    },
+    {
+        sentence: "TrackForcePro uses _____ for the GraphQL editor with syntax highlighting.",
+        blank: "CodeMirror 6",
+        opts: ["Monaco Editor", "CodeMirror 6", "Ace Editor", "VS Code"],
+        answer: 1,
+        explanation: "<strong>CodeMirror 6</strong> provides syntax highlighting, bracket matching, and schema-aware autocomplete."
+    },
+    {
+        sentence: "Cache keys are scoped by _____ to prevent cross-org data leaks.",
+        blank: "Org ID",
+        opts: ["User ID", "Browser ID", "Org ID", "Tab ID"],
+        answer: 2,
+        explanation: "Cache keys use the pattern <code>cache_{orgId}_{key}</code> — <strong>scoped by Org ID</strong> for isolation."
+    },
+    {
+        sentence: "Platform Events use the _____ streaming protocol for real-time data.",
+        blank: "CometD",
+        opts: ["WebSocket", "gRPC", "Server-Sent Events", "CometD"],
+        answer: 3,
+        explanation: "<strong>CometD</strong> (Bayeux protocol) is Salesforce's standard for streaming Platform Events."
+    },
+    {
+        sentence: "The Favicon Manager supports _____ different shapes for custom org icons.",
+        blank: "6",
+        opts: ["3", "4", "6", "8"],
+        answer: 2,
+        explanation: "<strong>6 shapes</strong>: circle, square, cloud, sfcloud, diamond, and hexagon."
+    },
+    {
+        sentence: "Hold _____ and click the pop button to open TrackForcePro as a standalone window.",
+        blank: "Shift",
+        opts: ["Ctrl", "Alt", "Shift", "Cmd"],
+        answer: 2,
+        explanation: "<strong>Shift</strong>+click opens a standalone window. A regular click opens a browser tab."
+    },
+    {
+        sentence: "The Security Manager browses Profiles, Permission Sets, and _____.",
+        blank: "Permission Set Groups",
+        opts: ["Login History", "Custom Objects", "Permission Set Groups", "Sharing Rules"],
+        answer: 2,
+        explanation: "The Security Manager provides a split-pane browser for Profiles, Permission Sets, and <strong>Permission Set Groups</strong>."
+    },
+    {
+        sentence: "Custom Labels support translation into _____ languages.",
+        blank: "20",
+        opts: ["5", "10", "20", "50"],
+        answer: 2,
+        explanation: "Custom Labels supports translation into <strong>20 languages</strong> with duplicate detection."
+    },
+    {
+        sentence: "The Record Scanner's Compare mode highlights differences using _____ colors.",
+        blank: "green and red",
+        opts: ["blue and yellow", "green and red", "black and white", "orange and purple"],
+        answer: 1,
+        explanation: "Compare mode shows <strong>green for matching</strong> values and <strong>red for differences</strong>."
+    },
+    {
+        sentence: "TrackForcePro enforces _____ per org to prevent duplicate windows.",
+        blank: "one window",
+        opts: ["one tab", "one window", "two windows", "unlimited windows"],
+        answer: 1,
+        explanation: "<strong>Single-instance enforcement</strong> means one window per org — duplicates focus the existing window."
+    },
+    {
+        sentence: "The SOQL Builder's _____ mode auto-includes all fields on an object.",
+        blank: "FIELDS()",
+        opts: ["SELECT *", "FIELDS()", "ALL_FIELDS", "DESCRIBE"],
+        answer: 1,
+        explanation: "<strong>FIELDS()</strong> mode uses FIELDS(ALL), FIELDS(STANDARD), or FIELDS(CUSTOM) keywords."
+    },
+    {
+        sentence: "A _____ injected into Salesforce pages automatically detects your session.",
+        blank: "content script",
+        opts: ["popup script", "content script", "background worker", "iframe widget"],
+        answer: 1,
+        explanation: "A <strong>content script</strong> detects your Salesforce session — no manual credential entry needed."
+    },
+    {
+        sentence: "Favicon labels support up to _____ characters for org abbreviations.",
+        blank: "3",
+        opts: ["1", "2", "3", "5"],
+        answer: 2,
+        explanation: "Labels support up to <strong>3 characters</strong> — like 'PRD', 'DEV', or 'QA'."
+    },
+    {
+        sentence: "The Freeze feature in User Manager _____ without deactivating the account.",
+        blank: "prevents login",
+        opts: ["deletes the user", "prevents login", "resets the password", "removes permissions"],
+        answer: 1,
+        explanation: "Freeze <strong>temporarily prevents login</strong> without deactivating or deleting the user account."
+    },
+    {
+        sentence: "Login As supports _____ mode to isolate the impersonated session.",
+        blank: "incognito",
+        opts: ["private", "incognito", "sandbox", "guest"],
+        answer: 1,
+        explanation: "Login As supports <strong>incognito mode</strong> to keep the impersonated session isolated from your main session."
+    },
+    {
+        sentence: "The Automation Inspector analyzes Flows, Triggers, Workflow Rules, and _____.",
+        blank: "Process Builders",
+        opts: ["Custom Labels", "Process Builders", "Page Layouts", "Validation Rules"],
+        answer: 1,
+        explanation: "The Automation Inspector shows all automation including Flows, Triggers, <strong>Process Builders</strong>, and Workflow Rules."
+    }
+];
+
+// ── Survival Mode Data (40 questions from all categories) ──
+const survivalQuestions = [
+    { q: "Where does the TF Sidebar button appear?", opts: ["Top-left", "Bottom-right", "Center", "Toolbar"], answer: 1 },
+    { q: "Which editor does the GraphQL Builder use?", opts: ["Ace", "CodeMirror 6", "Monaco", "Quill"], answer: 1 },
+    { q: "What protocol streams Platform Events?", opts: ["WebSocket", "CometD", "gRPC", "SSE"], answer: 1 },
+    { q: "How are cache keys scoped?", opts: ["By user", "By org ID", "By browser", "Globally"], answer: 1 },
+    { q: "How many favicon shapes are available?", opts: ["3", "6", "8", "12"], answer: 1 },
+    { q: "What does Freeze do to a user?", opts: ["Deletes them", "Blocks login", "Resets password", "Removes profile"], answer: 1 },
+    { q: "FIELDS(ALL) queries which fields?", opts: ["Standard only", "Custom only", "Every field", "Id only"], answer: 2 },
+    { q: "Shift+click pop button does what?", opts: ["Close popup", "Open as window", "Open as tab", "Refresh"], answer: 1 },
+    { q: "Custom Labels support how many languages?", opts: ["5", "10", "20", "50"], answer: 2 },
+    { q: "Record Scanner Compare uses which colors?", opts: ["Blue/yellow", "Green/red", "Black/white", "Orange/gray"], answer: 1 },
+    { q: "Security Manager browses what?", opts: ["Passwords", "Profiles & Perm Sets", "Cookies", "Tokens"], answer: 1 },
+    { q: "How is the session detected?", opts: ["Manual login", "Content script", "OAuth popup", "API key"], answer: 1 },
+    { q: "Favicon labels max characters?", opts: ["1", "2", "3", "5"], answer: 2 },
+    { q: "Login As supports which isolation?", opts: ["Private tab", "Incognito mode", "New profile", "VPN"], answer: 1 },
+    { q: "Deployment Tracker shows what?", opts: ["Past only", "Active + queued + completed", "Failed only", "Code only"], answer: 1 },
+    { q: "Which browsers are supported?", opts: ["Chrome only", "Chrome + Edge + Chromium", "Firefox only", "All browsers"], answer: 1 },
+    { q: "Audit Trail exports to what format?", opts: ["PDF", "CSV", "XML", "Excel"], answer: 1 },
+    { q: "How many windows per org?", opts: ["Unlimited", "1", "2", "3"], answer: 1 },
+    { q: "Schema Visualizer shows what?", opts: ["SQL plans", "Object relationships", "Apex code", "Layouts"], answer: 1 },
+    { q: "Debug Logs in Org Tools can do what?", opts: ["View only", "View + create trace flags", "Delete only", "Export only"], answer: 1 },
+    { q: "User Manager Bulk Update does what?", opts: ["Delete users", "Update multiple users at once", "Export users", "Create users"], answer: 1 },
+    { q: "LMS stands for what?", opts: ["Login Management System", "Lightning Message Service", "Local Memory Store", "List Manager Service"], answer: 1 },
+    { q: "Org Limits shows what?", opts: ["Storage only", "All governor limits", "Users only", "Apex limits only"], answer: 1 },
+    { q: "SOQL Builder inline edit saves via?", opts: ["CSV import", "REST API", "Bulk API", "Metadata API"], answer: 1 },
+    { q: "GraphQL child records export as?", opts: ["JSON in cell", "Expanded rows", "Separate file", "Skipped"], answer: 1 },
+    { q: "Permission Matrix traces across?", opts: ["Profile only", "Profile + PS + PS Groups", "PS only", "Roles only"], answer: 1 },
+    { q: "Query History does what?", opts: ["Deletes queries", "Saves + replays queries", "Logs API calls", "Caches results"], answer: 1 },
+    { q: "Access Summary shows what?", opts: ["Login history", "Object + field + record access", "API usage", "Storage"], answer: 1 },
+    { q: "Automation Inspector covers what?", opts: ["Triggers only", "Flows + Triggers + WF Rules + PBs", "Flows only", "Email alerts"], answer: 1 },
+    { q: "Metadata Explorer does what?", opts: ["Deploy metadata", "Browse metadata types + deps", "Export XML", "Create objects"], answer: 1 },
+    { q: "API Usage dashboard monitors?", opts: ["REST only", "Request counts + limits", "SOAP only", "Bandwidth"], answer: 1 },
+    { q: "Content script fallback uses?", opts: ["OAuth", "chrome.cookies API", "Bookmarks", "localStorage"], answer: 1 },
+    { q: "Scheduled Jobs panel shows?", opts: ["Cron only", "Jobs + next execution times", "Apex classes", "Email logs"], answer: 1 },
+    { q: "Match Game pairs features with?", opts: ["Icons", "Descriptions", "Screenshots", "Code samples"], answer: 1 },
+    { q: "User Comparison shows what?", opts: ["Photos", "Side-by-side diff", "Org chart", "Login count"], answer: 1 },
+    { q: "Sidebar shortcuts open TFP to?", opts: ["Home page", "Specific tool or panel", "Settings", "About page"], answer: 1 },
+    { q: "Data Explorer has how many sub-tabs?", opts: ["2", "3", "5", "8"], answer: 2 },
+    { q: "Custom Labels bulk import supports?", opts: ["CSV only", "Update mode", "JSON only", "XML only"], answer: 1 },
+    { q: "Cookie fallback retrieves what?", opts: ["Username", "sid cookie", "Password", "OAuth token"], answer: 1 },
+    { q: "Reset Password feature is in?", opts: ["Security Manager", "User Manager", "Org Tools", "Settings"], answer: 1 }
 ];
 
 // ═══════════════ QUIZ ENGINE ═══════════════
@@ -1134,10 +1981,368 @@ function highlightSpeedAnswer(selectedIdx) {
     });
 }
 
+// ═══════════════ TRUE/FALSE ENGINE ═══════════════
+
+let tfIndex = 0, tfCorrect = 0, tfAnswered = false, tfTimer = null, tfTimeLeft = 0;
+let shuffledTF = [];
+const TF_TIME = 6;
+
+function startTrueFalse() {
+    shuffledTF = shuffleArray(trueFalseQuestions).slice(0, 12);
+    tfIndex = 0; tfCorrect = 0; tfAnswered = false;
+    document.getElementById('tfStartBtn').style.display = 'none';
+    renderTrueFalse();
+}
+
+function renderTrueFalse() {
+    if (tfIndex >= shuffledTF.length) {
+        showResults('truefalse', tfCorrect, shuffledTF.length);
+        document.getElementById('tfStartBtn').style.display = 'inline-flex';
+        return;
+    }
+    var q = shuffledTF[tfIndex];
+    tfAnswered = false;
+
+    // Progress dots
+    var dots = shuffledTF.map(function(_, i) {
+        var cls = 'quiz-dot';
+        if (i === tfIndex) cls += ' current';
+        else if (i < tfIndex) cls += (shuffledTF[i]._correct ? ' correct' : ' wrong');
+        return '<div class="' + cls + '"></div>';
+    }).join('');
+    document.getElementById('tfProgress').innerHTML = dots;
+
+    document.getElementById('tfStatement').innerHTML =
+        '<div class="statement-icon">🤔</div>' +
+        '<div class="statement-text">' + q.statement + '</div>';
+
+    // Reset buttons
+    var btnsHtml = '<button class="tf-btn true-btn" onclick="selectTrueFalse(true)">✅ True</button>' +
+                   '<button class="tf-btn false-btn" onclick="selectTrueFalse(false)">❌ False</button>';
+    document.getElementById('tfButtons').innerHTML = btnsHtml;
+
+    document.getElementById('tfFeedback').className = 'quiz-feedback';
+    document.getElementById('tfFeedback').style.display = 'none';
+    document.getElementById('tfNextBtn').style.display = 'none';
+    document.getElementById('tfScore').textContent = tfCorrect + '/' + shuffledTF.length + ' correct';
+
+    // Timer
+    tfTimeLeft = TF_TIME * 10;
+    document.getElementById('tfTimerFill').style.width = '100%';
+    document.getElementById('tfTimerFill').className = 'timer-fill';
+    clearInterval(tfTimer);
+    tfTimer = setInterval(function() {
+        tfTimeLeft--;
+        var pct = (tfTimeLeft / (TF_TIME * 10)) * 100;
+        document.getElementById('tfTimerFill').style.width = pct + '%';
+        if (pct < 30) document.getElementById('tfTimerFill').className = 'timer-fill danger';
+        else if (pct < 60) document.getElementById('tfTimerFill').className = 'timer-fill warning';
+        if (tfTimeLeft <= 0) {
+            clearInterval(tfTimer);
+            if (!tfAnswered) {
+                tfAnswered = true;
+                shuffledTF[tfIndex]._correct = false;
+                streak = 0; updateScoreboard();
+                var fb = document.getElementById('tfFeedback');
+                fb.className = 'quiz-feedback show wrong';
+                fb.innerHTML = '⏰ Time\'s up! ' + shuffledTF[tfIndex].explanation;
+                document.querySelectorAll('.tf-btn').forEach(function(b) { b.classList.add('disabled'); });
+                document.getElementById('tfNextBtn').style.display = 'inline-flex';
+            }
+        }
+    }, 100);
+}
+
+function selectTrueFalse(selected) {
+    if (tfAnswered) return;
+    tfAnswered = true;
+    clearInterval(tfTimer);
+    var q = shuffledTF[tfIndex];
+    var isCorrect = selected === q.answer;
+    q._correct = isCorrect;
+
+    var trueBtns = document.querySelectorAll('.tf-btn');
+    trueBtns.forEach(function(b) { b.classList.add('disabled'); });
+
+    if (selected === true) trueBtns[0].classList.add(isCorrect ? 'correct' : 'wrong');
+    else trueBtns[1].classList.add(isCorrect ? 'correct' : 'wrong');
+
+    // Highlight correct answer
+    if (!isCorrect) {
+        if (q.answer === true) trueBtns[0].classList.add('correct');
+        else trueBtns[1].classList.add('correct');
+    }
+
+    var fb = document.getElementById('tfFeedback');
+    if (isCorrect) {
+        tfCorrect++;
+        streak++; if (streak > bestStreak) bestStreak = streak;
+        var timeBonus = Math.floor(tfTimeLeft / 2);
+        totalScore += 90 + timeBonus + (streak > 1 ? streak * 10 : 0);
+        fb.className = 'quiz-feedback show correct';
+        fb.innerHTML = '✅ Correct! +' + (90 + timeBonus) + ' points' +
+            (streak > 2 ? ' (🔥 ' + streak + ' streak!)' : '') +
+            '<br>' + q.explanation;
+    } else {
+        streak = 0;
+        fb.className = 'quiz-feedback show wrong';
+        fb.innerHTML = '❌ Wrong! ' + q.explanation;
+    }
+    updateScoreboard();
+    document.getElementById('tfNextBtn').style.display = 'inline-flex';
+    document.getElementById('tfScore').textContent = tfCorrect + '/' + shuffledTF.length + ' correct';
+}
+
+function nextTrueFalse() {
+    tfIndex++;
+    renderTrueFalse();
+}
+
+// ═══════════════ SCENARIO ENGINE ═══════════════
+
+let scenarioIndex = 0, scenarioCorrectCount = 0, scenarioAnswered = false;
+let shuffledScenarios = [];
+
+function startScenario() {
+    shuffledScenarios = shuffleArray(scenarioQuestions).slice(0, 8);
+    scenarioIndex = 0; scenarioCorrectCount = 0; scenarioAnswered = false;
+    document.getElementById('scenarioStartBtn').style.display = 'none';
+    renderScenario();
+}
+
+function renderScenario() {
+    if (scenarioIndex >= shuffledScenarios.length) {
+        showResults('scenario', scenarioCorrectCount, shuffledScenarios.length);
+        document.getElementById('scenarioStartBtn').style.display = 'inline-flex';
+        return;
+    }
+    var q = shuffledScenarios[scenarioIndex];
+    scenarioAnswered = false;
+
+    // Progress dots
+    var dots = shuffledScenarios.map(function(_, i) {
+        var cls = 'quiz-dot';
+        if (i === scenarioIndex) cls += ' current';
+        else if (i < scenarioIndex) cls += (shuffledScenarios[i]._correct ? ' correct' : ' wrong');
+        return '<div class="' + cls + '"></div>';
+    }).join('');
+    document.getElementById('scenarioProgress').innerHTML = dots;
+
+    document.getElementById('scenarioContext').innerHTML =
+        '<div class="scenario-role">📋 ' + q.role + '</div>' + q.context;
+    document.getElementById('scenarioQuestion').textContent = q.question;
+
+    var optsHtml = q.opts.map(function(opt, i) {
+        return '<div class="scenario-option" data-index="' + i + '" onclick="selectScenario(' + i + ')">' +
+            '<span class="tool-icon">' + opt.icon + '</span> ' + opt.text + '</div>';
+    }).join('');
+    document.getElementById('scenarioOptions').innerHTML = optsHtml;
+
+    document.getElementById('scenarioFeedback').className = 'quiz-feedback';
+    document.getElementById('scenarioFeedback').style.display = 'none';
+    document.getElementById('scenarioNextBtn').style.display = 'none';
+    document.getElementById('scenarioScore').textContent = scenarioCorrectCount + '/' + shuffledScenarios.length + ' correct';
+}
+
+function selectScenario(idx) {
+    if (scenarioAnswered) return;
+    scenarioAnswered = true;
+    var q = shuffledScenarios[scenarioIndex];
+    var isCorrect = idx === q.answer;
+    q._correct = isCorrect;
+
+    var optEls = document.querySelectorAll('#scenarioOptions .scenario-option');
+    optEls.forEach(function(el) {
+        el.classList.add('disabled');
+        var elIdx = parseInt(el.getAttribute('data-index'));
+        if (elIdx === q.answer) el.classList.add('correct');
+        if (elIdx === idx && !isCorrect) el.classList.add('wrong');
+    });
+
+    var fb = document.getElementById('scenarioFeedback');
+    if (isCorrect) {
+        scenarioCorrectCount++;
+        streak++; if (streak > bestStreak) bestStreak = streak;
+        totalScore += 120 + (streak > 1 ? streak * 15 : 0);
+        fb.className = 'quiz-feedback show correct';
+        fb.innerHTML = '✅ Correct! +' + (120 + (streak > 1 ? streak * 15 : 0)) + ' points' +
+            (streak > 2 ? ' (🔥 ' + streak + ' streak!)' : '') +
+            '<br>' + q.explanation;
+    } else {
+        streak = 0;
+        fb.className = 'quiz-feedback show wrong';
+        fb.innerHTML = '❌ Not the best tool! The right answer is: <strong>' + q.opts[q.answer].text + '</strong><br>' + q.explanation;
+    }
+    updateScoreboard();
+    document.getElementById('scenarioNextBtn').style.display = 'inline-flex';
+    document.getElementById('scenarioScore').textContent = scenarioCorrectCount + '/' + shuffledScenarios.length + ' correct';
+}
+
+function nextScenario() {
+    scenarioIndex++;
+    renderScenario();
+}
+
+// ═══════════════ FILL IN THE BLANK ENGINE ═══════════════
+
+let blankIndex = 0, blankCorrect = 0, blankAnswered = false;
+let shuffledBlanks = [];
+
+function startBlank() {
+    shuffledBlanks = shuffleArray(blankQuestions).slice(0, 10);
+    blankIndex = 0; blankCorrect = 0; blankAnswered = false;
+    renderBlank();
+}
+
+function renderBlank() {
+    if (blankIndex >= shuffledBlanks.length) { showResults('blank', blankCorrect, shuffledBlanks.length); return; }
+    var q = shuffledBlanks[blankIndex];
+    blankAnswered = false;
+
+    var dots = shuffledBlanks.map(function(_, i) {
+        var cls = 'quiz-dot';
+        if (i === blankIndex) cls += ' current';
+        else if (i < blankIndex) cls += (shuffledBlanks[i]._correct ? ' correct' : ' wrong');
+        return '<div class="' + cls + '"></div>';
+    }).join('');
+    document.getElementById('blankProgress').innerHTML = dots;
+
+    var sentenceHtml = q.sentence.replace('_____', '<span class="blank-slot" id="blankSlot">?????</span>');
+    document.getElementById('blankSentence').innerHTML = sentenceHtml;
+
+    var optsHtml = q.opts.map(function(opt, i) {
+        return '<div class="blank-option" data-index="' + i + '" onclick="selectBlank(' + i + ')">' + opt + '</div>';
+    }).join('');
+    document.getElementById('blankOptions').innerHTML = optsHtml;
+
+    document.getElementById('blankFeedback').className = 'quiz-feedback';
+    document.getElementById('blankFeedback').style.display = 'none';
+    document.getElementById('blankNextBtn').style.display = 'none';
+    document.getElementById('blankScore').textContent = blankCorrect + '/' + shuffledBlanks.length + ' correct';
+}
+
+function selectBlank(idx) {
+    if (blankAnswered) return;
+    blankAnswered = true;
+    var q = shuffledBlanks[blankIndex];
+    var isCorrect = idx === q.answer;
+    q._correct = isCorrect;
+
+    var slot = document.getElementById('blankSlot');
+    slot.textContent = q.blank;
+
+    var optEls = document.querySelectorAll('#blankOptions .blank-option');
+    optEls.forEach(function(el) {
+        el.classList.add('disabled');
+        var elIdx = parseInt(el.getAttribute('data-index'));
+        if (elIdx === q.answer) el.classList.add('correct');
+        if (elIdx === idx && !isCorrect) el.classList.add('wrong');
+    });
+
+    var fb = document.getElementById('blankFeedback');
+    if (isCorrect) {
+        blankCorrect++;
+        streak++; if (streak > bestStreak) bestStreak = streak;
+        totalScore += 110 + (streak > 1 ? streak * 10 : 0);
+        slot.classList.add('correct');
+        fb.className = 'quiz-feedback show correct';
+        fb.innerHTML = '✅ Correct! +' + (110 + (streak > 1 ? streak * 10 : 0)) + ' points' +
+            (streak > 2 ? ' (🔥 ' + streak + ' streak!)' : '') + '<br>' + q.explanation;
+    } else {
+        streak = 0;
+        slot.classList.add('wrong');
+        fb.className = 'quiz-feedback show wrong';
+        fb.innerHTML = '❌ The answer is: <strong>' + q.blank + '</strong><br>' + q.explanation;
+    }
+    updateScoreboard();
+    document.getElementById('blankNextBtn').style.display = 'inline-flex';
+    document.getElementById('blankScore').textContent = blankCorrect + '/' + shuffledBlanks.length + ' correct';
+}
+
+function nextBlank() { blankIndex++; renderBlank(); }
+
+// ═══════════════ SURVIVAL ENGINE ═══════════════
+
+let survivalIndex = 0, survivalCorrectCount = 0, survivalLives = 3, survivalAnswered = false;
+let shuffledSurvival = [];
+
+function startSurvival() {
+    shuffledSurvival = shuffleArray(survivalQuestions);
+    survivalIndex = 0; survivalCorrectCount = 0; survivalLives = 3; survivalAnswered = false;
+    document.getElementById('survivalStartBtn').style.display = 'none';
+    renderSurvival();
+}
+
+function renderSurvival() {
+    if (survivalLives <= 0 || survivalIndex >= shuffledSurvival.length) {
+        showResults('survival', survivalCorrectCount, survivalCorrectCount + (3 - survivalLives));
+        document.getElementById('survivalStartBtn').style.display = 'inline-flex';
+        return;
+    }
+    var q = shuffledSurvival[survivalIndex];
+    survivalAnswered = false;
+
+    document.getElementById('survivalLives').textContent = '❤️'.repeat(survivalLives) + '🖤'.repeat(3 - survivalLives);
+    document.getElementById('survivalLives').classList.remove('shake');
+    document.getElementById('survivalCount').textContent = 'Answered: ' + survivalCorrectCount + ' | Round ' + (survivalIndex + 1);
+    document.getElementById('survivalQuestion').textContent = q.q;
+
+    var optsHtml = q.opts.map(function(opt, i) {
+        return '<div class="survival-option" data-index="' + i + '" onclick="selectSurvival(' + i + ')">' + opt + '</div>';
+    }).join('');
+    document.getElementById('survivalOptions').innerHTML = optsHtml;
+
+    document.getElementById('survivalFeedback').className = 'quiz-feedback';
+    document.getElementById('survivalFeedback').style.display = 'none';
+    document.getElementById('survivalNextBtn').style.display = 'none';
+    document.getElementById('survivalScore').textContent = '';
+}
+
+function selectSurvival(idx) {
+    if (survivalAnswered) return;
+    survivalAnswered = true;
+    var q = shuffledSurvival[survivalIndex];
+    var isCorrect = idx === q.answer;
+
+    var optEls = document.querySelectorAll('#survivalOptions .survival-option');
+    optEls.forEach(function(el) {
+        el.classList.add('disabled');
+        var elIdx = parseInt(el.getAttribute('data-index'));
+        if (elIdx === q.answer) el.classList.add('correct');
+        if (elIdx === idx && !isCorrect) el.classList.add('wrong');
+    });
+
+    var fb = document.getElementById('survivalFeedback');
+    if (isCorrect) {
+        survivalCorrectCount++;
+        streak++; if (streak > bestStreak) bestStreak = streak;
+        var bonus = 50 + survivalCorrectCount * 20 + (streak > 1 ? streak * 15 : 0);
+        totalScore += bonus;
+        fb.className = 'quiz-feedback show correct';
+        fb.innerHTML = '✅ Correct! +' + bonus + ' points' + (streak > 2 ? ' (🔥 ' + streak + ' streak!)' : '');
+    } else {
+        survivalLives--;
+        streak = 0;
+        document.getElementById('survivalLives').textContent = '❤️'.repeat(survivalLives) + '🖤'.repeat(3 - survivalLives);
+        document.getElementById('survivalLives').classList.add('shake');
+        fb.className = 'quiz-feedback show wrong';
+        fb.innerHTML = '❌ Wrong! ' + (survivalLives > 0 ? survivalLives + ' li' + (survivalLives === 1 ? 'fe' : 'ves') + ' remaining.' : '💀 Game over!');
+    }
+    updateScoreboard();
+    document.getElementById('survivalCount').textContent = 'Answered: ' + survivalCorrectCount + ' | Round ' + (survivalIndex + 1);
+    document.getElementById('survivalNextBtn').style.display = 'inline-flex';
+    if (survivalLives <= 0) {
+        document.getElementById('survivalNextBtn').textContent = 'See Results →';
+    }
+}
+
+function nextSurvival() { survivalIndex++; renderSurvival(); }
+
 // ═══════════════ RESULTS ═══════════════
 
 function showResults(mode, correct, total) {
     clearInterval(speedTimer);
+    clearInterval(tfTimer);
     var pct = Math.round((correct / total) * 100);
 
     // Trophy
@@ -1155,7 +2360,7 @@ function showResults(mode, correct, total) {
     document.getElementById('resultsSubtitle').textContent = 'total points • ' + correct + '/' + total + ' correct (' + pct + '%)';
 
     // Stats
-    var modeLabel = mode === 'quiz' ? 'Quiz' : mode === 'match' ? 'Match' : 'Speed';
+    var modeLabel = mode === 'quiz' ? 'Quiz' : mode === 'match' ? 'Match' : mode === 'speed' ? 'Speed' : mode === 'truefalse' ? 'True/False' : mode === 'scenario' ? 'Scenario' : mode === 'blank' ? 'Fill Blank' : mode === 'survival' ? 'Survival' : mode;
     document.getElementById('resultsStats').innerHTML =
         '<div class="stat"><div class="stat-val">' + correct + '/' + total + '</div><div class="stat-label">' + modeLabel + ' Score</div></div>' +
         '<div class="stat"><div class="stat-val">🔥 ' + bestStreak + '</div><div class="stat-label">Best Streak</div></div>' +
@@ -1169,6 +2374,15 @@ function showResults(mode, correct, total) {
     if (totalScore >= 1000) badges += '<span class="badge special">🌟 1K Club</span>';
     if (totalScore >= 500) badges += '<span class="badge bronze">💪 Half-Way Hero</span>';
     if (mode === 'speed' && correct >= 6) badges += '<span class="badge special">⚡ Speed Demon</span>';
+    if (mode === 'truefalse' && correct >= 10) badges += '<span class="badge special">✅ Truth Seeker</span>';
+    if (mode === 'truefalse' && pct === 100) badges += '<span class="badge gold">🎯 Flawless Judge</span>';
+    if (mode === 'scenario' && correct >= 6) badges += '<span class="badge special">🎯 Problem Solver</span>';
+    if (mode === 'scenario' && pct === 100) badges += '<span class="badge gold">🧠 Master Strategist</span>';
+    if (mode === 'blank' && pct >= 80) badges += '<span class="badge special">🧩 Word Wizard</span>';
+    if (mode === 'blank' && pct === 100) badges += '<span class="badge gold">📝 Perfect Fill</span>';
+    if (mode === 'survival' && correct >= 15) badges += '<span class="badge gold">💀 Unkillable</span>';
+    if (mode === 'survival' && correct >= 10) badges += '<span class="badge special">🛡️ Survivor</span>';
+    if (mode === 'survival' && correct >= 20) badges += '<span class="badge gold">👑 Legendary</span>';
     if (!badges) badges = '<span class="badge silver">🎮 Challenger</span>';
     document.getElementById('resultsBadges').innerHTML = badges;
 
@@ -1193,17 +2407,57 @@ function switchMode(mode) {
     document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
 
     var btns = document.querySelectorAll('.mode-btn');
-    if (mode === 'quiz') btns[0].classList.add('active');
-    else if (mode === 'match') btns[1].classList.add('active');
-    else if (mode === 'speed') btns[2].classList.add('active');
-    else if (mode === 'leaderboard') btns[3].classList.add('active');
+    var modeOrder = ['quiz','match','speed','truefalse','scenario','blank','survival','leaderboard'];
+    var idx = modeOrder.indexOf(mode);
+    if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
 
     document.getElementById('game-' + mode).classList.add('active');
     clearInterval(speedTimer);
+    clearInterval(tfTimer);
 
     if (mode === 'quiz') startQuiz();
     else if (mode === 'match') startMatchGame();
     else if (mode === 'leaderboard') renderLeaderboard();
+    else if (mode === 'blank') startBlank();
+    else if (mode === 'truefalse') {
+        document.getElementById('tfStartBtn').style.display = 'inline-flex';
+        document.getElementById('tfButtons').innerHTML =
+            '<button class="tf-btn true-btn" onclick="selectTrueFalse(true)">✅ True</button>' +
+            '<button class="tf-btn false-btn" onclick="selectTrueFalse(false)">❌ False</button>';
+        document.getElementById('tfStatement').innerHTML =
+            '<div class="statement-icon">✅</div><div class="statement-text">Ready to test your knowledge? True or False — 6 seconds per question!</div>';
+        document.getElementById('tfFeedback').className = 'quiz-feedback';
+        document.getElementById('tfFeedback').style.display = 'none';
+        document.getElementById('tfNextBtn').style.display = 'none';
+        document.getElementById('tfProgress').innerHTML = '';
+        document.getElementById('tfScore').textContent = '';
+        document.getElementById('tfTimerFill').style.width = '100%';
+        document.getElementById('tfTimerFill').className = 'timer-fill';
+    }
+    else if (mode === 'scenario') {
+        document.getElementById('scenarioStartBtn').style.display = 'inline-flex';
+        document.getElementById('scenarioContext').innerHTML =
+            '<div class="scenario-role">📋 Scenario</div>Choose the right TrackForcePro tool for real-world Salesforce admin challenges.';
+        document.getElementById('scenarioQuestion').textContent = 'Ready to begin?';
+        document.getElementById('scenarioOptions').innerHTML = '';
+        document.getElementById('scenarioFeedback').className = 'quiz-feedback';
+        document.getElementById('scenarioFeedback').style.display = 'none';
+        document.getElementById('scenarioNextBtn').style.display = 'none';
+        document.getElementById('scenarioProgress').innerHTML = '';
+        document.getElementById('scenarioScore').textContent = '';
+    }
+    else if (mode === 'survival') {
+        document.getElementById('survivalStartBtn').style.display = 'inline-flex';
+        document.getElementById('survivalQuestion').textContent = 'How far can you go? Answer until you run out of lives!';
+        document.getElementById('survivalOptions').innerHTML = '';
+        document.getElementById('survivalFeedback').className = 'quiz-feedback';
+        document.getElementById('survivalFeedback').style.display = 'none';
+        document.getElementById('survivalNextBtn').style.display = 'none';
+        document.getElementById('survivalNextBtn').textContent = 'Next →';
+        document.getElementById('survivalLives').textContent = '❤️❤️❤️';
+        document.getElementById('survivalCount').textContent = 'Answered: 0';
+        document.getElementById('survivalScore').textContent = '';
+    }
     else if (mode === 'speed') {
         document.getElementById('speedStartBtn').style.display = 'inline-flex';
         document.getElementById('speedOptions').innerHTML = '';
