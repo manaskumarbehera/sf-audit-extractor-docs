@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive quiz and games to learn about TrackForcePro — the ultimate Salesforce admin & developer toolkit.">
+    <title>TrackForcePro — Interactive Quiz & Challenge</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <script>
+        (function() {
+            if (window.location.hostname.includes('github.io')) {
+                var repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
+                var basePath = '/' + repoName + '/icons/';
+                document.getElementById('fav32').href = basePath + 'Icon-32.png';
+                document.getElementById('fav16').href = basePath + 'Icon-16.png';
+                document.getElementById('favshort').href = basePath + 'Icon-32.png';
+            }
+        })();
+    </script>
+    <style>
+        :root {
+            --primary: #0176d3;
+            --primary-dark: #014486;
+            --secondary: #1b96ff;
+            --success: #2e844a;
+            --success-bg: #e6f9ed;
+            --danger: #ea001e;
+            --danger-bg: #fce4e4;
+            --warning: #fe9339;
+            --warning-bg: #fff3e0;
+            --gray-100: #f3f3f3;
+            --gray-200: #e5e5e5;
+            --gray-300: #c9c9c9;
+            --gray-600: #706e6b;
+            --gray-800: #3e3e3c;
+            --gray-900: #181818;
+            --gold: #f5a623;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .navbar-content {
+            max-width: 100%; padding: 0 40px;
+            display: flex; gap: 30px; align-items: center;
+        }
+        .navbar-content a {
+            display: block; padding: 14px 0;
+            text-decoration: none; font-size: 14px;
+            color: var(--gray-800);
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .navbar-content a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+        .navbar-content a.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+
+        /* ── Hero ── */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            color: white; padding: 48px 40px; text-align: center;
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        /* ── Container ── */
+        .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+
+        /* ── Mode Selector ── */
+        .mode-selector {
+            display: flex; gap: 12px; justify-content: center;
+            flex-wrap: wrap; margin-bottom: 30px;
+        }
+        .mode-btn {
+            padding: 14px 28px; border: 2px solid var(--gray-200);
+            border-radius: 12px; background: white; cursor: pointer;
+            font-size: 15px; font-weight: 600; color: var(--gray-800);
+            transition: all 0.2s; display: flex; align-items: center; gap: 8px;
+        }
+        .mode-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); box-shadow: var(--card-shadow); }
+        .mode-btn.active { border-color: var(--primary); background: var(--primary); color: white; }
+        .mode-btn .emoji { font-size: 20px; }
+
+        /* ── Scoreboard ── */
+        .scoreboard {
+            display: flex; gap: 20px; justify-content: center;
+            margin-bottom: 24px; flex-wrap: wrap;
+        }
+        .score-card {
+            background: white; border-radius: 10px; padding: 12px 24px;
+            box-shadow: var(--card-shadow); text-align: center; min-width: 100px;
+        }
+        .score-card .label { font-size: 11px; text-transform: uppercase; color: var(--gray-600); font-weight: 600; letter-spacing: 0.5px; }
+        .score-card .value { font-size: 24px; font-weight: 700; color: var(--primary); }
+        .score-card .value.gold { color: var(--gold); }
+
+        /* ── Game Area ── */
+        .game-area { display: none; }
+        .game-area.active { display: block; }
+
+        /* ── Quiz ── */
+        .quiz-card {
+            background: white; border-radius: 14px; padding: 32px;
+            box-shadow: var(--card-shadow); margin-bottom: 20px;
+        }
+        .quiz-progress {
+            display: flex; gap: 6px; margin-bottom: 20px;
+        }
+        .quiz-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--gray-200); transition: all 0.3s;
+        }
+        .quiz-dot.current { background: var(--primary); transform: scale(1.3); }
+        .quiz-dot.correct { background: var(--success); }
+        .quiz-dot.wrong { background: var(--danger); }
+
+        .quiz-question {
+            font-size: 1.15rem; font-weight: 600; margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .quiz-question .q-number {
+            display: inline-block; background: var(--primary); color: white;
+            width: 28px; height: 28px; border-radius: 50%; text-align: center;
+            line-height: 28px; font-size: 13px; margin-right: 8px;
+        }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .quiz-option {
+            padding: 14px 18px; border: 2px solid var(--gray-200);
+            border-radius: 10px; cursor: pointer; font-size: 14px;
+            transition: all 0.2s; background: white; text-align: left;
+        }
+        .quiz-option:hover { border-color: var(--primary); background: #f0f7ff; }
+        .quiz-option.selected { border-color: var(--primary); background: #e3f0ff; font-weight: 600; }
+        .quiz-option.correct { border-color: var(--success); background: var(--success-bg); }
+        .quiz-option.wrong { border-color: var(--danger); background: var(--danger-bg); }
+        .quiz-option.disabled { pointer-events: none; opacity: 0.7; }
+
+        .quiz-feedback {
+            margin-top: 16px; padding: 14px 18px; border-radius: 10px;
+            font-size: 14px; display: none; line-height: 1.5;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: var(--success-bg); color: #1a5c2e; border-left: 4px solid var(--success); }
+        .quiz-feedback.wrong { background: var(--danger-bg); color: #a50015; border-left: 4px solid var(--danger); }
+
+        .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+
+        /* ── Match Game ── */
+        .match-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px; margin-bottom: 20px;
+        }
+        .match-column h4 {
+            text-align: center; margin-bottom: 12px; font-size: 13px;
+            text-transform: uppercase; color: var(--gray-600); letter-spacing: 0.5px;
+        }
+        .match-item {
+            padding: 14px 16px; border: 2px solid var(--gray-200);
+            border-radius: 10px; cursor: pointer; font-size: 13px;
+            transition: all 0.2s; background: white; text-align: center;
+            user-select: none; min-height: 50px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .match-item:hover { border-color: var(--primary); background: #f0f7ff; }
+        .match-item.selected { border-color: var(--primary); background: #e3f0ff; box-shadow: 0 0 0 3px rgba(1,118,211,0.2); }
+        .match-item.matched { border-color: var(--success); background: var(--success-bg); pointer-events: none; opacity: 0.8; }
+        .match-item.wrong-flash { animation: wrongShake 0.4s ease; border-color: var(--danger); background: var(--danger-bg); }
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .match-status {
+            text-align: center; padding: 12px; font-size: 14px; font-weight: 600;
+            border-radius: 10px; margin-bottom: 16px;
+        }
+
+        /* ── Speed Round ── */
+        .speed-prompt {
+            text-align: center; padding: 30px; background: white;
+            border-radius: 14px; box-shadow: var(--card-shadow); margin-bottom: 20px;
+        }
+        .speed-prompt .feature-icon { font-size: 48px; margin-bottom: 12px; }
+        .speed-prompt .feature-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+        .speed-prompt .feature-hint { font-size: 14px; color: var(--gray-600); }
+
+        .speed-options {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 12px; margin-bottom: 16px;
+        }
+        .speed-option {
+            padding: 16px; border: 2px solid var(--gray-200);
+            border-radius: 10px; cursor: pointer; font-size: 14px;
+            transition: all 0.15s; background: white; text-align: center; font-weight: 600;
+        }
+        .speed-option:hover { border-color: var(--primary); background: #f0f7ff; transform: scale(1.02); }
+        .speed-option.correct { border-color: var(--success); background: var(--success-bg); }
+        .speed-option.wrong { border-color: var(--danger); background: var(--danger-bg); }
+
+        .timer-bar {
+            height: 6px; background: var(--gray-200); border-radius: 3px;
+            margin-bottom: 20px; overflow: hidden;
+        }
+        .timer-fill {
+            height: 100%; background: var(--primary); border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+        .timer-fill.warning { background: var(--warning); }
+        .timer-fill.danger { background: var(--danger); }
+
+        /* ── Results ── */
+        .results-card {
+            background: white; border-radius: 14px; padding: 40px;
+            box-shadow: var(--card-shadow); text-align: center;
+        }
+        .results-card .trophy { font-size: 64px; margin-bottom: 16px; }
+        .results-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+        .results-card .final-score { font-size: 2.5rem; font-weight: 700; color: var(--primary); margin: 12px 0; }
+        .results-card .subtitle { color: var(--gray-600); font-size: 14px; margin-bottom: 24px; }
+        .results-card .stats { display: flex; justify-content: center; gap: 30px; margin-bottom: 24px; flex-wrap: wrap; }
+        .results-card .stat { text-align: center; }
+        .results-card .stat .stat-val { font-size: 1.3rem; font-weight: 700; }
+        .results-card .stat .stat-label { font-size: 12px; color: var(--gray-600); text-transform: uppercase; }
+        .results-card .badge-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+        }
+        .badge.gold { background: #fff8e1; color: #b8860b; border: 1px solid #f5d680; }
+        .badge.silver { background: #f5f5f5; color: #666; border: 1px solid #ccc; }
+        .badge.bronze { background: #fff0e0; color: #a0522d; border: 1px solid #e6c9a8; }
+        .badge.special { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+
+        /* ── Buttons ── */
+        .btn {
+            padding: 10px 24px; border: none; border-radius: 8px;
+            font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-success:hover { background: #236b3a; }
+        .btn-outline {
+            background: transparent; color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover { background: var(--primary); color: white; }
+        .btn-lg { padding: 14px 32px; font-size: 16px; border-radius: 10px; }
+
+        /* ── Fun Facts ── */
+        .fun-fact {
+            background: var(--warning-bg); border-left: 4px solid var(--warning);
+            padding: 14px 18px; border-radius: 0 10px 10px 0;
+            margin: 16px 0; font-size: 13px; line-height: 1.6;
+        }
+        .fun-fact strong { color: var(--warning); }
+
+        /* ── Signup Form ── */
+        .signup-overlay {
+            position: fixed; inset: 0; z-index: 200;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .signup-overlay.hidden { display: none; }
+        .signup-card {
+            background: white; border-radius: 20px; padding: 48px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 440px; width: 100%;
+            text-align: center; animation: signupSlideIn 0.5s ease;
+        }
+        @keyframes signupSlideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .signup-card .signup-icon { font-size: 56px; margin-bottom: 12px; }
+        .signup-card h2 { font-size: 1.6rem; color: var(--gray-900); margin-bottom: 6px; }
+        .signup-card .signup-sub { color: var(--gray-600); font-size: 14px; margin-bottom: 28px; }
+        .signup-card .form-group {
+            text-align: left; margin-bottom: 18px;
+        }
+        .signup-card label {
+            display: block; font-size: 13px; font-weight: 600;
+            color: var(--gray-800); margin-bottom: 6px;
+        }
+        .signup-card label .required { color: var(--danger); margin-left: 2px; }
+        .signup-card input {
+            width: 100%; padding: 12px 16px; border: 2px solid var(--gray-200);
+            border-radius: 10px; font-size: 15px; transition: border-color 0.2s;
+            outline: none; font-family: inherit;
+        }
+        .signup-card input:focus { border-color: var(--primary); }
+        .signup-card input.input-error { border-color: var(--danger); }
+        .signup-card .error-msg {
+            color: var(--danger); font-size: 12px; margin-top: 4px; display: none;
+        }
+        .signup-card .error-msg.show { display: block; }
+        .signup-card .signup-btn {
+            width: 100%; padding: 14px; border: none; border-radius: 10px;
+            background: var(--primary); color: white; font-size: 16px; font-weight: 700;
+            cursor: pointer; transition: background 0.2s; margin-top: 8px;
+        }
+        .signup-card .signup-btn:hover { background: var(--primary-dark); }
+        .signup-card .signup-footer {
+            margin-top: 16px; font-size: 12px; color: var(--gray-600);
+        }
+        .signup-card .signup-footer a { color: var(--primary); text-decoration: none; }
+        .player-bar {
+            display: flex; align-items: center; gap: 10px; justify-content: center;
+            margin-bottom: 16px; font-size: 14px; color: var(--gray-800);
+        }
+        .player-bar .player-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--primary); color: white; display: flex;
+            align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
+        }
+        .player-bar .player-name { font-weight: 600; }
+        .player-bar .logout-link {
+            font-size: 12px; color: var(--gray-600); cursor: pointer;
+            text-decoration: underline; margin-left: 4px;
+        }
+        .player-bar .logout-link:hover { color: var(--danger); }
+
+        /* ── Leaderboard ── */
+        .leaderboard-card {
+            background: white; border-radius: 14px; padding: 32px;
+            box-shadow: var(--card-shadow);
+        }
+        .leaderboard-card h3 {
+            font-size: 1.3rem; text-align: center; margin-bottom: 20px; color: var(--gray-900);
+        }
+        .leaderboard-table {
+            width: 100%; border-collapse: collapse; font-size: 14px;
+        }
+        .leaderboard-table th {
+            text-align: left; padding: 10px 14px; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--gray-600); border-bottom: 2px solid var(--gray-200);
+        }
+        .leaderboard-table td {
+            padding: 12px 14px; border-bottom: 1px solid var(--gray-100);
+        }
+        .leaderboard-table tr:hover td { background: #f8fafc; }
+        .leaderboard-table .rank-col { width: 50px; text-align: center; font-weight: 700; }
+        .leaderboard-table .rank-1 { color: #f5a623; }
+        .leaderboard-table .rank-2 { color: #a0a0a0; }
+        .leaderboard-table .rank-3 { color: #cd7f32; }
+        .leaderboard-table .score-col { font-weight: 700; color: var(--primary); text-align: right; }
+        .leaderboard-table .date-col { color: var(--gray-600); font-size: 12px; text-align: right; }
+        .leaderboard-table .current-player td { background: #e3f0ff; }
+        .leaderboard-empty {
+            text-align: center; padding: 40px 20px; color: var(--gray-600);
+        }
+        .leaderboard-empty .empty-icon { font-size: 48px; margin-bottom: 12px; }
+        .leaderboard-actions {
+            display: flex; gap: 10px; justify-content: center; margin-top: 20px;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--gray-900); color: #aaa; text-align: center;
+            padding: 30px 20px; margin-top: 50px; font-size: 13px;
+        }
+        .footer a { color: var(--secondary); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.5rem; }
+            .match-grid { grid-template-columns: 1fr; }
+            .speed-options { grid-template-columns: 1fr; }
+            .navbar-content { padding: 0 16px; gap: 16px; flex-wrap: wrap; }
+            .container { padding: 20px 12px; }
+            .quiz-card { padding: 20px; }
+            .signup-card { padding: 32px 24px; }
+            .leaderboard-table .date-col { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ═══════════════ SIGNUP OVERLAY ═══════════════ -->
+    <div class="signup-overlay" id="signupOverlay">
+        <div class="signup-card">
+            <div class="signup-icon">🎮</div>
+            <h2>Join the Challenge!</h2>
+            <p class="signup-sub">Sign up to track your scores and compete on the leaderboard</p>
+            <form id="signupForm" onsubmit="return handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Display Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your name" maxlength="30" autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address <span class="required">*</span></label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com" required autocomplete="email">
+                    <div class="error-msg" id="emailError">Please enter a valid email address</div>
+                </div>
+                <button type="submit" class="signup-btn">🚀 Start Playing</button>
+            </form>
+            <div class="signup-footer">Your data is stored locally in your browser. <a href="privacy-policy.html">Privacy Policy</a></div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html">Home</a>
+            <a href="quick-start-guide.html">Quick Start</a>
+            <a href="documentation.html">Documentation</a>
+            <a href="help.html">Help</a>
+            <a href="quiz.html" class="active">Quiz &amp; Games</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>🎮 TrackForcePro Challenge</h1>
+        <p>Test your knowledge of the ultimate Salesforce toolkit — play quizzes, match features, and race against the clock!</p>
+    </div>
+
+    <div class="container">
+        <!-- Player Bar -->
+        <div class="player-bar" id="playerBar" style="display:none">
+            <div class="player-avatar" id="playerAvatar">?</div>
+            <span>Playing as <span class="player-name" id="playerNameDisplay">—</span></span>
+            <span class="logout-link" onclick="logoutPlayer()">Switch Player</span>
+        </div>
+
+        <!-- Scoreboard -->
+        <div class="scoreboard">
+            <div class="score-card">
+                <div class="label">Total Score</div>
+                <div class="value" id="totalScore">0</div>
+            </div>
+            <div class="score-card">
+                <div class="label">Streak</div>
+                <div class="value gold" id="streakCount">🔥 0</div>
+            </div>
+            <div class="score-card">
+                <div class="label">Best Streak</div>
+                <div class="value" id="bestStreak">0</div>
+            </div>
+        </div>
+
+        <!-- Mode Selector -->
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="switchMode('quiz')">
+                <span class="emoji">🧠</span> Knowledge Quiz
+            </button>
+            <button class="mode-btn" onclick="switchMode('match')">
+                <span class="emoji">🔗</span> Feature Match
+            </button>
+            <button class="mode-btn" onclick="switchMode('speed')">
+                <span class="emoji">⚡</span> Speed Round
+            </button>
+            <button class="mode-btn" onclick="switchMode('leaderboard')">
+                <span class="emoji">🏆</span> Leaderboard
+            </button>
+        </div>
+
+        <!-- ═══════════════ QUIZ MODE ═══════════════ -->
+        <div class="game-area active" id="game-quiz">
+            <div class="quiz-card">
+                <div class="quiz-progress" id="quizProgress"></div>
+                <div class="quiz-question" id="quizQuestion"></div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <div class="quiz-feedback" id="quizFeedback"></div>
+                <div class="quiz-nav">
+                    <span id="quizScore" style="font-size:13px;color:var(--gray-600)"></span>
+                    <button class="btn btn-primary" id="quizNextBtn" onclick="nextQuizQuestion()" style="display:none">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ MATCH MODE ═══════════════ -->
+        <div class="game-area" id="game-match">
+            <div class="quiz-card">
+                <div class="match-status" id="matchStatus">Click a feature on the left, then its description on the right</div>
+                <div class="match-grid">
+                    <div class="match-column">
+                        <h4>🛠️ Feature</h4>
+                        <div id="matchLeft"></div>
+                    </div>
+                    <div class="match-column">
+                        <h4>📝 Description</h4>
+                        <div id="matchRight"></div>
+                    </div>
+                </div>
+                <div style="text-align:center">
+                    <button class="btn btn-outline" onclick="startMatchGame()">🔄 New Round</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ SPEED MODE ═══════════════ -->
+        <div class="game-area" id="game-speed">
+            <div class="quiz-card">
+                <div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
+                <div class="speed-prompt" id="speedPrompt">
+                    <div class="feature-icon" id="speedIcon">⚡</div>
+                    <div class="feature-name" id="speedFeature">Ready?</div>
+                    <div class="feature-hint" id="speedHint">Answer as fast as you can — 8 seconds per question!</div>
+                </div>
+                <div class="speed-options" id="speedOptions"></div>
+                <div style="text-align:center">
+                    <button class="btn btn-primary btn-lg" id="speedStartBtn" onclick="startSpeedRound()">⚡ Start Speed Round</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ LEADERBOARD ═══════════════ -->
+        <div class="game-area" id="game-leaderboard">
+            <div class="leaderboard-card">
+                <h3>🏆 Leaderboard — Top Players</h3>
+                <div id="leaderboardContent"></div>
+                <div class="leaderboard-actions">
+                    <button class="btn btn-primary" onclick="switchMode('quiz')">🧠 Play Quiz</button>
+                    <button class="btn btn-outline" onclick="clearLeaderboard()">🗑️ Clear My Data</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ RESULTS ═══════════════ -->
+        <div class="game-area" id="game-results">
+            <div class="results-card">
+                <div class="trophy" id="resultsTrophy">🏆</div>
+                <h3 id="resultsTitle">Challenge Complete!</h3>
+                <div class="final-score" id="resultsFinalScore">0</div>
+                <div class="subtitle" id="resultsSubtitle">points earned</div>
+                <div class="stats" id="resultsStats"></div>
+                <div class="badge-row" id="resultsBadges"></div>
+                <div class="fun-fact" id="resultsFunFact"></div>
+                <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+                    <button class="btn btn-primary btn-lg" onclick="replayCurrentMode()">🔁 Play Again</button>
+                    <button class="btn btn-outline btn-lg" onclick="switchMode('leaderboard')">🏆 Leaderboard</button>
+                    <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="btn btn-success btn-lg">🚀 Install TrackForcePro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>TrackForcePro v1.3.6 — Salesforce Developer Toolkit</p>
+        <p style="margin-top:8px">
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> |
+            <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a> |
+            <a href="documentation.html">Documentation</a> |
+            <a href="privacy-policy.html">Privacy Policy</a>
+        </p>
+        <p style="margin-top:12px;font-size:11px">© 2026 TrackForcePro. All rights reserved.</p>
+    </footer>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   TrackForcePro Interactive Quiz & Games
+   ═══════════════════════════════════════════════════ */
+
+// ── State ──
+let totalScore = 0, streak = 0, bestStreak = 0, currentMode = 'quiz';
+let currentPlayer = null;
+
+// ═══════════════ SIGNUP / PLAYER ═══════════════
+
+function getStoredPlayer() {
+    try {
+        var data = localStorage.getItem('tfp_quiz_player');
+        return data ? JSON.parse(data) : null;
+    } catch (e) { return null; }
+}
+
+function setStoredPlayer(player) {
+    try { localStorage.setItem('tfp_quiz_player', JSON.stringify(player)); } catch (e) {}
+}
+
+function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function handleSignup(e) {
+    e.preventDefault();
+    var name = document.getElementById('signupName').value.trim();
+    var email = document.getElementById('signupEmail').value.trim();
+    var emailInput = document.getElementById('signupEmail');
+    var emailError = document.getElementById('emailError');
+
+    // Validate email (mandatory)
+    if (!email || !validateEmail(email)) {
+        emailInput.classList.add('input-error');
+        emailError.classList.add('show');
+        emailInput.focus();
+        return false;
+    }
+    emailInput.classList.remove('input-error');
+    emailError.classList.remove('show');
+
+    // Default name from email if not provided
+    if (!name) { name = email.split('@')[0]; }
+
+    currentPlayer = { name: name, email: email, createdAt: new Date().toISOString() };
+    setStoredPlayer(currentPlayer);
+    showPlayerUI();
+    document.getElementById('signupOverlay').classList.add('hidden');
+    startQuiz();
+    return false;
+}
+
+function showPlayerUI() {
+    if (!currentPlayer) return;
+    var bar = document.getElementById('playerBar');
+    bar.style.display = 'flex';
+    document.getElementById('playerNameDisplay').textContent = currentPlayer.name;
+    var initials = currentPlayer.name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().substring(0, 2);
+    document.getElementById('playerAvatar').textContent = initials || '?';
+}
+
+function logoutPlayer() {
+    if (!confirm('Switch player? Your scores are saved on the leaderboard.')) return;
+    localStorage.removeItem('tfp_quiz_player');
+    currentPlayer = null;
+    totalScore = 0; streak = 0; bestStreak = 0;
+    updateScoreboard();
+    document.getElementById('playerBar').style.display = 'none';
+    document.getElementById('signupOverlay').classList.remove('hidden');
+}
+
+// ═══════════════ LEADERBOARD ═══════════════
+
+function getLeaderboard() {
+    try {
+        var data = localStorage.getItem('tfp_quiz_leaderboard');
+        return data ? JSON.parse(data) : [];
+    } catch (e) { return []; }
+}
+
+function saveToLeaderboard(mode, score, correct, total) {
+    if (!currentPlayer) return;
+    var lb = getLeaderboard();
+    lb.push({
+        name: currentPlayer.name,
+        email: currentPlayer.email,
+        score: score,
+        mode: mode,
+        correct: correct,
+        total: total,
+        pct: Math.round((correct / total) * 100),
+        date: new Date().toISOString()
+    });
+    // Keep top 100 entries
+    lb.sort(function(a, b) { return b.score - a.score; });
+    lb = lb.slice(0, 100);
+    try { localStorage.setItem('tfp_quiz_leaderboard', JSON.stringify(lb)); } catch (e) {}
+}
+
+function renderLeaderboard() {
+    var lb = getLeaderboard();
+    var container = document.getElementById('leaderboardContent');
+
+    if (lb.length === 0) {
+        container.innerHTML =
+            '<div class="leaderboard-empty">' +
+                '<div class="empty-icon">🏆</div>' +
+                '<p>No scores yet! Play a game to get on the leaderboard.</p>' +
+            '</div>';
+        return;
+    }
+
+    // Aggregate best scores per email
+    var best = {};
+    lb.forEach(function(entry) {
+        var key = entry.email;
+        if (!best[key] || entry.score > best[key].score) {
+            best[key] = entry;
+        }
+    });
+    var sorted = Object.values(best).sort(function(a, b) { return b.score - a.score; });
+
+    var modeLabels = { quiz: '🧠 Quiz', match: '🔗 Match', speed: '⚡ Speed' };
+    var html = '<table class="leaderboard-table">' +
+        '<thead><tr>' +
+            '<th class="rank-col">#</th>' +
+            '<th>Player</th>' +
+            '<th>Mode</th>' +
+            '<th class="score-col">Best Score</th>' +
+            '<th class="date-col">Date</th>' +
+        '</tr></thead><tbody>';
+
+    sorted.forEach(function(entry, i) {
+        var rankIcon = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1);
+        var rankClass = i < 3 ? ' rank-' + (i + 1) : '';
+        var isCurrentPlayer = currentPlayer && entry.email === currentPlayer.email;
+        var rowClass = isCurrentPlayer ? ' class="current-player"' : '';
+        var dateStr = new Date(entry.date).toLocaleDateString();
+
+        html += '<tr' + rowClass + '>' +
+            '<td class="rank-col' + rankClass + '">' + rankIcon + '</td>' +
+            '<td>' + escapeHtmlLocal(entry.name) + (isCurrentPlayer ? ' <small>(you)</small>' : '') + '</td>' +
+            '<td>' + (modeLabels[entry.mode] || entry.mode) + '</td>' +
+            '<td class="score-col">' + entry.score + '</td>' +
+            '<td class="date-col">' + dateStr + '</td>' +
+        '</tr>';
+    });
+
+    html += '</tbody></table>';
+
+    // Also show recent scores
+    var recent = lb.slice(0, 10);
+    html += '<h4 style="margin-top:24px;margin-bottom:12px;font-size:14px;color:var(--gray-600)">📋 Recent Scores</h4>';
+    html += '<table class="leaderboard-table">' +
+        '<thead><tr>' +
+            '<th>Player</th>' +
+            '<th>Mode</th>' +
+            '<th>Result</th>' +
+            '<th class="score-col">Score</th>' +
+            '<th class="date-col">Date</th>' +
+        '</tr></thead><tbody>';
+    recent.forEach(function(entry) {
+        var isCurrentPlayer = currentPlayer && entry.email === currentPlayer.email;
+        var rowClass = isCurrentPlayer ? ' class="current-player"' : '';
+        var dateStr = new Date(entry.date).toLocaleDateString();
+        html += '<tr' + rowClass + '>' +
+            '<td>' + escapeHtmlLocal(entry.name) + '</td>' +
+            '<td>' + (modeLabels[entry.mode] || entry.mode) + '</td>' +
+            '<td>' + entry.correct + '/' + entry.total + ' (' + entry.pct + '%)</td>' +
+            '<td class="score-col">' + entry.score + '</td>' +
+            '<td class="date-col">' + dateStr + '</td>' +
+        '</tr>';
+    });
+    html += '</tbody></table>';
+
+    container.innerHTML = html;
+}
+
+function clearLeaderboard() {
+    if (!confirm('Clear all your leaderboard data? This cannot be undone.')) return;
+    localStorage.removeItem('tfp_quiz_leaderboard');
+    renderLeaderboard();
+}
+
+function escapeHtmlLocal(str) {
+    var d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+}
+
+// ── Quiz Data (15 questions) ──
+const quizQuestions = [
+    {
+        q: "Where is the TF Sidebar button located on a Salesforce page?",
+        opts: ["Top-left corner", "Browser toolbar only", "Bottom-right corner of the page", "Inside Salesforce Setup menu"],
+        answer: 2,
+        explanation: "The TF Sidebar appears as a floating circular button at the <strong>bottom-right corner</strong> of every Salesforce page. Just click it to access all TrackForcePro tools instantly!"
+    },
+    {
+        q: "What does TrackForcePro use to build GraphQL queries with syntax highlighting?",
+        opts: ["Monaco Editor", "Ace Editor", "CodeMirror 6", "VS Code Embedded"],
+        answer: 2,
+        explanation: "TrackForcePro uses <strong>CodeMirror 6</strong> for the GraphQL editor — it provides syntax highlighting, bracket matching, and schema-aware autocomplete."
+    },
+    {
+        q: "How are child records (e.g., Contacts under an Account) exported to CSV in the GraphQL Builder?",
+        opts: ["JSON-stringified into a single cell", "Skipped entirely", "Expanded into separate rows with parent fields repeated", "Exported as a separate CSV file"],
+        answer: 2,
+        explanation: "Child records are <strong>expanded into separate rows</strong> with parent fields repeated. An Account with 3 Contacts becomes 3 CSV rows, each with the parent's Id, Name, etc. plus the child's fields prefixed like <code>Contacts.FirstName</code>."
+    },
+    {
+        q: "What is the SOQL Builder's inline edit feature?",
+        opts: ["A text editor for writing raw SOQL", "Edit query results directly in the table — changes are saved to Salesforce via API", "A drag-and-drop query designer", "An import tool for CSV data"],
+        answer: 1,
+        explanation: "Inline edit lets you <strong>edit query results directly in the table</strong>. Each cell becomes editable, and changes are saved back to Salesforce via the REST API. You can even delete rows!"
+    },
+    {
+        q: "Which browsers does TrackForcePro support?",
+        opts: ["Chrome only", "Chrome and Firefox", "Chrome, Edge, and other Chromium-based browsers", "All major browsers including Safari"],
+        answer: 2,
+        explanation: "TrackForcePro works on <strong>Chrome, Edge, Brave, Opera</strong>, and other Chromium-based browsers. It's published on both the Chrome Web Store and Edge Add-ons."
+    },
+    {
+        q: "What does the Favicon Manager do?",
+        opts: ["Changes the TrackForcePro icon", "Applies custom favicons to Salesforce browser tabs to distinguish orgs", "Downloads Salesforce page icons", "Manages bookmarks"],
+        answer: 1,
+        explanation: "The Favicon Manager lets you assign <strong>custom colors, shapes, and labels</strong> to each Salesforce org's browser tab — so you can instantly tell Production (🔴) from Sandbox (🟢) at a glance."
+    },
+    {
+        q: "How does TrackForcePro prevent cross-org data leakage in its cache?",
+        opts: ["It doesn't cache anything", "All data is stored server-side", "Cache keys are scoped by org ID", "It clears cache on every page load"],
+        answer: 2,
+        explanation: "The Cache Manager <strong>scopes all keys by org ID</strong> (e.g., <code>cache_{orgId}_{key}</code>). This prevents data from one org bleeding into another when you switch between Salesforce orgs."
+    },
+    {
+        q: "What does the Record Scanner's 'Compare' mode do?",
+        opts: ["Compares two SOQL queries", "Side-by-side field comparison of two records with diff highlighting", "Compares API versions", "Compares user permissions"],
+        answer: 1,
+        explanation: "Compare mode takes <strong>two Record IDs</strong> and shows a side-by-side field comparison with <strong>diff highlighting</strong> — green for matching values, red for differences."
+    },
+    {
+        q: "What streaming protocol does TrackForcePro use for Platform Events?",
+        opts: ["WebSocket", "Server-Sent Events", "CometD", "gRPC"],
+        answer: 2,
+        explanation: "TrackForcePro uses <strong>CometD</strong> (Salesforce's Bayeux-based streaming protocol) to subscribe to Platform Events in real-time."
+    },
+    {
+        q: "What is the TF Sidebar's primary advantage over the toolbar popup?",
+        opts: ["It has more features", "It loads faster", "It's always visible on every Salesforce page — no need to find or pin an icon", "It uses less memory"],
+        answer: 2,
+        explanation: "The TF Sidebar button is <strong>always visible at the bottom-right</strong> of every Salesforce page. No pinning, no searching for the icon — just click and go!"
+    },
+    {
+        q: "How many shapes are available for custom org favicons?",
+        opts: ["3 (circle, square, triangle)", "6 (circle, square, cloud, diamond, hexagon, badge)", "2 (circle, square)", "Unlimited custom SVG"],
+        answer: 1,
+        explanation: "Six built-in shapes: <strong>circle, square, cloud, sfcloud, diamond, hexagon</strong>. Each can be combined with custom colors and up to 3-character labels."
+    },
+    {
+        q: "What does the Security Manager allow you to browse?",
+        opts: ["Only user passwords", "Profiles, Permission Sets, and Permission Set Groups", "Only login history", "Encryption keys"],
+        answer: 1,
+        explanation: "The Security Manager provides a <strong>split-pane browser</strong> for Profiles, Permission Sets, and Permission Set Groups — view assignments, permissions, and details at a glance."
+    },
+    {
+        q: "In Org Tools, what can you do with Custom Labels?",
+        opts: ["Only view them", "Search, inline-edit, translate into 20 languages, and bulk import/export", "Only export them", "Only create new ones"],
+        answer: 1,
+        explanation: "Custom Labels in Org Tools supports <strong>real-time search, inline editing, translation into 20 languages, bulk import with update mode, and export as CSV/JSON</strong> — including export of selected rows only."
+    },
+    {
+        q: "How does the extension handle multiple Salesforce orgs?",
+        opts: ["Only one org at a time", "Each org gets its own isolated session, cache, and single-instance enforcement", "You must reinstall for each org", "It doesn't support multiple orgs"],
+        answer: 1,
+        explanation: "TrackForcePro supports <strong>multi-org workflows</strong> with session isolation per org, org-scoped caching, and single-instance enforcement — open one window per org, never mix data."
+    },
+    {
+        q: "What happens when you click a shortcut in the TF Sidebar?",
+        opts: ["It opens a new browser tab with Salesforce Setup", "It opens TrackForcePro directly to that specific tool or panel", "It shows a tooltip with instructions", "Nothing — it's just informational"],
+        answer: 1,
+        explanation: "Clicking a sidebar shortcut <strong>opens TrackForcePro directly to that tool</strong>. For example, clicking 'Custom Labels' opens the Org Tools panel with Custom Labels already selected."
+    }
+];
+
+// ── Match Data (8 pairs) ──
+const matchPairs = [
+    { feature: "🧭 TF Sidebar", desc: "Floating button at bottom-right of every Salesforce page" },
+    { feature: "📊 SOQL Builder", desc: "Visual query builder with inline edit and row delete" },
+    { feature: "🔗 GraphQL Builder", desc: "CodeMirror 6 editor with child record export to CSV" },
+    { feature: "🎨 Favicon Manager", desc: "Custom org icons with shapes, colors, and labels" },
+    { feature: "🔐 Security Manager", desc: "Browse Profiles, Permission Sets, and PS Groups" },
+    { feature: "🔬 Record Scanner", desc: "Field history, FLS analysis, and record comparison" },
+    { feature: "📡 Platform Events", desc: "Real-time CometD streaming and publishing" },
+    { feature: "🏢 Org Tools", desc: "Login As, Custom Labels, Deployments, Debug Logs" },
+    { feature: "👥 User Manager", desc: "Permission Matrix, Sessions, Freeze, Bulk Update" },
+    { feature: "💾 Cache Manager", desc: "Org-scoped caching to prevent cross-org data leaks" },
+    { feature: "🔍 Audit Extractor", desc: "Filter and export setup audit trail events to CSV" },
+    { feature: "📦 Data Explorer Tools", desc: "Metadata Explorer, Schema Visualizer, API Dashboard" }
+];
+
+// ── Speed Data (12 questions) ──
+const speedQuestions = [
+    { icon: "🧭", feature: "TF Sidebar location?", opts: ["Top-left", "Bottom-right", "Center", "Top-right"], answer: 1 },
+    { icon: "📊", feature: "SOQL result editing?", opts: ["Copy only", "Inline Edit", "Download only", "Read-only"], answer: 1 },
+    { icon: "🔗", feature: "GraphQL editor?", opts: ["Monaco", "CodeMirror 6", "Ace", "Quill"], answer: 1 },
+    { icon: "📡", feature: "Streaming protocol?", opts: ["WebSocket", "gRPC", "CometD", "SSE"], answer: 2 },
+    { icon: "🎨", feature: "Favicon shapes?", opts: ["2", "4", "6", "10"], answer: 2 },
+    { icon: "🔬", feature: "Record Scanner modes?", opts: ["1", "2", "3", "5"], answer: 2 },
+    { icon: "💾", feature: "Cache scoped by?", opts: ["User", "Org ID", "Browser", "Tab"], answer: 1 },
+    { icon: "🏢", feature: "Custom Labels feature?", opts: ["View only", "Full CRUD + translate", "Export only", "Delete only"], answer: 1 },
+    { icon: "🔐", feature: "Security Manager browses?", opts: ["Passwords", "Profiles & Perm Sets", "Encryption", "Cookies"], answer: 1 },
+    { icon: "👥", feature: "User comparison?", opts: ["Not available", "Side-by-side diff", "List view", "Chart"], answer: 1 },
+    { icon: "🌐", feature: "Published on?", opts: ["Chrome only", "Chrome + Edge", "Firefox only", "Safari only"], answer: 1 },
+    { icon: "📋", feature: "Child CSV export?", opts: ["JSON in cell", "Separate rows", "Skipped", "Separate file"], answer: 1 }
+];
+
+// ── Fun Facts ──
+const funFacts = [
+    "💡 <strong>Did you know?</strong> TrackForcePro has over 3,000 automated tests across 58 test suites!",
+    "💡 <strong>Fun fact:</strong> The TF Sidebar supports 5 categories of shortcuts — extension tabs, Data Explorer tools, Security panels, Org Tools panels, and Salesforce Setup pages.",
+    "💡 <strong>Pro tip:</strong> You can customize which shortcuts appear in the TF Sidebar via Settings → Sidebar.",
+    "💡 <strong>Did you know?</strong> The GraphQL Builder can export child records (like Contacts under an Account) as expanded CSV rows — no more JSON blobs in cells!",
+    "💡 <strong>Fun fact:</strong> TrackForcePro supports Custom Labels translation into 20 languages with duplicate detection.",
+    "💡 <strong>Pro tip:</strong> The Record Scanner has a Compare mode — paste two Record IDs to see a side-by-side diff with highlighting.",
+    "💡 <strong>Did you know?</strong> The Favicon Manager lets you use 6 different shapes (circle, square, cloud, diamond, hexagon, badge) with custom 3-character labels.",
+    "💡 <strong>Fun fact:</strong> TrackForcePro's SOQL Builder supports inline editing — click a cell in the query results to edit and save directly to Salesforce!",
+    "💡 <strong>Pro tip:</strong> The TF Sidebar button is at the bottom-right corner of every Salesforce page — no toolbar pinning needed.",
+    "💡 <strong>Did you know?</strong> TrackForcePro automatically scopes all cached data by org ID to prevent cross-org data leaks when switching between orgs."
+];
+
+// ═══════════════ QUIZ ENGINE ═══════════════
+
+let quizIndex = 0, quizCorrect = 0, quizAnswered = false;
+let shuffledQuiz = [];
+
+function shuffleArray(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function startQuiz() {
+    shuffledQuiz = shuffleArray(quizQuestions).slice(0, 10);
+    quizIndex = 0; quizCorrect = 0; quizAnswered = false;
+    renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
+    if (quizIndex >= shuffledQuiz.length) { showResults('quiz', quizCorrect, shuffledQuiz.length); return; }
+
+    const q = shuffledQuiz[quizIndex];
+    quizAnswered = false;
+
+    // Progress dots
+    const dots = shuffledQuiz.map((_, i) => {
+        let cls = 'quiz-dot';
+        if (i === quizIndex) cls += ' current';
+        else if (i < quizIndex) cls += (shuffledQuiz[i]._correct ? ' correct' : ' wrong');
+        return '<div class="' + cls + '"></div>';
+    }).join('');
+    document.getElementById('quizProgress').innerHTML = dots;
+
+    document.getElementById('quizQuestion').innerHTML =
+        '<span class="q-number">' + (quizIndex + 1) + '</span> ' + q.q;
+
+    const optsHtml = q.opts.map(function(opt, i) {
+        return '<div class="quiz-option" data-index="' + i + '" onclick="selectQuizAnswer(' + i + ')">' + opt + '</div>';
+    }).join('');
+    document.getElementById('quizOptions').innerHTML = optsHtml;
+
+    document.getElementById('quizFeedback').className = 'quiz-feedback';
+    document.getElementById('quizFeedback').style.display = 'none';
+    document.getElementById('quizNextBtn').style.display = 'none';
+    document.getElementById('quizScore').textContent = quizCorrect + '/' + shuffledQuiz.length + ' correct';
+}
+
+function selectQuizAnswer(idx) {
+    if (quizAnswered) return;
+    quizAnswered = true;
+    const q = shuffledQuiz[quizIndex];
+    const isCorrect = idx === q.answer;
+    q._correct = isCorrect;
+
+    // Style options
+    var optEls = document.querySelectorAll('#quizOptions .quiz-option');
+    optEls.forEach(function(el) {
+        el.classList.add('disabled');
+        var elIdx = parseInt(el.getAttribute('data-index'));
+        if (elIdx === q.answer) el.classList.add('correct');
+        if (elIdx === idx && !isCorrect) el.classList.add('wrong');
+    });
+
+    // Feedback
+    var fb = document.getElementById('quizFeedback');
+    if (isCorrect) {
+        quizCorrect++;
+        streak++; if (streak > bestStreak) bestStreak = streak;
+        totalScore += 100 + (streak > 1 ? streak * 10 : 0);
+        fb.className = 'quiz-feedback show correct';
+        fb.innerHTML = '✅ Correct! +' + (100 + (streak > 1 ? streak * 10 : 0)) + ' points' +
+            (streak > 2 ? ' (🔥 ' + streak + ' streak!)' : '') +
+            '<br>' + q.explanation;
+    } else {
+        streak = 0;
+        fb.className = 'quiz-feedback show wrong';
+        fb.innerHTML = '❌ Not quite! The correct answer is: <strong>' + q.opts[q.answer] + '</strong><br>' + q.explanation;
+    }
+
+    updateScoreboard();
+    document.getElementById('quizNextBtn').style.display = 'inline-flex';
+    document.getElementById('quizScore').textContent = quizCorrect + '/' + shuffledQuiz.length + ' correct';
+}
+
+function nextQuizQuestion() {
+    quizIndex++;
+    renderQuizQuestion();
+}
+
+// ═══════════════ MATCH ENGINE ═══════════════
+
+let matchSelected = null, matchPairsLeft = 0, matchAttempts = 0, matchCorrectCount = 0;
+let currentMatchPairs = [];
+
+function startMatchGame() {
+    currentMatchPairs = shuffleArray(matchPairs).slice(0, 6);
+    matchSelected = null; matchPairsLeft = currentMatchPairs.length;
+    matchAttempts = 0; matchCorrectCount = 0;
+
+    var leftHtml = shuffleArray(currentMatchPairs).map(function(p, i) {
+        return '<div class="match-item" data-side="left" data-id="' + currentMatchPairs.indexOf(p) + '" onclick="selectMatch(this)">' + p.feature + '</div>';
+    }).join('');
+    var rightHtml = shuffleArray(currentMatchPairs).map(function(p, i) {
+        return '<div class="match-item" data-side="right" data-id="' + currentMatchPairs.indexOf(p) + '" onclick="selectMatch(this)">' + p.desc + '</div>';
+    }).join('');
+
+    document.getElementById('matchLeft').innerHTML = leftHtml;
+    document.getElementById('matchRight').innerHTML = rightHtml;
+    document.getElementById('matchStatus').textContent = 'Match each feature with its description (' + matchPairsLeft + ' pairs remaining)';
+    document.getElementById('matchStatus').style.background = '#f0f7ff';
+    document.getElementById('matchStatus').style.color = 'var(--primary)';
+}
+
+function selectMatch(el) {
+    if (el.classList.contains('matched')) return;
+    var side = el.getAttribute('data-side');
+
+    if (!matchSelected) {
+        matchSelected = el;
+        el.classList.add('selected');
+    } else if (matchSelected.getAttribute('data-side') === side) {
+        matchSelected.classList.remove('selected');
+        matchSelected = el;
+        el.classList.add('selected');
+    } else {
+        matchAttempts++;
+        var id1 = matchSelected.getAttribute('data-id');
+        var id2 = el.getAttribute('data-id');
+
+        if (id1 === id2) {
+            matchSelected.classList.remove('selected');
+            matchSelected.classList.add('matched');
+            el.classList.add('matched');
+            matchPairsLeft--;
+            matchCorrectCount++;
+            streak++; if (streak > bestStreak) bestStreak = streak;
+            totalScore += 150;
+            updateScoreboard();
+            document.getElementById('matchStatus').textContent = '✅ Matched! ' + matchPairsLeft + ' pairs remaining';
+            document.getElementById('matchStatus').style.background = 'var(--success-bg)';
+            document.getElementById('matchStatus').style.color = 'var(--success)';
+
+            if (matchPairsLeft === 0) {
+                setTimeout(function() { showResults('match', matchCorrectCount, currentMatchPairs.length); }, 600);
+            }
+        } else {
+            streak = 0; updateScoreboard();
+            matchSelected.classList.remove('selected');
+            el.classList.add('wrong-flash');
+            matchSelected.classList.add('wrong-flash');
+            var ms = matchSelected;
+            setTimeout(function() { el.classList.remove('wrong-flash'); ms.classList.remove('wrong-flash'); }, 400);
+            document.getElementById('matchStatus').textContent = '❌ Try again — ' + matchPairsLeft + ' pairs remaining';
+            document.getElementById('matchStatus').style.background = 'var(--danger-bg)';
+            document.getElementById('matchStatus').style.color = 'var(--danger)';
+        }
+        matchSelected = null;
+    }
+}
+
+// ═══════════════ SPEED ENGINE ═══════════════
+
+let speedIndex = 0, speedCorrectCount = 0, speedTimer = null, speedTimeLeft = 0;
+let shuffledSpeed = [];
+const SPEED_TIME = 8;
+
+function startSpeedRound() {
+    shuffledSpeed = shuffleArray(speedQuestions).slice(0, 8);
+    speedIndex = 0; speedCorrectCount = 0;
+    document.getElementById('speedStartBtn').style.display = 'none';
+    renderSpeedQuestion();
+}
+
+function renderSpeedQuestion() {
+    if (speedIndex >= shuffledSpeed.length) {
+        showResults('speed', speedCorrectCount, shuffledSpeed.length);
+        document.getElementById('speedStartBtn').style.display = 'inline-flex';
+        return;
+    }
+    var q = shuffledSpeed[speedIndex];
+    document.getElementById('speedIcon').textContent = q.icon;
+    document.getElementById('speedFeature').textContent = q.feature;
+    document.getElementById('speedHint').textContent = 'Question ' + (speedIndex + 1) + ' of ' + shuffledSpeed.length;
+
+    var optsHtml = q.opts.map(function(opt, i) {
+        return '<div class="speed-option" onclick="selectSpeedAnswer(' + i + ')">' + opt + '</div>';
+    }).join('');
+    document.getElementById('speedOptions').innerHTML = optsHtml;
+
+    speedTimeLeft = SPEED_TIME * 10;
+    document.getElementById('timerFill').style.width = '100%';
+    document.getElementById('timerFill').className = 'timer-fill';
+
+    clearInterval(speedTimer);
+    speedTimer = setInterval(function() {
+        speedTimeLeft--;
+        var pct = (speedTimeLeft / (SPEED_TIME * 10)) * 100;
+        document.getElementById('timerFill').style.width = pct + '%';
+        if (pct < 30) document.getElementById('timerFill').className = 'timer-fill danger';
+        else if (pct < 60) document.getElementById('timerFill').className = 'timer-fill warning';
+        if (speedTimeLeft <= 0) {
+            clearInterval(speedTimer);
+            streak = 0; updateScoreboard();
+            highlightSpeedAnswer(-1);
+            setTimeout(function() { speedIndex++; renderSpeedQuestion(); }, 800);
+        }
+    }, 100);
+}
+
+function selectSpeedAnswer(idx) {
+    clearInterval(speedTimer);
+    var q = shuffledSpeed[speedIndex];
+    var isCorrect = idx === q.answer;
+
+    if (isCorrect) {
+        speedCorrectCount++;
+        streak++; if (streak > bestStreak) bestStreak = streak;
+        var timeBonus = Math.floor(speedTimeLeft / 2);
+        totalScore += 80 + timeBonus;
+    } else {
+        streak = 0;
+    }
+    updateScoreboard();
+    highlightSpeedAnswer(idx);
+    setTimeout(function() { speedIndex++; renderSpeedQuestion(); }, 700);
+}
+
+function highlightSpeedAnswer(selectedIdx) {
+    var q = shuffledSpeed[speedIndex];
+    var optEls = document.querySelectorAll('#speedOptions .speed-option');
+    optEls.forEach(function(el, i) {
+        el.style.pointerEvents = 'none';
+        if (i === q.answer) el.classList.add('correct');
+        if (i === selectedIdx && selectedIdx !== q.answer) el.classList.add('wrong');
+    });
+}
+
+// ═══════════════ RESULTS ═══════════════
+
+function showResults(mode, correct, total) {
+    clearInterval(speedTimer);
+    var pct = Math.round((correct / total) * 100);
+
+    // Trophy
+    var trophy = pct === 100 ? '🏆' : pct >= 80 ? '🥇' : pct >= 60 ? '🥈' : pct >= 40 ? '🥉' : '🎯';
+    document.getElementById('resultsTrophy').textContent = trophy;
+
+    // Title
+    var title = pct === 100 ? 'Perfect Score!' :
+                pct >= 80 ? 'TrackForcePro Expert!' :
+                pct >= 60 ? 'Great Job!' :
+                pct >= 40 ? 'Good Effort!' : 'Keep Learning!';
+    document.getElementById('resultsTitle').textContent = title;
+
+    document.getElementById('resultsFinalScore').textContent = totalScore;
+    document.getElementById('resultsSubtitle').textContent = 'total points • ' + correct + '/' + total + ' correct (' + pct + '%)';
+
+    // Stats
+    var modeLabel = mode === 'quiz' ? 'Quiz' : mode === 'match' ? 'Match' : 'Speed';
+    document.getElementById('resultsStats').innerHTML =
+        '<div class="stat"><div class="stat-val">' + correct + '/' + total + '</div><div class="stat-label">' + modeLabel + ' Score</div></div>' +
+        '<div class="stat"><div class="stat-val">🔥 ' + bestStreak + '</div><div class="stat-label">Best Streak</div></div>' +
+        '<div class="stat"><div class="stat-val">' + totalScore + '</div><div class="stat-label">Total Points</div></div>';
+
+    // Badges
+    var badges = '';
+    if (pct === 100) badges += '<span class="badge gold">🏅 Perfect</span>';
+    if (bestStreak >= 5) badges += '<span class="badge gold">🔥 Streak Master</span>';
+    if (bestStreak >= 3) badges += '<span class="badge silver">⚡ On Fire</span>';
+    if (totalScore >= 1000) badges += '<span class="badge special">🌟 1K Club</span>';
+    if (totalScore >= 500) badges += '<span class="badge bronze">💪 Half-Way Hero</span>';
+    if (mode === 'speed' && correct >= 6) badges += '<span class="badge special">⚡ Speed Demon</span>';
+    if (!badges) badges = '<span class="badge silver">🎮 Challenger</span>';
+    document.getElementById('resultsBadges').innerHTML = badges;
+
+    // Fun fact
+    document.getElementById('resultsFunFact').innerHTML = funFacts[Math.floor(Math.random() * funFacts.length)];
+
+    // Save to leaderboard
+    saveToLeaderboard(mode, totalScore, correct, total);
+
+    // Show
+    document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
+    document.getElementById('game-results').classList.add('active');
+}
+
+function replayCurrentMode() { switchMode(currentMode); }
+
+// ═══════════════ MODE SWITCHING ═══════════════
+
+function switchMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll('.mode-btn').forEach(function(btn) { btn.classList.remove('active'); });
+    document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
+
+    var btns = document.querySelectorAll('.mode-btn');
+    if (mode === 'quiz') btns[0].classList.add('active');
+    else if (mode === 'match') btns[1].classList.add('active');
+    else if (mode === 'speed') btns[2].classList.add('active');
+    else if (mode === 'leaderboard') btns[3].classList.add('active');
+
+    document.getElementById('game-' + mode).classList.add('active');
+    clearInterval(speedTimer);
+
+    if (mode === 'quiz') startQuiz();
+    else if (mode === 'match') startMatchGame();
+    else if (mode === 'leaderboard') renderLeaderboard();
+    else if (mode === 'speed') {
+        document.getElementById('speedStartBtn').style.display = 'inline-flex';
+        document.getElementById('speedOptions').innerHTML = '';
+        document.getElementById('speedIcon').textContent = '⚡';
+        document.getElementById('speedFeature').textContent = 'Ready?';
+        document.getElementById('speedHint').textContent = 'Answer as fast as you can — ' + SPEED_TIME + ' seconds per question!';
+        document.getElementById('timerFill').style.width = '100%';
+        document.getElementById('timerFill').className = 'timer-fill';
+    }
+}
+
+function updateScoreboard() {
+    document.getElementById('totalScore').textContent = totalScore;
+    document.getElementById('streakCount').textContent = '🔥 ' + streak;
+    document.getElementById('bestStreak').textContent = bestStreak;
+}
+
+// ── Init ──
+document.addEventListener('DOMContentLoaded', function() {
+    currentPlayer = getStoredPlayer();
+    if (currentPlayer) {
+        document.getElementById('signupOverlay').classList.add('hidden');
+        showPlayerUI();
+        startQuiz();
+    }
+    // Real-time email validation
+    var emailInput = document.getElementById('signupEmail');
+    if (emailInput) {
+        emailInput.addEventListener('input', function() {
+            emailInput.classList.remove('input-error');
+            document.getElementById('emailError').classList.remove('show');
+        });
+    }
+    // If no player, the signup overlay is visible and blocks interaction
+});
+</script>
+</body>
+</html>
+

@@ -465,6 +465,7 @@
             <a href="quick-start-guide.html">Quick Start</a>
             <a href="documentation.html" class="active">Documentation</a>
             <a href="help.html">Help</a>
+            <a href="quiz.html">Quiz &amp; Games</a>
             <a href="privacy-policy.html">Privacy Policy</a>
         </div>
     </nav>
@@ -479,6 +480,7 @@
             <label for="version-select">Version:</label>
             <select id="version-select" onchange="switchVersion(this.value)">
                 <option value="1.3.6" selected>v1.3.6 (Latest)</option>
+                <option value="1.2.9">v1.2.9</option>
                 <option value="1.2.7">v1.2.7</option>
                 <option value="1.2.2">v1.2.2</option>
                 <option value="1.2.0">v1.2.0</option>
@@ -507,12 +509,11 @@
                     <li><a href="#record-scanner" class="sidebar-link">Record Scanner</a></li>
                     <li><a href="#user-manager" class="sidebar-link">User Manager</a></li>
                     <li><a href="#favicon-manager" class="sidebar-link">Favicon Manager</a></li>
-                    <li><a href="#security-manager" class="sidebar-link">Security Manager <span class="badge new">New</span></a></li>
-                    <li><a href="#org-tools" class="sidebar-link">Org Tools <span class="badge new">New</span></a></li>
+                    <li><a href="#security-manager" class="sidebar-link">Security Manager</a></li>
+                    <li><a href="#org-tools" class="sidebar-link">Org Tools</a></li>
                     <li><a href="#platform-events" class="sidebar-link">Platform Events</a></li>
-                    <li><a href="#page-blinker" class="sidebar-link">Page Blinker</a></li>
-                    <li><a href="#tf-sidebar" class="sidebar-link">TF Sidebar <span class="badge new">New</span></a></li>
-                    <li><a href="#data-explorer" class="sidebar-link">Data Explorer <span class="badge new">New</span></a></li>
+                    <li><a href="#tf-sidebar" class="sidebar-link">TF Sidebar</a></li>
+                    <li><a href="#data-explorer" class="sidebar-link">Data Explorer</a></li>
                     <li><a href="#cache-manager" class="sidebar-link">Cache Manager</a></li>
                 </ul>
             </div>
@@ -527,11 +528,340 @@
         </aside>
 
         <main class="content">
-            <!-- Version 1.2.7 Content (Latest - DEFAULT) -->
-            <div id="content-1.2.7" class="version-content active">
+            <!-- Version 1.3.6 Content (Latest - DEFAULT) -->
+            <div id="content-1.3.6" class="version-content active">
                 <div class="content-header">
                     <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.2.7 (Latest)</span>
+                    <span class="version-badge">v1.3.6 (Latest)</span>
+                    <div class="date">Released: March 15, 2026</div>
+                </div>
+
+                <section id="overview" class="doc-section">
+                    <h3><span class="icon">📖</span> Overview</h3>
+                    <p>TrackForcePro is a comprehensive Salesforce developer toolkit that lives right inside your Salesforce pages. After installing the extension, a <strong>floating TF button</strong> appears at the <strong>bottom-right corner</strong> of every Salesforce page — click it to instantly access all tools without leaving the page you're working on.</p>
+
+                    <div class="alert alert-info">
+                        <span class="icon">🧭</span>
+                        <div class="alert-content">
+                            <strong>Getting Started is Easy</strong>
+                            Install the extension → navigate to any Salesforce page → look for the <strong>floating TF icon</strong> at the <strong>bottom-right corner</strong> of the page → click it → start using any tool.
+                        </div>
+                    </div>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h5>🧭 TF Sidebar</h5>
+                            <p>One-click floating button at the bottom-right of every Salesforce page — your launchpad to all tools</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>🔍 Audit Trails</h5>
+                            <p>Extract and export setup audit trails with advanced filtering and search</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>📊 SOQL Builder</h5>
+                            <p>Visual query builder with smart field suggestions, real-time execution, inline edit, and row delete</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>🔗 GraphQL Builder</h5>
+                            <p>UI API GraphQL queries with CodeMirror 6 editor, child record export, and accordion table view</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>🔬 Record Scanner</h5>
+                            <p>Scan records, view field history, analyze relationships and permissions</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>👥 User Manager</h5>
+                            <p>Manage user permissions, sessions, and access across your org</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>🎨 Favicon Manager</h5>
+                            <p>Custom org icons with shapes, colors, labels and logo colorization</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>🔐 Security Manager</h5>
+                            <p>Browse Profiles, Permission Sets, and Permission Set Groups</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>🏢 Org Tools</h5>
+                            <p>Login As, Custom Labels, Deployments, Debug Logs, Org Limits</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>📡 Platform Events</h5>
+                            <p>Subscribe to and publish platform events in real-time</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>📦 Data Explorer</h5>
+                            <p>Metadata Explorer, Automation Inspector, Schema Visualizer, API Dashboard</p>
+                        </div>
+                        <div class="feature-card">
+                            <h5>🌐 Edge &amp; Chrome</h5>
+                            <p>Available on both Chrome Web Store and Edge Add-ons</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="installation" class="doc-section">
+                    <h3><span class="icon">📥</span> Installation</h3>
+                    <h4>Chrome Web Store (Recommended)</h4>
+                    <ol>
+                        <li>Visit <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">TrackForcePro on Chrome Web Store</a></li>
+                        <li>Click <strong>"Add to Chrome"</strong> → confirm with <strong>"Add extension"</strong></li>
+                        <li>Navigate to any <strong>Salesforce page</strong></li>
+                        <li>Look for the <strong>floating TF icon</strong> at the <strong>bottom-right corner</strong> of the page — that's your entry point!</li>
+                    </ol>
+
+                    <h4>Edge Add-ons</h4>
+                    <p>TrackForcePro is also available on the <strong>Microsoft Edge Add-ons</strong> store. Install from Edge Add-ons, or sideload the same ZIP package via <code>edge://extensions/</code> with Developer Mode enabled. The TF Sidebar button appears the same way on Edge.</p>
+
+                    <h4>Manual Installation (Developer Mode)</h4>
+                    <ol>
+                        <li>Download the extension files from GitHub</li>
+                        <li>Extract the ZIP file to a folder</li>
+                        <li>Open Chrome/Edge and go to <code>chrome://extensions/</code> (or <code>edge://extensions/</code>)</li>
+                        <li>Enable "Developer mode" (top-right toggle)</li>
+                        <li>Click "Load unpacked" and select the extension folder</li>
+                        <li>Navigate to a Salesforce page — the <strong>TF floating button</strong> appears at the bottom-right</li>
+                    </ol>
+
+                    <div class="alert alert-info">
+                        <span class="icon">💡</span>
+                        <div class="alert-content">
+                            <strong>No toolbar icon needed!</strong>
+                            You don't need to pin or find the extension in the toolbar. The <strong>TF Sidebar button</strong> appears automatically on every Salesforce page at the <strong>bottom-right corner</strong>. Just click it to get started.
+                        </div>
+                    </div>
+                </section>
+
+                <section id="quick-start" class="doc-section">
+                    <h3><span class="icon">🚀</span> Quick Start</h3>
+
+                    <h4>Step 1: Find the TF Button</h4>
+                    <p>After installing TrackForcePro, navigate to any Salesforce page. You'll see a small <strong>floating circular button</strong> with the TrackForcePro icon at the <strong>bottom-right corner</strong> of the page.</p>
+
+                    <h4>Step 2: Open the Sidebar</h4>
+                    <p>Click the floating button. The <strong>TF Sidebar</strong> panel slides open, showing a list of all available tools organized by category — extension tabs, Data Explorer tools, Security panels, Org Tools, and Salesforce Setup shortcuts.</p>
+
+                    <h4>Step 3: Launch Any Tool</h4>
+                    <p>Click any shortcut in the sidebar to open that tool directly. For example:</p>
+                    <ul>
+                        <li>Click <strong>"SOQL Builder"</strong> → opens the SOQL query builder</li>
+                        <li>Click <strong>"Security Manager"</strong> → opens profile &amp; permission set browser</li>
+                        <li>Click <strong>"Custom Labels"</strong> → opens the labels manager with inline editing</li>
+                        <li>Click <strong>"Audit Trails"</strong> → opens the audit trail extractor</li>
+                        <li>Click <strong>"GraphQL Builder"</strong> → opens the GraphQL editor with child record export</li>
+                    </ul>
+
+                    <div class="alert alert-info">
+                        <span class="icon">⚡</span>
+                        <div class="alert-content">
+                            <strong>Alternative: Toolbar Popup</strong>
+                            You can also click the TrackForcePro icon in the browser toolbar (if pinned) to open the full popup with all tabs. But the <strong>TF Sidebar</strong> is faster — it's always visible on any Salesforce page, no pinning required.
+                        </div>
+                    </div>
+
+                    <h4>Common Workflows</h4>
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th>Task</th><th>Sidebar Shortcut</th><th>What It Does</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Extract audit trails</td><td>Audit Trails</td><td>Filter and export setup audit trail events to CSV</td></tr>
+                            <tr><td>Run SOQL queries</td><td>SOQL Builder</td><td>Visual query builder with inline edit and row delete</td></tr>
+                            <tr><td>Run GraphQL queries</td><td>GraphQL Builder</td><td>UI API queries with child record export</td></tr>
+                            <tr><td>Scan a record</td><td>Record Scanner</td><td>View fields, history, relationships, FLS, and sharing</td></tr>
+                            <tr><td>Manage users</td><td>User Manager</td><td>Search, update, freeze, compare users</td></tr>
+                            <tr><td>Set org favicon</td><td>Org &amp; Favicon</td><td>Custom icons to distinguish orgs visually</td></tr>
+                            <tr><td>Browse profiles</td><td>Security Manager → Profiles</td><td>View profile permissions and assignments</td></tr>
+                            <tr><td>Login as another user</td><td>Org Tools → Login As</td><td>Log in as a user with incognito and history</td></tr>
+                            <tr><td>Manage custom labels</td><td>Org Tools → Custom Labels</td><td>Search, edit, translate, import, and export labels</td></tr>
+                            <tr><td>Monitor events</td><td>Platform Events</td><td>Subscribe and publish platform events in real-time</td></tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="graphql-builder" class="doc-section">
+                    <h3><span class="icon">🔗</span> GraphQL Query Builder</h3>
+                    <p>Compose and execute GraphQL queries against Salesforce's UI API with a CodeMirror 6 editor featuring syntax highlighting, bracket matching, and schema-aware autocomplete.</p>
+
+                    <h4>Three-Screen Flow</h4>
+                    <ol>
+                        <li><strong>Object Selection</strong> — Browse or search object cards, click to enter the builder</li>
+                        <li><strong>Query Builder</strong> — Select fields (checkboxes), add filters, set order/pagination. Live query preview in the editor.</li>
+                        <li><strong>Results</strong> — View JSON or switch to table view. Export as CSV, TSV, or JSON.</li>
+                    </ol>
+
+                    <h4>Child Record Handling</h4>
+                    <p>When querying objects with child relationships (e.g., Accounts with Contacts):</p>
+                    <ul>
+                        <li><strong>Table View (Accordion)</strong> — Child records display as expandable accordion sections. Click the count badge (e.g., "3 records ▸ Contacts") to see child data in a nested mini-table. Nested lookups within children are automatically flattened.</li>
+                        <li><strong>CSV/TSV Export</strong> — Child records are expanded into separate rows with parent fields repeated. For example, an Account with 3 Contacts produces 3 CSV rows. Child fields are prefixed (e.g., <code>Contacts.FirstName</code>, <code>Contacts.Email</code>).</li>
+                        <li><strong>JSON Export</strong> — Preserves the full nested structure with child arrays intact.</li>
+                    </ul>
+
+                    <h4>Additional Features</h4>
+                    <ul>
+                        <li>Mutation support: Create, Update, Delete with auto-generated variables</li>
+                        <li>Schema introspection and field suggestions</li>
+                        <li>Cursor-based pagination with page navigation history</li>
+                        <li>Query history for quick recall</li>
+                    </ul>
+                </section>
+
+                <section id="tf-sidebar" class="doc-section">
+                    <h3><span class="icon">🧭</span> TF Sidebar — Your Quick-Access Launchpad</h3>
+                    <p>The TF Sidebar is the <strong>fastest way</strong> to access any TrackForcePro tool. It's a floating panel that appears on every Salesforce page — no need to find the extension icon in your toolbar, no need to pin anything.</p>
+
+                    <h4>Where to Find It</h4>
+                    <p>Look at the <strong>bottom-right corner</strong> of any Salesforce page. You'll see a small <strong>circular floating button</strong> with the TrackForcePro icon. This button is always there — on every Salesforce page, every org, every time.</p>
+
+                    <h4>How to Use It</h4>
+                    <ol>
+                        <li><strong>Click the floating TF button</strong> at the bottom-right corner of any Salesforce page</li>
+                        <li>The sidebar panel slides open with all available tool shortcuts</li>
+                        <li><strong>Click any shortcut</strong> to open that tool instantly (e.g., SOQL Builder, Custom Labels, Security Manager)</li>
+                        <li>The tool opens in the TrackForcePro window — ready to use</li>
+                    </ol>
+
+                    <h4>Available Shortcuts</h4>
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th>Category</th><th>Shortcuts</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Extension Tabs</strong></td><td>Audit Trails, SOQL Builder, GraphQL Builder, Platform Events, LMS, Data Explorer, Settings</td></tr>
+                            <tr><td><strong>Data Explorer</strong></td><td>Record Scanner, Org &amp; Favicon, User Manager, Metadata Explorer, Schema Visualizer</td></tr>
+                            <tr><td><strong>Security</strong></td><td>Profiles, Permission Sets, Permission Set Groups</td></tr>
+                            <tr><td><strong>Org Tools</strong></td><td>Login As, Custom Labels, Deployments, Scheduled Jobs, Debug Logs, Org Limits</td></tr>
+                            <tr><td><strong>Salesforce Setup</strong></td><td>Direct links to Setup pages (Users, Profiles, Object Manager, etc.)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Customization</h4>
+                    <ul>
+                        <li><strong>Position</strong> — Move the sidebar to the left or right side of the screen</li>
+                        <li><strong>Auto-collapse</strong> — Sidebar closes automatically after clicking a shortcut</li>
+                        <li><strong>Visibility</strong> — Show or hide individual shortcuts via Settings → Sidebar</li>
+                    </ul>
+                </section>
+
+                <section id="changelog" class="doc-section">
+                    <h3><span class="icon">📋</span> Changelog</h3>
+
+                    <h4>v1.3.6 - March 15, 2026</h4>
+                    <ul>
+                        <li>📊 GraphQL child record export — child arrays expanded into separate CSV/Excel rows with parent fields repeated</li>
+                        <li>New <code>expandChildRecordsToRows()</code> function for child field prefixing (e.g., <code>Contacts.FirstName</code>)</li>
+                        <li>Accordion table improvements — nested lookups flattened, count badges, complete column coverage</li>
+                        <li>🚢 Edge Add-ons automated CI/CD publishing via <code>publish-edge.yml</code> GitHub Actions workflow</li>
+                        <li>Edge Publish API integration with OAuth2 token flow, upload polling, and dry-run mode</li>
+                        <li>42 new tests for child record export (expansion, CSV, TSV, JSON, table rendering, edge cases)</li>
+                        <li>3063+ tests across 58 test suites (all passing)</li>
+                    </ul>
+
+                    <h4>v1.3.5 - March 15, 2026</h4>
+                    <ul>
+                        <li>TF Sidebar icon upgrade — actual extension icon replaces text placeholder</li>
+                        <li>AGENTS.md enhancements with service worker and popup initialization patterns</li>
+                    </ul>
+
+                    <h4>v1.3.4 - March 15, 2026</h4>
+                    <ul>
+                        <li>Social links fix — correct LinkedIn URL across all surfaces</li>
+                        <li>Developer website link added to sidebar, popup, and docs</li>
+                    </ul>
+
+                    <h4>v1.3.3 - March 15, 2026</h4>
+                    <ul>
+                        <li>CodeMirror 6 GraphQL editor with syntax highlighting and autocomplete</li>
+                        <li>SOQL field picker improvements, API v66.0</li>
+                    </ul>
+
+                    <h4>v1.3.0–v1.3.2 - March 13–14, 2026</h4>
+                    <ul>
+                        <li>Multi-org session isolation and single-instance enforcement</li>
+                        <li>TF Sidebar "Detect New Org" for multi-org discovery</li>
+                        <li>SOQL guidance engine with rule-based suggestions</li>
+                    </ul>
+
+                    <h4>v1.2.9 - March 13, 2026</h4>
+                    <ul>
+                        <li>SOQL Inline Edit — toggle-switch UI, enabled by default</li>
+                        <li>Row Delete with confirmation dialog and DELETE API</li>
+                        <li>GraphQL advanced: persisted mode, User field editing, picklist dropdowns</li>
+                    </ul>
+
+                    <h4>v1.2.7 - March 12, 2026</h4>
+                    <ul>
+                        <li>Custom Labels Enhancement — inline editing, translation, import/export</li>
+                        <li>Real-time search, category filter, keyboard navigation</li>
+                    </ul>
+
+                    <h4>v1.2.6 - March 12, 2026</h4>
+                    <ul>
+                        <li>Comprehensive documentation update for all features</li>
+                        <li>GraphQL mutations, schema suggestions, table view, CSV/JSON export</li>
+                        <li>TF Sidebar: category grouping, drag reorder, custom shortcuts</li>
+                    </ul>
+                </section>
+
+                <section id="troubleshooting" class="doc-section">
+                    <h3><span class="icon">🔧</span> Troubleshooting</h3>
+                    <h4>Common Issues</h4>
+                    <ul>
+                        <li><strong>TF Sidebar button not visible</strong> — Make sure you're on a Salesforce page (not a non-SF page). Try refreshing the page. Check that the extension is enabled in <code>chrome://extensions/</code>.</li>
+                        <li><strong>Sidebar shortcuts missing</strong> — Some shortcuts may be hidden. Go to Settings → Sidebar to toggle visibility.</li>
+                        <li><strong>"SF" badge not appearing on toolbar icon</strong> — Navigate to a Salesforce page first. On Edge, the extension uses fallback mechanisms automatically. The TF Sidebar works regardless of the badge.</li>
+                        <li><strong>Session expired</strong> — Refresh your Salesforce page. The TF Sidebar will reconnect automatically.</li>
+                        <li><strong>GraphQL child export issues</strong> — Ensure your query includes child relationship fields. CSV export auto-expands children into rows.</li>
+                        <li><strong>Extension not loading at all</strong> — Go to <code>chrome://extensions/</code>, check for errors, and try "Reload" on TrackForcePro.</li>
+                    </ul>
+                </section>
+
+                <section id="api-reference" class="doc-section">
+                    <h3><span class="icon">📚</span> API Reference</h3>
+                    <p>TrackForcePro uses the following Salesforce APIs:</p>
+                    <ul>
+                        <li><strong>REST API</strong> — Record CRUD, describe, query execution</li>
+                        <li><strong>Tooling API</strong> — Metadata operations, debug logs, deployment status</li>
+                        <li><strong>UI API (GraphQL)</strong> — Schema introspection, record queries with UI metadata</li>
+                        <li><strong>Streaming API (CometD)</strong> — Platform Event subscriptions</li>
+                    </ul>
+                    <p>Default API version: <code>v66.0</code> (configurable in Settings)</p>
+                </section>
+            </div>
+
+            <!-- Version 1.2.9 Content -->
+            <div id="content-1.2.9" class="version-content">
+                <div class="content-header">
+                    <h2>TrackForcePro Documentation</h2>
+                    <span class="version-badge">v1.2.9</span>
+                    <div class="date">Released: March 13, 2026</div>
+                </div>
+                <section id="overview-1-2-9" class="doc-section">
+                    <h3><span class="icon">📖</span> Overview</h3>
+                    <p>TrackForcePro v1.2.9 introduces SOQL Inline Edit with toggle-switch UI, Row Delete with DELETE API, and GraphQL advanced enhancements.</p>
+                    <div class="alert alert-info">
+                        <span class="icon">ℹ️</span>
+                        <div class="alert-content">For the latest features including GraphQL child record export and Edge Add-ons publishing, upgrade to <strong>v1.3.6</strong>.</div>
+                    </div>
+                </section>
+                <section id="changelog-1-2-9" class="doc-section">
+                    <h3><span class="icon">📋</span> What's New</h3>
+                    <ul>
+                        <li>SOQL Inline Edit — toggle-switch UI, enabled by default, auto-describe on query</li>
+                        <li>Row Delete — per-row delete button with confirmation dialog, DELETE API call</li>
+                        <li>GraphQL advanced — persisted mode, inline User field editing, picklist dropdowns</li>
+                        <li>Record page autofill for SOQL editor</li>
+                        <li>10 new tests, 2741+ total passing</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- Version 1.2.7 Content -->
+            <div id="content-1.2.7" class="version-content">
+                <div class="content-header">
+                    <h2>TrackForcePro Documentation</h2>
+                    <span class="version-badge">v1.2.7</span>
                     <div class="date">Released: March 12, 2026</div>
                 </div>
 
@@ -1146,13 +1476,13 @@
                 <!-- V1.2.2 sections with unique IDs: overview-1-2-2, installation-1-2-2, etc. -->
                 <div class="content-header">
                     <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.3.6</span>
+                    <span class="version-badge">v1.2.2</span>
                     <div class="date">Released: March 11, 2026</div>
                 </div>
 
                 <section id="overview-1-2-2" class="doc-section">
                     <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.3.6 is a maintenance release with Data Explorer &amp; Org Tools enhancements and stability improvements.</p>
+                    <p>TrackForcePro v1.2.2 is a maintenance release with Data Explorer &amp; Org Tools enhancements and stability improvements.</p>
                     <div class="alert alert-info">
                         <span class="icon">ℹ️</span>
                         <div class="alert-content">
@@ -1176,13 +1506,13 @@
             <div id="content-1.2.0" class="version-content">
                 <div class="content-header">
                     <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.3.6</span>
+                    <span class="version-badge">v1.2.0</span>
                     <div class="date">Released: March 11, 2026</div>
                 </div>
 
                 <section id="overview-1-2-0" class="doc-section">
                     <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.3.6 introduces major new features: Security Manager, Org Tools, TF Sidebar, and Data Explorer Tools.</p>
+                    <p>TrackForcePro v1.2.0 introduces major new features: Security Manager, Org Tools, TF Sidebar, and Data Explorer Tools.</p>
                 </section>
 
                 <section id="whats-new-1-2-0" class="doc-section">
@@ -1200,13 +1530,13 @@
             <div id="content-1.1.19" class="version-content">
                 <div class="content-header">
                     <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.3.6</span>
+                    <span class="version-badge">v1.1.19</span>
                     <div class="date">Released: March 10, 2026</div>
                 </div>
 
                 <section id="overview-1-1-19" class="doc-section">
                     <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.3.6 is a maintenance release with stability improvements and documentation updates.</p>
+                    <p>TrackForcePro v1.1.19 is a maintenance release with stability improvements and documentation updates.</p>
                 </section>
 
                 <section id="fixes-1-1-19" class="doc-section">
@@ -1223,13 +1553,13 @@
             <div id="content-1.1.18" class="version-content">
                 <div class="content-header">
                     <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.3.6</span>
+                    <span class="version-badge">v1.1.18</span>
                     <div class="date">Released: March 10, 2026</div>
                 </div>
 
                 <section id="overview-1-1-18" class="doc-section">
                     <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.3.6 includes Appearance Settings, GraphQL compact UI, SOQL simplification, and XSS prevention.</p>
+                    <p>TrackForcePro v1.1.18 includes Appearance Settings, GraphQL compact UI, SOQL simplification, and XSS prevention.</p>
                 </section>
             </div>
 
@@ -1237,23 +1567,23 @@
             <div id="content-1.1.17" class="version-content">
                 <div class="content-header">
                     <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.3.6</span>
+                    <span class="version-badge">v1.1.17</span>
                     <div class="date">Released: March 9, 2026</div>
                 </div>
 
                 <section id="overview-1-1-17" class="doc-section">
                     <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.3.6 includes stability improvements and documentation updates.</p>
+                    <p>TrackForcePro v1.1.17 includes stability improvements and documentation updates.</p>
                 </section>
             </div>
         </main>
     </div>
 
     <footer class="footer">
-        <p>TrackForcePro - Salesforce Developer Toolkit</p>
+        <p>TrackForcePro v1.3.6 - Salesforce Developer Toolkit</p>
         <p>
-            <a href="https://chrome.google.com/webstore" target="_blank">Chrome Web Store</a> |
-            <a href="https://github.com" target="_blank">GitHub</a> |
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> |
+            <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a> |
             <a href="privacy-policy.html">Privacy Policy</a>
         </p>
         <p style="margin-top: 12px; font-size: 12px;">© 2026 TrackForcePro. All rights reserved.</p>
