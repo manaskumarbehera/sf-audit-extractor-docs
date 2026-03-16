@@ -1,0 +1,13 @@
+{
+  "name": "trackforcepro-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Heroku-ready static web host for TrackForcePro docs",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
+
