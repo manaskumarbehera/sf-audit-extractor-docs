@@ -1032,9 +1032,9 @@ const quizQuestions = [
     },
     {
         q: "How many shapes are available for custom org favicons?",
-        opts: ["3 (circle, square, triangle)", "6 (circle, square, cloud, diamond, hexagon, badge)", "2 (circle, square)", "Unlimited custom SVG"],
+        opts: ["3 (circle, square, triangle)", "8 (circle, square, rounded, cloud, sfcloud, diamond, hexagon, shield)", "2 (circle, square)", "Unlimited custom SVG"],
         answer: 1,
-        explanation: "Six built-in shapes: <strong>circle, square, cloud, sfcloud, diamond, hexagon</strong>. Each can be combined with custom colors and up to 3-character labels."
+        explanation: "Eight built-in shapes: <strong>circle, square, rounded, cloud, sfcloud, diamond, hexagon, shield</strong>. Each can be combined with custom colors and up to 3-character labels."
     },
     {
         q: "What does the Security Manager allow you to browse?",
@@ -1195,7 +1195,7 @@ const speedQuestions = [
     { icon: "📊", feature: "SOQL result editing?", opts: ["Copy only", "Inline Edit", "Download only", "Read-only"], answer: 1 },
     { icon: "🔗", feature: "GraphQL editor?", opts: ["Monaco", "CodeMirror 6", "Ace", "Quill"], answer: 1 },
     { icon: "📡", feature: "Streaming protocol?", opts: ["WebSocket", "gRPC", "CometD", "SSE"], answer: 2 },
-    { icon: "🎨", feature: "Favicon shapes?", opts: ["2", "4", "6", "10"], answer: 2 },
+    { icon: "🎨", feature: "Favicon shapes?", opts: ["2", "4", "8", "10"], answer: 2 },
     { icon: "🔬", feature: "Record Scanner modes?", opts: ["1", "2", "3", "5"], answer: 2 },
     { icon: "💾", feature: "Cache scoped by?", opts: ["User", "Org ID", "Browser", "Tab"], answer: 1 },
     { icon: "🏢", feature: "Custom Labels feature?", opts: ["View only", "Full CRUD + translate", "Export only", "Delete only"], answer: 1 },
@@ -1223,7 +1223,7 @@ const funFacts = [
     "💡 <strong>Did you know?</strong> The GraphQL Builder can export child records (like Contacts under an Account) as expanded CSV rows — no more JSON blobs in cells!",
     "💡 <strong>Fun fact:</strong> TrackForcePro supports Custom Labels translation into 20 languages with duplicate detection.",
     "💡 <strong>Pro tip:</strong> The Record Scanner has a Compare mode — paste two Record IDs to see a side-by-side diff with highlighting.",
-    "💡 <strong>Did you know?</strong> The Favicon Manager lets you use 6 different shapes (circle, square, cloud, diamond, hexagon, badge) with custom 3-character labels.",
+    "💡 <strong>Did you know?</strong> The Favicon Manager lets you use 8 different shapes (circle, square, rounded, cloud, sfcloud, diamond, hexagon, shield) with custom 3-character labels.",
     "💡 <strong>Fun fact:</strong> TrackForcePro's SOQL Builder supports inline editing — click a cell in the query results to edit and save directly to Salesforce!",
     "💡 <strong>Pro tip:</strong> The TF Sidebar button is at the bottom-right corner of every Salesforce page — no toolbar pinning needed.",
     "💡 <strong>Did you know?</strong> TrackForcePro automatically scopes all cached data by org ID to prevent cross-org data leaks when switching between orgs.",
@@ -1268,9 +1268,9 @@ const trueFalseQuestions = [
         explanation: "False! It works on <strong>Chrome, Edge, Brave, Opera</strong>, and other Chromium-based browsers."
     },
     {
-        statement: "The Favicon Manager supports 6 different shapes for custom org icons.",
+        statement: "The Favicon Manager supports 8 different shapes for custom org icons.",
         answer: true,
-        explanation: "Correct! Six shapes: <strong>circle, square, cloud, sfcloud, diamond, hexagon</strong> — each with custom colors and labels."
+        explanation: "Correct! Eight shapes: <strong>circle, square, rounded, cloud, sfcloud, diamond, hexagon, shield</strong> — each with custom colors and labels."
     },
     {
         statement: "Cache keys in TrackForcePro are global and shared across all orgs.",
@@ -1627,10 +1627,10 @@ const blankQuestions = [
     },
     {
         sentence: "The Favicon Manager supports _____ different shapes for custom org icons.",
-        blank: "6",
+        blank: "8",
         opts: ["3", "4", "6", "8"],
-        answer: 2,
-        explanation: "<strong>6 shapes</strong>: circle, square, cloud, sfcloud, diamond, and hexagon."
+        answer: 3,
+        explanation: "<strong>8 shapes</strong>: circle, square, rounded, cloud, sfcloud, diamond, hexagon, and shield."
     },
     {
         sentence: "Hold _____ and click the pop button to open TrackForcePro as a standalone window.",
@@ -1717,7 +1717,7 @@ const survivalQuestions = [
     { q: "Which editor does the GraphQL Builder use?", opts: ["Ace", "CodeMirror 6", "Monaco", "Quill"], answer: 1 },
     { q: "What protocol streams Platform Events?", opts: ["WebSocket", "CometD", "gRPC", "SSE"], answer: 1 },
     { q: "How are cache keys scoped?", opts: ["By user", "By org ID", "By browser", "Globally"], answer: 1 },
-    { q: "How many favicon shapes are available?", opts: ["3", "6", "8", "12"], answer: 1 },
+    { q: "How many favicon shapes are available?", opts: ["3", "6", "8", "12"], answer: 2 },
     { q: "What does Freeze do to a user?", opts: ["Deletes them", "Blocks login", "Resets password", "Removes profile"], answer: 1 },
     { q: "FIELDS(ALL) queries which fields?", opts: ["Standard only", "Custom only", "Every field", "Id only"], answer: 2 },
     { q: "Shift+click pop button does what?", opts: ["Close popup", "Open as window", "Open as tab", "Refresh"], answer: 1 },
