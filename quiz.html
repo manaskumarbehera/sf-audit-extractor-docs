@@ -560,6 +560,7 @@
             <a href="documentation.html">Documentation</a>
             <a href="help.html">Help</a>
             <a href="quiz.html" class="active">Quiz &amp; Games</a>
+            <a href="leaderboard.html">🏆 Leaderboard</a>
         </div>
     </nav>
 
@@ -810,6 +811,7 @@
                 <div id="leaderboardContent"></div>
                 <div class="leaderboard-actions">
                     <button class="btn btn-primary" onclick="switchMode('quiz')">🧠 Play Quiz</button>
+                    <a href="leaderboard.html" class="btn btn-outline">📊 Full Leaderboard</a>
                     <button class="btn btn-outline" onclick="clearLeaderboard()">🗑️ Clear My Data</button>
                 </div>
             </div>
@@ -827,7 +829,7 @@
                 <div class="fun-fact" id="resultsFunFact"></div>
                 <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
                     <button class="btn btn-primary btn-lg" onclick="replayCurrentMode()">🔁 Play Again</button>
-                    <button class="btn btn-outline btn-lg" onclick="switchMode('leaderboard')">🏆 Leaderboard</button>
+                    <a href="leaderboard.html" class="btn btn-outline btn-lg">🏆 Leaderboard</a>
                     <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="btn btn-success btn-lg">🚀 Install TrackForcePro</a>
                 </div>
             </div>
@@ -835,7 +837,7 @@
     </div>
 
     <footer class="footer">
-        <p>TrackForcePro v1.4.4 — Salesforce Developer Toolkit</p>
+        <p>TrackForcePro v1.6.2 — Salesforce Developer Toolkit</p>
         <p style="margin-top:8px">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> |
             <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a> |
@@ -920,17 +922,52 @@ function logoutPlayer() {
 
 // ═══════════════ LEADERBOARD ═══════════════
 
+// Resolve the API base URL relative to the current page
+var LB_API_BASE = (function() {
+    var origin = window.location.origin;
+    // On GitHub Pages the server API won't exist; fall back to localStorage only
+    if (origin.indexOf('github.io') >= 0) return null;
+    return origin + '/api/leaderboard';
+})();
+
+// Cache for server data so renders are synchronous after first fetch
+var _serverLeaderboard = null;
+
 function getLeaderboard() {
+    // Return cached server data if available, otherwise localStorage
+    if (_serverLeaderboard) return _serverLeaderboard;
     try {
         var data = localStorage.getItem('tfp_quiz_leaderboard');
         return data ? JSON.parse(data) : [];
     } catch (e) { return []; }
 }
 
+function fetchServerLeaderboard(callback) {
+    if (!LB_API_BASE) { callback(getLeaderboard()); return; }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', LB_API_BASE, true);
+    xhr.timeout = 5000;
+    xhr.onload = function() {
+        try {
+            var resp = JSON.parse(xhr.responseText);
+            if (resp.ok && Array.isArray(resp.entries)) {
+                _serverLeaderboard = resp.entries;
+                // Sync to localStorage as backup
+                try { localStorage.setItem('tfp_quiz_leaderboard', JSON.stringify(resp.entries)); } catch (e) {}
+                callback(resp.entries);
+                return;
+            }
+        } catch (e) {}
+        callback(getLeaderboard());
+    };
+    xhr.onerror = function() { callback(getLeaderboard()); };
+    xhr.ontimeout = function() { callback(getLeaderboard()); };
+    xhr.send();
+}
+
 function saveToLeaderboard(mode, score, correct, total) {
     if (!currentPlayer) return;
-    var lb = getLeaderboard();
-    lb.push({
+    var entry = {
         name: currentPlayer.name,
         email: currentPlayer.email,
         score: score,
@@ -939,15 +976,41 @@ function saveToLeaderboard(mode, score, correct, total) {
         total: total,
         pct: Math.round((correct / total) * 100),
         date: new Date().toISOString()
-    });
-    // Keep top 100 entries
+    };
+
+    // Always save to localStorage as fallback
+    var lb = getLeaderboard();
+    lb.push(entry);
     lb.sort(function(a, b) { return b.score - a.score; });
     lb = lb.slice(0, 100);
     try { localStorage.setItem('tfp_quiz_leaderboard', JSON.stringify(lb)); } catch (e) {}
+
+    // Also POST to server API
+    if (LB_API_BASE) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', LB_API_BASE, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.timeout = 5000;
+        xhr.onload = function() {
+            // Refresh cache from server after successful save
+            try {
+                var resp = JSON.parse(xhr.responseText);
+                if (resp.ok) {
+                    fetchServerLeaderboard(function() {});
+                }
+            } catch (e) {}
+        };
+        xhr.send(JSON.stringify(entry));
+    }
 }
 
 function renderLeaderboard() {
-    var lb = getLeaderboard();
+    fetchServerLeaderboard(function(lb) {
+        _renderLeaderboardData(lb);
+    });
+}
+
+function _renderLeaderboardData(lb) {
     var container = document.getElementById('leaderboardContent');
 
     if (lb.length === 0) {
@@ -1027,8 +1090,22 @@ function renderLeaderboard() {
 
 function clearLeaderboard() {
     if (!confirm('Clear all your leaderboard data? This cannot be undone.')) return;
+    // Clear localStorage
     localStorage.removeItem('tfp_quiz_leaderboard');
-    renderLeaderboard();
+    _serverLeaderboard = null;
+
+    // Clear from server too
+    if (LB_API_BASE && currentPlayer) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', LB_API_BASE, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.timeout = 5000;
+        xhr.onload = function() { renderLeaderboard(); };
+        xhr.onerror = function() { renderLeaderboard(); };
+        xhr.send(JSON.stringify({ email: currentPlayer.email }));
+    } else {
+        renderLeaderboard();
+    }
 }
 
 function escapeHtmlLocal(str) {

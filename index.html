@@ -204,7 +204,7 @@
         <p class="subtitle">Salesforce Admin & Developer Toolkit</p>
         <div style="margin-top: 15px;">
             <select id="version-select" style="padding: 8px 16px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 14px; font-weight: 600; cursor: pointer;">
-                <option value="1.5.0" style="color:#333;background:white;">v1.5.0 (Latest)</option>
+                <option value="1.6.2" style="color:#333;background:white;">v1.6.2 (Latest)</option>
                 <option value="1.3.7" style="color:#333;background:white;">v1.3.7</option>
                 <option value="1.3.6" style="color:#333;background:white;">v1.3.6</option>
                 <option value="1.2.9" style="color:#333;background:white;">v1.2.9</option>
@@ -251,6 +251,13 @@
                 <span class="badge">Fun</span>
             </a>
 
+            <a href="leaderboard.html" class="card">
+                <div class="card-icon">🏆</div>
+                <h2>Leaderboard</h2>
+                <p>See top scores, track your progress, and compete with other players across all quiz game modes.</p>
+                <span class="badge">New</span>
+            </a>
+
             <a href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" class="card" target="_blank">
                 <div class="card-icon">🐛</div>
                 <h2>Report Issue</h2>
@@ -259,7 +266,7 @@
         </div>
 
         <div class="features">
-            <h2 class="section-title">✨ Key Features (v1.5.0)</h2>
+            <h2 class="section-title">✨ Key Features (v1.6.2)</h2>
 
             <div class="feature-list">
                 <div class="feature-item">
@@ -299,114 +306,40 @@
 
         <div class="features" style="margin-top: 30px;">
             <h2 class="section-title">📋 Recent Changes</h2>
-            <div style="background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: var(--shadow);">
-                 <h4 style="color: var(--primary-color); margin-bottom: 10px;">v1.5.0 - March 16, 2026 (Latest)</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
+            <div class="changelog-card">
+                 <h4>v1.6.2 - March 16, 2026 (Latest)</h4>
+                <ul>
+                    <li>🏆 <strong>Leaderboard Page</strong> — dedicated page with player stats, mode filtering, search, accuracy bars, and CSV export</li>
+                    <li>💾 <strong>Server-Side Scores</strong> — leaderboard API on Heroku (<code>/api/leaderboard</code>) with localStorage fallback for GitHub Pages</li>
+                    <li>🔗 <strong>Cross-page Navigation</strong> — leaderboard links from quiz results, quiz leaderboard tab, and docs index</li>
+                </ul>
+                 <h4 style="margin-top: 16px;">v1.6.0 - March 16, 2026</h4>
+                <ul>
+                    <li>🎨 <strong>UI Modernization</strong> — glassmorphism, refined typography (Inter), smoother animations, modern color palette</li>
+                    <li>🖌️ <strong>Modern Tab Design</strong> — pill-shaped tabs with active glow, hover micro-interactions</li>
+                    <li>✨ <strong>Enhanced Modals</strong> — frosted glass backdrop, spring-like entrance animations</li>
+                    <li>⌨️ <strong>Command Palette Fix</strong> — overlay no longer sticks after selecting a command</li>
+                    <li>📄 <strong>Docs Redesign</strong> — all documentation pages modernized with gradient hero, glassmorphism cards</li>
+                    <li>🔍 <strong>Shortcut Hint</strong> — Command Palette shows platform-aware shortcut (⌘K / Ctrl+K) in placeholder</li>
+                </ul>
+                 <h4 style="margin-top: 16px;">v1.5.0 - March 16, 2026</h4>
+                <ul>
                     <li>⚡ <strong>Show All Data</strong> — floating inspector button injected directly on Salesforce record pages</li>
                     <li>🔍 <strong>Command Palette</strong> (Ctrl+K / Cmd+K) — global search with 13+ commands and record ID auto-detection</li>
                     <li>🖱️ <strong>Context Menu</strong> — right-click on SF pages for Show All Data, Field History, Sharing, SOQL Builder, Copy Record ID</li>
                     <li>✏️ <strong>Inline Field Editing</strong> — double-click any field in All Fields inspector to edit with type-aware inputs</li>
                     <li>🔗 <strong>Record Breadcrumbs &amp; Pinned Records</strong> — navigate lookup chains with breadcrumb trail, pin favorites</li>
-                    <li>📄 <strong>Paginated All Fields</strong> — 100 fields per page with Prev/Next controls</li>
-                    <li>🚦 Rate-limited bulk search (200 IDs max, batches of 5), new <code>debounce</code>/<code>throttle</code>/<code>createRateLimiter</code> utils</li>
-                    <li>🌐 Website updated with TrackForcePro icon as logo across all pages</li>
                 </ul>
-                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.4.5 - March 16, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>🌐 Custom Labels translation overhaul — Export Template → Import Translations → Update &amp; Deploy workflow</li>
-                    <li>🔧 Centralized <code>patchLabel()</code> / <code>createLabel()</code> API methods with ExternalString REST fallback</li>
-                    <li>✏️ Inline translation value inputs with original value as placeholder</li>
-                    <li>♿ Accessibility: <code>aria-label</code> on all Custom Labels buttons; inline styles → CSS classes with dark theme</li>
-                    <li>🧪 ~20 new tests — 3319 tests across 67 test suites</li>
-                </ul>
-                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.4.4 - March 16, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
+                 <h4 style="margin-top: 16px;">v1.4.4 - March 16, 2026</h4>
+                <ul>
                     <li>🎨 Shape rendering overhaul — cloud, sfcloud, shield redesigned with clean bezier paths</li>
-                    <li>🐛 Fixed shield shape degenerate curves; cloud shapes replaced with smooth single-path bezier silhouettes</li>
-                    <li>🔄 All 3 favicon renderers now produce pixel-identical output</li>
-                    <li>🏷️ Custom Labels: removed SOQL LIMIT 2000, added client-side pagination (50/100/200/500 per page)</li>
-                    <li>3303 tests across 67 test suites</li>
+                    <li>🏷️ Custom Labels: removed SOQL LIMIT 2000, added client-side pagination</li>
                 </ul>
-                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.4.2 - March 16, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>🎨 Dynamic favicon text color based on background luminance</li>
-                    <li>🆕 Custom text color control with Auto toggle + color picker</li>
-                    <li>☁️ Fixed cloud shape rendering artifacts; added rounded badge &amp; shield shapes (total: 8)</li>
-                    <li>🔄 Full text color pipeline across save/apply/restore/render/reset</li>
-                </ul>
-                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.7 - March 15, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>🧩 New game mode — Fill in the Blank (16 questions, keyword-fill gameplay)</li>
-                    <li>💀 New game mode — Survival Mode (40 questions, 3 lives, play until you drop)</li>
-                    <li>✅ True/False expanded to 30 questions, Scenario Challenge expanded to 15 scenarios</li>
-                    <li>📖 TF Sidebar footer: new Learn & Quiz icon links to GitHub Pages docs</li>
-                    <li>↗️ "Open Full App" converted to compact icon in sidebar footer row</li>
-                    <li>Total: 7 game modes, 130+ questions across all categories</li>
-                    <li>3021 tests across 58 test suites</li>
-                </ul>
-                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.6 - March 15, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>📊 GraphQL child record export — expanded CSV rows with parent fields repeated</li>
-                    <li>🚢 Edge Add-ons automated CI/CD publishing workflow</li>
-                    <li>42 new tests for child record export</li>
-                </ul>
-                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.4 - March 15, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>🐛 Fixed TF Sidebar LinkedIn URL pointing to wrong profile</li>
-                    <li>🔗 Added developer website link (manaskumarbehera.com) across sidebar, popup, and privacy policy</li>
-                    <li>2964 tests across 57 test suites</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.3 - March 15, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>🚀 CodeMirror 6 GraphQL editor with syntax highlighting, autocomplete & bracket matching</li>
-                    <li>SOQL Builder — checkbox field picker with search, tab filters & FIELDS() mode buttons</li>
-                    <li>API v66.0 upgrade across all Salesforce API calls</li>
-                    <li>API Version pill in TF Sidebar header with cross-component sync</li>
-                    <li>Compact SOQL Builder UI with tighter spacing and reduced padding</li>
-                    <li>2964 tests across 57 test suites</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.2 - March 14, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>🌐 TF Sidebar — new "Detect New Org" quick-access shortcut</li>
-                    <li>Discover & register new Salesforce orgs directly from the sidebar overlay</li>
-                    <li>Opens Org & Favicon tab with auto-detection and "New Org Detected" banner</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.1 - March 13, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>🐛 Multi-org session isolation & single-instance tab enforcement</li>
-                    <li>Fixed badge label mixing across tabs, duplicate tab opening</li>
-                    <li>Immediate stale data clearing on org switch</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.0 - March 13, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>🔀 Multi-org tab management & deep-linking release</li>
-                    <li>Multi-org session routing, hash-based deep navigation</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.2.9 - March 13, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>SOQL inline edit toggle-switch UI, row delete, auto-describe on query</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.2.8 - March 13, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>TF Blinker FAB redesign, sidebar social links, Login As History cross-org isolation</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.2.7 - March 12, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li><strong>New:</strong> Security Manager — Profiles, Permission Sets, PS Groups browser</li>
-                    <li><strong>New:</strong> Org Tools — Login As, Custom Labels, Deployments, Scheduled Jobs, Debug Logs, Org Limits</li>
-                    <li><strong>New:</strong> Enhanced User Manager, Record Scanner, TF Sidebar, Data Explorer Tools</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.1.19 - March 10, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>Version bump to 1.1.19</li>
-                    <li>Maintenance release with stability improvements</li>
-                </ul>
-                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.1.18 - March 10, 2026</h4>
-                <ul style="margin-left: 20px; color: var(--text-muted);">
-                    <li>Appearance Settings (font size, theme, accent color)</li>
-                    <li>GraphQL compact UI enhancements</li>
-                    <li>SOQL simplified query construction</li>
-                    <li>XSS prevention improvements</li>
+                 <h4 style="margin-top: 16px;">v1.3.7 - March 15, 2026</h4>
+                <ul>
+                    <li>🧩 New game modes — Fill in the Blank, Survival Mode</li>
+                    <li>📖 TF Sidebar footer: Learn & Quiz links</li>
+                    <li>Total: 7 game modes, 130+ questions</li>
                 </ul>
             </div>
         </div>
@@ -417,6 +350,7 @@
         <p style="margin-top: 10px;">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a> ·
             <a href="help.html">💡 Help</a> ·
+            <a href="leaderboard.html">🏆 Leaderboard</a> ·
             <a href="privacy-policy.html">🔐 Privacy Policy</a> ·
             <a href="quick-start-guide.html">🚀 Quick Start</a>
         </p>
