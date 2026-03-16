@@ -1060,6 +1060,18 @@ const quizQuestions = [
         answer: 1,
         explanation: "Clicking a sidebar shortcut <strong>opens TrackForcePro directly to that tool</strong>. For example, clicking 'Custom Labels' opens the Org Tools panel with Custom Labels already selected."
     },
+    {
+        q: "What Quick Tools are built into the TF Sidebar?",
+        opts: ["Only a search bar", "Login As (with Login, Window, and Incognito icon buttons), Language Switcher, and Clear Cache", "Only Login As and Logout", "A calculator and notepad"],
+        answer: 1,
+        explanation: "The TF Sidebar includes <strong>three Quick Tools</strong> at the top: Login As (with 🔑 Login, 🖥️ Window, 🕶️ Incognito icon buttons), Language Switcher, and Clear Cache — all accessible without leaving the Salesforce page."
+    },
+    {
+        q: "How many login modes does the TF Sidebar's Login As support?",
+        opts: ["1 — current tab only", "2 — current tab and new window", "3 — current tab, new window, and incognito", "4 — current tab, new window, incognito, and popup"],
+        answer: 2,
+        explanation: "The sidebar Login As has <strong>three icon button modes</strong>: 🔑 Login (current tab), 🖥️ Window (new window), and 🕶️ Incognito (private window that preserves your admin session)."
+    },
     // ── New questions ──
     {
         q: "How do you open TrackForcePro as a standalone window?",
@@ -1110,10 +1122,10 @@ const quizQuestions = [
         explanation: "Freeze <strong>temporarily prevents a user from logging in</strong> without deactivating their account — useful during investigations or employee transitions."
     },
     {
-        q: "What is the Login As feature in Org Tools?",
-        opts: ["Creates a new user account", "Opens a Salesforce session as another user, with optional incognito mode and history tracking", "Changes your username", "Shares login credentials via email"],
+        q: "What is the Login As feature in TrackForcePro?",
+        opts: ["Creates a new user account", "Opens a Salesforce session as another user, available in Org Tools and the TF Sidebar with 3 icon modes (Login, Window, Incognito)", "Changes your username", "Shares login credentials via email"],
         answer: 1,
-        explanation: "Login As lets you <strong>open a session as another user</strong> to troubleshoot their experience. Incognito mode keeps it isolated, and Login History tracks all usage."
+        explanation: "Login As lets you <strong>open a session as another user</strong> to troubleshoot their experience. Available in both Org Tools and the TF Sidebar with three icon buttons: 🔑 Login (current tab), 🖥️ Window (new window), 🕶️ Incognito (private window)."
     },
     {
         q: "What does the SOQL Builder's query history feature do?",
@@ -1172,7 +1184,7 @@ const matchPairs = [
     { feature: "📈 Schema Visualizer", desc: "Visual object relationship diagrams" },
     { feature: "🏷️ Custom Labels", desc: "Search, edit, translate, and bulk import/export labels" },
     { feature: "📋 FIELDS() Mode", desc: "Auto-query all fields with FIELDS(ALL/STANDARD/CUSTOM)" },
-    { feature: "🔑 Login As", desc: "Open a session as another user with incognito option" },
+    { feature: "🔑 Login As", desc: "Log in as another user via Org Tools or Sidebar with 3 icon modes" },
     { feature: "📊 API Usage", desc: "Monitor API request counts and governor limits" },
     { feature: "🚀 Deployment Tracker", desc: "View active, queued, and completed deployments" }
 ];
@@ -1193,7 +1205,7 @@ const speedQuestions = [
     { icon: "📋", feature: "Child CSV export?", opts: ["JSON in cell", "Separate rows", "Skipped", "Separate file"], answer: 1 },
     { icon: "⧉", feature: "Standalone window?", opts: ["Right-click", "Shift+click pop", "Ctrl+W", "Double-click"], answer: 1 },
     { icon: "🧊", feature: "Freeze user does what?", opts: ["Delete account", "Block login", "Reset password", "Send email"], answer: 1 },
-    { icon: "🔑", feature: "Login As supports?", opts: ["Chrome only", "Incognito mode", "Mobile only", "SSO only"], answer: 1 },
+    { icon: "🔑", feature: "Login As modes?", opts: ["1 mode", "2 modes", "3 icon modes", "4 modes"], answer: 2 },
     { icon: "📈", feature: "Schema Visualizer shows?", opts: ["SQL tables", "Object relationships", "Apex code", "Page layouts"], answer: 1 },
     { icon: "🏷️", feature: "Label translation langs?", opts: ["5", "10", "20", "50"], answer: 2 },
     { icon: "🔍", feature: "Audit Trail export?", opts: ["PDF", "CSV", "XML", "Excel"], answer: 1 },
@@ -1205,7 +1217,7 @@ const speedQuestions = [
 
 // ── Fun Facts ──
 const funFacts = [
-    "💡 <strong>Did you know?</strong> TrackForcePro has over 3,000 automated tests across 58 test suites!",
+    "💡 <strong>Did you know?</strong> TrackForcePro has over 3,300 automated tests across 67 test suites!",
     "💡 <strong>Fun fact:</strong> The TF Sidebar supports 5 categories of shortcuts — extension tabs, Data Explorer tools, Security panels, Org Tools panels, and Salesforce Setup pages.",
     "💡 <strong>Pro tip:</strong> You can customize which shortcuts appear in the TF Sidebar via Settings → Sidebar.",
     "💡 <strong>Did you know?</strong> The GraphQL Builder can export child records (like Contacts under an Account) as expanded CSV rows — no more JSON blobs in cells!",
@@ -1218,13 +1230,14 @@ const funFacts = [
     "💡 <strong>Pro tip:</strong> Hold Shift and click the pop button to open TrackForcePro as a standalone window — great for multi-monitor setups!",
     "💡 <strong>Did you know?</strong> The User Manager can freeze a user's login without deactivating their account — perfect for security investigations.",
     "💡 <strong>Fun fact:</strong> The Automation Inspector shows all Flows, Triggers, Process Builders, and Workflow Rules in one unified view.",
-    "💡 <strong>Pro tip:</strong> Use Login As with incognito mode to troubleshoot another user's experience without affecting your own session.",
+    "💡 <strong>Pro tip:</strong> The TF Sidebar's Login As uses icon buttons — 🔑 for current tab, 🖥️ for new window, 🕶️ for incognito — so you can troubleshoot without losing your admin session.",
     "💡 <strong>Did you know?</strong> TrackForcePro enforces one window per org — no more accidentally opening duplicate windows for the same Salesforce org!",
     "💡 <strong>Fun fact:</strong> The Schema Visualizer creates visual relationship diagrams between Salesforce objects — parent-child and lookups at a glance.",
     "💡 <strong>Pro tip:</strong> SOQL Builder's FIELDS(ALL) mode queries every field on an object automatically — no more selecting dozens of fields manually.",
     "💡 <strong>Did you know?</strong> The Permission Matrix traces a user's permissions across their Profile, Permission Sets, and Permission Set Groups in one grid.",
     "💡 <strong>Fun fact:</strong> TrackForcePro works on Chrome, Edge, Brave, Opera, and other Chromium-based browsers — not just Chrome!",
-    "💡 <strong>Pro tip:</strong> The Deployment tracker shows active, queued, and completed deployments in real time — catch failures before they escalate."
+    "💡 <strong>Pro tip:</strong> The Deployment tracker shows active, queued, and completed deployments in real time — catch failures before they escalate.",
+    "💡 <strong>Did you know?</strong> The sidebar's Login As incognito mode sends an OPEN_INCOGNITO message to the background service worker, with automatic fallback to a regular window if incognito is unavailable."
 ];
 
 // ── True/False Data (20 questions) ──
@@ -1305,9 +1318,9 @@ const trueFalseQuestions = [
         explanation: "False! Freeze only <strong>temporarily prevents login</strong> without deactivating or deleting the account."
     },
     {
-        statement: "The Login As feature supports opening sessions in incognito mode.",
+        statement: "The Login As feature is available in both Org Tools and the TF Sidebar with three icon modes.",
         answer: true,
-        explanation: "Correct! Login As supports <strong>incognito mode</strong> to keep the impersonated session isolated from your main session."
+        explanation: "Correct! Login As is available in <strong>both Org Tools and the TF Sidebar</strong>, with three icon buttons: 🔑 Login (current tab), 🖥️ Window (new window), and 🕶️ Incognito (private window)."
     },
     {
         statement: "The SOQL Builder's FIELDS() mode can automatically include all standard fields on an object.",
@@ -1467,13 +1480,13 @@ const scenarioQuestions = [
         context: "You need to troubleshoot a Salesforce issue by logging in as a specific user to see exactly what they see, without affecting your own session.",
         question: "Which approach would you use?",
         opts: [
-            { icon: "🔑", text: "Login As with Incognito Mode" },
+            { icon: "🕶️", text: "TF Sidebar → Login As → Incognito (🕶️ icon)" },
             { icon: "👥", text: "User Manager — Search" },
             { icon: "🔐", text: "Security Manager" },
             { icon: "📋", text: "SOQL Query History" }
         ],
         answer: 0,
-        explanation: "<strong>Login As with Incognito Mode</strong> opens a session as another user in an isolated incognito window — you see exactly what they see without affecting your own session."
+        explanation: "<strong>TF Sidebar Login As with Incognito</strong> opens a session as another user in a private window — you see exactly what they see without affecting your own session. Click the 🕶️ glasses icon to launch incognito."
     },
     {
         role: "Salesforce Admin",
@@ -1683,11 +1696,11 @@ const blankQuestions = [
         explanation: "Freeze <strong>temporarily prevents login</strong> without deactivating or deleting the user account."
     },
     {
-        sentence: "Login As supports _____ mode to isolate the impersonated session.",
-        blank: "incognito",
-        opts: ["private", "incognito", "sandbox", "guest"],
+        sentence: "The sidebar Login As has _____ icon button modes: Login, Window, and Incognito.",
+        blank: "three",
+        opts: ["two", "three", "four", "five"],
         answer: 1,
-        explanation: "Login As supports <strong>incognito mode</strong> to keep the impersonated session isolated from your main session."
+        explanation: "The sidebar Login As has <strong>three</strong> icon button modes: 🔑 Login (current tab), 🖥️ Window (new window), and 🕶️ Incognito (private window)."
     },
     {
         sentence: "The Automation Inspector analyzes Flows, Triggers, Workflow Rules, and _____.",
@@ -1713,7 +1726,7 @@ const survivalQuestions = [
     { q: "Security Manager browses what?", opts: ["Passwords", "Profiles & Perm Sets", "Cookies", "Tokens"], answer: 1 },
     { q: "How is the session detected?", opts: ["Manual login", "Content script", "OAuth popup", "API key"], answer: 1 },
     { q: "Favicon labels max characters?", opts: ["1", "2", "3", "5"], answer: 2 },
-    { q: "Login As supports which isolation?", opts: ["Private tab", "Incognito mode", "New profile", "VPN"], answer: 1 },
+    { q: "Login As has how many icon modes?", opts: ["1", "2", "3", "4"], answer: 2 },
     { q: "Deployment Tracker shows what?", opts: ["Past only", "Active + queued + completed", "Failed only", "Code only"], answer: 1 },
     { q: "Which browsers are supported?", opts: ["Chrome only", "Chrome + Edge + Chromium", "Firefox only", "All browsers"], answer: 1 },
     { q: "Audit Trail exports to what format?", opts: ["PDF", "CSV", "XML", "Excel"], answer: 1 },
@@ -1736,6 +1749,7 @@ const survivalQuestions = [
     { q: "Match Game pairs features with?", opts: ["Icons", "Descriptions", "Screenshots", "Code samples"], answer: 1 },
     { q: "User Comparison shows what?", opts: ["Photos", "Side-by-side diff", "Org chart", "Login count"], answer: 1 },
     { q: "Sidebar shortcuts open TFP to?", opts: ["Home page", "Specific tool or panel", "Settings", "About page"], answer: 1 },
+    { q: "Sidebar Quick Tools include?", opts: ["Calculator", "Login As + Language + Cache", "Email", "Chat"], answer: 1 },
     { q: "Data Explorer has how many sub-tabs?", opts: ["2", "3", "5", "8"], answer: 2 },
     { q: "Custom Labels bulk import supports?", opts: ["CSV only", "Update mode", "JSON only", "XML only"], answer: 1 },
     { q: "Cookie fallback retrieves what?", opts: ["Username", "sid cookie", "Password", "OAuth token"], answer: 1 },
