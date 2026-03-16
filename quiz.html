@@ -3105,9 +3105,12 @@ function showResults(mode, correct, total) {
 
     // Show
     document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
-    document.getElementById('game-results').classList.add('active');
+    var resultsArea = document.getElementById('game-results');
+    resultsArea.classList.add('active');
     // Hide game bar on results
     document.getElementById('gameBar').classList.remove('visible');
+    // Scroll results into view
+    resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // Prompt guest to sign up after first game
     if (currentPlayer && currentPlayer.isGuest) {
@@ -3338,9 +3341,12 @@ function exitToModeSelector() {
     // Hide all game areas
     document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
     // Show mode selector and scoreboard
-    document.getElementById('modeSelector').style.display = '';
+    var modeSelector = document.getElementById('modeSelector');
+    modeSelector.style.display = '';
     // Deselect all mode cards
     document.querySelectorAll('.mode-card').forEach(function(c) { c.classList.remove('active'); });
+    // Scroll back to mode selector
+    modeSelector.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function switchMode(mode) {
@@ -3352,11 +3358,19 @@ function switchMode(mode) {
 
     document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
 
-    document.getElementById('game-' + mode).classList.add('active');
+    var gameArea = document.getElementById('game-' + mode);
+    gameArea.classList.add('active');
+
+    // Hide mode selector so the game area is immediately visible
+    document.getElementById('modeSelector').style.display = 'none';
+
     clearInterval(speedTimer);
     clearInterval(tfTimer);
     clearInterval(scTimer);
     clearInterval(trTimer);
+
+    // Scroll game area into view
+    gameArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // Show game bar for play modes, hide mode selector
     if (mode !== 'leaderboard') {
