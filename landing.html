@@ -17,6 +17,7 @@
       <a class="brand" href="landing.html"><span class="brand-badge">TF</span> TrackForcePro Web</a>
       <div class="nav-links">
         <a href="/docs">Docs</a>
+        <a href="guide.html" data-nav>Guide</a>
         <a href="quick-start-guide.html">Quick Start</a>
         <a href="help.html">Help</a>
         <a href="quiz.html">Quiz</a>
@@ -53,11 +54,26 @@
           <li>Use Quiz for interactive training.</li>
         </ol>
       </section>
+      <section class="card panel col-12 reveal">
+        <h2>YouTube playlist embed (toggle-ready)</h2>
+        <div class="yt-controls">
+          <label for="ytPlaylistInput">Playlist URL or ID
+            <input id="ytPlaylistInput" type="text" placeholder="https://www.youtube.com/playlist?list=..." style="width:100%;padding:10px;border-radius:10px;border:1px solid #2a3760;background:#0f1731;color:#e8ecff">
+          </label>
+          <button id="ytToggleBtn" type="button" class="btn primary">Enable Embed</button>
+          <button id="ytClearBtn" type="button" class="btn">Hide Embed</button>
+        </div>
+        <p id="ytEmbedHint" class="notice">Paste playlist URL and click Enable Embed.</p>
+        <div id="ytEmbedWrap" class="yt-frame-wrap hidden">
+          <iframe id="ytEmbedFrame" title="TrackForcePro YouTube playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </section>
       <aside class="card panel col-4">
         <h3>Direct pages</h3>
         <div class="feature-list">
           <a class="feature-item" href="index.html">Docs Home</a>
           <a class="feature-item" href="documentation.html">Documentation</a>
+          <a class="feature-item" href="guide.html">Visual Guide</a>
           <a class="feature-item" href="quick-start-guide.html">Quick Start</a>
           <a class="feature-item" href="help.html">Help</a>
           <a class="feature-item" href="privacy-policy.html">Privacy</a>

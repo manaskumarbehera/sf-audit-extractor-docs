@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrackForcePro - Visual Guide</title>
+  <meta name="description" content="Detailed visual walkthrough for TrackForcePro setup, workflows, and training paths.">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+  <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+  <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/common.js" defer></script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container wrap">
+      <a class="brand" href="index.html"><span class="brand-badge">TF</span> TrackForcePro</a>
+      <div class="nav-links">
+        <a href="index.html" data-nav>Home</a>
+        <a href="documentation.html" data-nav>Documentation</a>
+        <a href="guide.html" data-nav>Guide</a>
+        <a href="quick-start-guide.html" data-nav>Quick Start</a>
+        <a href="help.html" data-nav>Help</a>
+        <a href="quiz.html" data-nav>Quiz</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <section class="card hero-main reveal">
+        <span class="badge">Visual Walkthrough</span>
+        <h1>Guide: From install to daily power use</h1>
+        <p>This guide combines setup steps, practical workflows, screenshots, and a toggle-ready YouTube learning area.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="quick-start-guide.html">Open Quick Start</a>
+          <a class="btn" href="documentation.html">Open Full Docs</a>
+        </div>
+      </section>
+      <aside class="card hero-side reveal">
+        <h3>Recommended flow</h3>
+        <ol>
+          <li>Install and validate session.</li>
+          <li>Run first SOQL/GraphQL tasks.</li>
+          <li>Set org-safe visual markers.</li>
+          <li>Use quiz for team onboarding.</li>
+        </ol>
+      </aside>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div class="grid">
+      <section class="card panel col-8 reveal">
+        <h2>Step 1: Install and open the extension</h2>
+        <p class="lead">Use Chrome Web Store install, then open a Salesforce tab so session-aware tools can initialize.</p>
+        <div class="notice">Tip: Keep one Salesforce tab open while testing query and scanner tools.</div>
+      </section>
+
+      <aside class="card panel col-4 reveal">
+        <h3>Starter command</h3>
+        <pre class="card" style="padding:12px;overflow:auto"><code>SELECT Id, Name FROM Account LIMIT 10</code></pre>
+        <p>Run this in SOQL Builder to verify API/session health quickly.</p>
+      </aside>
+
+      <section class="card panel col-12 reveal">
+        <h2>Step 2: Walkthrough screenshots</h2>
+        <div class="shot-grid">
+          <article class="shot-card card panel">
+            <h4>Install extension screen</h4>
+            <img src="screenshots/screenshot_install_extensions_page.png" alt="TrackForcePro extension installation page screenshot">
+            <p>Confirm extension install and pin settings if your team uses toolbar access.</p>
+          </article>
+          <article class="shot-card card panel">
+            <h4>First-run checklist</h4>
+            <ul>
+              <li>Open Salesforce page.</li>
+              <li>Launch TF button/entrypoint.</li>
+              <li>Run SOQL sample query.</li>
+              <li>Check help/privacy links resolve.</li>
+            </ul>
+          </article>
+          <article class="shot-card card panel">
+            <h4>Operational best practice</h4>
+            <p>Use org-specific favicon colors/labels so you can instantly distinguish PROD, UAT, and DEV tabs.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card panel col-12 reveal">
+        <h2>Step 3: YouTube playlist embed (toggle-ready)</h2>
+        <p class="lead">Paste a playlist URL (or playlist ID), then click enable. Use hide to turn it off instantly.</p>
+        <div class="yt-controls">
+          <label for="ytPlaylistInput">Playlist URL or ID
+            <input id="ytPlaylistInput" type="text" placeholder="https://www.youtube.com/playlist?list=..." style="width:100%;padding:10px;border-radius:10px;border:1px solid #2a3760;background:#0f1731;color:#e8ecff">
+          </label>
+          <button id="ytToggleBtn" type="button" class="btn primary">Enable Embed</button>
+          <button id="ytClearBtn" type="button" class="btn">Hide Embed</button>
+        </div>
+        <p id="ytEmbedHint" class="notice">Paste playlist URL and click Enable Embed.</p>
+        <div id="ytEmbedWrap" class="yt-frame-wrap hidden">
+          <iframe id="ytEmbedFrame" title="TrackForcePro YouTube playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="socials">
+        <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" rel="noopener">Chrome Web Store</a>
+        <a href="help.html">Support</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="https://buymeacoffee.com/manaskumarbehera" target="_blank" rel="noopener">Buy Me a Coffee</a>
+        <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">Website</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
+

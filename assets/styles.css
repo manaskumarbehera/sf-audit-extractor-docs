@@ -10,6 +10,7 @@
   --danger: #ff6b81;
   --success: #2dd4bf;
   --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  --glass: rgba(255, 255, 255, 0.07);
 }
 
 * { box-sizing: border-box; }
@@ -20,6 +21,7 @@ html, body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: radial-gradient(1200px 500px at 20% -10%, #1e3165 0%, var(--bg) 45%), var(--bg);
   color: var(--text);
+  line-height: 1.6;
 }
 
 a { color: var(--primary); text-decoration: none; }
@@ -97,10 +99,20 @@ a:hover { text-decoration: underline; }
 }
 
 .card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  background: linear-gradient(145deg, var(--glass), rgba(255,255,255,0.02));
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 180ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  animation: fadeUp 420ms ease both;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: #3b4f86;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.42);
 }
 
 .hero-main { padding: 28px; }
@@ -117,6 +129,12 @@ a:hover { text-decoration: underline; }
   color: var(--text);
   background: rgba(255,255,255,0.03);
   font-weight: 600;
+  transition: transform 140ms ease, opacity 140ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
 .btn.primary {
@@ -158,6 +176,12 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--surface);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-2px);
+  border-color: #4660a0;
 }
 
 .table {
@@ -200,6 +224,54 @@ a:hover { text-decoration: underline; }
   border: 1px dashed var(--border);
   border-radius: 10px;
   background: rgba(122, 245, 200, 0.06);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 340ms ease, transform 340ms ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.yt-controls {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.yt-frame-wrap {
+  margin-top: 12px;
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.yt-frame-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.shot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.shot-card img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border);
 }
 
 .badge {
@@ -273,10 +345,22 @@ input, select, button {
 
 .hidden { display: none !important; }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
   .col-4, .col-6, .col-8, .col-12 { grid-column: span 12; }
   .sidebar-layout { grid-template-columns: 1fr; }
   .sidebar { position: static; max-height: none; }
+  .yt-controls { grid-template-columns: 1fr; }
 }
 

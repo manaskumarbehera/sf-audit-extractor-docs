@@ -50,6 +50,9 @@ function routeToFile(urlPath) {
   if (urlPath === '/docs' || urlPath === '/docs/') {
     return 'index.html';
   }
+  if (urlPath === '/guide' || urlPath === '/guide/') {
+    return 'guide.html';
+  }
   return urlPath;
 }
 
