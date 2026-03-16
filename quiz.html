@@ -766,7 +766,7 @@
     </div>
 
     <footer class="footer">
-        <p>TrackForcePro v1.3.7 — Salesforce Developer Toolkit</p>
+        <p>TrackForcePro v1.4.4 — Salesforce Developer Toolkit</p>
         <p style="margin-top:8px">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> |
             <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a> |
@@ -1162,6 +1162,24 @@ const quizQuestions = [
         opts: ["Manually lists all fields", "Automatically queries all fields on an object using FIELDS(ALL), FIELDS(STANDARD), or FIELDS(CUSTOM)", "Creates new fields", "Deletes unused fields"],
         answer: 1,
         explanation: "FIELDS() mode uses Salesforce's <strong>FIELDS(ALL), FIELDS(STANDARD), or FIELDS(CUSTOM)</strong> keywords to automatically include all matching fields — no need to select them individually."
+    },
+    {
+        q: "How does the Favicon Manager determine text color on custom org icons?",
+        opts: ["Always uses white text", "User must always pick manually", "Auto mode uses luminance-based detection — dark text on light backgrounds, white text on dark backgrounds", "It uses the same color as the background"],
+        answer: 2,
+        explanation: "Auto mode (default) uses <strong>luminance-based detection</strong> — dark text (#1a1a1a) on light backgrounds (luminance > 0.55) and white text on dark backgrounds. You can also disable Auto and pick a custom text color."
+    },
+    {
+        q: "What rendering technique do the cloud and shield favicon shapes use?",
+        opts: ["Overlapping circles", "SVG paths", "Single-path bezier curves", "Rasterized bitmaps"],
+        answer: 2,
+        explanation: "Cloud, SF Cloud, and Shield shapes use <strong>single-path bezier curves</strong> (via bezierCurveTo) for smooth, crisp rendering at all sizes — from 16px favicons to 48px previews."
+    },
+    {
+        q: "How does Custom Labels pagination work in Org Tools?",
+        opts: ["All labels load on one page", "Server-side pagination with 50 per page", "Client-side pagination with configurable page sizes (50, 100, 200, 500)", "Only first 2000 labels are shown"],
+        answer: 2,
+        explanation: "Custom Labels uses <strong>client-side pagination</strong> with configurable page sizes (50/100/200/500) and Previous/Next navigation. All labels are loaded via API pagination (no 2000 limit cap)."
     }
 ];
 
@@ -1186,7 +1204,10 @@ const matchPairs = [
     { feature: "📋 FIELDS() Mode", desc: "Auto-query all fields with FIELDS(ALL/STANDARD/CUSTOM)" },
     { feature: "🔑 Login As", desc: "Log in as another user via Org Tools or Sidebar with 3 icon modes" },
     { feature: "📊 API Usage", desc: "Monitor API request counts and governor limits" },
-    { feature: "🚀 Deployment Tracker", desc: "View active, queued, and completed deployments" }
+    { feature: "🚀 Deployment Tracker", desc: "View active, queued, and completed deployments" },
+    { feature: "🎨 Custom Text Color", desc: "Auto luminance-based or manual color picker for favicon labels" },
+    { feature: "☁️ Bezier Shapes", desc: "Single-path bezier curves for clean cloud, sfcloud, and shield rendering" },
+    { feature: "📄 Labels Pagination", desc: "Client-side pagination with 50/100/200/500 page sizes for custom labels" }
 ];
 
 // ── Speed Data (22 questions) ──
@@ -1212,7 +1233,10 @@ const speedQuestions = [
     { icon: "📊", feature: "FIELDS() auto-query?", opts: ["ALL only", "ALL/STANDARD/CUSTOM", "STANDARD only", "Not supported"], answer: 1 },
     { icon: "🔄", feature: "Session detection?", opts: ["Manual login", "OAuth popup", "Content script", "API key"], answer: 2 },
     { icon: "🏢", feature: "Org Limits shows?", opts: ["Storage only", "All governor limits", "Users only", "Apex limits"], answer: 1 },
-    { icon: "🚀", feature: "Deployment tracker?", opts: ["Past only", "Active + queued", "Failed only", "Not available"], answer: 1 }
+    { icon: "🚀", feature: "Deployment tracker?", opts: ["Past only", "Active + queued", "Failed only", "Not available"], answer: 1 },
+    { icon: "🎨", feature: "Text color mode?", opts: ["Always white", "Luminance-based auto", "Always black", "Manual only"], answer: 1 },
+    { icon: "☁️", feature: "Cloud shapes rendering?", opts: ["Circles", "Bezier curves", "SVG", "Bitmap"], answer: 1 },
+    { icon: "🏷️", feature: "Labels page sizes?", opts: ["10/25/50", "50/100/200/500", "100/500", "All at once"], answer: 1 }
 ];
 
 // ── Fun Facts ──
@@ -1237,7 +1261,15 @@ const funFacts = [
     "💡 <strong>Did you know?</strong> The Permission Matrix traces a user's permissions across their Profile, Permission Sets, and Permission Set Groups in one grid.",
     "💡 <strong>Fun fact:</strong> TrackForcePro works on Chrome, Edge, Brave, Opera, and other Chromium-based browsers — not just Chrome!",
     "💡 <strong>Pro tip:</strong> The Deployment tracker shows active, queued, and completed deployments in real time — catch failures before they escalate.",
-    "💡 <strong>Did you know?</strong> The sidebar's Login As incognito mode sends an OPEN_INCOGNITO message to the background service worker, with automatic fallback to a regular window if incognito is unavailable."
+    "💡 <strong>Did you know?</strong> The sidebar's Login As incognito mode sends an OPEN_INCOGNITO message to the background service worker, with automatic fallback to a regular window if incognito is unavailable.",
+    "💡 <strong>Did you know?</strong> In v1.4.4, cloud and shield favicon shapes were redesigned using single-path bezier curves, replacing overlapping circles for crisp rendering at all sizes.",
+    "💡 <strong>Pro tip:</strong> Favicon text color is now luminance-based by default — dark text on light backgrounds, white text on dark. Disable Auto mode to pick any custom text color!",
+    "💡 <strong>Fun fact:</strong> The Custom Labels tool previously capped at 2000 labels due to a SOQL LIMIT clause. Since v1.4.4, it loads all labels via API pagination up to the 20,000 hard cap.",
+    "💡 <strong>Did you know?</strong> All three favicon renderers (content.js, data_explorer_helper.js, and injectFaviconUpdate) now produce pixel-identical bezier shape output.",
+    "💡 <strong>Pro tip:</strong> Custom Labels pagination lets you choose 50, 100, 200, or 500 labels per page — keeping the DOM fast even with thousands of labels.",
+    "💡 <strong>Did you know?</strong> Since v1.4.5, the Custom Labels translation workflow supports Export Template → Import Translations → Update & Deploy — translate labels offline in spreadsheets!",
+    "💡 <strong>Pro tip:</strong> The centralized patchLabel() method in v1.4.5 automatically routes label updates to the Tooling API or ExternalString REST API based on how the labels were loaded.",
+    "💡 <strong>Fun fact:</strong> Custom Labels translate dialog now shows inline text inputs per label with the original value as placeholder — review and edit translations before deploying."
 ];
 
 // ── True/False Data (20 questions) ──
@@ -1392,6 +1424,27 @@ const trueFalseQuestions = [
         statement: "TrackForcePro can detect sessions from cookies as a fallback if the service worker crashes.",
         answer: true,
         explanation: "Correct! If the service worker is unavailable, <strong>getSessionFromCookies()</strong> retrieves the session directly via the chrome.cookies API as a critical fallback."
+    },
+    // ── v1.4.x T/F questions ──
+    {
+        statement: "Favicon text color is always white, regardless of the background color.",
+        answer: false,
+        explanation: "False! Since v1.4.2, text color is <strong>dynamic based on luminance</strong> — dark text on light backgrounds, white text on dark backgrounds. You can also set a custom text color."
+    },
+    {
+        statement: "The cloud and shield favicon shapes are rendered using single-path bezier curves for crisp rendering at all sizes.",
+        answer: true,
+        explanation: "Correct! Since v1.4.4, cloud, sfcloud, and shield shapes use <strong>single-path bezier curves</strong> (bezierCurveTo) instead of overlapping circles, producing clean silhouettes at any size."
+    },
+    {
+        statement: "Custom Labels in Org Tools can only load up to 2000 labels.",
+        answer: false,
+        explanation: "False! The SOQL LIMIT 2000 was removed in v1.4.4. Custom Labels now loads <strong>all labels via API pagination</strong> up to the 20,000 hard cap."
+    },
+    {
+        statement: "The Favicon Manager supports custom text color with an Auto toggle and manual color picker.",
+        answer: true,
+        explanation: "Correct! Since v1.4.2, you can use <strong>Auto mode</strong> (luminance-based) or disable it to pick a <strong>custom hex color</strong> for the label text."
     }
 ];
 
@@ -1592,6 +1645,19 @@ const scenarioQuestions = [
         ],
         answer: 2,
         explanation: "The <strong>Audit Trail Extractor</strong> lets you filter by date range, user, and action type — then export the evidence to CSV for your investigation."
+    },
+    {
+        role: "Salesforce Admin",
+        context: "Your org has 5,000+ custom labels and the UI is sluggish when loading them all. You need to browse, search, and paginate through labels efficiently.",
+        question: "Which Org Tools feature handles this?",
+        opts: [
+            { icon: "📊", text: "SOQL Builder" },
+            { icon: "🏷️", text: "Custom Labels with client-side pagination" },
+            { icon: "🔬", text: "Record Scanner" },
+            { icon: "📡", text: "Platform Events" }
+        ],
+        answer: 1,
+        explanation: "<strong>Custom Labels</strong> in Org Tools supports client-side pagination with configurable page sizes (50/100/200/500) and Previous/Next navigation — keeping the DOM fast even with thousands of labels."
     }
 ];
 
@@ -1708,6 +1774,27 @@ const blankQuestions = [
         opts: ["Custom Labels", "Process Builders", "Page Layouts", "Validation Rules"],
         answer: 1,
         explanation: "The Automation Inspector shows all automation including Flows, Triggers, <strong>Process Builders</strong>, and Workflow Rules."
+    },
+    {
+        sentence: "The cloud and shield favicon shapes are rendered using single-path _____ for crisp results.",
+        blank: "bezier curves",
+        opts: ["SVG paths", "overlapping circles", "bezier curves", "raster pixels"],
+        answer: 2,
+        explanation: "Shapes use <strong>bezier curves</strong> (bezierCurveTo) for smooth, single-path silhouettes that render cleanly at all sizes."
+    },
+    {
+        sentence: "Favicon text color is determined by _____ when Auto mode is enabled.",
+        blank: "background luminance",
+        opts: ["user preference", "background luminance", "random selection", "browser theme"],
+        answer: 1,
+        explanation: "Auto mode calculates <strong>background luminance</strong> to decide: dark text on light backgrounds, white text on dark."
+    },
+    {
+        sentence: "Custom Labels pagination supports page sizes of 50, 100, 200, and _____.",
+        blank: "500",
+        opts: ["250", "500", "1000", "2000"],
+        answer: 1,
+        explanation: "Client-side pagination supports configurable page sizes: 50, 100, 200, and <strong>500</strong> labels per page."
     }
 ];
 
@@ -1753,7 +1840,12 @@ const survivalQuestions = [
     { q: "Data Explorer has how many sub-tabs?", opts: ["2", "3", "5", "8"], answer: 2 },
     { q: "Custom Labels bulk import supports?", opts: ["CSV only", "Update mode", "JSON only", "XML only"], answer: 1 },
     { q: "Cookie fallback retrieves what?", opts: ["Username", "sid cookie", "Password", "OAuth token"], answer: 1 },
-    { q: "Reset Password feature is in?", opts: ["Security Manager", "User Manager", "Org Tools", "Settings"], answer: 1 }
+    { q: "Reset Password feature is in?", opts: ["Security Manager", "User Manager", "Org Tools", "Settings"], answer: 1 },
+    { q: "Favicon text color is determined by?", opts: ["Always white", "Luminance-based auto", "Always black", "Random"], answer: 1 },
+    { q: "Cloud shapes use what rendering?", opts: ["Overlapping circles", "Bezier curves", "SVG paths", "Bitmap"], answer: 1 },
+    { q: "Custom Labels max loaded?", opts: ["2000", "5000", "All via pagination", "500"], answer: 2 },
+    { q: "Custom Labels page sizes?", opts: ["10/25/50", "50/100/200/500", "100/500/1000", "25/50/100"], answer: 1 },
+    { q: "Text color Auto can be?", opts: ["Disabled for custom color", "Not changeable", "Only white or black", "Only profile-based"], answer: 0 }
 ];
 
 // ═══════════════ QUIZ ENGINE ═══════════════
