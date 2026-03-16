@@ -1,105 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TrackForcePro modern documentation hub with quick links, releases, and learning pages.">
-  <title>TrackForcePro - Docs Home</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
-  <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
-  <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/common.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Salesforce toolkit: Audit extractor, SOQL/GraphQL builders, record scanner, org favicon manager, platform events & LMS.">
+    <title>TrackForcePro - Documentation</title>
+    <!-- Favicon - multiple paths for different hosting contexts -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <script>
+        // Fix favicon path for GitHub Pages
+        (function() {
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            if (isGitHubPages) {
+                const repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
+                const basePath = '/' + repoName + '/icons/';
+                document.getElementById('fav32').href = basePath + 'Icon-32.png';
+                document.getElementById('fav16').href = basePath + 'Icon-16.png';
+                document.getElementById('favshort').href = basePath + 'Icon-32.png';
+            }
+        })();
+    </script>
+    <style>
+        :root {
+            --primary-color: #0176d3;
+            --secondary-color: #032d60;
+            --accent-color: #00a1e0;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #181818;
+            --text-muted: #706e6b;
+            --border-color: #e5e5e5;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        header .version-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card .badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-top: 10px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .features {
+            margin-top: 50px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .feature-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="container wrap">
-      <a class="brand" href="index.html"><span class="brand-badge">TF</span> TrackForcePro</a>
-      <div class="nav-links">
-        <a href="index.html" data-nav>Home</a>
-        <a href="documentation.html" data-nav>Documentation</a>
-        <a href="guide.html" data-nav>Guide</a>
-        <a href="quick-start-guide.html" data-nav>Quick Start</a>
-        <a href="help.html" data-nav>Help</a>
-        <a href="quiz.html" data-nav>Quiz</a>
-        <a href="privacy-policy.html" data-nav>Privacy</a>
-      </div>
-    </div>
-  </nav>
 
-  <header class="hero">
-    <div class="container hero-grid">
-      <section class="card hero-main">
-        <span class="badge">v1.4.5 latest</span>
-        <h1>Modern docs hub for Salesforce admins and developers</h1>
-        <p>Explore feature docs, quick workflows, troubleshooting, privacy details, and interactive quiz modes from one clean entrypoint.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="documentation.html">Open Full Documentation</a>
-          <a class="btn" href="quick-start-guide.html">Quick Start Guide</a>
-          <a class="btn" href="quiz.html">Play Quiz</a>
+    <header>
+        <div style="font-size: 4rem; margin-bottom: 10px;">⚡</div>
+        <h1>TrackForcePro</h1>
+        <p class="subtitle">Salesforce Admin & Developer Toolkit</p>
+        <div style="margin-top: 15px;">
+            <select id="version-select" style="padding: 8px 16px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 14px; font-weight: 600; cursor: pointer;">
+                <option value="1.4.5" style="color:#333;background:white;">v1.4.5 (Latest)</option>
+                <option value="1.3.7" style="color:#333;background:white;">v1.3.7</option>
+                <option value="1.3.6" style="color:#333;background:white;">v1.3.6</option>
+                <option value="1.2.9" style="color:#333;background:white;">v1.2.9</option>
+                <option value="1.2.7" style="color:#333;background:white;">v1.2.7</option>
+                <option value="1.2.2" style="color:#333;background:white;">v1.2.2</option>
+            </select>
         </div>
-      </section>
-      <aside class="card hero-side">
-        <h3>What is here</h3>
-        <ul>
-          <li>Versioned docs with release highlights and workflows.</li>
-          <li>Support and troubleshooting references.</li>
-          <li>Privacy and local-data-first policy details.</li>
-          <li>Interactive quiz and leaderboard for learning.</li>
-        </ul>
-      </aside>
-    </div>
-  </header>
+    </header>
 
-  <main class="container section">
-    <div class="grid">
-      <section class="card panel col-8">
-        <h2>Documentation pages</h2>
-        <p class="lead">All pages keep stable filenames, so existing store links remain valid.</p>
-        <div class="feature-list">
-          <a class="feature-item" href="documentation.html"><strong>Full Documentation</strong><br>Canonical versioned guide and changelog.</a>
-          <a class="feature-item" href="guide.html"><strong>Visual Guide</strong><br>Richer walkthrough with screenshots.</a>
-          <a class="feature-item" href="quick-start-guide.html"><strong>Quick Start</strong><br>Install and first-use workflow.</a>
-          <a class="feature-item" href="help.html"><strong>Help & Support</strong><br>FAQ and troubleshooting table.</a>
-          <a class="feature-item" href="privacy-policy.html"><strong>Privacy Policy</strong><br>Legal and local-data policy.</a>
-          <a class="feature-item" href="quiz.html"><strong>Quiz & Games</strong><br>Interactive learning experience.</a>
-          <a class="feature-item" href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" target="_blank" rel="noopener"><strong>Report Issue</strong><br>Open a GitHub issue.</a>
+    <div class="container">
+        <h2 class="section-title">📚 Documentation</h2>
+
+        <div class="card-grid">
+            <a href="documentation.html" class="card">
+                <div class="card-icon">📖</div>
+                <h2>Full Documentation</h2>
+                <p>Complete documentation with version history. Select any version to view its docs.</p>
+                <span class="badge">New</span>
+            </a>
+
+            <a href="quick-start-guide.html" class="card">
+                <div class="card-icon">🚀</div>
+                <h2>Quick Start Guide</h2>
+                <p>Visual walkthrough with step-by-step instructions to install and start using TrackForcePro.</p>
+                <span class="badge">Recommended</span>
+            </a>
+
+            <a href="privacy-policy.html" class="card">
+                <div class="card-icon">🔐</div>
+                <h2>Privacy Policy</h2>
+                <p>Learn how TrackForcePro handles your data. No external servers, all data stays local.</p>
+            </a>
+
+            <a href="help.html" class="card">
+                <div class="card-icon">💡</div>
+                <h2>Help & Support</h2>
+                <p>Complete help documentation, FAQs, troubleshooting, and support resources.</p>
+            </a>
+
+            <a href="quiz.html" class="card">
+                <div class="card-icon">🎮</div>
+                <h2>Quiz & Games</h2>
+                <p>Test your Salesforce toolkit knowledge with interactive quizzes, feature matching, and speed challenges!</p>
+                <span class="badge">Fun</span>
+            </a>
+
+            <a href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" class="card" target="_blank">
+                <div class="card-icon">🐛</div>
+                <h2>Report Issue</h2>
+                <p>Found a bug or have a feature request? Submit an issue on GitHub.</p>
+            </a>
         </div>
-      </section>
 
-      <aside class="card panel col-4">
-        <h3>Latest release notes</h3>
-        <p><strong>v1.4.5 - March 16, 2026</strong></p>
-        <ul>
-          <li>Custom Labels translation workflow upgrades.</li>
-          <li>Centralized label update API methods.</li>
-          <li>Accessibility improvements across label UI actions.</li>
-          <li>Expanded automated test coverage in main extension project.</li>
-        </ul>
-      </aside>
+        <div class="features">
+            <h2 class="section-title">✨ Key Features (v1.4.5)</h2>
 
-      <section class="card panel col-12">
-        <h3>Creator links</h3>
-        <div class="socials">
-          <a href="https://buymeacoffee.com/manaskumarbehera" target="_blank" rel="noopener">Buy Me a Coffee</a>
-          <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">Website</a>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h4>🔍 Audit Trail</h4>
+                    <p>Extract and export setup audit logs</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔗 GraphQL Builder</h4>
+                    <p>Visual query composition for UI API</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📊 SOQL Builder</h4>
+                    <p>Build queries with filters & ordering</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔬 Record Scanner</h4>
+                    <p>Single, bulk, & compare record scanning</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔐 Security Manager</h4>
+                    <p>Profiles, Permission Sets, PS Groups</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🏢 Org Tools</h4>
+                    <p>Login As, Labels, Deployments, Limits</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📡 Platform Events</h4>
+                    <p>Monitor and publish events in real-time</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🧭 TF Sidebar</h4>
+                    <p>Customizable shortcuts on SF pages</p>
+                </div>
+            </div>
         </div>
-      </section>
+
+        <div class="features" style="margin-top: 30px;">
+            <h2 class="section-title">📋 Recent Changes</h2>
+            <div style="background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: var(--shadow);">
+                 <h4 style="color: var(--primary-color); margin-bottom: 10px;">v1.4.5 - March 16, 2026 (Latest)</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🌐 Custom Labels translation overhaul — Export Template → Import Translations → Update &amp; Deploy workflow</li>
+                    <li>🔧 Centralized <code>patchLabel()</code> / <code>createLabel()</code> API methods with ExternalString REST fallback</li>
+                    <li>✏️ Inline translation value inputs with original value as placeholder</li>
+                    <li>♿ Accessibility: <code>aria-label</code> on all Custom Labels buttons; inline styles → CSS classes with dark theme</li>
+                    <li>🧪 ~20 new tests — 3319 tests across 67 test suites</li>
+                </ul>
+                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.4.4 - March 16, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🎨 Shape rendering overhaul — cloud, sfcloud, shield redesigned with clean bezier paths</li>
+                    <li>🐛 Fixed shield shape degenerate curves; cloud shapes replaced with smooth single-path bezier silhouettes</li>
+                    <li>🔄 All 3 favicon renderers now produce pixel-identical output</li>
+                    <li>🏷️ Custom Labels: removed SOQL LIMIT 2000, added client-side pagination (50/100/200/500 per page)</li>
+                    <li>3303 tests across 67 test suites</li>
+                </ul>
+                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.4.2 - March 16, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🎨 Dynamic favicon text color based on background luminance</li>
+                    <li>🆕 Custom text color control with Auto toggle + color picker</li>
+                    <li>☁️ Fixed cloud shape rendering artifacts; added rounded badge &amp; shield shapes (total: 8)</li>
+                    <li>🔄 Full text color pipeline across save/apply/restore/render/reset</li>
+                </ul>
+                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.7 - March 15, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🧩 New game mode — Fill in the Blank (16 questions, keyword-fill gameplay)</li>
+                    <li>💀 New game mode — Survival Mode (40 questions, 3 lives, play until you drop)</li>
+                    <li>✅ True/False expanded to 30 questions, Scenario Challenge expanded to 15 scenarios</li>
+                    <li>📖 TF Sidebar footer: new Learn & Quiz icon links to GitHub Pages docs</li>
+                    <li>↗️ "Open Full App" converted to compact icon in sidebar footer row</li>
+                    <li>Total: 7 game modes, 130+ questions across all categories</li>
+                    <li>3021 tests across 58 test suites</li>
+                </ul>
+                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.6 - March 15, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>📊 GraphQL child record export — expanded CSV rows with parent fields repeated</li>
+                    <li>🚢 Edge Add-ons automated CI/CD publishing workflow</li>
+                    <li>42 new tests for child record export</li>
+                </ul>
+                 <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.4 - March 15, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🐛 Fixed TF Sidebar LinkedIn URL pointing to wrong profile</li>
+                    <li>🔗 Added developer website link (manaskumarbehera.com) across sidebar, popup, and privacy policy</li>
+                    <li>2964 tests across 57 test suites</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.3 - March 15, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🚀 CodeMirror 6 GraphQL editor with syntax highlighting, autocomplete & bracket matching</li>
+                    <li>SOQL Builder — checkbox field picker with search, tab filters & FIELDS() mode buttons</li>
+                    <li>API v66.0 upgrade across all Salesforce API calls</li>
+                    <li>API Version pill in TF Sidebar header with cross-component sync</li>
+                    <li>Compact SOQL Builder UI with tighter spacing and reduced padding</li>
+                    <li>2964 tests across 57 test suites</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.2 - March 14, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🌐 TF Sidebar — new "Detect New Org" quick-access shortcut</li>
+                    <li>Discover & register new Salesforce orgs directly from the sidebar overlay</li>
+                    <li>Opens Org & Favicon tab with auto-detection and "New Org Detected" banner</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.1 - March 13, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🐛 Multi-org session isolation & single-instance tab enforcement</li>
+                    <li>Fixed badge label mixing across tabs, duplicate tab opening</li>
+                    <li>Immediate stale data clearing on org switch</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.3.0 - March 13, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>🔀 Multi-org tab management & deep-linking release</li>
+                    <li>Multi-org session routing, hash-based deep navigation</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.2.9 - March 13, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>SOQL inline edit toggle-switch UI, row delete, auto-describe on query</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.2.8 - March 13, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>TF Blinker FAB redesign, sidebar social links, Login As History cross-org isolation</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.2.7 - March 12, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li><strong>New:</strong> Security Manager — Profiles, Permission Sets, PS Groups browser</li>
+                    <li><strong>New:</strong> Org Tools — Login As, Custom Labels, Deployments, Scheduled Jobs, Debug Logs, Org Limits</li>
+                    <li><strong>New:</strong> Enhanced User Manager, Record Scanner, TF Sidebar, Data Explorer Tools</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.1.19 - March 10, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>Version bump to 1.1.19</li>
+                    <li>Maintenance release with stability improvements</li>
+                </ul>
+                <h4 style="color: var(--primary-color); margin: 15px 0 10px 0;">v1.1.18 - March 10, 2026</h4>
+                <ul style="margin-left: 20px; color: var(--text-muted);">
+                    <li>Appearance Settings (font size, theme, accent color)</li>
+                    <li>GraphQL compact UI enhancements</li>
+                    <li>SOQL simplified query construction</li>
+                    <li>XSS prevention improvements</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <footer class="footer">
-      <div>TrackForcePro documentation hub</div>
-      <div class="socials">
-        <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" rel="noopener">Chrome Web Store</a>
-        <a href="help.html">Support</a>
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="https://buymeacoffee.com/manaskumarbehera" target="_blank" rel="noopener">Buy Me a Coffee</a>
-        <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">Website</a>
-      </div>
+    <footer>
+        <p><strong>TrackForcePro</strong> - Open Source Chrome Extension</p>
+        <p style="margin-top: 10px;">
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a> ·
+            <a href="help.html">💡 Help</a> ·
+            <a href="privacy-policy.html">🔐 Privacy Policy</a> ·
+            <a href="quick-start-guide.html">🚀 Quick Start</a>
+        </p>
+        <p style="margin-top: 15px; font-size: 0.85rem;">© 2026 TrackForcePro. All rights reserved.</p>
     </footer>
-  </main>
+
 </body>
 </html>
 
