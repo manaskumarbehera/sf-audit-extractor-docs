@@ -21,136 +21,23 @@
             }
         })();
     </script>
+    <link rel="stylesheet" href="shared.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-        :root {
-            --primary-color: #0176d3;
-            --secondary-color: #0f172a;
-            --accent-color: #06b6d4;
-            --success-color: #22c55e;
-            --warning-color: #f59e0b;
-            --error-color: #ef4444;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
+        /* ── Quick-Start-specific styles ── */
+        .qs-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #0176d3 100%);
-            color: white;
-            padding: 64px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at 30% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        header > * { position: relative; z-index: 1; }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-        }
-
-        header .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.85;
-        }
-
-        header .version-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(8px);
-            padding: 6px 18px;
-            border-radius: 100px;
-            margin-top: 16px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-
-        /* Navigation */
-        nav {
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 14px;
-            gap: 8px;
-        }
-
-        nav a {
-            color: var(--primary-color);
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 100px;
-            transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        nav a:hover {
-            background: var(--primary-color);
-            color: white;
         }
 
         /* Sections */
         section {
             background: var(--card-bg);
             margin: 24px 0;
-            border-radius: 14px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
             overflow: hidden;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
         }
 
         .section-header {
@@ -204,7 +91,7 @@
 
         .screenshot-placeholder .placeholder-title {
             font-weight: 600;
-            color: var(--text-color);
+            color: var(--text);
             margin-bottom: 5px;
         }
 
@@ -213,20 +100,11 @@
             font-size: 0.9rem;
         }
 
-        .screenshot-placeholder.large {
-            padding: 100px 30px;
-        }
-
-        .screenshot-placeholder.small {
-            padding: 40px 20px;
-            display: inline-block;
-            min-width: 200px;
-        }
+        .screenshot-placeholder.large { padding: 100px 30px; }
+        .screenshot-placeholder.small { padding: 40px 20px; display: inline-block; min-width: 200px; }
 
         /* Instructions */
-        .instructions {
-            counter-reset: instruction;
-        }
+        .instructions { counter-reset: instruction; }
 
         .instruction-step {
             display: flex;
@@ -253,53 +131,13 @@
 
         .instruction-content h4 {
             margin-bottom: 4px;
-            color: var(--secondary-color);
+            color: var(--primary-dark);
             font-weight: 600;
         }
 
         .instruction-content p {
             color: var(--text-muted);
             font-size: 0.9rem;
-        }
-
-        /* Code blocks */
-        code {
-            background: #f1f5f9;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-family: 'SF Mono', 'Consolas', monospace;
-            font-size: 0.85em;
-            color: var(--secondary-color);
-            border: 1px solid #e2e8f0;
-        }
-
-        /* Tips */
-        .tip {
-            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
-            border-left: 4px solid var(--success-color);
-            padding: 16px 20px;
-            margin: 20px 0;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .tip::before {
-            content: '💡 Tip: ';
-            font-weight: 600;
-            color: var(--success-color);
-        }
-
-        .warning {
-            background: linear-gradient(135deg, #fffbeb, #fef3c7);
-            border-left: 4px solid var(--warning-color);
-            padding: 16px 20px;
-            margin: 20px 0;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .warning::before {
-            content: '⚠️ Note: ';
-            font-weight: 600;
-            color: var(--warning-color);
         }
 
         /* Feature cards */
@@ -311,10 +149,10 @@
         }
 
         .feature-card {
-            background: var(--bg-color);
+            background: var(--bg);
             border-radius: 10px;
             padding: 20px;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
@@ -324,7 +162,7 @@
         }
 
         .feature-card h4 {
-            color: var(--primary-color);
+            color: var(--primary);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -347,138 +185,69 @@
         th, td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
             font-size: 0.9rem;
         }
 
         th {
-            background: var(--bg-color);
+            background: var(--bg);
             font-weight: 600;
-            color: var(--secondary-color);
+            color: var(--primary-dark);
         }
 
-        tr:hover {
-            background: #f8fafc;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #0176d3, #0ea5e9);
-            color: white;
-            box-shadow: 0 2px 8px rgba(1, 118, 211, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #015ba7, #0176d3);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(1, 118, 211, 0.4);
-        }
-
-        /* Keyboard shortcuts */
-        kbd {
-            background: #f1f5f9;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 2px 8px;
-            font-family: 'SF Mono', monospace;
-            font-size: 0.85em;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.08);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
-            font-size: 0.9rem;
-        }
+        tr:hover { background: var(--bg); }
 
         /* Responsive */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section-content {
-                padding: 20px;
-            }
-
-            .instruction-step {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
+            .section-content { padding: 20px; }
+            .instruction-step { flex-direction: column; align-items: center; text-align: center; }
         }
 
-        /* Print styles */
         @media print {
-            nav, .no-print {
-                display: none;
-            }
-
-            section {
-                break-inside: avoid;
-                box-shadow: none;
-                border: 1px solid #ccc;
-            }
+            .site-nav, .no-print { display: none; }
+            section { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; padding: 12px 20px;">
-            <a href="index.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; padding: 6px 14px; border-radius: 100px; transition: all 0.2s;">🏠 Home</a>
-            <a href="quick-start-guide.html" style="color: white; text-decoration: none; font-weight: 600; padding: 4px 12px; border-radius: 4px; background: rgba(255,255,255,0.15);">🚀 Quick Start</a>
-            <a href="documentation.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; padding: 4px 12px; border-radius: 4px;">📖 Documentation</a>
-            <a href="help.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; padding: 4px 12px; border-radius: 4px;">💡 Help</a>
-            <a href="quiz.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; padding: 4px 12px; border-radius: 4px;">🎮 Quiz</a>
-            <a href="privacy-policy.html" style="color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; padding: 4px 12px; border-radius: 4px;">🔐 Privacy</a>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="index.html">🏠 Home</a>
+            <a href="quick-start-guide.html" class="active">🚀 Quick Start</a>
+            <a href="documentation.html">📖 Docs</a>
+            <a href="help.html">💡 Help</a>
+            <a href="quiz.html">🎮 Quiz &amp; Games</a>
+            <a href="leaderboard.html">🏆 Leaderboard</a>
+            <a href="privacy-policy.html">🔐 Privacy</a>
         </div>
     </nav>
 
-    <header>
-        <img src="../icons/Icon-128.png" alt="TrackForcePro" style="width: 80px; height: 80px; margin-bottom: 10px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" id="header-logo">
+    <div class="site-hero">
+        <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
         <h1>TrackForcePro</h1>
-        <p class="subtitle">Quick Start Guide - Salesforce Admin & Developer Toolkit</p>
+        <p>Quick Start Guide — Salesforce Admin &amp; Developer Toolkit</p>
         <span class="version-badge">Version 1.6.2</span>
         <div style="margin-top: 20px;">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="btn btn-primary" style="background: #2e844a; padding: 12px 24px; border-radius: 8px; color: white; text-decoration: none; font-weight: 600;">
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="site-btn site-btn-success site-btn-lg">
                 🛒 Install from Chrome Web Store
             </a>
         </div>
-    </header>
+    </div>
 
-    <nav>
-        <ul>
-            <li><a href="#installation">🔧 Installation</a></li>
-            <li><a href="#first-launch">🚀 First Launch</a></li>
-            <li><a href="#connecting">🔌 Connecting</a></li>
-            <li><a href="#features">✨ Features</a></li>
-            <li><a href="#tab-window">📋 Tab & Window</a></li>
-            <li><a href="#shortcuts">⌨️ Shortcuts</a></li>
-            <li><a href="#troubleshooting">Troubleshooting</a></li>
-        </ul>
+    <nav class="site-nav" style="position: relative; top: auto;">
+        <div class="site-nav-inner" style="justify-content: center;">
+            <a href="#installation">🔧 Installation</a>
+            <a href="#first-launch">🚀 First Launch</a>
+            <a href="#connecting">🔌 Connecting</a>
+            <a href="#features">✨ Features</a>
+            <a href="#tab-window">📋 Tab &amp; Window</a>
+            <a href="#shortcuts">⌨️ Shortcuts</a>
+            <a href="#troubleshooting">Troubleshooting</a>
+        </div>
     </nav>
 
-    <div class="container">
+    <div class="qs-container">
 
         <!-- Installation Section -->
         <section id="installation">
@@ -982,15 +751,18 @@
 
     </div>
 
-    <footer>
-        <p><strong>TrackForcePro</strong> - Salesforce Admin & Developer Toolkit</p>
-        <p>Version 1.4.4 &middot; March 2026</p>
-        <p style="margin-top: 10px; font-size: 0.9rem;">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a> ·
-            <a href="help.html">Help & Support</a> ·
-            <a href="index.html">Documentation Home</a> ·
-            <a href="quiz.html">🎮 Quiz & Games</a>
-        </p>
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <div class="footer-links">
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <span class="sep">·</span>
+            <a href="help.html">💡 Help &amp; Support</a>
+            <span class="sep">·</span>
+            <a href="index.html">📚 Documentation</a>
+            <span class="sep">·</span>
+            <a href="quiz.html">🎮 Quiz &amp; Games</a>
+        </div>
+        <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
     </footer>
 
 </body>

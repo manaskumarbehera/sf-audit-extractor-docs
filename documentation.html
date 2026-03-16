@@ -21,14 +21,10 @@
             }
         })();
     </script>
+    <link rel="stylesheet" href="shared.css">
     <style>
+        /* ── Documentation-specific overrides ── */
         :root {
-            --primary: #0176d3;
-            --primary-dark: #014486;
-            --secondary: #1b96ff;
-            --success: #2e844a;
-            --warning: #fe9339;
-            --danger: #ea001e;
             --gray-100: #f3f3f3;
             --gray-200: #e5e5e5;
             --gray-300: #c9c9c9;
@@ -37,56 +33,8 @@
             --gray-900: #181818;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--gray-100);
-            color: var(--gray-900);
-            line-height: 1.6;
-        }
-
-        /* Sticky Navigation Bar */
-        .navbar {
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
-            padding: 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .navbar-content {
-            max-width: 100%;
-            padding: 0 40px;
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .navbar-content a {
-            display: block;
-            padding: 14px 0;
-            text-decoration: none;
-            font-size: 14px;
-            color: var(--gray-800);
-            border-bottom: 3px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .navbar-content a:hover {
-            color: var(--primary);
-        }
-
-        .navbar-content a.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
+        /* Sticky Navigation — handled by shared.css .site-nav */
 
         /* Header */
         .header {
@@ -413,18 +361,7 @@
             margin-bottom: 4px;
         }
 
-        /* Footer */
-        .footer {
-            background: var(--gray-900);
-            color: var(--gray-300);
-            padding: 30px 40px;
-            text-align: center;
-        }
-
-        .footer a {
-            color: var(--secondary);
-            text-decoration: none;
-        }
+        /* Footer — handled by shared.css .site-footer */
 
         /* Responsive */
         @media (max-width: 900px) {
@@ -461,14 +398,15 @@
 </head>
 <body>
     <!-- Top Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-content">
-            <a href="index.html">Home</a>
-            <a href="quick-start-guide.html">Quick Start</a>
-            <a href="documentation.html" class="active">Documentation</a>
-            <a href="help.html">Help</a>
-            <a href="quiz.html">Quiz &amp; Games</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="index.html">🏠 Home</a>
+            <a href="quick-start-guide.html">🚀 Quick Start</a>
+            <a href="documentation.html" class="active">📖 Docs</a>
+            <a href="help.html">💡 Help</a>
+            <a href="quiz.html">🎮 Quiz &amp; Games</a>
+            <a href="leaderboard.html">🏆 Leaderboard</a>
+            <a href="privacy-policy.html">🔐 Privacy</a>
         </div>
     </nav>
 
@@ -1701,14 +1639,16 @@
         </main>
     </div>
 
-    <footer class="footer">
-        <p>TrackForcePro v1.6.2 - Salesforce Developer Toolkit</p>
-        <p>
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> |
-            <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a> |
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </p>
-        <p style="margin-top: 12px; font-size: 12px;">© 2026 TrackForcePro. All rights reserved.</p>
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> v1.6.2 — Salesforce Developer Toolkit</p>
+        <div class="footer-links">
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <span class="sep">·</span>
+            <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a>
+            <span class="sep">·</span>
+            <a href="privacy-policy.html">🔐 Privacy</a>
+        </div>
+        <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
     </footer>
 
     <script>

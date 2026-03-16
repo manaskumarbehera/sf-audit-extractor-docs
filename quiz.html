@@ -21,16 +21,14 @@
             }
         })();
     </script>
+    <link rel="stylesheet" href="shared.css">
     <style>
+        /* ── Quiz-specific overrides ── */
         :root {
-            --primary: #0176d3;
             --primary-dark: #014486;
             --secondary: #1b96ff;
-            --success: #2e844a;
             --success-bg: #e6f9ed;
-            --danger: #ea001e;
             --danger-bg: #fce4e4;
-            --warning: #fe9339;
             --warning-bg: #fff3e0;
             --gray-100: #f3f3f3;
             --gray-200: #e5e5e5;
@@ -38,64 +36,84 @@
             --gray-600: #706e6b;
             --gray-800: #3e3e3c;
             --gray-900: #181818;
-            --gold: #f5a623;
             --card-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--gray-100);
-            color: var(--gray-900);
-            line-height: 1.6;
-        }
+        /* ── Navbar: handled by shared.css .site-nav ── */
 
-        /* ── Navbar ── */
-        .navbar {
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
-            position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .navbar-content {
-            max-width: 100%; padding: 0 40px;
-            display: flex; gap: 30px; align-items: center;
-        }
-        .navbar-content a {
-            display: block; padding: 14px 0;
-            text-decoration: none; font-size: 14px;
-            color: var(--gray-800);
-            border-bottom: 3px solid transparent;
-            transition: all 0.2s;
-        }
-        .navbar-content a:hover { color: var(--primary); border-bottom-color: var(--primary); }
-        .navbar-content a.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
-
-        /* ── Hero ── */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
-            color: white; padding: 48px 40px; text-align: center;
-        }
-        .hero h1 { font-size: 2.2rem; margin-bottom: 8px; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        /* ── Hero: handled by shared.css .site-hero ── */
 
         /* ── Container ── */
         .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
 
-        /* ── Mode Selector ── */
-        .mode-selector {
-            display: flex; gap: 12px; justify-content: center;
-            flex-wrap: wrap; margin-bottom: 30px;
+        /* ── Mode Selector — Categorized Cards ── */
+        .mode-categories { margin-bottom: 30px; }
+        .mode-category { margin-bottom: 24px; }
+        .mode-category-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-left: 4px;
         }
-        .mode-btn {
-            padding: 14px 28px; border: 2px solid var(--gray-200);
-            border-radius: 12px; background: white; cursor: pointer;
-            font-size: 15px; font-weight: 600; color: var(--gray-800);
-            transition: all 0.2s; display: flex; align-items: center; gap: 8px;
+        .mode-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
         }
-        .mode-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); box-shadow: var(--card-shadow); }
-        .mode-btn.active { border-color: var(--primary); background: var(--primary); color: white; }
+        .mode-card {
+            position: relative;
+            padding: 18px 20px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .mode-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--card-shadow); }
+        .mode-card.active { border-color: var(--primary); background: #eff6ff; box-shadow: 0 0 0 3px rgba(1,118,211,0.15); }
+        .mode-card .mode-emoji { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+        .mode-card-info { flex: 1; min-width: 0; }
+        .mode-card-info .mode-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+        .mode-card-info .mode-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+        .mode-card .mode-meta {
+            display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap;
+        }
+        .mode-meta-tag {
+            font-size: 10px; font-weight: 600; padding: 2px 8px;
+            border-radius: var(--radius-pill); background: var(--bg); color: var(--text-muted);
+        }
+        .mode-meta-tag.beginner { background: #dcfce7; color: #166534; }
+        .mode-meta-tag.hard { background: #fce4e4; color: #991b1b; }
+        .mode-meta-tag.timed { background: #fef3c7; color: #92400e; }
+
+        /* ── Game Bar (persistent top bar during play) ── */
+        .game-bar {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        .game-bar.visible { display: flex; }
+        .game-bar-mode { font-size: 14px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
+        .game-bar-score { font-size: 14px; font-weight: 600; color: var(--primary); }
+        .game-bar-exit {
+            background: none; border: 1px solid var(--border); border-radius: 8px;
+            padding: 4px 12px; font-size: 13px; font-weight: 600; cursor: pointer;
+            color: var(--text-muted); transition: all 0.15s; font-family: inherit;
+        }
+        .game-bar-exit:hover { border-color: var(--danger); color: var(--danger); background: #fef2f2; }
         .mode-btn .emoji { font-size: 20px; }
 
         /* ── Scoreboard ── */
@@ -509,24 +527,18 @@
             display: flex; gap: 10px; justify-content: center; margin-top: 20px;
         }
 
-        /* ── Footer ── */
-        .footer {
-            background: var(--gray-900); color: #aaa; text-align: center;
-            padding: 30px 20px; margin-top: 50px; font-size: 13px;
-        }
-        .footer a { color: var(--secondary); text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
+        /* ── Footer: handled by shared.css .site-footer ── */
 
         /* ── Responsive ── */
         @media (max-width: 640px) {
-            .hero h1 { font-size: 1.5rem; }
             .match-grid { grid-template-columns: 1fr; }
             .speed-options { grid-template-columns: 1fr; }
-            .navbar-content { padding: 0 16px; gap: 16px; flex-wrap: wrap; }
             .container { padding: 20px 12px; }
             .quiz-card { padding: 20px; }
             .signup-card { padding: 32px 24px; }
             .leaderboard-table .date-col { display: none; }
+            .mode-category-grid { grid-template-columns: 1fr; }
+            .game-bar { flex-wrap: wrap; gap: 8px; }
         }
     </style>
 </head>
@@ -550,24 +562,30 @@
                 <button type="submit" class="signup-btn">🚀 Start Playing</button>
             </form>
             <div class="signup-footer">Your data is stored locally in your browser. <a href="privacy-policy.html">Privacy Policy</a></div>
+            <div style="margin-top: 16px; border-top: 1px solid var(--gray-200); padding-top: 16px;">
+                <button type="button" onclick="startAsGuest()" style="background: none; border: none; color: var(--gray-600); font-size: 14px; cursor: pointer; text-decoration: underline; font-family: inherit;">
+                    Skip — Play as Guest
+                </button>
+            </div>
         </div>
     </div>
 
-    <nav class="navbar">
-        <div class="navbar-content">
-            <a href="index.html">Home</a>
-            <a href="quick-start-guide.html">Quick Start</a>
-            <a href="documentation.html">Documentation</a>
-            <a href="help.html">Help</a>
-            <a href="quiz.html" class="active">Quiz &amp; Games</a>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="index.html">🏠 Home</a>
+            <a href="quick-start-guide.html">🚀 Quick Start</a>
+            <a href="documentation.html">📖 Docs</a>
+            <a href="help.html">💡 Help</a>
+            <a href="quiz.html" class="active">🎮 Quiz &amp; Games</a>
             <a href="leaderboard.html">🏆 Leaderboard</a>
+            <a href="privacy-policy.html">🔐 Privacy</a>
         </div>
     </nav>
 
-    <div class="hero">
-        <img src="../icons/Icon-64.png" alt="TrackForcePro" style="width: 56px; height: 56px; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" id="header-logo">
+    <div class="site-hero">
+        <img src="../icons/Icon-64.png" alt="TrackForcePro" class="hero-logo" style="width: 56px; height: 56px; border-radius: 12px;" id="header-logo">
         <h1>🎮 TrackForcePro Challenge</h1>
-        <p>Test your knowledge of the ultimate Salesforce toolkit — 9 game modes including quizzes, speed rounds, true/false, fill-in-the-blank, scenarios, shortcut sprint, shortcut type race, and survival mode!</p>
+        <p>Test your knowledge of the ultimate Salesforce toolkit — 9 game modes!</p>
     </div>
 
     <div class="container">
@@ -594,38 +612,138 @@
             </div>
         </div>
 
-        <!-- Mode Selector -->
-        <div class="mode-selector">
-            <button class="mode-btn active" onclick="switchMode('quiz')">
-                <span class="emoji">🧠</span> Knowledge Quiz
-            </button>
-            <button class="mode-btn" onclick="switchMode('match')">
-                <span class="emoji">🔗</span> Feature Match
-            </button>
-            <button class="mode-btn" onclick="switchMode('speed')">
-                <span class="emoji">⚡</span> Speed Round
-            </button>
-            <button class="mode-btn" onclick="switchMode('truefalse')">
-                <span class="emoji">✅</span> True or False
-            </button>
-            <button class="mode-btn" onclick="switchMode('scenario')">
-                <span class="emoji">🎯</span> Scenario Challenge
-            </button>
-            <button class="mode-btn" onclick="switchMode('blank')">
-                <span class="emoji">🧩</span> Fill the Blank
-            </button>
-            <button class="mode-btn" onclick="switchMode('shortcut')">
-                <span class="emoji">⌨️</span> Shortcut Sprint
-            </button>
-            <button class="mode-btn" onclick="switchMode('typrace')">
-                <span class="emoji">🏎️</span> Shortcut Type Race
-            </button>
-            <button class="mode-btn" onclick="switchMode('survival')">
-                <span class="emoji">💀</span> Survival Mode
-            </button>
-            <button class="mode-btn" onclick="switchMode('leaderboard')">
-                <span class="emoji">🏆</span> Leaderboard
-            </button>
+        <!-- Mode Selector — Categorized -->
+        <div class="mode-categories" id="modeSelector">
+            <div class="mode-category">
+                <div class="mode-category-title">📚 Learn</div>
+                <div class="mode-category-grid">
+                    <div class="mode-card active" onclick="switchMode('quiz')" data-mode="quiz">
+                        <span class="mode-emoji">🧠</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Knowledge Quiz</div>
+                            <div class="mode-desc">Multiple choice questions about TrackForcePro features</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag beginner">Recommended for beginners</span>
+                                <span class="mode-meta-tag">~5 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-card" onclick="switchMode('truefalse')" data-mode="truefalse">
+                        <span class="mode-emoji">✅</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">True or False</div>
+                            <div class="mode-desc">Decide if statements about the extension are true or false</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag timed">6s timer</span>
+                                <span class="mode-meta-tag">~3 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-card" onclick="switchMode('blank')" data-mode="blank">
+                        <span class="mode-emoji">🧩</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Fill the Blank</div>
+                            <div class="mode-desc">Complete sentences with the correct missing word</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag">~4 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mode-category">
+                <div class="mode-category-title">⚡ Challenge</div>
+                <div class="mode-category-grid">
+                    <div class="mode-card" onclick="switchMode('speed')" data-mode="speed">
+                        <span class="mode-emoji">⚡</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Speed Round</div>
+                            <div class="mode-desc">Answer as fast as you can before time runs out</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag timed">8s timer</span>
+                                <span class="mode-meta-tag">~3 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-card" onclick="switchMode('shortcut')" data-mode="shortcut">
+                        <span class="mode-emoji">⌨️</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Shortcut Sprint</div>
+                            <div class="mode-desc">Identify the correct keyboard shortcuts quickly</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag timed">10s timer</span>
+                                <span class="mode-meta-tag">~4 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-card" onclick="switchMode('typrace')" data-mode="typrace">
+                        <span class="mode-emoji">🏎️</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Type Race</div>
+                            <div class="mode-desc">Type keyboard shortcuts as fast as you can</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag timed">12s timer</span>
+                                <span class="mode-meta-tag hard">Hard</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-card" onclick="switchMode('scenario')" data-mode="scenario">
+                        <span class="mode-emoji">🎯</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Scenario Challenge</div>
+                            <div class="mode-desc">Choose the right tool for real-world admin scenarios</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag">~5 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mode-category">
+                <div class="mode-category-title">🏆 Compete</div>
+                <div class="mode-category-grid">
+                    <div class="mode-card" onclick="switchMode('match')" data-mode="match">
+                        <span class="mode-emoji">🔗</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Feature Match</div>
+                            <div class="mode-desc">Match features to their descriptions</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag">~3 min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-card" onclick="switchMode('survival')" data-mode="survival">
+                        <span class="mode-emoji">💀</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Survival Mode</div>
+                            <div class="mode-desc">Answer until you run out of lives — how far can you go?</div>
+                            <div class="mode-meta">
+                                <span class="mode-meta-tag hard">Hard</span>
+                                <span class="mode-meta-tag">∞</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-card" onclick="switchMode('leaderboard')" data-mode="leaderboard">
+                        <span class="mode-emoji">🏆</span>
+                        <div class="mode-card-info">
+                            <div class="mode-title">Leaderboard</div>
+                            <div class="mode-desc">View top scores and your ranking</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Bar (shown during active play) -->
+        <div class="game-bar" id="gameBar">
+            <div class="game-bar-mode">
+                <span id="gameBarEmoji">🧠</span>
+                <span id="gameBarTitle">Knowledge Quiz</span>
+            </div>
+            <div class="game-bar-score">Score: <span id="gameBarScore">0</span></div>
+            <button class="game-bar-exit" onclick="exitToModeSelector()" title="Exit to mode selector">✕ Exit</button>
         </div>
 
         <!-- ═══════════════ QUIZ MODE ═══════════════ -->
@@ -829,6 +947,7 @@
                 <div class="fun-fact" id="resultsFunFact"></div>
                 <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
                     <button class="btn btn-primary btn-lg" onclick="replayCurrentMode()">🔁 Play Again</button>
+                    <button class="btn btn-outline btn-lg" onclick="exitToModeSelector()">🎮 All Modes</button>
                     <a href="leaderboard.html" class="btn btn-outline btn-lg">🏆 Leaderboard</a>
                     <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="btn btn-success btn-lg">🚀 Install TrackForcePro</a>
                 </div>
@@ -836,15 +955,18 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <p>TrackForcePro v1.6.2 — Salesforce Developer Toolkit</p>
-        <p style="margin-top:8px">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> |
-            <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a> |
-            <a href="documentation.html">Documentation</a> |
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </p>
-        <p style="margin-top:12px;font-size:11px">© 2026 TrackForcePro. All rights reserved.</p>
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> v1.6.2 — Salesforce Developer Toolkit</p>
+        <div class="footer-links">
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <span class="sep">·</span>
+            <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a>
+            <span class="sep">·</span>
+            <a href="documentation.html">📖 Documentation</a>
+            <span class="sep">·</span>
+            <a href="privacy-policy.html">🔐 Privacy</a>
+        </div>
+        <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
     </footer>
 
 <script>
@@ -966,7 +1088,7 @@ function fetchServerLeaderboard(callback) {
 }
 
 function saveToLeaderboard(mode, score, correct, total) {
-    if (!currentPlayer) return;
+    if (!currentPlayer || currentPlayer.isGuest) return;
     var entry = {
         name: currentPlayer.name,
         email: currentPlayer.email,
@@ -2984,6 +3106,17 @@ function showResults(mode, correct, total) {
     // Show
     document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
     document.getElementById('game-results').classList.add('active');
+    // Hide game bar on results
+    document.getElementById('gameBar').classList.remove('visible');
+
+    // Prompt guest to sign up after first game
+    if (currentPlayer && currentPlayer.isGuest) {
+        setTimeout(function() {
+            if (confirm('Sign up to save your score of ' + totalScore + ' to the leaderboard!')) {
+                document.getElementById('signupOverlay').classList.remove('hidden');
+            }
+        }, 1500);
+    }
 }
 
 function replayCurrentMode() { switchMode(currentMode); }
@@ -3163,21 +3296,74 @@ function nextTypeRace() {
 
 // ═══════════════ MODE SWITCHING ═══════════════
 
+var MODE_INFO = {
+    quiz:       { emoji: '🧠', title: 'Knowledge Quiz' },
+    match:      { emoji: '🔗', title: 'Feature Match' },
+    speed:      { emoji: '⚡', title: 'Speed Round' },
+    truefalse:  { emoji: '✅', title: 'True or False' },
+    scenario:   { emoji: '🎯', title: 'Scenario Challenge' },
+    blank:      { emoji: '🧩', title: 'Fill the Blank' },
+    shortcut:   { emoji: '⌨️', title: 'Shortcut Sprint' },
+    typrace:    { emoji: '🏎️', title: 'Type Race' },
+    survival:   { emoji: '💀', title: 'Survival Mode' },
+    leaderboard:{ emoji: '🏆', title: 'Leaderboard' }
+};
+
+function showGameBar(mode) {
+    var bar = document.getElementById('gameBar');
+    var info = MODE_INFO[mode];
+    if (info && mode !== 'leaderboard' && mode !== 'results') {
+        document.getElementById('gameBarEmoji').textContent = info.emoji;
+        document.getElementById('gameBarTitle').textContent = info.title;
+        document.getElementById('gameBarScore').textContent = totalScore;
+        bar.classList.add('visible');
+    } else {
+        bar.classList.remove('visible');
+    }
+}
+
+function updateGameBarScore() {
+    var el = document.getElementById('gameBarScore');
+    if (el) el.textContent = totalScore;
+}
+
+function exitToModeSelector() {
+    // Stop all timers
+    clearInterval(speedTimer);
+    clearInterval(tfTimer);
+    clearInterval(scTimer);
+    clearInterval(trTimer);
+    // Hide game bar
+    document.getElementById('gameBar').classList.remove('visible');
+    // Hide all game areas
+    document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
+    // Show mode selector and scoreboard
+    document.getElementById('modeSelector').style.display = '';
+    // Deselect all mode cards
+    document.querySelectorAll('.mode-card').forEach(function(c) { c.classList.remove('active'); });
+}
+
 function switchMode(mode) {
     currentMode = mode;
-    document.querySelectorAll('.mode-btn').forEach(function(btn) { btn.classList.remove('active'); });
-    document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
+    // Update mode card active states
+    document.querySelectorAll('.mode-card').forEach(function(c) { c.classList.remove('active'); });
+    var activeCard = document.querySelector('.mode-card[data-mode="' + mode + '"]');
+    if (activeCard) activeCard.classList.add('active');
 
-    var btns = document.querySelectorAll('.mode-btn');
-    var modeOrder = ['quiz','match','speed','truefalse','scenario','blank','shortcut','typrace','survival','leaderboard'];
-    var idx = modeOrder.indexOf(mode);
-    if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
+    document.querySelectorAll('.game-area').forEach(function(el) { el.classList.remove('active'); });
 
     document.getElementById('game-' + mode).classList.add('active');
     clearInterval(speedTimer);
     clearInterval(tfTimer);
     clearInterval(scTimer);
     clearInterval(trTimer);
+
+    // Show game bar for play modes, hide mode selector
+    if (mode !== 'leaderboard') {
+        showGameBar(mode);
+    } else {
+        document.getElementById('gameBar').classList.remove('visible');
+    }
 
     if (mode === 'quiz') startQuiz();
     else if (mode === 'match') startMatchGame();
@@ -3260,10 +3446,19 @@ function switchMode(mode) {
     }
 }
 
+function startAsGuest() {
+    currentPlayer = { name: 'Guest', email: '', createdAt: new Date().toISOString(), isGuest: true };
+    // Don't persist guest to localStorage
+    showPlayerUI();
+    document.getElementById('signupOverlay').classList.add('hidden');
+    startQuiz();
+}
+
 function updateScoreboard() {
     document.getElementById('totalScore').textContent = totalScore;
     document.getElementById('streakCount').textContent = '🔥 ' + streak;
     document.getElementById('bestStreak').textContent = bestStreak;
+    updateGameBarScore();
 }
 
 // ── Init ──
