@@ -16,6 +16,8 @@
                 document.getElementById('fav32').href = basePath + 'Icon-32.png';
                 document.getElementById('fav16').href = basePath + 'Icon-16.png';
                 document.getElementById('favshort').href = basePath + 'Icon-32.png';
+                var logo = document.getElementById('header-logo');
+                if (logo) logo.src = basePath + 'Icon-128.png';
             }
         })();
     </script>
@@ -405,10 +407,10 @@
     </nav>
 
     <header>
-        <div style="font-size: 4rem; margin-bottom: 10px;">⚡</div>
+        <img src="../icons/Icon-128.png" alt="TrackForcePro" style="width: 80px; height: 80px; margin-bottom: 10px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" id="header-logo">
         <h1>TrackForcePro</h1>
         <p class="subtitle">Quick Start Guide - Salesforce Admin & Developer Toolkit</p>
-        <span class="version-badge">Version 1.4.5</span>
+        <span class="version-badge">Version 1.5.0</span>
         <div style="margin-top: 20px;">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="btn btn-primary" style="background: #2e844a; padding: 12px 24px; border-radius: 8px; color: white; text-decoration: none; font-weight: 600;">
                 🛒 Install from Chrome Web Store

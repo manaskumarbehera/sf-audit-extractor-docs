@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
     <script>
-        // Fix favicon path for GitHub Pages
+        // Fix favicon and logo path for GitHub Pages
         (function() {
             const isGitHubPages = window.location.hostname.includes('github.io');
             if (isGitHubPages) {
@@ -18,6 +18,8 @@
                 document.getElementById('fav32').href = basePath + 'Icon-32.png';
                 document.getElementById('fav16').href = basePath + 'Icon-16.png';
                 document.getElementById('favshort').href = basePath + 'Icon-32.png';
+                var logo = document.getElementById('header-logo');
+                if (logo) logo.src = basePath + 'Icon-128.png';
             }
         })();
     </script>
@@ -299,10 +301,10 @@
 <body>
 
     <header>
-        <div style="font-size: 3rem; margin-bottom: 10px;">💡</div>
+        <img src="../icons/Icon-128.png" alt="TrackForcePro" style="width: 64px; height: 64px; margin-bottom: 10px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" id="header-logo">
         <h1>TrackForcePro Help</h1>
         <p class="subtitle">Documentation, Resources & Support</p>
-        <span class="version-badge">Version 1.4.5</span>
+        <span class="version-badge">Version 1.5.0</span>
     </header>
 
     <nav>

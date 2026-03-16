@@ -16,6 +16,8 @@
                 document.getElementById('fav32').href = basePath + 'Icon-32.png';
                 document.getElementById('fav16').href = basePath + 'Icon-16.png';
                 document.getElementById('favshort').href = basePath + 'Icon-32.png';
+                var logo = document.getElementById('header-logo');
+                if (logo) logo.src = basePath + 'Icon-64.png';
             }
         })();
     </script>
@@ -562,6 +564,7 @@
     </nav>
 
     <div class="hero">
+        <img src="../icons/Icon-64.png" alt="TrackForcePro" style="width: 56px; height: 56px; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" id="header-logo">
         <h1>🎮 TrackForcePro Challenge</h1>
         <p>Test your knowledge of the ultimate Salesforce toolkit — 9 game modes including quizzes, speed rounds, true/false, fill-in-the-blank, scenarios, shortcut sprint, shortcut type race, and survival mode!</p>
     </div>

@@ -16,6 +16,8 @@
                 document.getElementById('fav32').href = basePath + 'Icon-32.png';
                 document.getElementById('fav16').href = basePath + 'Icon-16.png';
                 document.getElementById('favshort').href = basePath + 'Icon-32.png';
+                var logo = document.getElementById('header-logo');
+                if (logo) logo.src = basePath + 'Icon-128.png';
             }
         })();
     </script>
@@ -84,7 +86,7 @@
         <a href="privacy-policy.html" style="color: white; text-decoration: none; font-weight: 600; padding: 4px 12px; border-radius: 4px; background: rgba(255,255,255,0.15);">🔐 Privacy</a>
     </nav>
 
-    <h1>🔐 Privacy Policy for TrackForcePro</h1>
+    <h1><img src="../icons/Icon-32.png" alt="TrackForcePro" style="width: 32px; height: 32px; border-radius: 6px; vertical-align: middle; margin-right: 8px;" id="header-logo">Privacy Policy for TrackForcePro</h1>
     <p class="last-updated">Last updated: March 16, 2026</p>
 
     <div class="highlight">
