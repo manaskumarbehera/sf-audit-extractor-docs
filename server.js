@@ -45,7 +45,8 @@ function sendFile(filePath, res) {
 
 function routeToFile(urlPath) {
   if (urlPath === '/' || urlPath === '') {
-    return 'landing.html';
+    // Keep root stable for Heroku/GitHub Pages even if landing.html is removed.
+    return 'index.html';
   }
   if (urlPath === '/docs' || urlPath === '/docs/') {
     return 'index.html';
