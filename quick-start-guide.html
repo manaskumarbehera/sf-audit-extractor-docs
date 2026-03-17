@@ -4,23 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrackForcePro - Quick Start Guide</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-    <script>
-        (function() {
-            if (window.location.hostname.includes('github.io')) {
-                var repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
-                var basePath = '/' + repoName + '/icons/';
-                document.getElementById('fav32').href = basePath + 'Icon-32.png';
-                document.getElementById('fav16').href = basePath + 'Icon-16.png';
-                document.getElementById('favshort').href = basePath + 'Icon-32.png';
-                var logo = document.getElementById('header-logo');
-                if (logo) logo.src = basePath + 'Icon-128.png';
-            }
-        })();
-    </script>
     <link rel="stylesheet" href="shared.css">
     <style>
         /* ── Quick-Start-specific styles ── */
@@ -31,55 +17,73 @@
         }
 
         /* Sections */
-        section {
+        .qs-section {
             background: var(--card-bg);
             margin: 24px 0;
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
             overflow: hidden;
             border: 1px solid var(--border);
+            transition: background var(--transition-normal), border-color var(--transition-normal);
         }
 
         .section-header {
-            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            background: var(--slds-nav-bg);
             color: white;
             padding: 20px 28px;
         }
 
+        [data-theme="dark"] .section-header {
+            background: var(--bg-alt);
+        }
+
         .section-header h2 {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-weight: 700;
             letter-spacing: -0.02em;
         }
 
         .section-header .step-number {
-            background: linear-gradient(135deg, #06b6d4, #0ea5e9);
-            width: 35px;
-            height: 35px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 800;
             font-size: 0.9rem;
+            flex-shrink: 0;
         }
 
         .section-content {
             padding: 28px;
         }
 
+        .section-content h3 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .section-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
         /* Screenshot placeholders */
         .screenshot-placeholder {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            border: 2px dashed #cbd5e1;
-            border-radius: 12px;
+            background: var(--bg-alt);
+            border: 2px dashed var(--border-strong);
+            border-radius: var(--radius);
             padding: 60px 30px;
             text-align: center;
             margin: 20px 0;
-            position: relative;
+            transition: background var(--transition-normal), border-color var(--transition-normal);
         }
 
         .screenshot-placeholder::before {
@@ -90,7 +94,7 @@
         }
 
         .screenshot-placeholder .placeholder-title {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text);
             margin-bottom: 5px;
         }
@@ -116,7 +120,7 @@
         .instruction-step::before {
             counter-increment: instruction;
             content: counter(instruction);
-            background: linear-gradient(135deg, #0176d3, #0ea5e9);
+            background: var(--primary);
             color: white;
             width: 32px;
             height: 32px;
@@ -124,15 +128,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 700;
             flex-shrink: 0;
             font-size: 0.85rem;
         }
 
         .instruction-content h4 {
             margin-bottom: 4px;
-            color: var(--primary-dark);
-            font-weight: 600;
+            color: var(--text);
+            font-weight: 700;
         }
 
         .instruction-content p {
@@ -149,16 +153,16 @@
         }
 
         .feature-card {
-            background: var(--bg);
-            border-radius: 10px;
+            background: var(--bg-alt);
+            border-radius: var(--radius);
             padding: 20px;
             border: 1px solid var(--border);
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-normal);
         }
 
         .feature-card:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
         }
 
         .feature-card h4 {
@@ -167,7 +171,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .feature-card p {
@@ -176,26 +180,106 @@
         }
 
         /* Tables */
-        table {
+        .qs-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
 
-        th, td {
+        .qs-table th, .qs-table td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid var(--border);
             font-size: 0.9rem;
+            color: var(--text-secondary);
         }
 
-        th {
+        .qs-table th {
             background: var(--bg);
-            font-weight: 600;
-            color: var(--primary-dark);
+            font-weight: 700;
+            color: var(--text);
         }
 
-        tr:hover { background: var(--bg); }
+        .qs-table tr:hover { background: var(--card-bg-hover); }
+
+        /* Tip/Warning boxes */
+        .tip {
+            background: linear-gradient(135deg, #e3f8e8, #f0fdf4);
+            border-left: 4px solid var(--success);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .tip {
+            background: rgba(69,198,90,0.08);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #fff5e6, #fef3c7);
+            border-left: 4px solid var(--warning);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .warning {
+            background: rgba(251,180,73,0.08);
+        }
+
+        /* Checklist */
+        .checklist p {
+            font-size: 1rem;
+            line-height: 2.2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checklist .check-box {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        .checklist .check-box.checked {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        /* CTA banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #032d60, #0176d3, #1b96ff);
+            color: white;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            padding: 40px 30px;
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        [data-theme="dark"] .cta-banner {
+            background: linear-gradient(135deg, #0b2645, #0176d3);
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+        .cta-banner > * { position: relative; z-index: 1; }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -205,44 +289,50 @@
 
         @media print {
             .site-nav, .no-print { display: none; }
-            section { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+            .qs-section { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
         }
     </style>
+    <script src="theme.js"></script>
 </head>
 <body>
 
     <nav class="site-nav">
         <div class="site-nav-inner">
-            <a href="index.html">🏠 Home</a>
-            <a href="quick-start-guide.html" class="active">🚀 Quick Start</a>
-            <a href="documentation.html">📖 Docs</a>
-            <a href="help.html">💡 Help</a>
-            <a href="quiz.html">🎮 Quiz &amp; Games</a>
-            <a href="leaderboard.html">🏆 Leaderboard</a>
-            <a href="privacy-policy.html">🔐 Privacy</a>
+            <a href="index.html">Home</a>
+            <a href="quick-start-guide.html" class="active">Quick Start</a>
+            <a href="documentation.html">Docs</a>
+            <a href="help.html">Help</a>
+            <a href="quiz.html">Quiz &amp; Games</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
         </div>
     </nav>
 
     <div class="site-hero">
         <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
-        <h1>TrackForcePro</h1>
-        <p>Quick Start Guide — Salesforce Admin &amp; Developer Toolkit</p>
+        <h1>Quick Start Guide</h1>
+        <p>Get up and running with TrackForcePro in minutes</p>
         <span class="version-badge">Version 1.6.2</span>
         <div style="margin-top: 20px;">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="site-btn site-btn-success site-btn-lg">
-                🛒 Install from Chrome Web Store
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="site-btn site-btn-success site-btn-lg site-btn-pill">
+                Install from Chrome Web Store
             </a>
         </div>
     </div>
 
-    <nav class="site-nav" style="position: relative; top: auto;">
+    <!-- Sub-navigation -->
+    <nav class="site-nav" style="position: relative; top: auto; border-bottom-width: 1px;">
         <div class="site-nav-inner" style="justify-content: center;">
-            <a href="#installation">🔧 Installation</a>
-            <a href="#first-launch">🚀 First Launch</a>
-            <a href="#connecting">🔌 Connecting</a>
-            <a href="#features">✨ Features</a>
-            <a href="#tab-window">📋 Tab &amp; Window</a>
-            <a href="#shortcuts">⌨️ Shortcuts</a>
+            <a href="#installation">Installation</a>
+            <a href="#first-launch">First Launch</a>
+            <a href="#connecting">Connecting</a>
+            <a href="#features">Features</a>
+            <a href="#tab-window">Tab &amp; Window</a>
+            <a href="#shortcuts">Shortcuts</a>
             <a href="#troubleshooting">Troubleshooting</a>
         </div>
     </nav>
@@ -250,23 +340,23 @@
     <div class="qs-container">
 
         <!-- Installation Section -->
-        <section id="installation">
+        <div class="qs-section" id="installation">
             <div class="section-header">
                 <h2><span class="step-number">1</span> Installation</h2>
             </div>
             <div class="section-content">
-                <h3 style="color: var(--success-color); margin-bottom: 15px;">Option 1: Install from Chrome Web Store (Recommended)</h3>
-                <div class="tip" style="background: #ebfbee; border-left-color: #2e844a; margin-bottom: 30px;">
+                <h3 style="color: var(--success);">Option 1: Install from Chrome Web Store (Recommended)</h3>
+                <div class="tip" style="margin-bottom: 30px;">
                     <p><strong>Easiest Method!</strong> Install directly from the official Chrome Web Store with one click:</p>
                     <p style="margin-top: 15px;">
-                        <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" style="display: inline-block; background: #2e844a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">
-                            🛒 Add to Chrome - It's Free
+                        <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="site-btn site-btn-success">
+                            Add to Chrome — It's Free
                         </a>
                     </p>
                 </div>
 
-                <h3 style="margin-bottom: 15px;">Option 2: Manual Installation (Developer Mode)</h3>
-                <p style="margin-bottom: 20px; color: var(--text-muted);">For developers or if you want to use the latest development version:</p>
+                <h3>Option 2: Manual Installation (Developer Mode)</h3>
+                <p style="margin-bottom: 20px;">For developers or if you want to use the latest development version:</p>
 
                 <div class="instructions">
                     <div class="instruction-step">
@@ -318,24 +408,19 @@
                     <div class="instruction-step">
                         <div class="instruction-content">
                             <h4>Pin the Extension</h4>
-                            <p>Click the puzzle piece icon (🧩) in Chrome's toolbar and pin TrackForcePro for easy access.</p>
+                            <p>Click the puzzle piece icon in Chrome's toolbar and pin TrackForcePro for easy access.</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="screenshot-placeholder">
-                    <div class="placeholder-title">Screenshot: Extension Installed</div>
-                    <div class="placeholder-desc">Shows TrackForcePro in the extensions list with icon visible in toolbar</div>
                 </div>
 
                 <div class="tip">
                     After installation, navigate to any Salesforce page — you'll see a floating <strong>TF button at the bottom-right corner</strong> of the page. Click it to access all TrackForcePro tools instantly!
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- First Launch Section -->
-        <section id="first-launch">
+        <div class="qs-section" id="first-launch">
             <div class="section-header">
                 <h2><span class="step-number">2</span> First Launch</h2>
             </div>
@@ -368,11 +453,11 @@
                 </div>
 
                 <h3>Quick Tools (Built into TF Sidebar)</h3>
-                <p>The sidebar includes built-in quick tools at the top — use them without leaving the current page:</p>
+                <p style="margin-bottom: 16px;">The sidebar includes built-in quick tools at the top — use them without leaving the current page:</p>
                 <div class="feature-grid">
                     <div class="feature-card">
                         <h4>🔓 Login As</h4>
-                        <p>Search for a user and log in as them. Three icon buttons: 🔑 current tab, 🖥️ new window, 🕶️ incognito (preserves your admin session)</p>
+                        <p>Search for a user and log in as them. Three modes: current tab, new window, or incognito (preserves your admin session)</p>
                     </div>
                     <div class="feature-card">
                         <h4>🌐 Language Switcher</h4>
@@ -384,10 +469,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Connecting Section -->
-        <section id="connecting">
+        <div class="qs-section" id="connecting">
             <div class="section-header">
                 <h2><span class="step-number">3</span> Connecting to Salesforce</h2>
             </div>
@@ -416,41 +501,24 @@
                 </div>
 
                 <h3>Connection Status Indicators</h3>
-                <table>
+                <table class="qs-table">
                     <thead>
-                        <tr>
-                            <th>Indicator</th>
-                            <th>Status</th>
-                            <th>What to Do</th>
-                        </tr>
+                        <tr><th>Indicator</th><th>Status</th><th>What to Do</th></tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>🟢 Green</td>
-                            <td>Connected</td>
-                            <td>You're ready to use all features!</td>
-                        </tr>
-                        <tr>
-                            <td>🔴 Red / "Not Connected"</td>
-                            <td>Disconnected</td>
-                            <td>Open a Salesforce tab and log in</td>
-                        </tr>
+                        <tr><td>🟢 Green</td><td>Connected</td><td>You're ready to use all features!</td></tr>
+                        <tr><td>🔴 Red / "Not Connected"</td><td>Disconnected</td><td>Open a Salesforce tab and log in</td></tr>
                     </tbody>
                 </table>
-
-                <div class="screenshot-placeholder">
-                    <div class="placeholder-title">Screenshot: Connected State</div>
-                    <div class="placeholder-desc">Shows the extension with green "Connected" status and org name displayed</div>
-                </div>
 
                 <div class="warning">
                     The extension requires an active Salesforce tab with a valid login session. If you see "Not Connected," ensure you're logged into Salesforce in another tab.
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Features Overview Section -->
-        <section id="features">
+        <div class="qs-section" id="features">
             <div class="section-header">
                 <h2><span class="step-number">4</span> Features Overview</h2>
             </div>
@@ -480,93 +548,35 @@
                 <h3>💾 Data Explorer</h3>
                 <p>Six powerful sub-tools for data exploration, security management, and org administration.</p>
                 <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>🎨 Sandbox & Favicon Manager</h4>
-                        <p>Customize browser tab icons to visually identify different orgs</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>👤 User Manager</h4>
-                        <p>View/search/update users, permissions, sessions, bulk ops, comparison</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🔍 Record Scanner</h4>
-                        <p>Single, bulk, & compare record scanning with FLS and sharing analysis</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🔐 Security Manager</h4>
-                        <p>Browse and inspect Profiles, Permission Sets, and PS Groups</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🏢 Org Tools</h4>
-                        <p>Login As, Custom Labels, Deployments, Scheduled Jobs, Debug Logs, Org Limits</p>
-                    </div>
-                </div>
-                <div class="screenshot-placeholder">
-                    <div class="placeholder-title">Screenshot: Data Explorer - Favicon Manager</div>
-                    <div class="placeholder-desc">Shows org info panel, color picker, label input, and saved favicons list</div>
+                    <div class="feature-card"><h4>🎨 Sandbox &amp; Favicon Manager</h4><p>Customize browser tab icons to visually identify different orgs</p></div>
+                    <div class="feature-card"><h4>👤 User Manager</h4><p>View/search/update users, permissions, sessions, bulk ops, comparison</p></div>
+                    <div class="feature-card"><h4>🔍 Record Scanner</h4><p>Single, bulk, &amp; compare record scanning with FLS and sharing analysis</p></div>
+                    <div class="feature-card"><h4>🔐 Security Manager</h4><p>Browse and inspect Profiles, Permission Sets, and PS Groups</p></div>
+                    <div class="feature-card"><h4>🏢 Org Tools</h4><p>Login As, Custom Labels, Deployments, Scheduled Jobs, Debug Logs, Org Limits</p></div>
                 </div>
 
-                <h3>📡 Platform Events & 📢 LMS</h3>
+                <h3>📡 Platform Events &amp; 📢 LMS</h3>
                 <p>Monitor and publish Platform Events and Lightning Message Service channels.</p>
-                <div class="screenshot-placeholder">
-                    <div class="placeholder-title">Screenshot: Platform Events Monitor</div>
-                    <div class="placeholder-desc">Shows event subscription panel, real-time event log, and publish form</div>
-                </div>
             </div>
-        </section>
+        </div>
 
         <!-- Tab & Window Modes Section -->
-        <section id="tab-window">
+        <div class="qs-section" id="tab-window">
             <div class="section-header">
-                <h2><span class="step-number">5</span> Tab & Window Modes</h2>
+                <h2><span class="step-number">5</span> Tab &amp; Window Modes</h2>
             </div>
             <div class="section-content">
                 <p>TrackForcePro offers flexible ways to open for more screen space.</p>
 
-                <h3>🗂️ Open as Browser Tab (Single Click)</h3>
-                <p>Click the pop button <code>⧉</code> in the header to open TrackForcePro as a new browser tab.</p>
-                <div class="screenshot-placeholder">
-                    <div class="placeholder-title">Screenshot: TrackForcePro in Browser Tab</div>
-                    <div class="placeholder-desc">Shows extension running as a full browser tab with tab bar visible</div>
-                </div>
-
-                <h3>🪟 Open as Standalone Window (Shift+Click)</h3>
-                <p>Hold <kbd>Shift</kbd> and click the pop button to open in a separate window.</p>
-                <div class="screenshot-placeholder">
-                    <div class="placeholder-title">Screenshot: TrackForcePro Standalone Window</div>
-                    <div class="placeholder-desc">Shows extension in a separate popup window with org name in title bar</div>
-                </div>
-
-                <h3>Quick Reference</h3>
-                <table>
+                <table class="qs-table">
                     <thead>
-                        <tr>
-                            <th>Current Mode</th>
-                            <th>Action</th>
-                            <th>Result</th>
-                        </tr>
+                        <tr><th>Current Mode</th><th>Action</th><th>Result</th></tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Popup</td>
-                            <td>Click pop button</td>
-                            <td>Opens as browser tab</td>
-                        </tr>
-                        <tr>
-                            <td>Popup</td>
-                            <td><kbd>Shift</kbd> + Click pop button</td>
-                            <td>Opens as standalone window</td>
-                        </tr>
-                        <tr>
-                            <td>Tab</td>
-                            <td>Click pop button</td>
-                            <td>Closes the tab</td>
-                        </tr>
-                        <tr>
-                            <td>Window</td>
-                            <td>Click pop button</td>
-                            <td>Opens as tab, closes window</td>
-                        </tr>
+                        <tr><td>Popup</td><td>Click pop button</td><td>Opens as browser tab</td></tr>
+                        <tr><td>Popup</td><td><kbd>Shift</kbd> + Click pop button</td><td>Opens as standalone window</td></tr>
+                        <tr><td>Tab</td><td>Click pop button</td><td>Closes the tab</td></tr>
+                        <tr><td>Window</td><td>Click pop button</td><td>Opens as tab, closes window</td></tr>
                     </tbody>
                 </table>
 
@@ -574,98 +584,38 @@
                     Your session and query state are automatically transferred when switching between modes!
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Keyboard Shortcuts Section -->
-        <section id="shortcuts">
+        <div class="qs-section" id="shortcuts">
             <div class="section-header">
                 <h2><span class="step-number">6</span> Keyboard Shortcuts</h2>
             </div>
             <div class="section-content">
-                <h3>General</h3>
-                <table>
+                <table class="qs-table">
                     <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Windows/Linux</th>
-                            <th>Mac</th>
-                        </tr>
+                        <tr><th>Action</th><th>Windows/Linux</th><th>Mac</th></tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Copy</td>
-                            <td><kbd>Ctrl</kbd> + <kbd>C</kbd></td>
-                            <td><kbd>Cmd</kbd> + <kbd>C</kbd></td>
-                        </tr>
-                        <tr>
-                            <td>Paste</td>
-                            <td><kbd>Ctrl</kbd> + <kbd>V</kbd></td>
-                            <td><kbd>Cmd</kbd> + <kbd>V</kbd></td>
-                        </tr>
-                        <tr>
-                            <td>Select All</td>
-                            <td><kbd>Ctrl</kbd> + <kbd>A</kbd></td>
-                            <td><kbd>Cmd</kbd> + <kbd>A</kbd></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3>Window & Tab Actions</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Shortcut</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Pop-out Window</td>
-                            <td>Click pop button</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3>Query Editors</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Key</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Execute Search</td>
-                            <td><kbd>Enter</kbd></td>
-                        </tr>
-                        <tr>
-                            <td>Move to Next Field</td>
-                            <td><kbd>Tab</kbd></td>
-                        </tr>
-                        <tr>
-                            <td>Move to Previous Field</td>
-                            <td><kbd>Shift</kbd> + <kbd>Tab</kbd></td>
-                        </tr>
+                        <tr><td>Command Palette</td><td><kbd>Ctrl</kbd> + <kbd>K</kbd></td><td><kbd>Cmd</kbd> + <kbd>K</kbd></td></tr>
+                        <tr><td>Open Extension</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td><td><kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td></tr>
+                        <tr><td>Execute Query</td><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td><kbd>Cmd</kbd> + <kbd>Enter</kbd></td></tr>
+                        <tr><td>Save Query</td><td><kbd>Ctrl</kbd> + <kbd>S</kbd></td><td><kbd>Cmd</kbd> + <kbd>S</kbd></td></tr>
+                        <tr><td>Close / Cancel</td><td colspan="2"><kbd>Esc</kbd></td></tr>
                     </tbody>
                 </table>
             </div>
-        </section>
+        </div>
 
         <!-- Troubleshooting Section -->
-        <section id="troubleshooting">
+        <div class="qs-section" id="troubleshooting">
             <div class="section-header">
                 <h2><span class="step-number">7</span> Troubleshooting</h2>
             </div>
             <div class="section-content">
                 <h3>Common Issues</h3>
 
-                <h4>❌ "Not Connected" Error</h4>
-                <div class="screenshot-placeholder small">
-                    <div class="placeholder-title">Screenshot: Not Connected State</div>
-                    <div class="placeholder-desc">Shows red status indicator</div>
-                </div>
-                <p><strong>Solutions:</strong></p>
+                <h4 style="margin-top: 20px; color: var(--danger);">❌ "Not Connected" Error</h4>
                 <ul style="margin-left: 20px; margin-bottom: 20px;">
                     <li>Open a new tab and log into Salesforce</li>
                     <li>Make sure the Salesforce tab stays open</li>
@@ -673,8 +623,7 @@
                     <li>Close and reopen the extension</li>
                 </ul>
 
-                <h4>❌ Objects Not Loading</h4>
-                <p><strong>Solutions:</strong></p>
+                <h4 style="color: var(--danger);">❌ Objects Not Loading</h4>
                 <ul style="margin-left: 20px; margin-bottom: 20px;">
                     <li>Check your internet connection</li>
                     <li>Verify you're logged into Salesforce</li>
@@ -682,89 +631,71 @@
                     <li>Check the browser console for errors (F12 → Console)</li>
                 </ul>
 
-                <h4>❌ Favicon Not Appearing</h4>
-                <p><strong>Solutions:</strong></p>
-                <ul style="margin-left: 20px; margin-bottom: 20px;">
-                    <li>Refresh the Salesforce page after applying</li>
-                    <li>Try closing and reopening the Salesforce tab</li>
-                    <li>Verify the favicon was saved (check Saved Favicons list)</li>
-                </ul>
-
                 <h3>Error Messages</h3>
-                <table>
+                <table class="qs-table">
                     <thead>
-                        <tr>
-                            <th>Error</th>
-                            <th>Meaning</th>
-                            <th>Solution</th>
-                        </tr>
+                        <tr><th>Error</th><th>Meaning</th><th>Solution</th></tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>"No access token"</td>
-                            <td>Session expired</td>
-                            <td>Log into Salesforce again</td>
-                        </tr>
-                        <tr>
-                            <td>"Invalid ID length"</td>
-                            <td>Wrong ID format</td>
-                            <td>Use 15 or 18 character ID</td>
-                        </tr>
-                        <tr>
-                            <td>"Handshake failed"</td>
-                            <td>Streaming connection issue</td>
-                            <td>Refresh and reconnect</td>
-                        </tr>
+                        <tr><td>"No access token"</td><td>Session expired</td><td>Log into Salesforce again</td></tr>
+                        <tr><td>"Invalid ID length"</td><td>Wrong ID format</td><td>Use 15 or 18 character ID</td></tr>
+                        <tr><td>"Handshake failed"</td><td>Streaming connection issue</td><td>Refresh and reconnect</td></tr>
                     </tbody>
                 </table>
             </div>
-        </section>
+        </div>
 
-        <!-- Quick Start Checklist -->
-        <section>
+        <!-- Checklist -->
+        <div class="qs-section">
             <div class="section-header">
                 <h2>✅ Quick Start Checklist</h2>
             </div>
-            <div class="section-content">
-                <div style="font-size: 1.1rem; line-height: 2;">
-                    <p>☐ Downloaded and extracted TrackForcePro</p>
-                    <p>☐ Enabled Developer Mode in Chrome</p>
-                    <p>☐ Loaded the extension using "Load unpacked"</p>
-                    <p>☐ Pinned TrackForcePro to toolbar</p>
-                    <p>☐ Logged into Salesforce in a browser tab</p>
-                    <p>☐ Opened TrackForcePro and verified "Connected" status</p>
-                    <p>☐ Tried opening as a tab (single click on pop button)</p>
-                    <p>☐ Explored the main features!</p>
-                </div>
+            <div class="section-content checklist">
+                <p><span class="check-box" onclick="this.classList.toggle('checked')"></span> Downloaded and extracted TrackForcePro</p>
+                <p><span class="check-box" onclick="this.classList.toggle('checked')"></span> Enabled Developer Mode in Chrome</p>
+                <p><span class="check-box" onclick="this.classList.toggle('checked')"></span> Loaded the extension using "Load unpacked"</p>
+                <p><span class="check-box" onclick="this.classList.toggle('checked')"></span> Pinned TrackForcePro to toolbar</p>
+                <p><span class="check-box" onclick="this.classList.toggle('checked')"></span> Logged into Salesforce in a browser tab</p>
+                <p><span class="check-box" onclick="this.classList.toggle('checked')"></span> Opened TrackForcePro and verified "Connected" status</p>
+                <p><span class="check-box" onclick="this.classList.toggle('checked')"></span> Tried opening as a tab (single click on pop button)</p>
+                <p><span class="check-box" onclick="this.classList.toggle('checked')"></span> Explored the main features!</p>
             </div>
-        </section>
+        </div>
 
-        <!-- Test Your Knowledge CTA -->
-        <section style="background: linear-gradient(135deg, #014486 0%, #0176d3 50%, #1b96ff 100%); color: white; border-radius: 12px; text-align: center;">
-            <div class="section-content" style="padding: 40px 30px;">
-                <div style="font-size: 3rem; margin-bottom: 12px;">🎮</div>
-                <h2 style="margin-bottom: 8px; font-size: 1.5rem;">Test Your TrackForcePro Knowledge!</h2>
-                <p style="opacity: 0.9; margin-bottom: 24px; font-size: 1rem;">Take the interactive challenge — 7 game modes including Knowledge Quiz, Speed Round, True or False, Fill the Blank, Scenario Challenge, and Survival Mode!</p>
-                <a href="quiz.html" style="display: inline-block; background: white; color: #0176d3; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.05rem; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">🚀 Play the Quiz</a>
-            </div>
-        </section>
+        <!-- Quiz CTA -->
+        <div class="cta-banner">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🎮</div>
+            <h2 style="margin-bottom: 8px; font-size: 1.5rem;">Test Your TrackForcePro Knowledge!</h2>
+            <p style="opacity: 0.9; margin-bottom: 24px; font-size: 1rem;">Take the interactive challenge — 7 game modes including Knowledge Quiz, Speed Round, True or False, Fill the Blank, Scenario Challenge, and Survival Mode!</p>
+            <a href="quiz.html" class="site-btn site-btn-lg site-btn-pill" style="background: white; color: #032d60; font-weight: 700;">
+                Play the Quiz
+            </a>
+        </div>
 
     </div>
 
     <footer class="site-footer">
         <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
         <div class="footer-links">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
-            <a href="help.html">💡 Help &amp; Support</a>
+            <a href="help.html">Help &amp; Support</a>
             <span class="sep">·</span>
-            <a href="index.html">📚 Documentation</a>
+            <a href="index.html">Documentation</a>
             <span class="sep">·</span>
-            <a href="quiz.html">🎮 Quiz &amp; Games</a>
+            <a href="quiz.html">Quiz &amp; Games</a>
         </div>
-        <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
     </footer>
+
+    <script>
+    /* Interactive checklist */
+    document.querySelectorAll('.check-box').forEach(function(box) {
+        box.addEventListener('click', function() {
+            this.textContent = this.classList.contains('checked') ? '✓' : '';
+        });
+    });
+    </script>
 
 </body>
 </html>
-

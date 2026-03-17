@@ -8,71 +8,87 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
     <link rel="stylesheet" href="shared.css">
-    <script>
-        (function() {
-            if (window.location.hostname.includes('github.io')) {
-                var repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
-                var basePath = '/' + repoName + '/icons/';
-                document.getElementById('fav32').href = basePath + 'Icon-32.png';
-                document.getElementById('fav16').href = basePath + 'Icon-16.png';
-                document.getElementById('favshort').href = basePath + 'Icon-32.png';
-                var logo = document.getElementById('header-logo');
-                if (logo) logo.src = basePath + 'Icon-32.png';
-            }
-        })();
-    </script>
+    <style>
+        .site-section p { margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; }
+        .site-section ul { margin-top: 12px; padding-left: 20px; }
+        .site-section li { margin-bottom: 8px; color: var(--text-secondary); line-height: 1.6; }
+        .site-section li strong { color: var(--text); }
+
+        .privacy-shield {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--bg-alt);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .privacy-shield .shield-icon { font-size: 2.5rem; flex-shrink: 0; }
+        .privacy-shield .shield-text { font-size: 0.95rem; color: var(--text-secondary); }
+        .privacy-shield .shield-text strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 1rem; }
+    </style>
+    <script src="theme.js"></script>
 </head>
 <body>
 
     <nav class="site-nav">
         <div class="site-nav-inner">
-            <a href="index.html">🏠 Home</a>
-            <a href="quick-start-guide.html">🚀 Quick Start</a>
-            <a href="documentation.html">📖 Docs</a>
-            <a href="help.html">💡 Help</a>
-            <a href="quiz.html">🎮 Quiz &amp; Games</a>
-            <a href="leaderboard.html">🏆 Leaderboard</a>
-            <a href="privacy-policy.html" class="active">🔐 Privacy</a>
+            <a href="index.html">Home</a>
+            <a href="quick-start-guide.html">Quick Start</a>
+            <a href="documentation.html">Docs</a>
+            <a href="help.html">Help</a>
+            <a href="quiz.html">Quiz &amp; Games</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="privacy-policy.html" class="active">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
         </div>
     </nav>
 
     <div class="site-hero">
-        <img src="../icons/Icon-32.png" alt="TrackForcePro" class="hero-logo" style="width: 56px; height: 56px; border-radius: 12px;" id="header-logo">
-        <h1>🔐 Privacy Policy</h1>
+        <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" style="width: 64px; height: 64px;">
+        <h1>Privacy Policy</h1>
         <p>How TrackForcePro handles your data — transparently and securely</p>
         <span class="version-badge">Last updated: March 16, 2026</span>
     </div>
 
     <div class="site-container narrow">
 
-        <div class="site-highlight">
-            <strong>Summary:</strong> TrackForcePro does not collect, store, or transmit any personal data to external servers. All data processing occurs locally in your browser.
+        <div class="privacy-shield animate-in">
+            <div class="shield-icon">🛡️</div>
+            <div class="shield-text">
+                <strong>Zero Data Collection</strong>
+                TrackForcePro does not collect, store, or transmit any personal data to external servers. All data processing occurs locally in your browser.
+            </div>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">1. Introduction</h2>
             <p>TrackForcePro ("the Extension") is a Chrome browser extension designed to help Salesforce administrators and developers with audit extraction, query building, and data exploration. This Privacy Policy explains how the Extension handles your data.</p>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">2. Data Collection</h2>
             <p><strong>We do not collect any personal data.</strong> The Extension operates entirely within your browser and does not send any information to external servers owned or operated by us.</p>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">3. Data Processing</h2>
             <p>The Extension processes the following data locally in your browser:</p>
-            <ul style="margin-top: 12px; padding-left: 20px;">
+            <ul>
                 <li><strong>Salesforce Session Data:</strong> Used to authenticate API calls to your Salesforce org. This data is never stored or transmitted externally.</li>
                 <li><strong>User Preferences:</strong> Settings such as tab visibility, custom favicons, and saved queries are stored locally using Chrome's storage API.</li>
                 <li><strong>Query Results:</strong> Data retrieved from Salesforce is displayed in the Extension and is not stored persistently unless you export it.</li>
             </ul>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">4. Permissions Explained</h2>
             <p>The Extension requests the following browser permissions:</p>
-            <ul style="margin-top: 12px; padding-left: 20px;">
+            <ul>
                 <li><strong>Tabs:</strong> To detect active Salesforce tabs and provide context-aware features.</li>
                 <li><strong>Cookies:</strong> To access Salesforce session cookies for authentication purposes only.</li>
                 <li><strong>Storage:</strong> To save your preferences locally in the browser.</li>
@@ -81,42 +97,42 @@
             </ul>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">5. Third-Party Services</h2>
             <p>The Extension communicates only with Salesforce domains that you are actively logged into. We do not integrate with any analytics, advertising, or other third-party services.</p>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">6. Data Security</h2>
             <p>Since all data remains in your browser:</p>
-            <ul style="margin-top: 12px; padding-left: 20px;">
+            <ul>
                 <li>Your Salesforce credentials are never exposed to us</li>
                 <li>Your query results and audit data remain on your device</li>
                 <li>Exported files are saved directly to your computer</li>
             </ul>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">7. Data Retention</h2>
             <p>User preferences stored via Chrome's storage API persist until you:</p>
-            <ul style="margin-top: 12px; padding-left: 20px;">
+            <ul>
                 <li>Clear the Extension's data through Chrome settings</li>
                 <li>Uninstall the Extension</li>
                 <li>Manually reset settings within the Extension</li>
             </ul>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">8. Children's Privacy</h2>
             <p>The Extension is designed for professional use by Salesforce administrators and developers. It is not intended for use by children under 13 years of age.</p>
         </div>
 
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">9. Changes to This Policy</h2>
             <p>We may update this Privacy Policy from time to time. Any changes will be reflected in the "Last updated" date at the top of this page. Continued use of the Extension after changes constitutes acceptance of the updated policy.</p>
         </div>
 
-        <div class="site-contact">
+        <div class="site-contact animate-in">
             <h2 class="site-section-title">10. Contact Information</h2>
             <p>If you have any questions about this Privacy Policy or the Extension's data practices, please contact the developer:</p>
             <p style="margin-top: 12px;"><strong>Developer:</strong> Manas Kumar Behera</p>
@@ -129,15 +145,15 @@
     <footer class="site-footer">
         <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
         <div class="footer-links">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
-            <a href="index.html">📚 Documentation</a>
+            <a href="index.html">Documentation</a>
             <span class="sep">·</span>
-            <a href="help.html">💡 Help</a>
+            <a href="help.html">Help</a>
             <span class="sep">·</span>
-            <a href="quick-start-guide.html">🚀 Quick Start</a>
+            <a href="quick-start-guide.html">Quick Start</a>
         </div>
-        <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
     </footer>
 
 </body>

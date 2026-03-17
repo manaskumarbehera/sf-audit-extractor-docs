@@ -9,40 +9,91 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
     <link rel="stylesheet" href="shared.css">
-    <script>
-        (function() {
-            const isGitHubPages = window.location.hostname.includes('github.io');
-            if (isGitHubPages) {
-                const repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
-                const basePath = '/' + repoName + '/icons/';
-                document.getElementById('fav32').href = basePath + 'Icon-32.png';
-                document.getElementById('fav16').href = basePath + 'Icon-16.png';
-                document.getElementById('favshort').href = basePath + 'Icon-32.png';
-                var logo = document.getElementById('header-logo');
-                if (logo) logo.src = basePath + 'Icon-128.png';
-            }
-        })();
-    </script>
+    <script src="theme.js"></script>
+    <style>
+        /* ── Page-specific: Stats Banner ── */
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin: -28px auto 32px;
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+        .stat-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        .stat-pill:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .stat-pill .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--primary); letter-spacing: -0.03em; }
+        .stat-pill .stat-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-top: 2px; }
+
+        /* ── CTA Section ── */
+        .cta-section {
+            background: linear-gradient(135deg, #032d60, #0176d3);
+            border-radius: var(--radius-xl);
+            padding: 48px 32px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        [data-theme="dark"] .cta-section {
+            background: linear-gradient(135deg, #0b2645, #0176d3);
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+        .cta-section > * { position: relative; z-index: 1; }
+        .cta-section h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
+        .cta-section p { opacity: 0.9; margin-bottom: 24px; font-size: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    </style>
 </head>
 <body>
 
     <nav class="site-nav">
         <div class="site-nav-inner">
-            <a href="index.html" class="active">🏠 Home</a>
-            <a href="quick-start-guide.html">🚀 Quick Start</a>
-            <a href="documentation.html">📖 Docs</a>
-            <a href="help.html">💡 Help</a>
-            <a href="quiz.html">🎮 Quiz &amp; Games</a>
-            <a href="leaderboard.html">🏆 Leaderboard</a>
-            <a href="privacy-policy.html">🔐 Privacy</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="quick-start-guide.html">Quick Start</a>
+            <a href="documentation.html">Docs</a>
+            <a href="help.html">Help</a>
+            <a href="quiz.html">Quiz &amp; Games</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
         </div>
     </nav>
 
     <div class="site-hero">
         <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
         <h1>TrackForcePro</h1>
-        <p>Salesforce Admin &amp; Developer Toolkit</p>
-        <div style="margin-top: 16px;">
+        <p>The complete Salesforce Admin &amp; Developer Toolkit — right inside your browser.</p>
+        <div style="margin-top: 20px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="site-btn site-btn-success site-btn-lg site-btn-pill">
+                Install Free
+            </a>
+            <a href="quick-start-guide.html" class="site-btn site-btn-outline site-btn-lg site-btn-pill" style="border-color: rgba(255,255,255,0.4); color: white;">
+                Quick Start Guide
+            </a>
+        </div>
+        <div style="margin-top: 12px;">
             <select id="version-select" class="site-version-select">
                 <option value="1.6.2">v1.6.2 (Latest)</option>
                 <option value="1.3.7">v1.3.7</option>
@@ -54,156 +105,178 @@
         </div>
     </div>
 
+    <!-- Stats Banner -->
+    <div class="site-container narrow" style="padding-bottom: 0;">
+        <div class="stats-banner animate-in">
+            <div class="stat-pill">
+                <div class="stat-num">9</div>
+                <div class="stat-label">Power Tools</div>
+            </div>
+            <div class="stat-pill">
+                <div class="stat-num">130+</div>
+                <div class="stat-label">Quiz Questions</div>
+            </div>
+            <div class="stat-pill">
+                <div class="stat-num">7</div>
+                <div class="stat-label">Game Modes</div>
+            </div>
+            <div class="stat-pill">
+                <div class="stat-num">0</div>
+                <div class="stat-label">Data Collected</div>
+            </div>
+        </div>
+    </div>
+
     <div class="site-container narrow">
-        <h2 class="site-section-title">📚 Documentation</h2>
+        <h2 class="site-section-title" style="border-bottom: none; padding-bottom: 0;">Explore</h2>
 
         <div class="site-card-grid">
-            <a href="documentation.html" class="site-card">
+            <a href="documentation.html" class="site-card animate-in">
                 <div class="card-icon">📖</div>
                 <h2>Full Documentation</h2>
                 <p>Complete documentation with version history. Select any version to view its docs.</p>
-                <span class="site-badge primary">New</span>
+                <span class="site-badge primary">Comprehensive</span>
             </a>
 
-            <a href="quick-start-guide.html" class="site-card">
+            <a href="quick-start-guide.html" class="site-card animate-in">
                 <div class="card-icon">🚀</div>
                 <h2>Quick Start Guide</h2>
                 <p>Visual walkthrough with step-by-step instructions to install and start using TrackForcePro.</p>
                 <span class="site-badge success">Recommended</span>
             </a>
 
-            <a href="privacy-policy.html" class="site-card">
+            <a href="privacy-policy.html" class="site-card animate-in">
                 <div class="card-icon">🔐</div>
                 <h2>Privacy Policy</h2>
                 <p>Learn how TrackForcePro handles your data. No external servers, all data stays local.</p>
+                <span class="site-badge accent">Zero Collection</span>
             </a>
 
-            <a href="help.html" class="site-card">
+            <a href="help.html" class="site-card animate-in">
                 <div class="card-icon">💡</div>
                 <h2>Help &amp; Support</h2>
                 <p>Complete help documentation, FAQs, troubleshooting, and support resources.</p>
             </a>
 
-            <a href="quiz.html" class="site-card">
+            <a href="quiz.html" class="site-card animate-in">
                 <div class="card-icon">🎮</div>
                 <h2>Quiz &amp; Games</h2>
                 <p>Test your Salesforce toolkit knowledge with interactive quizzes, feature matching, and speed challenges!</p>
-                <span class="site-badge fun">Fun</span>
+                <span class="site-badge fun">7 Modes</span>
             </a>
 
-            <a href="leaderboard.html" class="site-card">
+            <a href="leaderboard.html" class="site-card animate-in">
                 <div class="card-icon">🏆</div>
                 <h2>Leaderboard</h2>
                 <p>See top scores, track your progress, and compete with other players across all quiz game modes.</p>
-                <span class="site-badge primary">New</span>
+                <span class="site-badge warning">Compete</span>
             </a>
 
-            <a href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" class="site-card" target="_blank">
+            <a href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" class="site-card animate-in" target="_blank">
                 <div class="card-icon">🐛</div>
                 <h2>Report Issue</h2>
                 <p>Found a bug or have a feature request? Submit an issue on GitHub.</p>
             </a>
         </div>
 
+        <!-- Key Features -->
         <div style="margin-top: 48px;">
-            <h2 class="site-section-title">✨ Key Features (v1.6.2)</h2>
+            <h2 class="site-section-title">Key Features</h2>
 
             <div class="site-feature-grid">
-                <div class="site-feature-item">
+                <div class="site-feature-item animate-in">
                     <h4>🔍 Audit Trail</h4>
-                    <p>Extract and export setup audit logs</p>
+                    <p>Extract and export setup audit logs with advanced filtering</p>
                 </div>
-                <div class="site-feature-item">
+                <div class="site-feature-item animate-in">
                     <h4>🔗 GraphQL Builder</h4>
-                    <p>Visual query composition for UI API</p>
+                    <p>Visual query composition for Salesforce UI API</p>
                 </div>
-                <div class="site-feature-item">
+                <div class="site-feature-item animate-in">
                     <h4>📊 SOQL Builder</h4>
-                    <p>Build queries with filters &amp; ordering</p>
+                    <p>Build queries with filters, ordering &amp; limits</p>
                 </div>
-                <div class="site-feature-item">
+                <div class="site-feature-item animate-in">
                     <h4>🔬 Record Scanner</h4>
                     <p>Single, bulk, &amp; compare record scanning</p>
                 </div>
-                <div class="site-feature-item">
+                <div class="site-feature-item animate-in">
                     <h4>🔐 Security Manager</h4>
                     <p>Profiles, Permission Sets, PS Groups</p>
                 </div>
-                <div class="site-feature-item">
+                <div class="site-feature-item animate-in">
                     <h4>🏢 Org Tools</h4>
                     <p>Login As, Labels, Deployments, Limits</p>
                 </div>
-                <div class="site-feature-item">
+                <div class="site-feature-item animate-in">
                     <h4>📡 Platform Events</h4>
                     <p>Monitor and publish events in real-time</p>
                 </div>
-                <div class="site-feature-item">
+                <div class="site-feature-item animate-in">
                     <h4>🧭 TF Sidebar</h4>
                     <p>Customizable shortcuts on SF pages</p>
                 </div>
             </div>
         </div>
 
-        <div class="site-section site-changelog" style="margin-top: 32px;">
-            <h2 class="site-section-title">📋 Recent Changes</h2>
+        <!-- Changelog -->
+        <div class="site-section site-changelog" style="margin-top: 36px;">
+            <h2 class="site-section-title">Recent Changes</h2>
 
-            <h4>v1.6.2 - March 16, 2026 (Latest)</h4>
+            <h4>v1.6.2 — March 16, 2026 (Latest)</h4>
             <ul>
-                <li>🏆 <strong>Leaderboard Page</strong> — dedicated page with player stats, mode filtering, search, accuracy bars, and CSV export</li>
-                <li>💾 <strong>Server-Side Scores</strong> — leaderboard API on Heroku (<code>/api/leaderboard</code>) with localStorage fallback for GitHub Pages</li>
-                <li>🔗 <strong>Cross-page Navigation</strong> — leaderboard links from quiz results, quiz leaderboard tab, and docs index</li>
+                <li><strong>Leaderboard Page</strong> — dedicated page with player stats, mode filtering, search, accuracy bars, and CSV export</li>
+                <li><strong>Server-Side Scores</strong> — leaderboard API on Heroku (<code>/api/leaderboard</code>) with localStorage fallback for GitHub Pages</li>
+                <li><strong>Cross-page Navigation</strong> — leaderboard links from quiz results, quiz leaderboard tab, and docs index</li>
             </ul>
 
-            <h4>v1.6.0 - March 16, 2026</h4>
+            <h4>v1.6.0 — March 16, 2026</h4>
             <ul>
-                <li>🎨 <strong>UI Modernization</strong> — glassmorphism, refined typography (Inter), smoother animations, modern color palette</li>
-                <li>🖌️ <strong>Modern Tab Design</strong> — pill-shaped tabs with active glow, hover micro-interactions</li>
-                <li>✨ <strong>Enhanced Modals</strong> — frosted glass backdrop, spring-like entrance animations</li>
-                <li>⌨️ <strong>Command Palette Fix</strong> — overlay no longer sticks after selecting a command</li>
-                <li>📄 <strong>Docs Redesign</strong> — all documentation pages modernized with gradient hero, glassmorphism cards</li>
-                <li>🔍 <strong>Shortcut Hint</strong> — Command Palette shows platform-aware shortcut (⌘K / Ctrl+K) in placeholder</li>
+                <li><strong>UI Modernization</strong> — glassmorphism, refined typography (Inter), smoother animations, modern color palette</li>
+                <li><strong>Modern Tab Design</strong> — pill-shaped tabs with active glow, hover micro-interactions</li>
+                <li><strong>Enhanced Modals</strong> — frosted glass backdrop, spring-like entrance animations</li>
+                <li><strong>Command Palette Fix</strong> — overlay no longer sticks after selecting a command</li>
+                <li><strong>Docs Redesign</strong> — all documentation pages modernized with gradient hero, glassmorphism cards</li>
             </ul>
 
-            <h4>v1.5.0 - March 16, 2026</h4>
+            <h4>v1.5.0 — March 16, 2026</h4>
             <ul>
-                <li>⚡ <strong>Show All Data</strong> — floating inspector button injected directly on Salesforce record pages</li>
-                <li>🔍 <strong>Command Palette</strong> (Ctrl+K / Cmd+K) — global search with 13+ commands and record ID auto-detection</li>
-                <li>🖱️ <strong>Context Menu</strong> — right-click on SF pages for Show All Data, Field History, Sharing, SOQL Builder, Copy Record ID</li>
-                <li>✏️ <strong>Inline Field Editing</strong> — double-click any field in All Fields inspector to edit with type-aware inputs</li>
-                <li>🔗 <strong>Record Breadcrumbs &amp; Pinned Records</strong> — navigate lookup chains with breadcrumb trail, pin favorites</li>
+                <li><strong>Show All Data</strong> — floating inspector button injected directly on Salesforce record pages</li>
+                <li><strong>Command Palette</strong> (Ctrl+K / Cmd+K) — global search with 13+ commands and record ID auto-detection</li>
+                <li><strong>Context Menu</strong> — right-click on SF pages for Show All Data, Field History, Sharing, SOQL Builder, Copy Record ID</li>
+                <li><strong>Inline Field Editing</strong> — double-click any field in All Fields inspector to edit with type-aware inputs</li>
+                <li><strong>Record Breadcrumbs &amp; Pinned Records</strong> — navigate lookup chains with breadcrumb trail, pin favorites</li>
             </ul>
+        </div>
 
-            <h4>v1.4.4 - March 16, 2026</h4>
-            <ul>
-                <li>🎨 Shape rendering overhaul — cloud, sfcloud, shield redesigned with clean bezier paths</li>
-                <li>🏷️ Custom Labels: removed SOQL LIMIT 2000, added client-side pagination</li>
-            </ul>
-
-            <h4>v1.3.7 - March 15, 2026</h4>
-            <ul>
-                <li>🧩 New game modes — Fill in the Blank, Survival Mode</li>
-                <li>📖 TF Sidebar footer: Learn &amp; Quiz links</li>
-                <li>Total: 7 game modes, 130+ questions</li>
-            </ul>
+        <!-- CTA Section -->
+        <div class="cta-section animate-in">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🎮</div>
+            <h2>Test Your Knowledge!</h2>
+            <p>7 game modes, 130+ questions — see how well you know TrackForcePro!</p>
+            <a href="quiz.html" class="site-btn site-btn-lg site-btn-pill" style="background: white; color: #032d60; font-weight: 700;">
+                Play the Quiz
+            </a>
         </div>
     </div>
 
     <footer class="site-footer">
         <p><strong>TrackForcePro</strong> — Open Source Chrome Extension</p>
         <div class="footer-links">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
-            <a href="help.html">💡 Help</a>
+            <a href="help.html">Help</a>
             <span class="sep">·</span>
-            <a href="leaderboard.html">🏆 Leaderboard</a>
+            <a href="leaderboard.html">Leaderboard</a>
             <span class="sep">·</span>
-            <a href="privacy-policy.html">🔐 Privacy Policy</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
             <span class="sep">·</span>
-            <a href="quick-start-guide.html">🚀 Quick Start</a>
+            <a href="quick-start-guide.html">Quick Start</a>
         </div>
-        <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
     </footer>
+
+    <!-- Theme managed by theme.js -->
 
 </body>
 </html>
-

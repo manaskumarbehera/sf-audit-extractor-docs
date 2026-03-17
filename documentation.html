@@ -8,19 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-    <script>
-        (function() {
-            if (window.location.hostname.includes('github.io')) {
-                var repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
-                var basePath = '/' + repoName + '/icons/';
-                document.getElementById('fav32').href = basePath + 'Icon-32.png';
-                document.getElementById('fav16').href = basePath + 'Icon-16.png';
-                document.getElementById('favshort').href = basePath + 'Icon-32.png';
-                var logo = document.getElementById('header-logo');
-                if (logo) logo.src = basePath + 'Icon-32.png';
-            }
-        })();
-    </script>
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="shared.css">
     <style>
         /* ── Documentation-specific overrides ── */
@@ -33,6 +21,14 @@
             --gray-900: #181818;
         }
 
+        [data-theme="dark"] {
+            --gray-100: #2a2a2a;
+            --gray-200: #383838;
+            --gray-300: #4a4a4a;
+            --gray-600: #a0a0a0;
+            --gray-800: #d4d4d4;
+            --gray-900: #e8e8e8;
+        }
 
         /* Sticky Navigation — handled by shared.css .site-nav */
 
@@ -105,13 +101,14 @@
         /* Sidebar */
         .sidebar {
             width: 280px;
-            background: white;
-            border-right: 1px solid var(--gray-200);
+            background: var(--card-bg);
+            border-right: 1px solid var(--border);
             padding: 20px 0;
             overflow-y: auto;
             position: sticky;
             top: 140px;
             max-height: calc(100vh - 140px);
+            transition: background var(--transition-normal), color var(--transition-normal);
         }
 
         .sidebar-section {
@@ -126,6 +123,7 @@
             color: var(--gray-600);
             padding: 0 20px;
             margin-bottom: 8px;
+            transition: color var(--transition-normal);
         }
 
         .sidebar-nav {
@@ -155,6 +153,14 @@
             font-weight: 600;
         }
 
+        [data-theme="dark"] .sidebar-nav li a {
+            color: var(--gray-800);
+        }
+
+        [data-theme="dark"] .sidebar-nav li a:hover {
+            background: var(--gray-200);
+        }
+
         .sidebar-nav li a .badge {
             font-size: 10px;
             background: var(--success);
@@ -178,13 +184,15 @@
         .content-header {
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--border);
+            transition: border var(--transition-normal);
         }
 
         .content-header h2 {
             font-size: 28px;
             color: var(--gray-900);
             margin-bottom: 8px;
+            transition: color var(--transition-normal);
         }
 
         .content-header .version-badge {
@@ -201,16 +209,18 @@
             color: var(--gray-600);
             font-size: 14px;
             margin-top: 8px;
+            transition: color var(--transition-normal);
         }
 
         /* Documentation Sections */
         .doc-section {
-            background: white;
+            background: var(--card-bg);
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 24px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
             scroll-margin-top: 180px;
+            transition: background var(--transition-normal), color var(--transition-normal);
         }
 
         .doc-section h3 {
@@ -220,6 +230,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: color var(--transition-normal);
         }
 
         .doc-section h3 .icon {
@@ -230,11 +241,13 @@
             font-size: 16px;
             color: var(--gray-800);
             margin: 20px 0 12px;
+            transition: color var(--transition-normal);
         }
 
         .doc-section p {
             color: var(--gray-800);
             margin-bottom: 12px;
+            transition: color var(--transition-normal);
         }
 
         .doc-section ul, .doc-section ol {
@@ -245,6 +258,7 @@
         .doc-section li {
             margin-bottom: 8px;
             color: var(--gray-800);
+            transition: color var(--transition-normal);
         }
 
         .doc-section code {
@@ -254,6 +268,7 @@
             font-family: 'SF Mono', Monaco, Consolas, monospace;
             font-size: 13px;
             color: var(--danger);
+            transition: background var(--transition-normal), color var(--transition-normal);
         }
 
         .doc-section pre {
@@ -263,6 +278,11 @@
             border-radius: 8px;
             overflow-x: auto;
             margin: 16px 0;
+            transition: background var(--transition-normal);
+        }
+
+        [data-theme="dark"] .doc-section pre {
+            background: #1a1a1a;
         }
 
         .doc-section pre code {
@@ -284,18 +304,21 @@
             border-radius: 10px;
             padding: 20px;
             border-left: 4px solid var(--primary);
+            transition: background var(--transition-normal), color var(--transition-normal);
         }
 
         .feature-card h5 {
             font-size: 15px;
             color: var(--gray-900);
             margin-bottom: 8px;
+            transition: color var(--transition-normal);
         }
 
         .feature-card p {
             font-size: 13px;
             color: var(--gray-600);
             margin: 0;
+            transition: color var(--transition-normal);
         }
 
         /* Tables */
@@ -308,7 +331,8 @@
         .doc-table th, .doc-table td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--border);
+            transition: border var(--transition-normal);
         }
 
         .doc-table th {
@@ -317,10 +341,17 @@
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.3px;
+            transition: background var(--transition-normal);
+        }
+
+        [data-theme="dark"] .doc-table th {
+            background: var(--gray-200);
         }
 
         .doc-table td {
             font-size: 14px;
+            color: var(--gray-800);
+            transition: color var(--transition-normal);
         }
 
         /* Alerts */
@@ -331,6 +362,7 @@
             display: flex;
             align-items: flex-start;
             gap: 12px;
+            transition: background var(--transition-normal), border var(--transition-normal);
         }
 
         .alert-info {
@@ -338,14 +370,26 @@
             border-left: 4px solid var(--primary);
         }
 
+        [data-theme="dark"] .alert-info {
+            background: rgba(1, 118, 211, 0.2);
+        }
+
         .alert-warning {
             background: rgba(254, 147, 57, 0.1);
             border-left: 4px solid var(--warning);
         }
 
+        [data-theme="dark"] .alert-warning {
+            background: rgba(254, 147, 57, 0.2);
+        }
+
         .alert-success {
             background: rgba(46, 132, 74, 0.1);
             border-left: 4px solid var(--success);
+        }
+
+        [data-theme="dark"] .alert-success {
+            background: rgba(46, 132, 74, 0.2);
         }
 
         .alert .icon {
@@ -371,7 +415,7 @@
             .sidebar {
                 width: 100%;
                 border-right: none;
-                border-bottom: 1px solid var(--gray-200);
+                border-bottom: 1px solid var(--border);
                 position: relative;
                 top: 0;
                 max-height: none;
@@ -400,13 +444,17 @@
     <!-- Top Navigation Bar -->
     <nav class="site-nav">
         <div class="site-nav-inner">
-            <a href="index.html">🏠 Home</a>
-            <a href="quick-start-guide.html">🚀 Quick Start</a>
-            <a href="documentation.html" class="active">📖 Docs</a>
-            <a href="help.html">💡 Help</a>
-            <a href="quiz.html">🎮 Quiz &amp; Games</a>
-            <a href="leaderboard.html">🏆 Leaderboard</a>
-            <a href="privacy-policy.html">🔐 Privacy</a>
+            <a href="index.html">Home</a>
+            <a href="quick-start-guide.html">Quick Start</a>
+            <a href="documentation.html" class="active">Docs</a>
+            <a href="help.html">Help</a>
+            <a href="quiz.html">Quiz &amp; Games</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
         </div>
     </nav>
 
@@ -1667,11 +1715,11 @@
     <footer class="site-footer">
         <p><strong>TrackForcePro</strong> v1.6.2 — Salesforce Developer Toolkit</p>
         <div class="footer-links">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
             <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a>
             <span class="sep">·</span>
-            <a href="privacy-policy.html">🔐 Privacy</a>
+            <a href="privacy-policy.html">Privacy</a>
         </div>
         <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
     </footer>

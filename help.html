@@ -14,53 +14,50 @@
             padding: 3px 10px;
             border-radius: var(--radius-pill);
             font-size: 0.7rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-left: 6px;
         }
-        .badge-success { background: #dcfce7; color: #166534; }
+        .badge-success { background: #cdefc8; color: #194e31; }
         .badge-accent  { background: #cffafe; color: #0e7490; }
-        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-warning { background: #fce4b6; color: #6b3b04; }
+        [data-theme="dark"] .badge-success { background: rgba(69,198,90,0.2); color: #6ee77a; }
+        [data-theme="dark"] .badge-accent  { background: rgba(34,211,238,0.2); color: #22d3ee; }
+        [data-theme="dark"] .badge-warning { background: rgba(251,180,73,0.2); color: #fbb449; }
+
+        /* Troubleshooting highlight */
+        .site-table td:first-child { font-weight: 600; color: var(--text); }
     </style>
-    <script>
-        (function() {
-            const isGitHubPages = window.location.hostname.includes('github.io');
-            if (isGitHubPages) {
-                const repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
-                const basePath = '/' + repoName + '/icons/';
-                document.getElementById('fav32').href = basePath + 'Icon-32.png';
-                document.getElementById('fav16').href = basePath + 'Icon-16.png';
-                document.getElementById('favshort').href = basePath + 'Icon-32.png';
-                var logo = document.getElementById('header-logo');
-                if (logo) logo.src = basePath + 'Icon-128.png';
-            }
-        })();
-    </script>
+    <script src="theme.js"></script>
 </head>
 <body>
 
     <nav class="site-nav">
         <div class="site-nav-inner">
-            <a href="index.html">🏠 Home</a>
-            <a href="quick-start-guide.html">🚀 Quick Start</a>
-            <a href="documentation.html">📖 Docs</a>
-            <a href="help.html" class="active">💡 Help</a>
-            <a href="quiz.html">🎮 Quiz &amp; Games</a>
-            <a href="leaderboard.html">🏆 Leaderboard</a>
-            <a href="privacy-policy.html">🔐 Privacy</a>
+            <a href="index.html">Home</a>
+            <a href="quick-start-guide.html">Quick Start</a>
+            <a href="documentation.html">Docs</a>
+            <a href="help.html" class="active">Help</a>
+            <a href="quiz.html">Quiz &amp; Games</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
         </div>
     </nav>
 
     <div class="site-hero">
         <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
-        <h1>TrackForcePro Help</h1>
-        <p>Documentation, Resources &amp; Support</p>
+        <h1>Help &amp; Support</h1>
+        <p>Documentation, Resources &amp; Troubleshooting</p>
         <span class="version-badge">Version 1.6.2</span>
     </div>
 
     <div class="site-container narrow">
 
         <!-- Documentation Section -->
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">📚 Documentation</h2>
             <table class="site-table">
                 <thead>
@@ -91,7 +88,7 @@
         </div>
 
         <!-- Features Section -->
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">✨ Features Overview</h2>
             <table class="site-table">
                 <thead>
@@ -142,7 +139,7 @@
         </div>
 
         <!-- Keyboard Shortcuts Section -->
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">⌨️ Keyboard Shortcuts</h2>
             <table class="site-table">
                 <thead>
@@ -152,6 +149,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>K</kbd></td>
+                        <td>Open Command Palette</td>
+                    </tr>
                     <tr>
                         <td><kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td>
                         <td>Open TrackForcePro popup</td>
@@ -173,7 +174,7 @@
         </div>
 
         <!-- FAQ Section -->
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">💬 Frequently Asked Questions</h2>
 
             <div class="site-faq-item">
@@ -208,7 +209,7 @@
         </div>
 
         <!-- Support Section -->
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">🛠️ Support</h2>
             <table class="site-table">
                 <thead>
@@ -239,7 +240,7 @@
         </div>
 
         <!-- Troubleshooting Section -->
-        <div class="site-section">
+        <div class="site-section animate-in">
             <h2 class="site-section-title">🔧 Troubleshooting</h2>
             <table class="site-table">
                 <thead>
@@ -278,17 +279,16 @@
     <footer class="site-footer">
         <p><strong>TrackForcePro</strong> — Open Source Chrome Extension</p>
         <div class="footer-links">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
-            <a href="index.html">📚 Home</a>
+            <a href="index.html">Home</a>
             <span class="sep">·</span>
-            <a href="privacy-policy.html">🔐 Privacy Policy</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
             <span class="sep">·</span>
-            <a href="quick-start-guide.html">🚀 Quick Start</a>
+            <a href="quick-start-guide.html">Quick Start</a>
         </div>
-        <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
     </footer>
 
 </body>
 </html>
-
