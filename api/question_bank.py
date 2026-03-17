@@ -469,9 +469,9 @@ QUESTIONS = [
         "difficulty": 1,
         "mode": ["quiz", "truefalse"],
         "q": "What keyboard shortcut toggles the Show All Data panel on a Salesforce record page?",
-        "opts": ["Ctrl+Shift+S / Cmd+Shift+S", "Ctrl+Shift+D / Cmd+Shift+D", "Ctrl+K / Cmd+K", "Ctrl+D / Cmd+D"],
+        "opts": ["Ctrl+Shift+S / Cmd+Shift+S", "Alt+Shift+D / ⌥+Shift+D", "Ctrl+K / Cmd+K", "Ctrl+D / Cmd+D"],
         "answer": 1,
-        "explanation": "<strong>Ctrl+Shift+D / Cmd+Shift+D</strong> toggles Show All Data. Ctrl+Shift+S is for the TF Sidebar, and Ctrl+K is for the Command Palette.",
+        "explanation": "<strong>Alt+Shift+D / ⌥+Shift+D</strong> toggles Show All Data. Ctrl+Shift+S is for the TF Sidebar, and Ctrl+K is for the Command Palette.",
         "tags": ["general", "show-all-data", "shortcuts"],
     },
 ]
