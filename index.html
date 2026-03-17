@@ -95,13 +95,14 @@
         </div>
         <div style="margin-top: 12px;">
             <select id="version-select" class="site-version-select">
-                <option value="1.6.3">v1.6.3 (Latest)</option>
+                <option value="1.7.0">v1.7.0 (Latest)</option>
+                <option value="1.6.4">v1.6.4</option>
+                <option value="1.6.3">v1.6.3</option>
                 <option value="1.6.2">v1.6.2</option>
                 <option value="1.3.7">v1.3.7</option>
                 <option value="1.3.6">v1.3.6</option>
                 <option value="1.2.9">v1.2.9</option>
                 <option value="1.2.7">v1.2.7</option>
-                <option value="1.2.2">v1.2.2</option>
             </select>
         </div>
     </div>
@@ -224,13 +225,32 @@
         <div class="site-section site-changelog" style="margin-top: 36px;">
             <h2 class="site-section-title">Recent Changes</h2>
 
-            <h4>v1.6.3 — March 17, 2026 (Latest)</h4>
+            <h4>v1.7.0 — March 17, 2026 (Latest)</h4>
+            <ul>
+                <li><strong>Complete Settings Export/Import</strong> — 3 new categories: 📐 Layout Settings, 🔑 Login As History, 🛠️ Preferences &amp; UI State (10 total)</li>
+                <li><strong>Selective Import</strong> — per-category toggle switches in import preview let you choose exactly which categories to apply</li>
+                <li><strong>Sensitive Data Protection</strong> — session tokens and OAuth keys automatically excluded from all exports</li>
+                <li><strong>Expanded Categories</strong> — Org Info now includes draft icon configs; GraphQL now includes schema cache</li>
+                <li><strong>Dynamic Version Stamp</strong> — export files now use the actual installed version instead of hardcoded strings</li>
+            </ul>
+
+            <h4>v1.6.4 — March 17, 2026</h4>
+            <ul>
+                <li><strong>Category-Aware Export/Import</strong> — select which settings categories to export: Appearance, Tabs, Org, SOQL, GraphQL, Sidebar, Pinned Records</li>
+                <li><strong>Smart Import Preview</strong> — inspect and validate import data with category counts before applying</li>
+                <li><strong>Export/Import Sidebar Shortcuts</strong> — 2 new TF Sidebar shortcuts (📤 Export, 📥 Import) with deep linking to Settings → General</li>
+                <li><strong>Tab Button Visibility Fix</strong> — inactive tabs now clearly visible with frosted glass background instead of invisible transparent</li>
+                <li><strong>Sub-tab Dark Theme</strong> — added missing dark theme variants for sub-tab buttons</li>
+                <li><strong>Data Management UI</strong> — new panel layout with category grid, export preview, danger zone components</li>
+            </ul>
+
+            <h4>v1.6.3 — March 17, 2026</h4>
             <ul>
                 <li><strong>Searchable SObject Combobox</strong> — SOQL Builder object selector now supports type-to-filter with substring matching and keyboard navigation</li>
                 <li><strong>Suggestion Dropdown Fix</strong> — field suggestion dropdown no longer clipped by builder panel overflow; uses fixed positioning with dynamic coordinates</li>
                 <li><strong>Show All Data Fix</strong> — fixed CORS issue preventing record data from loading; API calls now proxy through background.js</li>
                 <li><strong>Show All Data Buttons</strong> — header buttons (Copy ID, Open in SF) now visible with glass-style on the blue gradient header</li>
-                <li><strong>Keyboard Shortcut</strong> — <kbd>Alt+Shift+D</kbd> / <kbd>⌥+Shift+D</kbd> toggles Show All Data panel on record pages</li>
+                <li><strong>Keyboard Shortcut</strong> — <kbd>Ctrl+Shift+X</kbd> / <kbd>⌘+Shift+X</kbd> toggles Show All Data panel on record pages</li>
                 <li><strong>SOQL Fallback</strong> — automatic <code>FIELDS(ALL)</code> fallback when UI API fails for unsupported objects</li>
                 <li><strong>Website Integration</strong> — Help, About, and Settings tabs now link to TrackForcePro website (help, quick start, quiz, leaderboard)</li>
                 <li><strong>TF Sidebar Shortcuts</strong> — 5 new sidebar shortcuts for quick access to website resources</li>
@@ -254,10 +274,10 @@
 
             <h4>v1.5.0 — March 16, 2026</h4>
             <ul>
-                <li><strong>Show All Data</strong> — floating inspector button injected directly on Salesforce record pages</li>
+                <li><strong>Show All Data</strong> — floating inspector button on Salesforce record pages with field explorer, search, lookup navigation, and inline editing</li>
                 <li><strong>Command Palette</strong> (Ctrl+K / Cmd+K) — global search with 13+ commands and record ID auto-detection</li>
                 <li><strong>Context Menu</strong> — right-click on SF pages for Show All Data, Field History, Sharing, SOQL Builder, Copy Record ID</li>
-                <li><strong>Inline Field Editing</strong> — double-click any field in All Fields inspector to edit with type-aware inputs</li>
+                <li><strong>Inline Field Editing</strong> — double-click any updateable field to edit with type-aware inputs (Data Explorer &amp; Show All Data)</li>
                 <li><strong>Record Breadcrumbs &amp; Pinned Records</strong> — navigate lookup chains with breadcrumb trail, pin favorites</li>
             </ul>
         </div>

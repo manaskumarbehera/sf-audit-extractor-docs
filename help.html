@@ -51,7 +51,7 @@
         <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
         <h1>Help &amp; Support</h1>
         <p>Documentation, Resources &amp; Troubleshooting</p>
-        <span class="version-badge">Version 1.6.3</span>
+        <span class="version-badge">Version 1.7.0</span>
     </div>
 
     <div class="site-container narrow">
@@ -105,33 +105,63 @@
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
-                        <td>🔗 GraphQL Builder</td>
-                        <td>Visual query composition for Salesforce UI API</td>
+                        <td>📊 SOQL Builder</td>
+                        <td>Visual query builder with field suggestions, inline editing, row delete, and query history</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
-                        <td>📊 SOQL Builder</td>
-                        <td>Build SOQL queries with filters, ordering, and limits</td>
+                        <td>🔗 GraphQL Builder</td>
+                        <td>CodeMirror 6 editor with schema-aware autocomplete, syntax highlighting, and child record export</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>💾 Data Explorer</td>
-                        <td>Favicon manager, user search, and record lookup tools</td>
+                        <td>Record scanner with All Fields table, inline field editing, breadcrumb navigation, pinned records, and Org &amp; Favicon tools</td>
+                        <td><span class="badge badge-success">Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>👤 User Manager</td>
+                        <td>Search, update, freeze/unfreeze users, permission matrix, sessions, and bulk operations</td>
+                        <td><span class="badge badge-success">Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>🔒 Security Manager</td>
+                        <td>Browse and manage profiles, permission sets, and permission set groups</td>
+                        <td><span class="badge badge-success">Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>🛠️ Org Tools</td>
+                        <td>Login As, custom labels, deployments, scheduled jobs, debug logs, org limits, and admin utilities</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>📡 Platform Events</td>
-                        <td>Monitor and publish platform events in real-time</td>
+                        <td>Monitor and publish platform events in real-time via CometD</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>📢 Lightning Message Service</td>
-                        <td>Tools for working with LMS channels</td>
+                        <td>Monitor and publish messages on LMS channels</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
-                        <td>💾 Cache Manager</td>
-                        <td>Intelligent caching for improved performance</td>
+                        <td>🔎 Show All Data</td>
+                        <td>Floating inspector on every SF record page — view all fields, search, filter, inline edit updateable fields, and navigate lookups with breadcrumbs</td>
+                        <td><span class="badge badge-success">Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>🧭 TF Sidebar</td>
+                        <td>Quick-access shortcut panel on Salesforce pages (<kbd>Ctrl+Shift+S</kbd>)</td>
+                        <td><span class="badge badge-success">Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>🎯 Command Palette</td>
+                        <td>Quick navigation to any tab or sub-tab with <kbd>Ctrl+K</kbd> / <kbd>Cmd+K</kbd></td>
+                        <td><span class="badge badge-success">Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>🖱️ Context Menu</td>
+                        <td>Right-click on SF pages for Show All Data, Field History, Sharing, SOQL Builder, and Copy Record ID</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                 </tbody>
@@ -150,24 +180,32 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>K</kbd></td>
-                        <td>Open Command Palette</td>
+                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></td>
+                        <td>Toggle TF Sidebar (on any Salesforce page)</td>
                     </tr>
                     <tr>
-                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td>
-                        <td>Open TrackForcePro popup</td>
+                        <td><kbd>Alt/⌥</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd></td>
+                        <td>Toggle Show All Data panel (on Salesforce record pages)</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>K</kbd></td>
+                        <td>Open Command Palette (inside extension popup)</td>
                     </tr>
                     <tr>
                         <td><kbd>Ctrl/Cmd</kbd> + <kbd>Enter</kbd></td>
-                        <td>Execute query (in SOQL/GraphQL builders)</td>
+                        <td>Execute query (in SOQL Builder)</td>
                     </tr>
                     <tr>
-                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>S</kbd></td>
-                        <td>Save current query</td>
+                        <td><kbd>Ctrl</kbd> + <kbd>Space</kbd></td>
+                        <td>Trigger autocomplete (in GraphQL Builder)</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>Double-click</kbd></td>
+                        <td>Inline edit a field value (in Data Explorer All Fields table)</td>
                     </tr>
                     <tr>
                         <td><kbd>Esc</kbd></td>
-                        <td>Close popup or modal</td>
+                        <td>Close panel, modal, or cancel inline edit</td>
                     </tr>
                 </tbody>
             </table>
