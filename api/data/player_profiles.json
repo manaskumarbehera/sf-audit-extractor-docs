@@ -1,0 +1,43 @@
+{
+  "test_player1": {
+    "player_id": "test_player1",
+    "total_xp": 25,
+    "level": 1,
+    "total_correct": 1,
+    "total_answered": 2,
+    "current_streak": 0,
+    "best_streak": 1,
+    "topic_stats": {
+      "sidebar": {
+        "correct": 1,
+        "total": 1
+      },
+      "graphql": {
+        "correct": 0,
+        "total": 1
+      }
+    },
+    "question_memory": {
+      "sb-001": {
+        "interval": 156.0,
+        "next_due": 1773723703.333722,
+        "ease": 2.6,
+        "times_correct": 1,
+        "times_wrong": 0
+      },
+      "gql-001": {
+        "interval": 60,
+        "next_due": 1773723611.8078544,
+        "ease": 2.3,
+        "times_correct": 0,
+        "times_wrong": 1
+      }
+    },
+    "session_asked": [
+      "sb-001"
+    ],
+    "last_difficulty": 1,
+    "created_at": 1773723542.9871516,
+    "updated_at": 1773723551.8078544
+  }
+}
