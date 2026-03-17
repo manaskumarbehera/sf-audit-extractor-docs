@@ -160,6 +160,17 @@ QUESTIONS = [
         "explanation": "The <strong>SOQL Guidance Engine</strong> provides real-time tips and best practices as you build queries.",
         "tags": ["soql", "guidance"],
     },
+    {
+        "id": "soql-004",
+        "topic": "soql",
+        "difficulty": 1,
+        "mode": ["quiz", "truefalse"],
+        "q": "How does the SOQL Builder's SObject selector help you find objects?",
+        "opts": ["Only shows 10 objects at a time", "Searchable combobox with substring filtering and keyboard navigation", "Requires exact object name typed in full", "Alphabetical scrolling only"],
+        "answer": 1,
+        "explanation": "The SObject selector is a <strong>searchable combobox</strong> — type any part of an object name to filter, use arrow keys to navigate, and Enter to select.",
+        "tags": ["soql", "combobox", "search"],
+    },
 
     # ═══════════════════════════════════════════════
     #  DATA EXPLORER & RECORD SCANNER  (topic: data_explorer)
