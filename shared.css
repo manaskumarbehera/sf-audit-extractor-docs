@@ -674,6 +674,20 @@ img { max-width: 100%; height: auto; }
     color: var(--border-strong);
 }
 
+.site-footer .footer-social {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.82rem;
+}
+
+.site-footer .footer-social .sep {
+    color: var(--border-strong);
+}
+
 .site-footer .footer-copy {
     margin-top: 16px;
     font-size: 0.8rem;
