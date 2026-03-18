@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackForcePro — UX Analysis: Tab Reorganization & Settings Overhaul</title>
+    <style>
+        :root {
+            --primary: #0176d3;
+            --primary-dark: #014486;
+            --success: #2e844a;
+            --danger: #ea001e;
+            --warning: #fe9339;
+            --bg: #f4f6f9;
+            --card-bg: #ffffff;
+            --text: #181818;
+            --text-muted: #706e6b;
+            --border: #e5e5e5;
+            --radius: 12px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        .hero { background: linear-gradient(135deg, #014486 0%, #0176d3 50%, #1b96ff 100%); color: white; padding: 48px 24px; text-align: center; }
+        .hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+        .hero p { font-size: 15px; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+        .hero .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-top: 12px; }
+
+        .container { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
+
+        .section { margin-bottom: 40px; }
+        .section-title { font-size: 20px; font-weight: 800; color: var(--primary-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .section-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: var(--shadow); }
+        .card-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+        .problem-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .tag-problem { background: #fce4e4; color: #991b1b; }
+        .tag-fix { background: #dcfce7; color: #166534; }
+        .tag-new { background: #e0f2fe; color: #075985; }
+        .tag-move { background: #fef3c7; color: #92400e; }
+
+        /* Mockup styles */
+        .mockup { background: #1e1e2e; border-radius: 10px; overflow: hidden; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; margin: 16px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+        .mockup-title { background: #2d2d3f; padding: 8px 16px; color: #a0a0b8; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .mockup-title .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .mockup-title .dot-r { background: #ff5f57; }
+        .mockup-title .dot-y { background: #febc2e; }
+        .mockup-title .dot-g { background: #28c840; }
+        .mockup pre { padding: 16px; color: #e0e0f0; white-space: pre; overflow-x: auto; line-height: 1.5; margin: 0; }
+        .mockup .highlight { color: #7dd3fc; }
+        .mockup .accent { color: #a78bfa; }
+        .mockup .green { color: #86efac; }
+        .mockup .red { color: #fca5a5; }
+        .mockup .yellow { color: #fde68a; }
+        .mockup .dim { color: #6b6b80; }
+        .mockup .orange { color: #fdba74; }
+
+        /* Comparison grid */
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 700px) { .compare-grid { grid-template-columns: 1fr; } }
+        .compare-card { border-radius: var(--radius); padding: 20px; }
+        .compare-before { background: #fef2f2; border: 2px solid #fecaca; }
+        .compare-after { background: #f0fdf4; border: 2px solid #bbf7d0; }
+        .compare-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+        .compare-label.before { color: #991b1b; }
+        .compare-label.after { color: #166534; }
+
+        /* Change list */
+        .change-list { list-style: none; padding: 0; }
+        .change-list li { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+        .change-list li:last-child { border-bottom: none; }
+        .change-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+        .change-text strong { color: var(--primary-dark); }
+
+        /* Impact meters */
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+        .impact-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+        .impact-value { font-size: 28px; font-weight: 800; color: var(--primary); }
+        .impact-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; }
+
+        /* Step cards */
+        .step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+        .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: white; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .step-content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .step-content p { font-size: 13px; color: var(--text-muted); }
+        .step-files { font-size: 12px; color: var(--primary); font-family: monospace; margin-top: 4px; }
+
+        .callout { background: #eff6ff; border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; }
+        .callout-warn { background: #fffbeb; border-left-color: var(--warning); }
+        .callout strong { color: var(--primary-dark); }
+
+        .toc { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 32px; }
+        .toc-title { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+        .toc a { display: block; padding: 4px 0; color: var(--primary); text-decoration: none; font-size: 14px; }
+        .toc a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>🎯 UX Analysis: Tab Reorganization</h1>
+    <p>Promoting Org Tools & Favicon to top-level tabs, adding full org management to Settings, and updating sidebar shortcuts.</p>
+    <span class="badge">TrackForcePro v1.9.0 Proposal</span>
+</div>
+
+<div class="container">
+
+    <!-- TOC -->
+    <div class="toc">
+        <div class="toc-title">📋 Contents</div>
+        <a href="#problem">1. Current Problems</a>
+        <a href="#tab-reorg">2. Tab Reorganization (Before → After)</a>
+        <a href="#settings-org">3. Settings: Org Management Panel</a>
+        <a href="#sidebar">4. Sidebar Shortcut Updates</a>
+        <a href="#impact">5. Impact Analysis</a>
+        <a href="#plan">6. Implementation Plan</a>
+    </div>
+
+    <!-- ═══════════ SECTION 1: PROBLEMS ═══════════ -->
+    <div class="section" id="problem">
+        <h2 class="section-title">🔴 1. Current UX Problems</h2>
+        <p class="section-subtitle">Three core issues identified through structural analysis of the extension's UI.</p>
+
+        <div class="card">
+            <div class="card-title"><span class="problem-tag tag-problem">Problem 1</span> Data Explorer is overloaded (5 sub-tabs + 2 advanced)</div>
+            <p style="font-size:14px; color: var(--text-muted); margin-bottom: 12px;">
+                Data Explorer currently houses <strong>7 distinct tools</strong> that serve completely different purposes: record lookups, org management, user administration, security auditing, favicon customization, metadata browsing, and automation inspection. Users must navigate 2–3 levels deep to reach frequently-used tools like Custom Labels or Login As.
+            </p>
+            <div class="mockup">
+                <div class="mockup-title"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>Current: 3-level depth to reach Custom Labels</div>
+<pre>
+<span class="dim">Tab Bar:</span>   🔍 Audit | 📡 Events | 📢 LMS | 📊 SOQL | 🔗 GraphQL | <span class="yellow">💾 Data Explorer</span> | ⚙️
+                                                                    <span class="dim">│</span>
+<span class="dim">Sub-tab:</span>  Record Scanner | Org & Favicon | User Mgr | <span class="yellow">🔐 Security</span> | <span class="yellow">🏢 Org Tools</span>
+                                                                    <span class="dim">│</span>
+<span class="dim">Panel:</span>    <span class="yellow">Login As</span> | <span class="yellow">Custom Labels</span> | Deployments | Jobs | Debug Logs | Limits | Utils
+                         <span class="red">↑ 3 clicks deep!</span>
+</pre>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><span class="problem-tag tag-problem">Problem 2</span> Org & Favicon is duplicated across two locations</div>
+            <p style="font-size:14px; color: var(--text-muted);">
+                The Favicon Customizer appears in <strong>two places</strong>: (1) Data Explorer → "Org & Favicon" sub-tab (full editor with org list, live/draft previews, environment presets) and (2) Settings → "Org & Favicon" sub-tab (simplified version with org info card and a basic favicon form). Users don't know which one to use, and the two don't share state consistently.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><span class="problem-tag tag-problem">Problem 3</span> Settings doesn't show saved orgs or per-org actions</div>
+            <p style="font-size:14px; color: var(--text-muted);">
+                Despite storing rich org data (orgRecords, favicons, environment types, notes, pinned records, query history), the Settings tab doesn't surface any of this. Users can't see which orgs they've visited, can't manage saved data, and can't access per-org preferences from Settings — they have to navigate to Data Explorer → Org & Favicon to do any org management.
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════ SECTION 2: TAB REORGANIZATION ═══════════ -->
+    <div class="section" id="tab-reorg">
+        <h2 class="section-title">🔄 2. Tab Reorganization</h2>
+        <p class="section-subtitle">Promote Org Tools and Favicon to top-level tabs. Streamline Data Explorer to focus on records.</p>
+
+        <div class="compare-grid">
+            <div class="compare-card compare-before">
+                <div class="compare-label before">❌ Current (6 + 3 icon tabs)</div>
+                <p style="font-size:13px; margin-bottom: 8px;"><strong>Top bar:</strong></p>
+                <p style="font-size: 12px; font-family: monospace; line-height: 1.8;">
+                    🔍 Audit Trails<br>
+                    📡 Platform Events<br>
+                    📢 LMS<br>
+                    📊 SOQL Builder<br>
+                    🔗 GraphQL Builder<br>
+                    💾 Data Explorer ← <span style="color:#991b1b;font-weight:700;">overloaded (7 tools)</span><br>
+                    ⚙️ ❓ ℹ️
+                </p>
+                <p style="font-size:12px; color:#991b1b; margin-top:10px; font-weight:600;">
+                    Org Tools buried 2 levels deep.<br>
+                    Favicon duplicated in 2 places.<br>
+                    No org overview in Settings.
+                </p>
+            </div>
+            <div class="compare-card compare-after">
+                <div class="compare-label after">✅ Proposed (8 + 3 icon tabs)</div>
+                <p style="font-size:13px; margin-bottom: 8px;"><strong>Top bar:</strong></p>
+                <p style="font-size: 12px; font-family: monospace; line-height: 1.8;">
+                    🔍 Audit Trails<br>
+                    📡 Platform Events<br>
+                    📢 LMS<br>
+                    📊 SOQL Builder<br>
+                    🔗 GraphQL Builder<br>
+                    🔬 Records ← <span style="color:#166534;font-weight:700;">focused (scanner + advanced)</span><br>
+                    🏢 Org Tools ← <span style="color:#166534;font-weight:700;">NEW top-level tab</span><br>
+                    🎨 Org & Favicon ← <span style="color:#166534;font-weight:700;">NEW top-level tab</span><br>
+                    ⚙️ ❓ ℹ️
+                </p>
+                <p style="font-size:12px; color:#166534; margin-top:10px; font-weight:600;">
+                    Every major tool is 1 click away.<br>
+                    Favicon has ONE canonical home.<br>
+                    Settings gets full org management.
+                </p>
+            </div>
+        </div>
+
+        <!-- Detailed new tab layout -->
+        <div class="mockup">
+            <div class="mockup-title"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>Proposed Tab Bar Layout</div>
+<pre>
+<span class="highlight">┌─────────────────────────────────────────────────────────────────────────────────────────────────┐</span>
+<span class="highlight">│</span> 🔍 Audit <span class="dim">│</span> 📡 Events <span class="dim">│</span> 📢 LMS <span class="dim">│</span> 📊 SOQL <span class="dim">│</span> 🔗 GraphQL <span class="dim">│</span> <span class="green">🔬 Records</span> <span class="dim">│</span> <span class="green">🏢 Org Tools</span> <span class="dim">│</span> <span class="green">🎨 Favicon</span> <span class="dim">│</span> ⚙️ ❓ ℹ️ <span class="highlight">│</span>
+<span class="highlight">└─────────────────────────────────────────────────────────────────────────────────────────────────┘</span>
+</pre>
+        </div>
+
+        <h3 style="font-size: 16px; font-weight: 700; margin: 24px 0 12px;">What goes where:</h3>
+
+        <div class="card">
+            <div class="card-title"><span class="problem-tag tag-move">Renamed</span> 🔬 Records Tab (was "Data Explorer")</div>
+            <p style="font-size:13px; color: var(--text-muted); margin-bottom: 12px;">Slimmed down to focus on record operations only:</p>
+            <div class="mockup">
+                <div class="mockup-title"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>🔬 Records — Sub-tabs</div>
+<pre>
+<span class="green">Record Scanner</span>  │  <span class="green">👥 User Manager</span>  │  <span class="green">🔐 Security Manager</span>  │  <span class="green">📦 Advanced Tools</span>
+     <span class="dim">│</span>                    <span class="dim">│</span>                    <span class="dim">│</span>                       <span class="dim">│</span>
+  Single/Bulk/      Permission       Profiles, Perm        Metadata Explorer
+  Compare lookup    Matrix, Sessions Sets, PS Groups        Automation Inspector
+  Field History     Freeze/Unfreeze
+  Inline Edit       Bulk Update
+  Pinned Records
+</pre>
+            </div>
+            <div class="callout">
+                <strong>Rationale:</strong> Record Scanner, User Manager, Security Manager, and Advanced Tools all deal with <em>inspecting and managing Salesforce records/metadata</em>. They belong together. Favicon and Org Tools are admin/config tasks — different mental model.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><span class="problem-tag tag-new">New Tab</span> 🏢 Org Tools</div>
+            <p style="font-size:13px; color: var(--text-muted); margin-bottom: 12px;">Promoted from Data Explorer sub-tab → top-level. All 7 panels become sub-tabs:</p>
+            <div class="mockup">
+                <div class="mockup-title"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>🏢 Org Tools — Sub-tabs</div>
+<pre>
+<span class="green">🔑 Login As</span>  │  <span class="green">🏷️ Custom Labels</span>  │  <span class="green">🚀 Deployments</span>  │  <span class="green">📅 Scheduled Jobs</span>  │  <span class="green">🐛 Debug Logs</span>  │  <span class="green">📊 Org Limits</span>  │  <span class="green">🛠️ Admin Utils</span>
+     <span class="dim">│</span>                 <span class="dim">│</span>                  <span class="dim">│</span>                  <span class="dim">│</span>                   <span class="dim">│</span>                <span class="dim">│</span>
+  Search users     Search, Edit       Deploy Status     View jobs            Trace flags      All governor    Quick Setup
+  3 login modes    Translate          Auto-refresh      Next execution       Quick enable     limits + usage  links (15)
+  Recent history   Import/Export      Guide             details              Create flags
+                   Pagination
+</pre>
+            </div>
+            <div class="callout">
+                <strong>Key benefit:</strong> Custom Labels — the most-used Org Tools feature — goes from 3 clicks to 2 clicks. Login As goes from 3 clicks to 2 clicks. For sidebar users, it's still 1 click via shortcuts.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><span class="problem-tag tag-new">New Tab</span> 🎨 Org & Favicon</div>
+            <p style="font-size:13px; color: var(--text-muted); margin-bottom: 12px;">Single canonical location for org management and favicon customization (removes duplication):</p>
+            <div class="mockup">
+                <div class="mockup-title"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>🎨 Org & Favicon — Layout</div>
+<pre>
+<span class="highlight">┌──────────────────────────────────────────────────────────────────────────────┐</span>
+<span class="highlight">│</span>  <span class="green">Saved Orgs</span>          <span class="dim">│</span>  <span class="green">Favicon Editor</span>                     <span class="dim">│</span>  <span class="green">Org Details</span>     <span class="highlight">│</span>
+<span class="highlight">│</span>  ┌──────────────┐    <span class="dim">│</span>  ┌────────┐ ┌────────┐              <span class="dim">│</span>  Name: Acme    <span class="highlight">│</span>
+<span class="highlight">│</span>  │ <span class="green">● Acme Corp</span>  │    <span class="dim">│</span>  │ <span class="dim">Current</span> │ │ <span class="yellow">Editing</span> │              <span class="dim">│</span>  Type: Prod    <span class="highlight">│</span>
+<span class="highlight">│</span>  │ <span class="highlight">● Acme Dev</span>   │    <span class="dim">│</span>  │  <span class="green">LIVE</span>   │ │  <span class="yellow">DRAFT</span>  │              <span class="dim">│</span>  Host: acme..  <span class="highlight">│</span>
+<span class="highlight">│</span>  │ ● Acme UAT   │    <span class="dim">│</span>  └────────┘ └────────┘              <span class="dim">│</span>  API: v66.0    <span class="highlight">│</span>
+<span class="highlight">│</span>  │ ● Acme QA    │    <span class="dim">│</span>                                     <span class="dim">│</span>  Language: EN  <span class="highlight">│</span>
+<span class="highlight">│</span>  ├──────────────┤    <span class="dim">│</span>  <span class="accent">Environment:</span>                       <span class="dim">│</span>  Timezone: PT  <span class="highlight">│</span>
+<span class="highlight">│</span>  │ [+ Add Org]  │    <span class="dim">│</span>  [DEV] [UAT] [<span class="red">PROD</span>] [QA] [TRN]     <span class="dim">│</span>  Last: Mar 18  <span class="highlight">│</span>
+<span class="highlight">│</span>  │ [🔍 Search]  │    <span class="dim">│</span>                                     <span class="dim">│</span>               <span class="highlight">│</span>
+<span class="highlight">│</span>  └──────────────┘    <span class="dim">│</span>  <span class="accent">Color:</span> [■ #ff6b6b] <span class="accent">Label:</span> [PRD]     <span class="dim">│</span>  <span class="accent">Notes:</span>        <span class="highlight">│</span>
+<span class="highlight">│</span>                      <span class="dim">│</span>  <span class="accent">Shape:</span> ● ■ ▢ ☁ ⛅ ◆ ⬡ 🛡           <span class="dim">│</span>  [editable]    <span class="highlight">│</span>
+<span class="highlight">│</span>                      <span class="dim">│</span>  <span class="accent">Text:</span>  [Auto] / [Custom Color]     <span class="dim">│</span>               <span class="highlight">│</span>
+<span class="highlight">│</span>                      <span class="dim">│</span>                                     <span class="dim">│</span>  [<span class="green">Open Setup ↗</span>]<span class="highlight">│</span>
+<span class="highlight">│</span>                      <span class="dim">│</span>  [<span class="green">Apply & Save</span>]   [Reset]           <span class="dim">│</span>  [<span class="red">Delete Org</span>]  <span class="highlight">│</span>
+<span class="highlight">└──────────────────────────────────────────────────────────────────────────────┘</span>
+</pre>
+            </div>
+            <div class="callout">
+                <strong>What changes:</strong> The Data Explorer "Org & Favicon" sub-tab moves here entirely. The Settings "Org & Favicon" sub-tab is replaced by a new "Org Management" panel (see Section 3). One tool, one location, no confusion.
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ SECTION 3: SETTINGS ═══════════ -->
+    <div class="section" id="settings-org">
+        <h2 class="section-title">⚙️ 3. Settings: Org Management Panel</h2>
+        <p class="section-subtitle">Replace the current "Org & Favicon" sub-tab with a full Org Management panel showing all saved orgs, per-org preferences, and quick actions.</p>
+
+        <div class="mockup">
+            <div class="mockup-title"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>Settings → 🏢 Org Management (Replaces "Org & Favicon")</div>
+<pre>
+<span class="highlight">┌─────────────────────────────────────────────────────────────────────────────────┐</span>
+<span class="highlight">│</span>  <span class="accent">Settings Sub-tabs:</span>                                                            <span class="highlight">│</span>
+<span class="highlight">│</span>  [<span class="green">🏢 Org Management</span>] [🎨 Appearance] [⚙️ General] [📌 Sidebar] [💾 Backup] [ℹ️] <span class="highlight">│</span>
+<span class="highlight">├─────────────────────────────────────────────────────────────────────────────────┤</span>
+<span class="highlight">│</span>                                                                                 <span class="highlight">│</span>
+<span class="highlight">│</span>  <span class="green">━━ Current Org ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>   <span class="highlight">│</span>
+<span class="highlight">│</span>                                                                                 <span class="highlight">│</span>
+<span class="highlight">│</span>  ┌────────────────────────────────────────────────────────────────────────┐    <span class="highlight">│</span>
+<span class="highlight">│</span>  │  <span class="green">🟢 Acme Corp</span>                             <span class="yellow">Production</span>  •  v66.0      │    <span class="highlight">│</span>
+<span class="highlight">│</span>  │  acme.my.salesforce.com  •  US English  •  America/Los_Angeles       │    <span class="highlight">│</span>
+<span class="highlight">│</span>  │                                                                      │    <span class="highlight">│</span>
+<span class="highlight">│</span>  │  <span class="dim">Quick Actions:</span>                                                      │    <span class="highlight">│</span>
+<span class="highlight">│</span>  │  [🎨 Edit Favicon]  [🔑 Login As]  [📊 Org Limits]  [⚙️ Open Setup ↗]│    <span class="highlight">│</span>
+<span class="highlight">│</span>  └────────────────────────────────────────────────────────────────────────┘    <span class="highlight">│</span>
+<span class="highlight">│</span>                                                                                 <span class="highlight">│</span>
+<span class="highlight">│</span>  <span class="green">━━ All Saved Orgs (4) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>   <span class="highlight">│</span>
+<span class="highlight">│</span>                                                                                 <span class="highlight">│</span>
+<span class="highlight">│</span>  ┌─────────────────┬───────────┬─────────────────────────┬────────┬───────┐   <span class="highlight">│</span>
+<span class="highlight">│</span>  │  <span class="accent">Org Name</span>        │ <span class="accent">Env</span>       │ <span class="accent">Hostname</span>                  │ <span class="accent">Favicon</span> │ <span class="accent">Actions</span>│   <span class="highlight">│</span>
+<span class="highlight">│</span>  ├─────────────────┼───────────┼─────────────────────────┼────────┼───────┤   <span class="highlight">│</span>
+<span class="highlight">│</span>  │ <span class="green">🟢</span> Acme Corp     │ <span class="red">PROD</span>      │ acme.my.salesforce.com  │ <span class="red">●PRD</span>   │ ✏️ 🗑️ │   <span class="highlight">│</span>
+<span class="highlight">│</span>  │ <span class="highlight">🔵</span> Acme Dev      │ <span class="highlight">DEV</span>       │ acme--dev.sandbox...    │ <span class="highlight">●DEV</span>   │ ✏️ 🗑️ │   <span class="highlight">│</span>
+<span class="highlight">│</span>  │ <span class="yellow">🟡</span> Acme UAT      │ <span class="orange">UAT</span>       │ acme--uat.sandbox...    │ <span class="orange">●UAT</span>   │ ✏️ 🗑️ │   <span class="highlight">│</span>
+<span class="highlight">│</span>  │ <span class="accent">🟣</span> Acme QA       │ <span class="accent">QA</span>        │ acme--qa.sandbox...     │ <span class="accent">●QA</span>    │ ✏️ 🗑️ │   <span class="highlight">│</span>
+<span class="highlight">│</span>  └─────────────────┴───────────┴─────────────────────────┴────────┴───────┘   <span class="highlight">│</span>
+<span class="highlight">│</span>                                                                                 <span class="highlight">│</span>
+<span class="highlight">│</span>  <span class="green">━━ Per-Org Data ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>   <span class="highlight">│</span>
+<span class="highlight">│</span>                                                                                 <span class="highlight">│</span>
+<span class="highlight">│</span>  Each saved org stores:                                                        <span class="highlight">│</span>
+<span class="highlight">│</span>  • <span class="green">Favicon Config</span>     — color, shape, label, text color                      <span class="highlight">│</span>
+<span class="highlight">│</span>  • <span class="green">Environment Type</span>   — Production / Sandbox / Dev / UAT / QA / Training      <span class="highlight">│</span>
+<span class="highlight">│</span>  • <span class="green">SOQL History</span>       — saved queries for this org                            <span class="highlight">│</span>
+<span class="highlight">│</span>  • <span class="green">GraphQL History</span>    — saved queries for this org                            <span class="highlight">│</span>
+<span class="highlight">│</span>  • <span class="green">Pinned Records</span>     — quick-access record IDs                              <span class="highlight">│</span>
+<span class="highlight">│</span>  • <span class="green">Notes</span>              — free-text notes per org                               <span class="highlight">│</span>
+<span class="highlight">│</span>                                                                                 <span class="highlight">│</span>
+<span class="highlight">│</span>  <span class="dim">[Clear All Org Data]</span>  <span class="dim">[Export Org Data]</span>  <span class="dim">[Import Org Data]</span>                   <span class="highlight">│</span>
+<span class="highlight">└─────────────────────────────────────────────────────────────────────────────────┘</span>
+</pre>
+        </div>
+
+        <div class="callout">
+            <strong>Key design decisions:</strong><br>
+            • "Edit Favicon" quick action jumps to the 🎨 Org & Favicon tab with that org pre-selected<br>
+            • ✏️ edit button on an org row also jumps to the Favicon tab for full editing<br>
+            • 🗑️ delete button removes the org and all associated data (with confirmation)<br>
+            • The old Settings "Org & Favicon" sub-tab is replaced entirely by this panel — no duplication
+        </div>
+    </div>
+
+    <!-- ═══════════ SECTION 4: SIDEBAR ═══════════ -->
+    <div class="section" id="sidebar">
+        <h2 class="section-title">📌 4. Sidebar Shortcut Updates</h2>
+        <p class="section-subtitle">Update sidebar categories to reflect the new tab structure.</p>
+
+        <div class="compare-grid">
+            <div class="compare-card compare-before">
+                <div class="compare-label before">Current Sidebar Categories</div>
+                <p style="font-size:12px; font-family:monospace; line-height: 2;">
+                    <strong>TrackForcePro (tfp) — 5 items</strong><br>
+                    &nbsp;&nbsp;🔍 Audit Trails<br>
+                    &nbsp;&nbsp;📊 SOQL Builder<br>
+                    &nbsp;&nbsp;💾 Data Explorer<br>
+                    &nbsp;&nbsp;📡 Platform Events<br>
+                    &nbsp;&nbsp;⚙️ Settings<br><br>
+                    <strong>Data Explorer Tools (de-tool) — 5 items</strong><br>
+                    &nbsp;&nbsp;🛡️ Security Manager → SUBTAB<br>
+                    &nbsp;&nbsp;🏢 Org Tools → SUBTAB<br>
+                    &nbsp;&nbsp;👥 User Manager → SUBTAB<br>
+                    &nbsp;&nbsp;🔎 Metadata Explorer → SUBTAB<br>
+                    &nbsp;&nbsp;🎨 Org & Favicon → SUBTAB<br><br>
+                    <strong>Org Tools Panels (org-panel) — 4 items</strong><br>
+                    &nbsp;&nbsp;🏷️ Custom Labels → PANEL<br>
+                    &nbsp;&nbsp;🚀 Deployments → PANEL<br>
+                    &nbsp;&nbsp;🐛 Debug Logs → PANEL<br>
+                    &nbsp;&nbsp;📊 Org Limits → PANEL
+                </p>
+            </div>
+            <div class="compare-card compare-after">
+                <div class="compare-label after">Proposed Sidebar Categories</div>
+                <p style="font-size:12px; font-family:monospace; line-height: 2;">
+                    <strong>TrackForcePro (tfp) — 7 items</strong><br>
+                    &nbsp;&nbsp;🔍 Audit Trails → TAB<br>
+                    &nbsp;&nbsp;📊 SOQL Builder → TAB<br>
+                    &nbsp;&nbsp;🔗 GraphQL Builder → TAB<br>
+                    &nbsp;&nbsp;📡 Platform Events → TAB<br>
+                    &nbsp;&nbsp;🔬 Records → TAB <span style="color:#166534;font-weight:700;">NEW</span><br>
+                    &nbsp;&nbsp;🏢 Org Tools → TAB <span style="color:#166534;font-weight:700;">NEW</span><br>
+                    &nbsp;&nbsp;🎨 Org & Favicon → TAB <span style="color:#166534;font-weight:700;">NEW</span><br><br>
+                    <strong>Records Tools (rec-tool) — 4 items</strong><br>
+                    &nbsp;&nbsp;👥 User Manager → SUBTAB<br>
+                    &nbsp;&nbsp;🛡️ Security Manager → SUBTAB<br>
+                    &nbsp;&nbsp;🔎 Metadata Explorer → SUBTAB<br>
+                    &nbsp;&nbsp;🔄 Automation Inspector → SUBTAB<br><br>
+                    <strong>Org Tools (org-tool) — 5 items</strong><br>
+                    &nbsp;&nbsp;🔑 Login As → PANEL<br>
+                    &nbsp;&nbsp;🏷️ Custom Labels → PANEL<br>
+                    &nbsp;&nbsp;🚀 Deployments → PANEL<br>
+                    &nbsp;&nbsp;🐛 Debug Logs → PANEL<br>
+                    &nbsp;&nbsp;📊 Org Limits → PANEL
+                </p>
+            </div>
+        </div>
+
+        <ul class="change-list">
+            <li><span class="change-icon">➕</span><span class="change-text"><strong>Add</strong> 🔗 GraphQL, 🔬 Records, 🏢 Org Tools, 🎨 Favicon to the main "tfp" category (they're now top-level tabs)</span></li>
+            <li><span class="change-icon">🔄</span><span class="change-text"><strong>Rename</strong> "Data Explorer Tools" → "Records Tools" (category prefix: <code>rec-tool</code>)</span></li>
+            <li><span class="change-icon">➖</span><span class="change-text"><strong>Remove</strong> "Org Tools" and "Org & Favicon" from the old de-tool category (they're top-level now)</span></li>
+            <li><span class="change-icon">🔄</span><span class="change-text"><strong>Rename</strong> "Org Tools Panels" → "Org Tools" (category prefix: <code>org-tool</code>) — add Login As shortcut</span></li>
+            <li><span class="change-icon">✅</span><span class="change-text"><strong>Keep</strong> External shortcuts unchanged (Setup, Dev Console, Object Manager, etc.)</span></li>
+        </ul>
+    </div>
+
+    <!-- ═══════════ SECTION 5: IMPACT ═══════════ -->
+    <div class="section" id="impact">
+        <h2 class="section-title">📊 5. Impact Analysis</h2>
+
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-value">3 → 1</div>
+                <div class="impact-label">Clicks to Custom Labels</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-value">3 → 1</div>
+                <div class="impact-label">Clicks to Login As</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-value">2 → 0</div>
+                <div class="impact-label">Favicon Duplications</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-value">0 → 1</div>
+                <div class="impact-label">Org Overview in Settings</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⚠️ Trade-offs & Risks</div>
+            <ul class="change-list">
+                <li><span class="change-icon">📏</span><span class="change-text"><strong>Tab bar width:</strong> 8 labeled tabs + 3 icon tabs may feel crowded at smaller popup widths. <em>Mitigation:</em> Use shorter labels ("Records" not "Record Scanner", "Org Tools" stays compact). At narrow widths, tab text already collapses to icons-only.</span></li>
+                <li><span class="change-icon">🔗</span><span class="change-text"><strong>Existing bookmarks & shortcuts:</strong> Users who bookmarked <code>data-tab → org-tools subtab</code> need redirect logic. <em>Mitigation:</em> Add backward-compatible aliases in popup.js tab routing.</span></li>
+                <li><span class="change-icon">🧪</span><span class="change-text"><strong>Test updates:</strong> ~15-20 test files reference "data" tab or Data Explorer sub-tabs. These need updating for new tab IDs.</span></li>
+                <li><span class="change-icon">📌</span><span class="change-text"><strong>Sidebar compatibility:</strong> Existing user-saved sidebar shortcuts using old <code>__TFP_SUBTAB__org-tools</code> patterns need migration. <em>Mitigation:</em> Auto-migrate in settings_helper.js on first load.</span></li>
+            </ul>
+        </div>
+
+        <div class="callout callout-warn">
+            <strong>⚡ Breaking change:</strong> The <code>data-tab="data"</code> tab ID changes to <code>data-tab="records"</code>. The old <code>data</code> ID should be kept as an alias for one version cycle (v1.9.0) before removal in v2.0.0.
+        </div>
+    </div>
+
+    <!-- ═══════════ SECTION 6: IMPLEMENTATION PLAN ═══════════ -->
+    <div class="section" id="plan">
+        <h2 class="section-title">🛠️ 6. Implementation Plan</h2>
+        <p class="section-subtitle">Step-by-step execution order. Estimated effort: Medium-Large (8-12 files, ~500-800 line changes).</p>
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h4>Add new top-level tab buttons to popup.html</h4>
+                <p>Add 🏢 Org Tools and 🎨 Org & Favicon tab buttons. Rename "Data Explorer" → "Records" with 🔬 icon. Create corresponding tab-pane divs.</p>
+                <div class="step-files">📄 popup.html</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h4>Move Org Tools HTML from Data Explorer to new tab-pane</h4>
+                <p>Cut the Org Tools panel toggle buttons and all 7 panel divs from Data Explorer sub-tab. Paste into the new <code>tab-org-tools</code> pane. Convert panel toggles to proper sub-tab buttons.</p>
+                <div class="step-files">📄 popup.html</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h4>Move Org & Favicon HTML from Data Explorer to new tab-pane</h4>
+                <p>Cut the entire <code>subtab-sandbox-manager</code> div from Data Explorer. Paste into new <code>tab-favicon</code> pane. Remove the Settings "Org & Favicon" sub-tab.</p>
+                <div class="step-files">📄 popup.html</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h4>Build Settings "Org Management" sub-tab</h4>
+                <p>Replace the removed "Org & Favicon" settings sub-tab with the new Org Management panel: current org card with quick actions, saved orgs table with edit/delete, per-org data summary.</p>
+                <div class="step-files">📄 popup.html, 📄 popup.css, 📄 settings_helper.js</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+                <h4>Update JavaScript wiring</h4>
+                <p>Update popup.js tab routing: new tab IDs, backward-compatible aliases for "data" → "records". Update org_tools_helper.js initialization to work from new tab context. Update data_explorer_helper.js to remove org-tools and favicon references.</p>
+                <div class="step-files">📄 popup.js, 📄 org_tools_helper.js, 📄 data_explorer_helper.js, 📄 data_explorer_tools.js</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-content">
+                <h4>Update sidebar shortcuts</h4>
+                <p>Update <code>TFP_DEFAULT_SHORTCUTS</code> in content.js: add new tab shortcuts, rename categories, migrate old SUBTAB patterns. Add auto-migration for existing user shortcuts.</p>
+                <div class="step-files">📄 content.js, 📄 settings_helper.js</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">7</div>
+            <div class="step-content">
+                <h4>Update CSS</h4>
+                <p>Add styles for Org Management table, current org card, quick action buttons. Ensure new tab-panes inherit existing layout patterns. Verify dark theme variants.</p>
+                <div class="step-files">📄 popup.css</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">8</div>
+            <div class="step-content">
+                <h4>Update Command Palette</h4>
+                <p>Add new commands for the promoted tabs (e.g., "Org Tools", "Custom Labels", "Favicon Manager"). Remove old "Data Explorer → Org Tools" deep-link commands.</p>
+                <div class="step-files">📄 popup.js (command palette section)</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">9</div>
+            <div class="step-content">
+                <h4>Update tests</h4>
+                <p>Update ~15-20 test files that reference Data Explorer sub-tabs, Org Tools panel routing, sidebar shortcut categories, and tab IDs.</p>
+                <div class="step-files">📄 tests/*.test.js</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">10</div>
+            <div class="step-content">
+                <h4>Update CLAUDE.md, docs, and version</h4>
+                <p>Update architecture docs, key files table, sidebar shortcut docs, and bump version to 1.9.0.</p>
+                <div class="step-files">📄 CLAUDE.md, 📄 manifest.json, 📄 docs/*.html</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
