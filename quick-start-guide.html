@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get TrackForcePro installed and ready in minutes. Step-by-step guide for Salesforce admins and developers.">
     <title>TrackForcePro - Quick Start Guide</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
@@ -26,9 +27,7 @@
             color: white;
             padding: 20px 28px;
         }
-
         [data-theme="dark"] .section-header { background: var(--bg-alt); }
-
         .section-header h2 {
             font-size: 1.35rem;
             display: flex;
@@ -37,7 +36,6 @@
             font-weight: 700;
             letter-spacing: -0.02em;
         }
-
         .section-header .step-number {
             background: linear-gradient(135deg, var(--primary-light), var(--accent));
             width: 36px;
@@ -51,62 +49,12 @@
             flex-shrink: 0;
         }
 
-        .section-content {
-            padding: 28px;
-        }
-
-        .section-content h3 {
-            color: var(--text);
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .section-content p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 16px;
-        }
-
-        .screenshot-placeholder {
-            background: var(--bg-alt);
-            border: 2px dashed var(--border-strong);
-            border-radius: var(--radius);
-            padding: 60px 30px;
-            text-align: center;
-            margin: 20px 0;
-            transition: background var(--transition-normal), border-color var(--transition-normal);
-        }
-
-        .screenshot-placeholder::before {
-            content: '📷';
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .screenshot-placeholder .placeholder-title {
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 5px;
-        }
-
-        .screenshot-placeholder .placeholder-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .screenshot-placeholder.large { padding: 100px 30px; }
+        .section-content { padding: 28px; }
+        .section-content h3 { color: var(--text); margin-bottom: 12px; font-size: 1.1rem; font-weight: 700; }
+        .section-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
 
         .instructions { counter-reset: instruction; }
-
-        .instruction-step {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-            align-items: flex-start;
-        }
-
+        .instruction-step { display: flex; gap: 20px; margin-bottom: 20px; align-items: flex-start; }
         .instruction-step::before {
             counter-increment: instruction;
             content: counter(instruction);
@@ -122,75 +70,29 @@
             flex-shrink: 0;
             font-size: 0.85rem;
         }
-
-        .instruction-content h4 {
-            margin-bottom: 4px;
-            color: var(--text);
-            font-weight: 700;
-        }
-
-        .instruction-content p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin: 0;
-        }
+        .instruction-content h4 { margin-bottom: 4px; color: var(--text); font-weight: 700; }
+        .instruction-content p { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
             margin: 20px 0;
         }
-
         .feature-card {
             background: var(--bg-alt);
             border-radius: var(--radius);
-            padding: 20px;
+            padding: 18px;
             border: 1px solid var(--border);
             transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-normal);
         }
+        .feature-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .feature-card h4 { color: var(--primary); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.93rem; }
+        .feature-card p { color: var(--text-muted); font-size: 0.88rem; margin: 0; line-height: 1.5; }
 
-        .feature-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .feature-card h4 {
-            color: var(--primary);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        .qs-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        .qs-table th, .qs-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .qs-table th {
-            background: var(--bg);
-            font-weight: 700;
-            color: var(--text);
-        }
-
+        .qs-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .qs-table th, .qs-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-secondary); }
+        .qs-table th { background: var(--bg); font-weight: 700; color: var(--text); }
         .qs-table tr:hover { background: var(--card-bg-hover); }
 
         .tip {
@@ -200,8 +102,8 @@
             margin: 20px 0;
             border-radius: 0 var(--radius) var(--radius) 0;
             color: var(--text-secondary);
+            font-size: 0.93rem;
         }
-
         [data-theme="dark"] .tip { background: rgba(69,198,90,0.08); }
 
         .warning {
@@ -211,8 +113,8 @@
             margin: 20px 0;
             border-radius: 0 var(--radius) var(--radius) 0;
             color: var(--text-secondary);
+            font-size: 0.93rem;
         }
-
         [data-theme="dark"] .warning { background: rgba(251,180,73,0.08); }
 
         .pro-tips {
@@ -222,28 +124,28 @@
             border: 1px solid var(--border);
             margin: 20px 0;
         }
+        .pro-tips h4 { color: var(--primary); margin-bottom: 12px; font-weight: 700; }
+        .pro-tips ul { list-style: none; padding: 0; margin: 0; }
+        .pro-tips li { padding: 6px 0; color: var(--text-secondary); font-size: 0.9rem; }
+        .pro-tips li::before { content: '⭐ '; margin-right: 8px; }
 
-        .pro-tips h4 {
-            color: var(--primary);
-            margin-bottom: 12px;
-            font-weight: 700;
+        .browser-badges {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 16px 0;
         }
-
-        .pro-tips ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .pro-tips li {
-            padding: 6px 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .pro-tips li::before {
-            content: '⭐ ';
-            margin-right: 8px;
+        .browser-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-pill);
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
         }
 
         .cta-banner {
@@ -256,29 +158,32 @@
             position: relative;
             overflow: hidden;
         }
-
-        [data-theme="dark"] .cta-banner {
-            background: linear-gradient(135deg, #0b2645, #0176d3);
-        }
-
+        [data-theme="dark"] .cta-banner { background: linear-gradient(135deg, #0b2645, #0176d3); }
         .cta-banner::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
             background-size: 40px 40px;
             pointer-events: none;
         }
-
         .cta-banner > * { position: relative; z-index: 1; }
+
+        kbd {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 7px;
+            font-size: 0.82rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: var(--text);
+            box-shadow: 0 1px 0 var(--border);
+        }
 
         @media (max-width: 768px) {
             .section-content { padding: 20px; }
             .instruction-step { flex-direction: column; align-items: center; text-align: center; }
         }
-
         @media print {
             .site-nav, .no-print { display: none; }
             .qs-section { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
@@ -324,194 +229,196 @@
                 <h2><span class="step-number">1</span> Install the Extension</h2>
             </div>
             <div class="section-content">
-                <h3>Chrome Web Store (Recommended)</h3>
-                <p>The easiest way to get started — one click to install:</p>
+                <h3>Install from the Chrome Web Store (Recommended)</h3>
+                <p>TrackForcePro is available for free on the Chrome Web Store. Edge and Firefox support are coming soon.</p>
+
                 <p style="margin: 20px 0;">
                     <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="site-btn site-btn-success site-btn-lg">
                         Add to Chrome — It's Free
                     </a>
                 </p>
 
-                <div class="tip">
-                    <strong>Also available for:</strong> Microsoft Edge, Firefox, and Opera. Visit the respective app stores for your browser.
+                <div class="browser-badges">
+                    <span class="browser-badge">🌐 Chrome — Available Now</span>
+                    <span class="browser-badge" style="opacity: 0.6;">🔷 Edge — Coming Soon</span>
+                    <span class="browser-badge" style="opacity: 0.6;">🦊 Firefox — Coming Soon</span>
                 </div>
 
-                <h3 style="margin-top: 28px;">For Developers (Manual Installation)</h3>
-                <p>If you want to load the extension from source:</p>
-
-                <div class="instructions">
+                <div class="instructions" style="margin-top: 24px;">
                     <div class="instruction-step">
                         <div class="instruction-content">
-                            <h4>Enable Developer Mode</h4>
-                            <p>In Chrome, go to <code>chrome://extensions</code> and toggle "Developer mode" (top-right)</p>
+                            <h4>Visit the Chrome Web Store</h4>
+                            <p>Search for "TrackForcePro" or use the direct link above to go straight to the listing.</p>
                         </div>
                     </div>
                     <div class="instruction-step">
                         <div class="instruction-content">
-                            <h4>Load the Extension</h4>
-                            <p>Click "Load unpacked," navigate to the TrackForcePro folder, and select it</p>
+                            <h4>Click "Add to Browser"</h4>
+                            <p>Accept the required permissions. TrackForcePro needs access to Salesforce domains to function — it never collects or sends data to external servers.</p>
                         </div>
                     </div>
                     <div class="instruction-step">
                         <div class="instruction-content">
                             <h4>Pin the Extension</h4>
-                            <p>Click the puzzle piece icon in your toolbar and pin TrackForcePro for quick access</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 2: First Launch -->
-        <div class="qs-section" id="first-launch">
-            <div class="section-header">
-                <h2><span class="step-number">2</span> Open TrackForcePro</h2>
-            </div>
-            <div class="section-content">
-                <p>Once installed, click the TrackForcePro icon in your browser toolbar to open the extension popup.</p>
-
-                <h3 style="margin-top: 24px;">The Main Interface</h3>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>🧭 Tabs</h4>
-                        <p>Access 9 major tabs: Audit Trail, SOQL Builder, GraphQL Builder, Data Explorer, Platform Events, LMS, and Settings</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>🔌 Connection Status</h4>
-                        <p>Green = Connected to Salesforce. Red = Not connected (need to log in)</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>⧉ Pop Button</h4>
-                        <p>Click to open as a tab. Shift+click to open as a standalone window</p>
-                    </div>
-                </div>
-
-                <div class="screenshot-placeholder large">
-                    <div class="placeholder-title">Screenshot: Main Extension Popup</div>
-                    <div class="placeholder-desc">Shows the tabbed interface with Audit Trail, SOQL, GraphQL, Data Explorer tabs and connection status indicator</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 3: Connect to Salesforce -->
-        <div class="qs-section" id="connecting">
-            <div class="section-header">
-                <h2><span class="step-number">3</span> Connect to Salesforce</h2>
-            </div>
-            <div class="section-content">
-                <p>TrackForcePro automatically detects your Salesforce session from browser tabs.</p>
-
-                <div class="instructions">
-                    <div class="instruction-step">
-                        <div class="instruction-content">
-                            <h4>Open Salesforce</h4>
-                            <p>In another browser tab, go to your Salesforce org and log in</p>
-                        </div>
-                    </div>
-                    <div class="instruction-step">
-                        <div class="instruction-content">
-                            <h4>Keep It Open</h4>
-                            <p>Don't close the Salesforce tab — the extension needs it to stay active</p>
-                        </div>
-                    </div>
-                    <div class="instruction-step">
-                        <div class="instruction-content">
-                            <h4>Check Connection Status</h4>
-                            <p>Open the extension popup. You should see a green connection indicator showing you're connected</p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 style="margin-top: 24px;">Connection Troubleshooting</h3>
-                <table class="qs-table">
-                    <thead>
-                        <tr><th>Status</th><th>Meaning</th><th>Action</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>🟢 Green</td><td>Connected</td><td>You're ready to use all features!</td></tr>
-                        <tr><td>🔴 Red</td><td>Not Connected</td><td>Log into Salesforce in another tab</td></tr>
-                    </tbody>
-                </table>
-
-                <div class="warning">
-                    TrackForcePro requires an active Salesforce tab with a valid login. Keep that tab open while using the extension.
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 4: Explore the Tabs -->
-        <div class="qs-section" id="features">
-            <div class="section-header">
-                <h2><span class="step-number">4</span> Explore the Features</h2>
-            </div>
-            <div class="section-content">
-
-                <h3>🔍 Audit Trail Tab</h3>
-                <p>Extract, search, and export Salesforce Setup Audit Trail logs. Filter by date, user, object, or action. Export as CSV or JSON.</p>
-
-                <h3 style="margin-top: 24px;">📊 SOQL Builder</h3>
-                <p>Visually build and execute SOQL queries. Select objects, fields, add filters, ordering, and limits. See results instantly with query history.</p>
-
-                <h3 style="margin-top: 24px;">🔗 GraphQL Builder</h3>
-                <p>Advanced query builder with schema autocomplete, syntax highlighting, and support for child records. For experienced users.</p>
-
-                <h3 style="margin-top: 24px;">💾 Data Explorer (6 Tools)</h3>
-                <div class="feature-grid" style="margin-top: 12px;">
-                    <div class="feature-card"><h4>🔍 Record Scanner</h4><p>Scan records by ID, view all fields, edit values, navigate related records</p></div>
-                    <div class="feature-card"><h4>👤 User Manager</h4><p>Search users, view/edit details, manage permissions, bulk operations</p></div>
-                    <div class="feature-card"><h4>🔒 Security Manager</h4><p>Browse profiles, permission sets, permission set groups</p></div>
-                    <div class="feature-card"><h4>🏢 Org Tools</h4><p>Login As users, manage labels, deployments, scheduled jobs</p></div>
-                    <div class="feature-card"><h4>🎨 Org Manager</h4><p>Customize org branding, manage favicons, sandbox labels</p></div>
-                </div>
-
-                <h3 style="margin-top: 24px;">📡 Platform Events &amp; 📢 LMS</h3>
-                <p>Subscribe to and monitor Platform Events and Lightning Message Service channels in real-time.</p>
-
-            </div>
-        </div>
-
-        <!-- Step 5: Show All Data on Record Pages -->
-        <div class="qs-section" id="show-all-data">
-            <div class="section-header">
-                <h2><span class="step-number">5</span> Use Show All Data on Record Pages</h2>
-            </div>
-            <div class="section-content">
-                <p>When viewing any Salesforce record detail page, you'll see a floating <strong>TF button</strong> at the bottom-right corner.</p>
-
-                <div class="instructions">
-                    <div class="instruction-step">
-                        <div class="instruction-content">
-                            <h4>Open a Record</h4>
-                            <p>Navigate to any Account, Contact, Opportunity, or custom object record in Salesforce</p>
-                        </div>
-                    </div>
-                    <div class="instruction-step">
-                        <div class="instruction-content">
-                            <h4>Click the TF Button</h4>
-                            <p>Look for the floating TF button at the bottom-right. Click it to open the All Fields inspector</p>
-                        </div>
-                    </div>
-                    <div class="instruction-step">
-                        <div class="instruction-content">
-                            <h4>Explore All Fields</h4>
-                            <p>See every field on the record (hidden and visible). Search, filter, double-click to edit, and navigate lookups</p>
+                            <p>Click the puzzle piece (extensions) icon in your toolbar and pin TrackForcePro for quick one-click access.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="tip">
-                    You can also use the keyboard shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> to toggle Show All Data (customizable in Settings).
+                    <strong>Edge &amp; Firefox coming soon:</strong> We're working on publishing TrackForcePro to the Edge Add-ons and Firefox Add-ons stores. Stay tuned!
                 </div>
             </div>
         </div>
 
-        <!-- Step 6: Use the Sidebar -->
-        <div class="qs-section" id="sidebar">
+        <!-- Step 2: Connect to Salesforce -->
+        <div class="qs-section" id="connecting">
             <div class="section-header">
-                <h2><span class="step-number">6</span> Access the TF Sidebar</h2>
+                <h2><span class="step-number">2</span> Connect to Salesforce</h2>
             </div>
             <div class="section-content">
-                <p>The TF Sidebar gives you quick access to tools without leaving the Salesforce page.</p>
+                <p>TrackForcePro automatically detects your Salesforce session from open browser tabs. No extra login required.</p>
+
+                <div class="instructions">
+                    <div class="instruction-step">
+                        <div class="instruction-content">
+                            <h4>Log in to Salesforce</h4>
+                            <p>Open a browser tab, navigate to your Salesforce org, and log in as you normally would</p>
+                        </div>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="instruction-content">
+                            <h4>Keep the Salesforce Tab Open</h4>
+                            <p>The extension reads your session from the open tab — don't close it while using TrackForcePro</p>
+                        </div>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="instruction-content">
+                            <h4>Open TrackForcePro</h4>
+                            <p>Click the TrackForcePro icon in your browser toolbar. A green indicator means you're connected and ready</p>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="qs-table">
+                    <thead><tr><th>Status</th><th>Meaning</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td>🟢 Green</td><td>Connected to Salesforce</td><td>You're ready to use all features</td></tr>
+                        <tr><td>🔴 Red</td><td>No Salesforce session detected</td><td>Log into Salesforce in another tab and refresh</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="warning">
+                    <strong>Important:</strong> TrackForcePro requires an active, logged-in Salesforce tab. If your session expires, log in again and the extension will reconnect automatically.
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: The Main Interface -->
+        <div class="qs-section" id="interface">
+            <div class="section-header">
+                <h2><span class="step-number">3</span> Explore the Main Interface</h2>
+            </div>
+            <div class="section-content">
+                <p>TrackForcePro organises its tools into <strong>11 tabs</strong>. Here's what each one does:</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🔍 Audit Trails</h4>
+                        <p>Fetch, filter, and export Setup Audit Trail logs for compliance and change tracking</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📊 SOQL Builder</h4>
+                        <p>Visual query builder with searchable objects, field suggestions, multi-tab editing, and 5 export formats</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔗 GraphQL Builder</h4>
+                        <p>Three-screen workflow with CodeMirror editor, autocomplete, draggable split panes, and export</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔬 Records</h4>
+                        <p>Look up records by ID, view all fields, edit inline, navigate lookups, pin favourites, bulk scan 200 IDs</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🏢 Org Tools</h4>
+                        <p>7 panels: Login As, Custom Labels, Deployments, Scheduled Jobs, Debug Logs, Org Limits, Admin Utils</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎨 Org &amp; Favicon</h4>
+                        <p>Design custom favicons per org to visually distinguish Production, Sandbox, UAT, and Dev environments</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📡 Platform Events</h4>
+                        <p>Subscribe to and monitor Platform Events in real-time with CometD streaming</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💬 LMS</h4>
+                        <p>Subscribe to and publish Lightning Message Service channels for component testing</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚙️ Settings</h4>
+                        <p>7 sub-tabs: Org Management, Appearance, General, Sidebar, Layout, Backup, and About</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>❓ Help</h4>
+                        <p>Documentation links, quick tips, and troubleshooting guides</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>ℹ️ About</h4>
+                        <p>Version info, developer credits, and links to resources</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 8px; color: var(--text-muted); font-size: 0.88rem;">Within Records, you also get sub-tabs for <strong>User Manager</strong> and <strong>Security Manager</strong>.</p>
+
+                <div class="tip">
+                    <strong>Quick navigation:</strong> Press <kbd>Ctrl</kbd>+<kbd>K</kbd> inside the extension to open the Command Palette and jump to any tab or feature by typing its name.
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Show All Data -->
+        <div class="qs-section" id="show-all-data">
+            <div class="section-header">
+                <h2><span class="step-number">4</span> Use Show All Data on Record Pages</h2>
+            </div>
+            <div class="section-content">
+                <p>When viewing any Salesforce record detail page, you'll see a floating <strong>TFP button</strong> at the bottom-right corner. This works directly on the page — no popup needed.</p>
+
+                <div class="instructions">
+                    <div class="instruction-step">
+                        <div class="instruction-content">
+                            <h4>Open Any Record</h4>
+                            <p>Navigate to any Account, Contact, Opportunity, Case, or custom object record in Salesforce</p>
+                        </div>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="instruction-content">
+                            <h4>Click the TFP Button (or Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>)</h4>
+                            <p>The All Fields inspector opens as a side panel — showing every field on the record, including hidden and system fields</p>
+                        </div>
+                    </div>
+                    <div class="instruction-step">
+                        <div class="instruction-content">
+                            <h4>Search, Edit, Navigate</h4>
+                            <p>Search fields by name, double-click to edit values inline, click lookup fields to jump to related records with breadcrumb navigation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>Keyboard shortcut:</strong> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> toggles Show All Data from anywhere on a record page. Customise this shortcut in Settings &gt; General.
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: TF Sidebar -->
+        <div class="qs-section" id="sidebar">
+            <div class="section-header">
+                <h2><span class="step-number">5</span> Access the TF Sidebar</h2>
+            </div>
+            <div class="section-content">
+                <p>The TF Sidebar gives you quick access to tools on every Salesforce page without opening the extension popup.</p>
 
                 <div class="instructions">
                     <div class="instruction-step">
@@ -522,51 +429,82 @@
                     </div>
                     <div class="instruction-step">
                         <div class="instruction-content">
-                            <h4>Quick Tools</h4>
-                            <p>The sidebar includes tools like Login As, Language Switcher, and Cache Clearer at the top</p>
+                            <h4>Quick Tools at the Top</h4>
+                            <p>Language Switcher, Cache Clearer, Login As, and other quick-action tools appear at the top of the sidebar</p>
                         </div>
                     </div>
                     <div class="instruction-step">
                         <div class="instruction-content">
-                            <h4>Tool Shortcuts</h4>
-                            <p>Click any shortcut to open that tool in the main extension popup</p>
+                            <h4>Feature Shortcuts Below</h4>
+                            <p>Click any shortcut to open that tool in the extension popup. Categories include Records tools and Org tools</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="screenshot-placeholder">
-                    <div class="placeholder-title">Screenshot: TF Sidebar</div>
-                    <div class="placeholder-desc">Shows the floating sidebar panel with quick tools and shortcuts to all major features</div>
+                <div class="tip">
+                    <strong>Stays visible:</strong> The sidebar persists through Salesforce SPA navigation — it remains open as you move between pages.
                 </div>
             </div>
         </div>
 
-        <!-- Step 7: Customize Your Experience -->
-        <div class="qs-section" id="customize">
+        <!-- Step 6: Right-Click Context Menu -->
+        <div class="qs-section" id="context-menu">
             <div class="section-header">
-                <h2><span class="step-number">7</span> Customize Your Experience</h2>
+                <h2><span class="step-number">6</span> Right-Click for Quick Actions</h2>
             </div>
             <div class="section-content">
-                <p>Open the extension and click the <strong>Settings</strong> tab to customize TrackForcePro.</p>
+                <p>Right-click on any Salesforce record page to access five TrackForcePro actions instantly:</p>
 
-                <h3 style="margin-top: 24px;">General Settings</h3>
+                <table class="qs-table">
+                    <thead><tr><th>Action</th><th>What It Does</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Show All Data</strong></td><td>Opens the All Fields inspector for the current record</td></tr>
+                        <tr><td><strong>View Field History</strong></td><td>Shows the field audit trail for the current record</td></tr>
+                        <tr><td><strong>Check Sharing</strong></td><td>Displays sharing rules and access details</td></tr>
+                        <tr><td><strong>Open in SOQL Builder</strong></td><td>Pre-loads SOQL Builder with the current object type</td></tr>
+                        <tr><td><strong>Copy Record ID</strong></td><td>Copies the 15/18-character record ID to clipboard</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Step 7: Customise -->
+        <div class="qs-section" id="customize">
+            <div class="section-header">
+                <h2><span class="step-number">7</span> Customise Your Experience</h2>
+            </div>
+            <div class="section-content">
+                <p>Open the extension and click the <strong>Settings</strong> tab. Seven sub-tabs let you tailor everything:</p>
+
                 <div class="feature-grid">
                     <div class="feature-card">
-                        <h4>🌓 Theme</h4>
-                        <p>Switch between Light and Dark theme. Your preference is saved automatically</p>
+                        <h4>🏢 Org Management</h4>
+                        <p>Per-org inline edit safety, saved orgs, and quick links to Org Tools and Setup</p>
                     </div>
                     <div class="feature-card">
-                        <h4>⌨️ Keyboard Shortcuts</h4>
-                        <p>Customize shortcuts for Toggle Sidebar, Show All Data, and Command Palette. Click any action to rebind</p>
+                        <h4>🎨 Appearance</h4>
+                        <p>Light/Dark theme, text size (5 levels), and editor font size with live preview</p>
                     </div>
                     <div class="feature-card">
-                        <h4>🔐 Production Safety</h4>
-                        <p>"Disable Inline Edit in Production" prevents accidental field changes in production orgs</p>
+                        <h4>⌨️ General</h4>
+                        <p>Customise keyboard shortcuts for Sidebar, Show All Data, and Command Palette</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📌 Sidebar</h4>
+                        <p>Position (Left/Right), enable/disable, and configure which shortcuts appear</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📐 Layout</h4>
+                        <p>Adjust column widths in Org &amp; Favicon editor and User Manager</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💾 Backup</h4>
+                        <p>One-click export/import of all settings. Migrate between browsers or computers</p>
                     </div>
                 </div>
 
                 <div class="tip">
-                    Your customizations are saved to your browser automatically and persist across sessions.
+                    All customisations are saved to your browser automatically and persist across sessions.
                 </div>
             </div>
         </div>
@@ -580,27 +518,28 @@
                 <div class="pro-tips">
                     <h4>Keyboard Shortcuts Save Time</h4>
                     <ul>
-                        <li><kbd>Ctrl</kbd>+<kbd>K</kbd> opens the Command Palette — search any feature</li>
+                        <li><kbd>Ctrl</kbd>+<kbd>K</kbd> opens the Command Palette — search any feature or jump to a record by ID</li>
                         <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> toggles the sidebar on Salesforce pages</li>
-                        <li><kbd>Ctrl</kbd>+<kbd>Enter</kbd> executes queries in builders</li>
+                        <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> toggles Show All Data on record pages</li>
+                        <li><kbd>Ctrl</kbd>+<kbd>Enter</kbd> executes queries in SOQL and GraphQL builders</li>
                     </ul>
                 </div>
 
                 <div class="pro-tips">
-                    <h4>Inline Editing is Powerful</h4>
+                    <h4>Inline Editing is Powerful — and Safe</h4>
                     <ul>
-                        <li>Double-click any field in Data Explorer to edit directly</li>
-                        <li>Changes save instantly to Salesforce via the API</li>
-                        <li>Disable editing in production if you're nervous — see Settings</li>
+                        <li>Double-click any field in Records, SOQL results, or Show All Data to edit directly</li>
+                        <li>Changes save instantly to Salesforce via the REST API</li>
+                        <li>Disable editing per org in Settings &gt; Org Management to protect production data</li>
                     </ul>
                 </div>
 
                 <div class="pro-tips">
-                    <h4>Data Explorer is Your Swiss Army Knife</h4>
+                    <h4>Org &amp; Favicon Differentiates Your Environments</h4>
                     <ul>
-                        <li>Use Record Scanner to explore any record by ID</li>
-                        <li>Navigate related records via lookup fields with breadcrumbs</li>
-                        <li>Pin frequently-accessed records for quick re-lookup</li>
+                        <li>Assign distinct colours and shapes to Production vs. Sandbox</li>
+                        <li>Custom favicons update all open tabs for that org instantly</li>
+                        <li>Never accidentally work in the wrong environment again</li>
                     </ul>
                 </div>
 
@@ -608,8 +547,8 @@
                     <h4>Keep Your Session Alive</h4>
                     <ul>
                         <li>Always keep your Salesforce tab open — the extension depends on it</li>
-                        <li>If you see "Not Connected," refresh the Salesforce page</li>
-                        <li>Long-running sessions may expire — re-login if needed</li>
+                        <li>If you see "Not Connected," refresh the Salesforce page or log in again</li>
+                        <li>The extension automatically recovers from service worker crashes using cookie fallback</li>
                     </ul>
                 </div>
             </div>
@@ -617,26 +556,28 @@
 
         <!-- CTA Banner -->
         <div class="cta-banner">
-            <div style="font-size: 3rem; margin-bottom: 12px;">🎮</div>
-            <h2 style="margin-bottom: 8px; font-size: 1.5rem;">Test Your Knowledge!</h2>
-            <p style="opacity: 0.9; margin-bottom: 24px;">Take the interactive quiz — 7 game modes to learn TrackForcePro like a pro!</p>
-            <a href="quiz.html" class="site-btn site-btn-lg site-btn-pill" style="background: white; color: #032d60; font-weight: 700;">
-                Play the Quiz
+            <div style="font-size: 3rem; margin-bottom: 12px;">📖</div>
+            <h2 style="margin-bottom: 8px; font-size: 1.5rem;">Want the Full Details?</h2>
+            <p style="opacity: 0.9; margin-bottom: 24px;">Read the complete documentation for every tab, panel, shortcut, and setting.</p>
+            <a href="documentation.html" class="site-btn site-btn-lg site-btn-pill" style="background: white; color: #032d60; font-weight: 700;">
+                Full Documentation
             </a>
         </div>
 
     </div>
 
     <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
         <div class="footer-links">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
-            <a href="help.html">Help &amp; Support</a>
+            <a href="help.html">Help</a>
             <span class="sep">·</span>
-            <a href="documentation.html">Full Documentation</a>
+            <a href="leaderboard.html">Leaderboard</a>
             <span class="sep">·</span>
-            <a href="quiz.html">Quiz &amp; Games</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="sep">·</span>
+            <a href="quick-start-guide.html">Quick Start</a>
         </div>
         <div class="footer-social">
             <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>

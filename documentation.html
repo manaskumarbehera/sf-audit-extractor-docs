@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrackForcePro Documentation</title>
+    <meta name="description" content="TrackForcePro v1.8.0 complete documentation — every tab, feature, shortcut, and setting explained for Salesforce admins and developers.">
+    <title>TrackForcePro Documentation — Complete Feature Guide</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
@@ -20,7 +21,6 @@
             align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
         .header h1 {
             font-size: 24px;
             font-weight: 700;
@@ -28,7 +28,6 @@
             align-items: center;
             gap: 12px;
         }
-
         .header .logo {
             width: 40px;
             height: 40px;
@@ -41,7 +40,6 @@
             color: var(--primary);
             font-size: 14px;
         }
-
         .version-badge {
             background: rgba(255,255,255,0.2);
             color: white;
@@ -51,23 +49,58 @@
             font-weight: 600;
             letter-spacing: 0.05em;
         }
-
         .content {
-            max-width: 900px;
+            max-width: 920px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
-        .section {
+        /* Table of Contents */
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
             margin-bottom: 48px;
-            padding-bottom: 32px;
+            box-shadow: var(--shadow);
+        }
+        .toc h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 8px 24px;
+        }
+        .toc a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            color: var(--text-link);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+        .toc a:hover { color: var(--primary-dark); text-decoration: underline; }
+        .toc .toc-emoji { font-size: 1rem; }
+        .toc .toc-divider {
+            grid-column: 1 / -1;
+            border-top: 1px solid var(--border);
+            margin: 8px 0;
+        }
+
+        /* Section styles */
+        .section {
+            margin-bottom: 52px;
+            padding-bottom: 36px;
             border-bottom: 1px solid var(--border);
         }
-
-        .section:last-child {
-            border-bottom: none;
-        }
-
+        .section:last-child { border-bottom: none; }
         .section h2 {
             font-size: 1.8rem;
             font-weight: 700;
@@ -77,96 +110,136 @@
             align-items: center;
             gap: 12px;
         }
-
-        .section h2 .emoji {
-            font-size: 1.6rem;
+        .section h2 .emoji { font-size: 1.6rem; }
+        .section h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 24px 0 10px;
         }
-
         .section-intro {
             color: var(--text-secondary);
             font-size: 1rem;
-            line-height: 1.6;
+            line-height: 1.65;
             margin-bottom: 24px;
         }
 
-        .steps {
-            counter-reset: step-counter;
-            margin: 24px 0;
-        }
-
+        /* Steps */
+        .steps { counter-reset: step-counter; margin: 20px 0; }
         .step {
             display: flex;
             gap: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             align-items: flex-start;
         }
-
         .step::before {
             counter-increment: step-counter;
             content: counter(step-counter);
             background: var(--primary);
             color: white;
-            width: 32px;
-            height: 32px;
-            min-width: 32px;
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             flex-shrink: 0;
             margin-top: 2px;
         }
-
-        .step-content h3 {
+        .step-content h4 {
             font-weight: 700;
             color: var(--text);
-            margin-bottom: 4px;
-            font-size: 1rem;
+            margin-bottom: 3px;
+            font-size: 0.97rem;
         }
-
         .step-content p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.93rem;
+            line-height: 1.55;
             margin: 0;
         }
 
-        .site-tip, .site-warning {
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .site-tip strong, .site-warning strong {
-            display: block;
-            margin-bottom: 4px;
-            color: var(--text);
-        }
-
-        /* Section-specific spacing */
-        .section.short {
-            margin-bottom: 32px;
-        }
+        /* Tips & Warnings */
+        .site-tip, .site-warning { font-size: 0.93rem; line-height: 1.6; }
+        .site-tip strong, .site-warning strong { display: block; margin-bottom: 4px; color: var(--text); }
 
         /* Feature highlights */
         .highlight {
             background: var(--bg-alt);
             border-left: 4px solid var(--primary);
             padding: 12px 16px;
-            margin: 12px 0;
+            margin: 10px 0;
             border-radius: 0 4px 4px 0;
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             color: var(--text-secondary);
         }
+        .highlight em { color: var(--primary); font-style: italic; }
 
-        .highlight em {
+        /* Sub-feature cards */
+        .sub-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 14px;
+            margin: 16px 0;
+        }
+        .sub-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        .sub-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .sub-card h4 {
+            font-size: 0.93rem;
+            font-weight: 700;
             color: var(--primary);
-            font-style: italic;
+            margin-bottom: 6px;
+        }
+        .sub-card p {
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.5;
         }
 
-        a[href^="http"] {
-            word-break: break-word;
+        /* Panel list */
+        .panel-list {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0;
+        }
+        .panel-list li {
+            padding: 10px 14px;
+            border-left: 3px solid var(--primary);
+            margin-bottom: 10px;
+            background: var(--bg-alt);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-size: 0.93rem;
+            color: var(--text-secondary);
+        }
+        .panel-list li strong { color: var(--text); }
+
+        /* Keyboard shortcut inline */
+        kbd {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 7px;
+            font-size: 0.82rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: var(--text);
+            box-shadow: 0 1px 0 var(--border);
+        }
+
+        a[href^="http"] { word-break: break-word; }
+
+        @media (max-width: 640px) {
+            .toc-grid { grid-template-columns: 1fr; }
+            .sub-feature-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -198,687 +271,823 @@
 
     <div class="content">
 
-        <!-- 1. AUDIT TRAIL EXTRACTION -->
-        <div class="section">
-            <h2><span class="emoji">📋</span> Audit Trail Extraction</h2>
+        <!-- ═══ TABLE OF CONTENTS ═══ -->
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <div class="toc-grid">
+                <a href="#audit-trails"><span class="toc-emoji">🔍</span> Audit Trails</a>
+                <a href="#soql-builder"><span class="toc-emoji">📊</span> SOQL Builder</a>
+                <a href="#graphql-builder"><span class="toc-emoji">🔗</span> GraphQL Builder</a>
+                <a href="#records"><span class="toc-emoji">🔬</span> Records</a>
+                <a href="#user-manager"><span class="toc-emoji">👥</span> User Manager</a>
+                <a href="#security-manager"><span class="toc-emoji">🔐</span> Security Manager</a>
+                <a href="#org-tools"><span class="toc-emoji">🏢</span> Org Tools (7 Panels)</a>
+                <a href="#org-favicon"><span class="toc-emoji">🎨</span> Org &amp; Favicon</a>
+                <a href="#platform-events"><span class="toc-emoji">📡</span> Platform Events</a>
+                <a href="#lms"><span class="toc-emoji">💬</span> Lightning Message Service</a>
+                <a href="#settings"><span class="toc-emoji">⚙️</span> Settings (7 Sub-tabs)</a>
+                <div class="toc-divider"></div>
+                <a href="#show-all-data"><span class="toc-emoji">👁️</span> Show All Data (On-Page)</a>
+                <a href="#sidebar"><span class="toc-emoji">🧭</span> TF Sidebar</a>
+                <a href="#command-palette"><span class="toc-emoji">⌨️</span> Command Palette</a>
+                <a href="#context-menu"><span class="toc-emoji">🖱️</span> Context Menu</a>
+                <a href="#keyboard-shortcuts"><span class="toc-emoji">🎹</span> Keyboard Shortcuts</a>
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 1. AUDIT TRAILS -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="audit-trails">
+            <h2><span class="emoji">🔍</span> Audit Trails</h2>
             <p class="section-intro">
-                Fetch and analyze Salesforce audit logs. View who changed what, when, and export to CSV for compliance and troubleshooting.
+                Fetch, search, filter, and export Salesforce Setup Audit Trail logs. Perfect for compliance reviews, change tracking, and troubleshooting who changed what and when.
             </p>
 
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h3>Open the Audit Trails Tab</h3>
-                        <p>Click the Audit Trails icon in the TrackForcePro popup to view the audit log interface.</p>
+                        <h4>Open the Audit Trails Tab</h4>
+                        <p>Click the Audit Trails icon in the popup. The extension connects to your active Salesforce session automatically.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Set Date Range</h3>
-                        <p>Select a start and end date. Salesforce typically retains audit logs for 6 months to 10 years depending on your edition.</p>
+                        <h4>Fetch Audit Logs</h4>
+                        <p>Click the Refresh button to retrieve the latest audit logs from your org.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Filter Results</h3>
-                        <p>Filter by user, object type, action (Create, Update, Delete, etc.), or search by field name to narrow results.</p>
+                        <h4>Filter by Category</h4>
+                        <p>Use the category dropdown to narrow results: <em>All Categories</em>, <em>User Management</em>, <em>Security</em>, or <em>Object Changes</em>. A real-time search box also lets you find specific entries.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Fetch Audit Logs</h3>
-                        <p>Click the fetch button to retrieve logs from your Salesforce org. Results appear in a searchable table.</p>
+                        <h4>Review Statistics</h4>
+                        <p>Statistics cards at the top display the total count, user management changes, security changes, and object changes at a glance.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Export to CSV</h3>
-                        <p>Click Export to download the results as a CSV file for use in Excel, Google Sheets, or other analysis tools.</p>
+                        <h4>Export to CSV</h4>
+                        <p>Click the Export button to download the filtered results as a CSV file for use in Excel, Google Sheets, or compliance tools.</p>
                     </div>
                 </div>
             </div>
 
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use the search box to find specific audit records. Perfect for tracking field changes on specific records or monitoring user activity.
+                <strong>💡 Pro Tip:</strong> Use the search box to find specific audit records by user name, field name, or action type. The API version selector (v60.0–v66.0) lets you match your org's metadata API version.
             </div>
         </div>
 
+
+        <!-- ═══════════════════════════════════════════════════ -->
         <!-- 2. SOQL BUILDER -->
-        <div class="section">
-            <h2><span class="emoji">🔍</span> SOQL Builder</h2>
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="soql-builder">
+            <h2><span class="emoji">📊</span> SOQL Builder</h2>
             <p class="section-intro">
-                Write and test SOQL queries without leaving Salesforce. Visual builder helps you construct queries with autocomplete guidance.
+                A full-featured visual SOQL query builder with searchable object selection, field suggestions, real-time guidance, multi-tab editing, query history, inline result editing, and five export formats.
             </p>
 
+            <h3>Building a Query</h3>
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h3>Click SOQL Builder Tab</h3>
-                        <p>Open the SOQL Builder from the main popup menu.</p>
+                        <h4>Select an Object</h4>
+                        <p>Type in the searchable combobox to filter Salesforce objects (Account, Contact, Lead, custom objects, etc.). Matching names are highlighted as you type. Toggle the <em>Tooling API</em> switch to query metadata objects instead.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Select an Object</h3>
-                        <p>Choose a Salesforce object (Account, Contact, Lead, etc.) from the searchable dropdown. Type to filter the list.</p>
+                        <h4>Choose Fields</h4>
+                        <p>Open the field selector to pick fields with checkboxes. Tabs let you browse All, Standard, or Custom fields. Use the search box to find specific fields. You can also select <em>FIELDS(ALL)</em>, <em>FIELDS(STANDARD)</em>, or <em>FIELDS(CUSTOM)</em> modes for quick selection.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Add Fields</h3>
-                        <p>Click the plus icon to add fields from the object. Select common fields or search for specific ones. Click checkboxes to include in your query.</p>
+                        <h4>Add Filters (WHERE Clause)</h4>
+                        <p>Build WHERE conditions row by row. Pick a field, set the operator (equals, not equals, contains, starts with, greater than, IN, etc.), and enter a value. Add multiple filters combined with AND/OR logic.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Build Filters (Optional)</h3>
-                        <p>Add WHERE conditions to limit results. Set field, operator (equals, contains, greater than, etc.), and value.</p>
+                        <h4>Set Ordering &amp; Limits</h4>
+                        <p>Configure ORDER BY with ascending or descending direction. Set a record limit (1–5,000). The limit input is in the toolbar for quick access.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Execute Query</h3>
-                        <p>Click Execute to run the SOQL query and see results instantly in a table below.</p>
+                        <h4>Execute the Query</h4>
+                        <p>Click <strong>Run</strong> or press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute. Results appear instantly in a sortable table below. Toggle between table view and raw JSON output.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Export or Edit Results</h3>
-                        <p>Export results to CSV, or double-click any cell to edit inline directly from the results table.</p>
-                    </div>
+            <h3>Advanced Capabilities</h3>
+            <div class="sub-feature-grid">
+                <div class="sub-card">
+                    <h4>📑 Multi-Tab Editing</h4>
+                    <p>Open multiple query tabs to work on several queries in parallel. Add and remove tabs from the tab bar.</p>
                 </div>
+                <div class="sub-card">
+                    <h4>🕐 Query History</h4>
+                    <p>Access previously executed queries with timestamps. Filter history by date. Click any past query to reload it instantly.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>✏️ Inline Result Editing</h4>
+                    <p>Toggle inline edit mode to double-click any cell in the results table and update the record directly in Salesforce. Per-org guards protect production data.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>🧭 SOQL Guidance Engine</h4>
+                    <p>Real-time validation panel that checks your query for common issues, best practices, and syntax errors as you build.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>💡 Field Suggestions</h4>
+                    <p>As you type in the query editor, a suggestion dropdown appears with matching field names, types, and descriptions.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>🔧 Tooling API</h4>
+                    <p>Toggle to query Salesforce metadata objects (ApexClass, CustomField, Flow, etc.) via the Tooling API endpoint.</p>
+                </div>
+            </div>
+
+            <h3>Export Options</h3>
+            <div class="highlight">
+                Five export formats: <em>JSON (clipboard)</em>, <em>CSV (clipboard)</em>, <em>TSV/Excel (clipboard)</em>, <em>CSV file download</em>, and <em>JSON file download</em>. Click the export dropdown to choose your preferred format.
             </div>
 
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Copy your generated SOQL query to use in the Salesforce Developer Console or Reports. The visual builder shows syntax guidance as you build.
+                <strong>💡 Pro Tip:</strong> Use <kbd>Ctrl</kbd>+<kbd>A</kbd> in the field selector to select all fields. Copy the generated SOQL to the Developer Console, VS Code, or your CI scripts.
             </div>
         </div>
 
+
+        <!-- ═══════════════════════════════════════════════════ -->
         <!-- 3. GRAPHQL BUILDER -->
-        <div class="section">
-            <h2><span class="emoji">⚡</span> GraphQL Builder</h2>
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="graphql-builder">
+            <h2><span class="emoji">🔗</span> GraphQL Builder <span style="font-size:0.7rem; background:var(--warning); color:#fff; padding:3px 10px; border-radius:12px; margin-left:8px; vertical-align:middle;">BETA</span></h2>
             <p class="section-intro">
-                Build and test GraphQL queries for Salesforce using a powerful code editor with autocomplete and formatting.
+                Build and execute Salesforce UI API GraphQL queries with a three-screen guided workflow, a full CodeMirror 6 editor with syntax highlighting, draggable split panes, and comprehensive export options.
             </p>
 
+            <h3>Three-Screen Workflow</h3>
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h3>Open GraphQL Builder</h3>
-                        <p>Click the GraphQL Builder tab in the popup.</p>
+                        <h4>Screen 1 — Object Selection</h4>
+                        <p>Browse a tile-based grid of Salesforce objects. Use the search box to filter by name. Click an object to proceed to the query builder. Click <em>Refresh Objects</em> to reload the schema.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Write Your Query</h3>
-                        <p>Type or paste your GraphQL query in the editor. Get real-time syntax hints as you type.</p>
+                        <h4>Screen 2 — Query Builder</h4>
+                        <p>Select fields with checkboxes, add filters with AND/OR logic, configure sorting and pagination (limit, offset, or cursor-based). Expand the <em>Related Objects</em> section to add child relationship queries. Toggle the builder panel to switch to the raw editor view.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Format Query</h3>
-                        <p>Click the Format button to auto-format your query for readability.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Execute</h3>
-                        <p>Click Execute to run the query. Results display in a formatted JSON response below.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Export Results</h3>
-                        <p>Export the GraphQL response to JSON or copy it to your clipboard.</p>
+                        <h4>Screen 3 — Results</h4>
+                        <p>View results in a formatted table or raw JSON. The endpoint banner displays the URL, object name, body size, and HTTP method. Navigate pages with First / Previous / Next buttons.</p>
                     </div>
                 </div>
             </div>
 
+            <h3>Editor Features</h3>
+            <div class="sub-feature-grid">
+                <div class="sub-card">
+                    <h4>🎨 CodeMirror 6 Editor</h4>
+                    <p>Syntax-highlighted query editor with autocompletion. Press <kbd>Ctrl</kbd>+<kbd>Space</kbd> for suggestions.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>↔️ Draggable Splitters</h4>
+                    <p>Vertical splitter between Query and Variables editors. Horizontal splitter between Variables and Results. Drag to resize.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>📐 Format Query</h4>
+                    <p>Press <kbd>Ctrl</kbd>+<kbd>B</kbd> (or <kbd>Cmd</kbd>+<kbd>B</kbd>) to auto-format both query and variables for readability.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>📋 Advanced Mode</h4>
+                    <p>Switch to raw GraphQL editing mode for complex queries that go beyond the visual builder.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>🕐 Query History</h4>
+                    <p>Toggle the history panel to see and reload past GraphQL queries. History is org-scoped.</p>
+                </div>
+                <div class="sub-card">
+                    <h4>📦 Export Options</h4>
+                    <p>Export results as CSV, Excel (TSV), JSON, or copy to clipboard with one click.</p>
+                </div>
+            </div>
+
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use GraphQL for complex nested queries. The autocomplete feature learns from your org's schema to provide intelligent suggestions.
+                <strong>💡 Pro Tip:</strong> GraphQL queries can return nested related records in a single call — far more efficient than multiple SOQL queries. Use the Related Objects section in the builder to add child relationships.
             </div>
         </div>
 
-        <!-- 4. DATA EXPLORER -->
-        <div class="section">
-            <h2><span class="emoji">📊</span> Data Explorer</h2>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 4. RECORDS (DATA EXPLORER) -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="records">
+            <h2><span class="emoji">🔬</span> Records</h2>
             <p class="section-intro">
-                Look up any Salesforce record by ID, view all fields, edit inline, navigate between related records, and compare records side-by-side.
+                Look up any Salesforce record by ID, view every field (including hidden and system fields), edit values inline, navigate related records via lookups, pin favourites, compare records, and scan up to 200 IDs in bulk.
             </p>
 
+            <h3>Record Scanner</h3>
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h3>Open Data Explorer</h3>
-                        <p>Click the Data Explorer tab in the popup.</p>
+                        <h4>Look Up a Record</h4>
+                        <p>Enter a 15- or 18-character Salesforce record ID in the search box and press Enter. The record's object type is auto-detected.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Search for a Record</h3>
-                        <p>Enter a Salesforce record ID (15 or 18 character) in the search box and press Enter. Or use the single/bulk record scanner for more control.</p>
+                        <h4>View All Fields</h4>
+                        <p>Every field on the record is displayed in a paginated table (100 fields per page) — including formula fields, system fields (CreatedDate, LastModifiedById), and fields hidden by page layouts.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>View All Fields</h3>
-                        <p>See every field on the record—including read-only fields not visible in Salesforce. Results are paginated (100 fields per page).</p>
+                        <h4>Search &amp; Filter Fields</h4>
+                        <p>Use the field search box to find fields by API name, label, or value. Results update in real-time as you type.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Edit Fields Inline (Optional)</h3>
-                        <p>Double-click any editable field to change its value. Press Enter to save or Escape to cancel. Changes update Salesforce immediately.</p>
+                        <h4>Edit Fields Inline</h4>
+                        <p>Double-click any editable field to change its value. The editor is type-aware: text inputs for strings, dropdowns for booleans, textareas for long text. Press <kbd>Enter</kbd> to save or <kbd>Esc</kbd> to cancel. Changes write directly via the Salesforce REST API.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Navigate Related Records</h3>
-                        <p>Click a lookup field to jump to the related record. A breadcrumb trail keeps track of your navigation history.</p>
+                        <h4>Navigate Lookup Fields</h4>
+                        <p>Click any lookup field to jump to the related record. A breadcrumb trail tracks your navigation history — click any breadcrumb to go back.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Pin Frequently-Used Records</h3>
-                        <p>Click the pin icon on any record to save it. Pinned records appear at the top for quick re-access.</p>
+                        <h4>Pin Records</h4>
+                        <p>Click the pin icon to save frequently-accessed records. Pinned records appear at the top of the Records tab for instant re-access. Pins are org-scoped.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use Bulk Record Scanner to search up to 200 record IDs at once. Results show in a sortable table. Compare records side-by-side to spot differences.
+            <h3>Bulk Record Scanner</h3>
+            <div class="highlight">
+                Paste up to <strong>200 record IDs</strong> to scan them all at once. Results display in a sortable table. Processing uses rate-limited batches of 5 concurrent requests to stay within API limits. A live progress indicator shows scan status.
+            </div>
+
+            <h3>Record History</h3>
+            <div class="highlight">
+                The last <strong>25 records</strong> you looked up are saved in your history (per org). Click any history entry to reload the record instantly.
             </div>
 
             <div class="site-warning">
-                <strong>⚠️ Inline Edit Security:</strong> In Settings > General, you can disable inline editing in production orgs to prevent accidental changes. This setting protects production data while allowing edits in sandboxes.
+                <strong>⚠️ Inline Edit Safety:</strong> In <strong>Settings &gt; Org Management</strong>, you can disable inline editing per org to prevent accidental changes in production. Sandboxes remain fully editable.
             </div>
         </div>
 
-        <!-- 5. SECURITY MANAGER -->
-        <div class="section">
-            <h2><span class="emoji">🔐</span> Security Manager</h2>
-            <p class="section-intro">
-                Browse and analyze Salesforce security configurations: Profiles, Permission Sets, and Permission Set Groups.
-            </p>
 
-            <div class="steps">
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Open Org Tools Tab</h3>
-                        <p>Click Org Tools in the main popup, then select Security Manager.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Browse Profiles</h3>
-                        <p>View all Salesforce profiles in your org. See which objects and fields each profile can access.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>View Permission Sets</h3>
-                        <p>Check individual permission sets and understand what permissions they grant users.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Inspect Permission Set Groups</h3>
-                        <p>See groups and the permission sets they contain.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use this tool to audit user permissions and understand your org's security model without manual Salesforce UI navigation.
-            </div>
-        </div>
-
-        <!-- 6. USER MANAGER -->
-        <div class="section">
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 5. USER MANAGER -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="user-manager">
             <h2><span class="emoji">👥</span> User Manager</h2>
             <p class="section-intro">
-                Search users, view detailed profiles, freeze/unfreeze accounts, and see permission assignments at a glance.
+                Search users, view detailed profiles, manage permissions, freeze or unfreeze accounts, compare users side-by-side, and perform bulk updates — all without leaving the extension.
             </p>
 
+            <h3>Core Features</h3>
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h3>Open Org Tools > User Manager</h3>
-                        <p>Navigate to Org Tools and select User Manager.</p>
+                        <h4>Current User Card</h4>
+                        <p>Displays your logged-in user details, profile, and role at a glance.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Search Users</h3>
-                        <p>Type a name or email in the search box to find users. Filter by active/inactive status.</p>
+                        <h4>Find a User</h4>
+                        <p>Search by name, email, or username. Filter by active or inactive status. Click a user to load their full profile.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>View User Details</h3>
-                        <p>Click a user to see full profile info: email, role, profile, permission sets, and status.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Freeze or Unfreeze Users</h3>
-                        <p>Click the freeze/unfreeze button to temporarily disable a user account without deleting it.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Check Permission Matrix</h3>
-                        <p>View which permission sets and profiles are assigned to each user.</p>
+                        <h4>Update User Details</h4>
+                        <p>Change a user's Profile, Role, or Language directly from the extension. Select new values from dropdowns and click Update.</p>
                     </div>
                 </div>
             </div>
 
+            <h3>Enhancement Panels</h3>
+            <p style="color: var(--text-secondary); font-size: 0.93rem; margin-bottom: 14px;">Six collapsible panels provide advanced user management capabilities:</p>
+            <ul class="panel-list">
+                <li><strong>Permission Matrix</strong> — Consolidated view of all permissions from the user's profile, permission sets, and permission set groups. Filter by source (All / Profile / Permission Sets / PS Groups).</li>
+                <li><strong>Session Manager</strong> — View and revoke active user sessions. See login times, source IP, and session type.</li>
+                <li><strong>Freeze / Unfreeze</strong> — Temporarily disable a user account without deleting it. One-click freeze/unfreeze toggle.</li>
+                <li><strong>Access Summary</strong> — Per-object breakdown of what the user can access (CRUD permissions) across all sources.</li>
+                <li><strong>Bulk User Update</strong> — Update multiple users at once. Paste CSV data or enter records manually. Validate before applying.</li>
+                <li><strong>User Comparison</strong> — Side-by-side comparison of two users. See differences in profiles, roles, permissions, and assignments.</li>
+            </ul>
+
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use User Manager to quickly deactivate contractors or temp users without accessing Salesforce Setup.
+                <strong>💡 Pro Tip:</strong> Use the Permission Matrix to audit a user's effective permissions before a security review. Filter by "Permission Sets" to see what was granted beyond the base profile.
             </div>
         </div>
 
-        <!-- 7. ORG TOOLS -->
-        <div class="section">
-            <h2><span class="emoji">🛠️</span> Org Tools</h2>
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 6. SECURITY MANAGER -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="security-manager">
+            <h2><span class="emoji">🔐</span> Security Manager</h2>
             <p class="section-intro">
-                Quick access to org utilities: Login As, Custom Labels, Deployments, Debug Logs, Org Limits, and Scheduled Jobs.
+                Browse and analyze your org's security model: Profiles, Permission Sets, and Permission Set Groups — with search, drill-down, and assignment views.
             </p>
 
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h3>Open Org Tools</h3>
-                        <p>Click the Org Tools tab in the popup.</p>
+                        <h4>Toggle Between Views</h4>
+                        <p>Panel toggle buttons at the top let you switch between <strong>Profiles</strong>, <strong>Permission Sets</strong>, and <strong>Permission Set Groups</strong>.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Login As Another User</h3>
-                        <p>Search for a user and click Login As to assume their identity for troubleshooting.</p>
+                        <h4>Search &amp; Browse</h4>
+                        <p>Each panel has its own search input. Filter by name to find specific profiles or permission sets in large orgs.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Browse Custom Labels</h3>
-                        <p>View all custom labels in your org. Search by label name or category.</p>
+                        <h4>View Assignments</h4>
+                        <p>Click any profile or permission set to drill down and see which users are assigned to it.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Monitor Deployments</h3>
-                        <p>See recent deployment history with status and details.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Check Debug Logs</h3>
-                        <p>View recent debug logs and download them for analysis.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Monitor Org Limits</h3>
-                        <p>See API calls used, data storage, file storage, and other org limits in real-time.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>View Scheduled Jobs</h3>
-                        <p>See all scheduled batch jobs, their status, and next execution time.</p>
+                        <h4>Inspect Permission Set Groups</h4>
+                        <p>See which permission sets are bundled into each group and which users are assigned to the group.</p>
                     </div>
                 </div>
             </div>
 
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Check Org Limits regularly to monitor API usage and storage. Use Debug Logs to troubleshoot code execution issues.
+                <strong>💡 Pro Tip:</strong> Use this tool alongside User Manager to audit specific users — check Security Manager for the "what" and User Manager for the "who."
             </div>
         </div>
 
-        <!-- 8. PLATFORM EVENTS -->
-        <div class="section">
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 7. ORG TOOLS -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="org-tools">
+            <h2><span class="emoji">🏢</span> Org Tools</h2>
+            <p class="section-intro">
+                A top-level tab with seven panels for org-wide administration: Login As, Custom Labels, Deployment Monitor, Scheduled Jobs, Debug Logs, Org Limits, and Admin Utilities.
+            </p>
+
+            <h3>7 Panels</h3>
+            <ul class="panel-list">
+                <li>
+                    <strong>🔓 Login As</strong> — Search for a user and log in as them. Opens in a new Incognito window. Recent "Login As" history is saved for quick repeat access.
+                </li>
+                <li>
+                    <strong>🏷️ Custom Labels</strong> — Search, create, edit, and delete custom labels. Filter by category. Bulk import from CSV or JSON with validation. Bulk export. Full translation workflow: export a translation template, import translations, and deploy — all from one panel. Paginated at 100 labels per page.
+                </li>
+                <li>
+                    <strong>🚀 Deployments</strong> — Live deployment monitor with auto-refresh (10-second interval). Filter by status: Succeeded, Failed, InProgress, Canceled, Pending. Toggle to show/hide validate-only deployments. Click any deployment for detailed drill-down. Includes a searchable Deployment Guide with metadata type reference.
+                </li>
+                <li>
+                    <strong>📅 Scheduled Jobs</strong> — View all scheduled Apex jobs with search, sort by execution order (ASC/DESC), status display, and detail drill-down.
+                </li>
+                <li>
+                    <strong>🐛 Debug Logs</strong> — Manage trace flags for debug logging. Quick Enable button auto-creates a 30-minute trace flag for the current user. Create custom trace flags with Entity ID, Debug Level, Log Type (USER_DEBUG, DEVELOPER_LOG, CLASS_TRACING), and expiration time. View and delete existing trace flags.
+                </li>
+                <li>
+                    <strong>📊 Org Limits</strong> — Real-time dashboard showing API calls used, data storage, file storage, and all other org limits with percentage indicators. Sortable table with refresh button.
+                </li>
+                <li>
+                    <strong>⚡ Admin Utils</strong> — View recent Apex jobs. <strong>15 Quick Setup Links</strong> for one-click navigation to: Profiles, Permission Sets, PS Groups, Users, Login History, Installed Packages, Custom Labels, Apex Classes, Custom Settings, Custom Metadata, Deploy Status, Storage, Health Check, Session Management, Named Credentials, and Email Templates.
+                </li>
+            </ul>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use the Debug Logs "Quick Enable" button to start logging immediately when troubleshooting an issue — no need to navigate to Salesforce Setup.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 8. ORG & FAVICON -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="org-favicon">
+            <h2><span class="emoji">🎨</span> Org &amp; Favicon</h2>
+            <p class="section-intro">
+                Customize browser favicons and tab titles for each Salesforce org. Instantly distinguish between Production, Sandbox, UAT, and Dev environments by colour, shape, and label.
+            </p>
+
+            <h3>Three-Column Layout</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Saved Orgs (Left Column)</h4>
+                        <p>Browse and search your saved orgs. Click the + button to add the currently connected org. Select an org to load its favicon settings.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Favicon Editor (Centre Column)</h4>
+                        <p>Design a custom favicon with a live 64×64 canvas preview. Choose from 6 environment presets (DEV, UAT, PROD, QA, TRN, SBX), 8 colour swatches, 8 shapes (circle, square, rounded, cloud, SF cloud, diamond, hexagon, shield), and a 3-character badge label. Toggle text colour between auto and custom. Preview against light or dark backgrounds.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Org Details (Right Column)</h4>
+                        <p>View org name, environment type (colour-coded badge), instance URL, API version, locale, connection status, hostname, Org ID (15 &amp; 18 char), created date, last seen, and notes. A live indicator shows if this is the currently active org.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Live Favicon Application:</strong> Click <em>Save &amp; Apply</em> to update all open Salesforce tabs for that org instantly — including the tab title and the Salesforce logo colour on the page itself.
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use distinct shapes and colours per environment (e.g. red hexagon for Production, green circle for Dev). The favicon label (e.g. "PRD", "DEV") appears inside the shape for instant recognition.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 9. PLATFORM EVENTS -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="platform-events">
             <h2><span class="emoji">📡</span> Platform Events</h2>
             <p class="section-intro">
-                Subscribe to and publish Salesforce Platform Events in real-time. Monitor event streams for debugging and testing.
+                Subscribe to Salesforce Platform Events in real-time using CometD streaming. Monitor event messages as they arrive, with filters, pause/resume, and auto-scroll.
             </p>
 
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h3>Open Platform Events Tab</h3>
-                        <p>Click Platform Events in the popup menu.</p>
+                        <h4>Discover Events</h4>
+                        <p>The left panel lists all Platform Event definitions in your org. Click Refresh to reload the list.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Select an Event</h3>
-                        <p>Choose a Platform Event from your org's list.</p>
+                        <h4>Subscribe to an Event</h4>
+                        <p>Click any event to subscribe. The extension opens a CometD streaming connection to receive messages in real-time.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Subscribe to Events</h3>
-                        <p>Click Subscribe to listen to incoming events. Events appear in real-time as they're published.</p>
+                        <h4>Monitor the Event Stream</h4>
+                        <p>Incoming events appear in the right panel log. Filter the log by type: All, Events, System, Subscribe, Unsubscribe, or Errors.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Publish a Test Event</h3>
-                        <p>Enter event payload data and click Publish to send a test event to your subscribers.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Monitor Event Stream</h3>
-                        <p>View all events received in JSON format. Clear logs or download for analysis.</p>
+                        <h4>Pause, Resume &amp; Clear</h4>
+                        <p>Pause logging to freeze the view, resume to continue, or clear the log entirely. Toggle auto-scroll to keep the latest events visible.</p>
                     </div>
                 </div>
             </div>
 
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use Platform Events for testing integrations and debugging event-driven workflows without manual triggering.
+                <strong>💡 Pro Tip:</strong> Use Platform Events monitoring to debug integrations, test event-driven automation, and verify that your Apex triggers and flows are publishing events correctly.
             </div>
         </div>
 
-        <!-- 9. LIGHTNING MESSAGE SERVICE (LMS) -->
-        <div class="section">
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 10. LIGHTNING MESSAGE SERVICE (LMS) -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="lms">
             <h2><span class="emoji">💬</span> Lightning Message Service</h2>
             <p class="section-intro">
-                Subscribe to and publish LMS channels for testing component communication in Lightning.
+                Subscribe to and publish messages on Lightning Message Service (LMS) channels. Test inter-component communication in Lightning without deploying code changes.
             </p>
 
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h3>Open LMS Tab</h3>
-                        <p>Click Lightning Message Service (LMS) in the popup.</p>
+                        <h4>Discover LMS Channels</h4>
+                        <p>The left panel lists all LMS channels in your org. Click Refresh to update the list.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Select a Channel</h3>
-                        <p>Choose an LMS channel from your org.</p>
+                        <h4>Subscribe to a Channel</h4>
+                        <p>Click a channel to start listening. Incoming messages appear in the log with timestamps.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Subscribe to Channel</h3>
-                        <p>Click Subscribe to listen for messages on the selected channel.</p>
+                        <h4>Publish a Test Message</h4>
+                        <p>Click <strong>Publish</strong> to open a modal dialog. Enter a JSON payload in the editor and send it to the channel. Use the copy button to save your payload for reuse.</p>
                     </div>
                 </div>
-
                 <div class="step">
                     <div class="step-content">
-                        <h3>Publish Messages</h3>
-                        <p>Enter message payload and click Publish. Subscribers receive the message instantly.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>View Message Log</h3>
-                        <p>All sent and received messages appear in a scrollable log with timestamps.</p>
+                        <h4>Filter &amp; Review</h4>
+                        <p>Filter log entries by type: All, Info, System, Success, or Errors. Pause/resume logging and toggle auto-scroll.</p>
                     </div>
                 </div>
             </div>
 
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use LMS testing to verify Lightning component communication works correctly without manually triggering actions.
+                <strong>💡 Pro Tip:</strong> Use LMS testing to verify that your Lightning Web Components respond correctly to channel messages before deploying to production.
             </div>
         </div>
 
-        <!-- 10. SHOW ALL DATA -->
-        <div class="section">
-            <h2><span class="emoji">👁️</span> Show All Data</h2>
-            <p class="section-intro">
-                Floating button appears on every Salesforce record. Click to see all fields—including hidden ones—and edit them directly on the page.
-            </p>
 
-            <div class="steps">
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Navigate to Any Salesforce Record</h3>
-                        <p>Open any record page in Salesforce (Account, Contact, Opportunity, etc.).</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Click the Show All Data Button</h3>
-                        <p>A floating TrackForcePro button appears in the top corner. Click it to open the All Fields inspector.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Search Fields (Optional)</h3>
-                        <p>Use the search box to find specific fields by name or value.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Edit Fields</h3>
-                        <p>Double-click any field value to edit. Type your changes and press Enter to save instantly.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Navigate Related Records</h3>
-                        <p>Click lookup fields to jump to related records. Breadcrumbs track your navigation history. Click breadcrumbs to go back.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use Show All Data to see formula results, system fields (CreatedDate, CreatedById), and fields hidden by page layouts.
-            </div>
-        </div>
-
-        <!-- 11. TRACKFORCEPRO SIDEBAR -->
-        <div class="section">
-            <h2><span class="emoji">⚙️</span> TrackForcePro Sidebar</h2>
-            <p class="section-intro">
-                Quick shortcuts appear as a sidebar on every Salesforce page. Customize shortcuts to your favorite tools in Settings.
-            </p>
-
-            <div class="steps">
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Sidebar Appears Automatically</h3>
-                        <p>A floating sidebar with shortcuts is visible on all Salesforce pages.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Click Shortcuts</h3>
-                        <p>Click any shortcut to trigger the action (Show All Data, Field History, SOQL Builder, etc.).</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Customize Shortcuts</h3>
-                        <p>Open Settings > Sidebar and configure which shortcuts appear on your sidebar.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Hide Sidebar (Optional)</h3>
-                        <p>Click the minimize icon to hide the sidebar. It reappears when you navigate to a new Salesforce page.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Customize shortcuts in Settings to match your workflow. Add frequently-used tools to the sidebar for quick access.
-            </div>
-        </div>
-
-        <!-- 12. COMMAND PALETTE -->
-        <div class="section">
-            <h2><span class="emoji">⌨️</span> Command Palette</h2>
-            <p class="section-intro">
-                Global command search accessible from any Salesforce page. Press Ctrl+K (or Cmd+K on Mac) to open and search for commands.
-            </p>
-
-            <div class="steps">
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Press Ctrl+K (or Cmd+K)</h3>
-                        <p>From any Salesforce page, press Ctrl+K to open the Command Palette.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Search Commands</h3>
-                        <p>Type to search: "Audit," "SOQL," "Show All Data," "Security," etc. Matching commands appear instantly.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Navigate Results</h3>
-                        <p>Use arrow keys to move between results. Press Enter to execute the selected command.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Record ID Lookup</h3>
-                        <p>Type a record ID (15-18 characters) to auto-trigger a record lookup in Data Explorer.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Close Palette</h3>
-                        <p>Press Escape to close the Command Palette anytime.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> The Command Palette supports 13+ built-in commands. Customize shortcut keys in Settings > General > Configurable Keyboard Shortcuts.
-            </div>
-        </div>
-
-        <!-- 13. CONTEXT MENU -->
-        <div class="section">
-            <h2><span class="emoji">🖱️</span> Context Menu</h2>
-            <p class="section-intro">
-                Right-click on any Salesforce record page for quick access to Show All Data, Field History, Sharing, SOQL Builder, and more.
-            </p>
-
-            <div class="steps">
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Right-Click on a Salesforce Page</h3>
-                        <p>Navigate to any Salesforce record and right-click the page.</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Use Context Menu Options</h3>
-                        <p>A TrackForcePro menu appears with 5 options:</p>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-content">
-                        <h3>Available Actions</h3>
-                        <p><em>Show All Data</em> - Open the field inspector. <em>Field History</em> - View field change history. <em>Sharing</em> - Check record sharing settings. <em>SOQL Builder</em> - Write queries for the current object. <em>Copy Record ID</em> - Copy the record ID to clipboard.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Right-click is faster than navigating the popup menu for quick actions on record pages.
-            </div>
-        </div>
-
-        <!-- 14. SETTINGS -->
-        <div class="section">
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- 11. SETTINGS -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="settings">
             <h2><span class="emoji">⚙️</span> Settings</h2>
             <p class="section-intro">
-                Customize TrackForcePro behavior, appearance, and keyboard shortcuts. Settings are saved per browser profile.
+                Seven sub-tabs for complete customization: Org Management, Appearance, General, Sidebar, Layout, Backup, and About.
             </p>
 
+            <h3>Org Management</h3>
             <div class="highlight">
-                <strong>General Settings:</strong> Disable inline edit in production orgs, configure keyboard shortcuts (Ctrl+K toggle, Show All Data, etc.), set theme preference.
+                View current org info, manage saved organisations (edit/delete), review per-org data storage, and configure <strong>inline editing safety per org</strong>. Quick-action buttons link to Edit Favicon, Org Tools, Org Limits, and Open Setup.
             </div>
 
+            <h3>Appearance</h3>
             <div class="highlight">
-                <strong>Org & Favicon:</strong> Manage org logos and custom favicons. Show org icons on browser tabs for easy identification.
+                <strong>Text Size:</strong> Five levels (XS, S, M, L, XL) with live preview. <strong>Editor Font Size:</strong> Slider (10–20px) for SOQL/GraphQL editors. <strong>Theme:</strong> Light or Dark with visual preview cards. Preferences persist automatically.
             </div>
 
+            <h3>General</h3>
             <div class="highlight">
-                <strong>Appearance:</strong> Choose light, dark, or auto theme. Customize colors and font sizes for accessibility.
+                <strong>Configurable Keyboard Shortcuts:</strong> Click-to-record interface for three actions — Toggle Sidebar, Toggle Show All Data, and Command Palette. Each shortcut supports Ctrl, Shift, Alt, and Meta modifiers. Reset individual shortcuts to defaults with one click. Display is platform-aware (Mac shows ⌘, Windows shows Ctrl).
             </div>
 
+            <h3>Sidebar</h3>
             <div class="highlight">
-                <strong>Sidebar:</strong> Configure which shortcuts appear on the Salesforce sidebar. Reorder or disable individual shortcuts.
+                Choose sidebar position (Left or Right). Enable or disable the sidebar entirely. Configure collapse state preference and quick access menu items.
             </div>
 
+            <h3>Layout</h3>
             <div class="highlight">
-                <strong>Layout:</strong> Adjust column widths in tables. Settings persist across sessions.
+                Drag sliders to adjust column widths in the Org &amp; Favicon editor (Saved Orgs: 15–60%, Org Info: 15–40%) and User Manager (Left Column: 20–60%). Changes preview in real-time. Reset to defaults available.
             </div>
 
+            <h3>Backup</h3>
             <div class="highlight">
-                <strong>Backup:</strong> Export or import your entire TrackForcePro configuration. Useful when switching browsers or computers.
+                <strong>Quick Export:</strong> One-click download of all settings as JSON. <strong>Quick Import:</strong> Select a JSON file to restore. Full backup includes per-org data, query history, shortcuts, appearance, and layout settings. Perfect for migrating between browsers or computers.
+            </div>
+
+            <h3>About</h3>
+            <div class="highlight">
+                Developer info, version number, links to the Chrome Web Store, official website, GitHub issue tracker, Help &amp; Support, Quick Start Guide, Documentation, Quiz, and Leaderboard.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- ON-PAGE FEATURES -->
+        <!-- ═══════════════════════════════════════════════════ -->
+
+        <div style="margin: 48px 0 32px;">
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">On-Page Features</h2>
+            <p style="color: var(--text-muted); font-size: 0.93rem;">These features work directly on Salesforce pages — no popup required.</p>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- SHOW ALL DATA -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="show-all-data">
+            <h2><span class="emoji">👁️</span> Show All Data</h2>
+            <p class="section-intro">
+                A floating inspector injected on every Salesforce record detail page. View all fields (including hidden and system fields), search and filter, edit inline, and navigate related records — without opening the extension popup.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Navigate to Any Record Page</h4>
+                        <p>Open any record in Salesforce (Account, Contact, Opportunity, Case, custom objects, etc.).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Click the Floating TFP Button</h4>
+                        <p>A floating "TFP Show All Data" button appears at the bottom-right of the page. Click it (or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>) to open the side panel.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Search &amp; Browse Fields</h4>
+                        <p>The side panel shows every field on the record. Use the search box to filter by field name or value.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Edit Fields Inline</h4>
+                        <p>Double-click any editable field. Type-aware editors appear: text for strings, dropdowns for booleans, textareas for long text. Press <kbd>Enter</kbd> to save or <kbd>Esc</kbd> to cancel. Changes write via PATCH to the Salesforce REST API.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Navigate Related Records</h4>
+                        <p>Click lookup fields to jump to related records. A breadcrumb trail tracks your navigation — click any breadcrumb to go back.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-warning">
+                <strong>⚠️ Production Safety:</strong> If inline editing is disabled for the current org (Settings &gt; Org Management), a warning notification appears and edits are blocked. Sandboxes remain fully editable.
             </div>
 
             <div class="site-tip">
-                <strong>💡 New in v1.8.0:</strong> Disable Inline Edit in Production—blocks inline edits on production orgs while allowing them in sandboxes. Configurable Keyboard Shortcuts—set custom key combos for Toggle Sidebar, Show All Data, and Command Palette.
+                <strong>💡 Pro Tip:</strong> Show All Data reveals formula results, system fields (CreatedDate, CreatedById, SystemModstamp), and fields hidden by page layouts — essential for debugging and data verification.
             </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- TF SIDEBAR -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="sidebar">
+            <h2><span class="emoji">🧭</span> TF Sidebar</h2>
+            <p class="section-intro">
+                A floating shortcut panel on every Salesforce page. Access your favourite tools without opening the extension popup. Configurable position, shortcuts, and visibility.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Toggle the Sidebar</h4>
+                        <p>Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> (or your custom shortcut) on any Salesforce page. The sidebar slides in from the side.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Use Quick Tools</h4>
+                        <p>The top section includes quick-action tools: Show All Data, Language Switcher, Cache Clearer, and more.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Access Feature Shortcuts</h4>
+                        <p>Click any shortcut to open that tool in the extension popup. Categories include Records tools (Record Scanner, User Manager, Security Manager) and Org tools (Login As, Custom Labels, Deployments, etc.).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Customize in Settings</h4>
+                        <p>Configure sidebar position (Left/Right), enable/disable it, and choose which shortcuts appear. Settings persist across sessions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> The sidebar persists through Salesforce SPA navigation — it stays visible as you move between pages without reloading.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- COMMAND PALETTE -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="command-palette">
+            <h2><span class="emoji">⌨️</span> Command Palette</h2>
+            <p class="section-intro">
+                A global command search accessible from the extension popup. Press <kbd>Ctrl</kbd>+<kbd>K</kbd> (or <kbd>Cmd</kbd>+<kbd>K</kbd>) to open, type to search across all tabs and features, and execute commands instantly.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Open the Palette</h4>
+                        <p>Press <kbd>Ctrl</kbd>+<kbd>K</kbd> from the extension popup. A search overlay appears.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Search Commands</h4>
+                        <p>Type to search: "Audit," "SOQL," "Show All Data," "Security," "Login As," "Limits," etc. Matching commands appear instantly. 13+ built-in commands cover all tabs and major features.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Navigate &amp; Execute</h4>
+                        <p>Use arrow keys to move between results. Press <kbd>Enter</kbd> to execute the selected command. Press <kbd>Esc</kbd> to close.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Record ID Lookup</h4>
+                        <p>Type a 15- or 18-character record ID directly into the palette. It auto-detects the ID and triggers a record lookup in the Records tab.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> The Command Palette is the fastest way to navigate TrackForcePro — memorise <kbd>Ctrl</kbd>+<kbd>K</kbd> and you'll never need to click through tabs again.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- CONTEXT MENU -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="context-menu">
+            <h2><span class="emoji">🖱️</span> Context Menu</h2>
+            <p class="section-intro">
+                Right-click on any Salesforce record page for quick access to five TrackForcePro actions. The context menu auto-detects the current record ID and object type.
+            </p>
+
+            <h3>5 Context Menu Actions</h3>
+            <ul class="panel-list">
+                <li><strong>Show All Data</strong> — Opens the Records tab with the current record's All Fields view.</li>
+                <li><strong>View Field History</strong> — Displays the field audit trail for the current record.</li>
+                <li><strong>Check Sharing</strong> — Shows sharing rules and record access details for the current record.</li>
+                <li><strong>Open in SOQL Builder</strong> — Pre-loads the SOQL Builder with the current record's object type.</li>
+                <li><strong>Copy Record ID</strong> — Copies the current record's 15/18-character ID to your clipboard.</li>
+            </ul>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Right-click is faster than opening the popup when you just need to quickly inspect a record's fields or copy its ID.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- KEYBOARD SHORTCUTS -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="keyboard-shortcuts">
+            <h2><span class="emoji">🎹</span> Keyboard Shortcuts</h2>
+            <p class="section-intro">
+                All primary shortcuts are customizable in Settings &gt; General. Fixed shortcuts work in specific contexts (query builders, editors, etc.).
+            </p>
+
+            <h3>Customizable Shortcuts</h3>
+            <table class="site-table" style="margin: 16px 0;">
+                <thead><tr><th>Default Shortcut</th><th>Action</th><th>Where</th></tr></thead>
+                <tbody>
+                    <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Toggle TF Sidebar</td><td>Any Salesforce page</td></tr>
+                    <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></td><td>Toggle Show All Data</td><td>Record pages</td></tr>
+                    <tr><td><kbd>Ctrl</kbd>+<kbd>K</kbd></td><td>Open Command Palette</td><td>Extension popup</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Fixed Shortcuts</h3>
+            <table class="site-table" style="margin: 16px 0;">
+                <thead><tr><th>Shortcut</th><th>Action</th><th>Where</th></tr></thead>
+                <tbody>
+                    <tr><td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td><td>Execute query</td><td>SOQL / GraphQL Builder</td></tr>
+                    <tr><td><kbd>Ctrl</kbd>+<kbd>Space</kbd></td><td>Trigger autocomplete</td><td>GraphQL Editor</td></tr>
+                    <tr><td><kbd>Ctrl</kbd>+<kbd>B</kbd></td><td>Format query &amp; variables</td><td>GraphQL Editor</td></tr>
+                    <tr><td><kbd>Double-click</kbd></td><td>Inline edit field value</td><td>Records / SOQL results / Show All Data</td></tr>
+                    <tr><td><kbd>Enter</kbd></td><td>Save inline edit</td><td>Any inline edit</td></tr>
+                    <tr><td><kbd>Esc</kbd></td><td>Cancel edit / close panel</td><td>Global</td></tr>
+                </tbody>
+            </table>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> On Mac, substitute <kbd>Cmd</kbd> for <kbd>Ctrl</kbd>. The shortcut display in Settings automatically adapts to your platform.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- CROSS-BROWSER SUPPORT -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="cross-browser">
+            <h2><span class="emoji">🌐</span> Cross-Browser Support</h2>
+            <p class="section-intro">
+                TrackForcePro is currently available on the Chrome Web Store. Edge and Firefox support are coming soon.
+            </p>
+
+            <table class="site-table" style="margin: 16px 0;">
+                <thead><tr><th>Browser</th><th>Install Source</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Google Chrome</strong></td><td><a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a></td><td>Available now — all features supported</td></tr>
+                    <tr><td><strong>Microsoft Edge</strong></td><td>Edge Add-ons</td><td>Coming soon</td></tr>
+                    <tr><td><strong>Mozilla Firefox</strong></td><td>Firefox Add-ons</td><td>Coming soon</td></tr>
+                </tbody>
+            </table>
         </div>
 
     </div>
 
     <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Open Source Chrome Extension</p>
+        <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
         <div class="footer-links">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>

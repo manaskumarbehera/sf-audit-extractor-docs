@@ -1490,10 +1490,10 @@ const quizQuestions = [
         explanation: "Inline edit lets you <strong>edit query results directly in the table</strong>. Each cell becomes editable, and changes are saved back to Salesforce. You can even delete rows!"
     },
     {
-        q: "Which browsers does TrackForcePro support?",
-        opts: ["Chrome only", "Chrome and Firefox", "Chrome, Edge, and other Chromium-based browsers", "All major browsers including Safari"],
-        answer: 2,
-        explanation: "TrackForcePro works on <strong>Chrome, Edge, Brave, Opera</strong>, and other Chromium-based browsers. It's published on both the Chrome Web Store and Edge Add-ons."
+        q: "Which browsers does TrackForcePro currently support?",
+        opts: ["Chrome only (Edge & Firefox coming soon)", "Chrome and Firefox", "Chrome, Edge, and other Chromium-based browsers", "All major browsers including Safari"],
+        answer: 0,
+        explanation: "TrackForcePro is currently available on the <strong>Chrome Web Store</strong>. Edge and Firefox support are coming soon."
     },
     {
         q: "What does the Favicon Manager do?",
@@ -1750,7 +1750,7 @@ const speedQuestions = [
     { icon: "🏢", feature: "Custom Labels feature?", opts: ["View only", "Full CRUD + translate", "Export only", "Delete only"], answer: 1 },
     { icon: "🔐", feature: "Security Manager browses?", opts: ["Passwords", "Profiles & Perm Sets", "Encryption", "Cookies"], answer: 1 },
     { icon: "👥", feature: "User comparison?", opts: ["Not available", "Side-by-side diff", "List view", "Chart"], answer: 1 },
-    { icon: "🌐", feature: "Published on?", opts: ["Chrome only", "Chrome + Edge", "Firefox only", "Safari only"], answer: 1 },
+    { icon: "🌐", feature: "Published on?", opts: ["Chrome Web Store", "Chrome + Edge", "Firefox only", "Safari only"], answer: 0 },
     { icon: "📋", feature: "Child CSV export?", opts: ["JSON in cell", "Separate rows", "Skipped", "Separate file"], answer: 1 },
     { icon: "⧉", feature: "Standalone window?", opts: ["Right-click", "Shift+click pop", "Ctrl+W", "Double-click"], answer: 1 },
     { icon: "🧊", feature: "Freeze user does what?", opts: ["Delete account", "Block login", "Reset password", "Send email"], answer: 1 },
@@ -1792,7 +1792,7 @@ const funFacts = [
     "💡 <strong>Fun fact:</strong> The Schema Visualizer creates visual relationship diagrams between Salesforce objects — parent-child and lookups at a glance.",
     "💡 <strong>Pro tip:</strong> SOQL Builder's FIELDS(ALL) mode queries every field on an object automatically — no more selecting dozens of fields manually.",
     "💡 <strong>Did you know?</strong> The Permission Matrix traces a user's permissions across their Profile, Permission Sets, and Permission Set Groups in one grid.",
-    "💡 <strong>Fun fact:</strong> TrackForcePro works on Chrome, Edge, Brave, Opera, and other Chromium-based browsers — not just Chrome!",
+    "💡 <strong>Fun fact:</strong> TrackForcePro is available on the Chrome Web Store now, with Edge and Firefox support coming soon!",
     "💡 <strong>Pro tip:</strong> The Deployment tracker shows active, queued, and completed deployments in real time — catch failures before they escalate.",
     "💡 <strong>Did you know?</strong> The sidebar's Login As incognito mode automatically falls back to a regular new window if your browser doesn't support incognito — so it always works!",
     "💡 <strong>Did you know?</strong> Cloud and shield favicon shapes were redesigned for crisp, smooth rendering at all sizes — from tiny 16px browser tabs to larger previews!",
@@ -1832,9 +1832,9 @@ const trueFalseQuestions = [
         explanation: "Correct! The SOQL Builder supports <strong>inline editing</strong> — click any cell to edit, and changes are saved back to Salesforce via the REST API."
     },
     {
-        statement: "TrackForcePro only works in Google Chrome.",
-        answer: false,
-        explanation: "False! It works on <strong>Chrome, Edge, Brave, Opera</strong>, and other Chromium-based browsers."
+        statement: "TrackForcePro is currently available only on the Chrome Web Store.",
+        answer: true,
+        explanation: "Correct! TrackForcePro is currently published on the <strong>Chrome Web Store</strong>. Edge and Firefox support are coming soon."
     },
     {
         statement: "The Favicon Manager supports 8 different shapes for custom org icons.",
@@ -2140,7 +2140,7 @@ const scenarioQuestions = [
             { icon: "🏢", text: "Debug Logs" }
         ],
         answer: 0,
-        explanation: "The <strong>Audit Trail Extractor</strong> lets you filter Setup Audit Trail events by date range, user, and action — then export the results to CSV for the compliance review."
+        explanation: "The <strong>Audit Trail Extractor</strong> lets you filter Setup Audit Trail events by category and keyword search — then export the results to CSV for the compliance review."
     },
     // ── New scenarios ──
     {
@@ -2202,11 +2202,11 @@ const scenarioQuestions = [
         opts: [
             { icon: "🏢", text: "Debug Logs" },
             { icon: "🔐", text: "Security Manager" },
-            { icon: "🔍", text: "Audit Trail Extractor — Filter by date and action" },
+            { icon: "🔍", text: "Audit Trail Extractor — Filter by category and search" },
             { icon: "👥", text: "User Manager" }
         ],
         answer: 2,
-        explanation: "The <strong>Audit Trail Extractor</strong> lets you filter by date range, user, and action type — then export the evidence to CSV for your investigation."
+        explanation: "The <strong>Audit Trail Extractor</strong> lets you filter by category and keyword search — then export the evidence to CSV for your investigation."
     },
     {
         role: "Salesforce Admin",
@@ -2623,7 +2623,7 @@ const survivalQuestions = [
     { q: "Favicon labels max characters?", opts: ["1", "2", "3", "5"], answer: 2 },
     { q: "Login As has how many icon modes?", opts: ["1", "2", "3", "4"], answer: 2 },
     { q: "Deployment Tracker shows what?", opts: ["Past only", "Active + queued + completed", "Failed only", "Code only"], answer: 1 },
-    { q: "Which browsers are supported?", opts: ["Chrome only", "Chrome + Edge + Chromium", "Firefox only", "All browsers"], answer: 1 },
+    { q: "Which browsers are supported?", opts: ["Chrome (Edge & Firefox coming soon)", "Chrome + Edge + Chromium", "Firefox only", "All browsers"], answer: 0 },
     { q: "Audit Trail exports to what format?", opts: ["PDF", "CSV", "XML", "Excel"], answer: 1 },
     { q: "How many windows per org?", opts: ["Unlimited", "1", "2", "3"], answer: 1 },
     { q: "Schema Visualizer shows what?", opts: ["SQL plans", "Object relationships", "Apex code", "Layouts"], answer: 1 },

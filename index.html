@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TrackForcePro: The complete Salesforce admin toolkit with audit trails, query builders, record scanner, and more. Free browser extension for Chrome, Edge, Firefox, and Opera.">
+    <meta name="description" content="TrackForcePro: The complete Salesforce admin toolkit with 11 tabs, audit trails, query builders, record explorer, org tools, and more. Free Chrome extension. Edge and Firefox coming soon.">
     <title>TrackForcePro - Salesforce Admin Toolkit</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
@@ -45,16 +45,12 @@
             position: relative;
             overflow: hidden;
         }
-        [data-theme="dark"] .cta-section {
-            background: linear-gradient(135deg, #0b2645, #0176d3);
-        }
+        [data-theme="dark"] .cta-section { background: linear-gradient(135deg, #0b2645, #0176d3); }
         .cta-section::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
             background-size: 40px 40px;
             pointer-events: none;
         }
@@ -102,12 +98,12 @@
     <div class="site-container narrow" style="padding-bottom: 0;">
         <div class="stats-banner animate-in">
             <div class="stat-pill">
-                <div class="stat-num">9</div>
-                <div class="stat-label">Power Tools</div>
+                <div class="stat-num">11</div>
+                <div class="stat-label">Tabs</div>
             </div>
             <div class="stat-pill">
-                <div class="stat-num">4</div>
-                <div class="stat-label">Browsers</div>
+                <div class="stat-num">3</div>
+                <div class="stat-label">Browsers Planned</div>
             </div>
             <div class="stat-pill">
                 <div class="stat-num">Free</div>
@@ -127,28 +123,28 @@
             <a href="documentation.html" class="site-card animate-in">
                 <div class="card-icon">📖</div>
                 <h2>Full Documentation</h2>
-                <p>Complete guide to all features, with detailed walkthroughs and examples.</p>
+                <p>Complete guide to all 11 tabs, on-page features, shortcuts, and settings — with step-by-step walkthroughs.</p>
                 <span class="site-badge primary">Comprehensive</span>
             </a>
 
             <a href="quick-start-guide.html" class="site-card animate-in">
                 <div class="card-icon">🚀</div>
                 <h2>Quick Start Guide</h2>
-                <p>Visual walkthrough with step-by-step instructions to install and start using TrackForcePro.</p>
+                <p>Install from your browser store, connect to Salesforce, and explore every feature in minutes.</p>
                 <span class="site-badge success">Recommended</span>
             </a>
 
             <a href="privacy-policy.html" class="site-card animate-in">
                 <div class="card-icon">🔐</div>
                 <h2>Privacy Policy</h2>
-                <p>Learn how TrackForcePro handles your data. No external servers, all data stays local.</p>
+                <p>Zero data collection. All processing stays local in your browser. Permissions explained in plain English.</p>
                 <span class="site-badge accent">Zero Collection</span>
             </a>
 
             <a href="help.html" class="site-card animate-in">
                 <div class="card-icon">💡</div>
                 <h2>Help &amp; Support</h2>
-                <p>Answers to common questions, troubleshooting tips, and how to get support.</p>
+                <p>FAQ, keyboard shortcuts, troubleshooting guides, and how to report issues or request features.</p>
             </a>
 
             <a href="quiz.html" class="site-card animate-in">
@@ -172,36 +168,52 @@
 
             <div class="site-feature-grid">
                 <div class="site-feature-item animate-in">
-                    <h4>🔍 Audit Trail</h4>
-                    <p>Extract and export setup audit logs with advanced filtering, date ranges, and detailed change tracking</p>
-                </div>
-                <div class="site-feature-item animate-in">
-                    <h4>🔗 GraphQL Builder</h4>
-                    <p>Build complex GraphQL queries visually for the Salesforce UI API without memorizing syntax</p>
+                    <h4>🔍 Audit Trails</h4>
+                    <p>Fetch, filter by category, search, and export Setup Audit Trail logs to CSV for compliance and change tracking</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>📊 SOQL Builder</h4>
-                    <p>Create SOQL queries with point-and-click filters, ordering, field selection, and limits</p>
+                    <p>Visual query builder with searchable objects, field suggestions, guidance engine, multi-tab editing, and 5 export formats</p>
                 </div>
                 <div class="site-feature-item animate-in">
-                    <h4>🔬 Record Scanner</h4>
-                    <p>Inspect single records, scan multiple records at once, or compare records side-by-side</p>
+                    <h4>🔗 GraphQL Builder</h4>
+                    <p>Three-screen workflow with CodeMirror 6 editor, autocomplete, draggable splitters, pagination, and export</p>
+                </div>
+                <div class="site-feature-item animate-in">
+                    <h4>🔬 Records</h4>
+                    <p>Look up records by ID, view all fields, edit inline, navigate lookups with breadcrumbs, pin favourites, bulk scan 200 IDs</p>
+                </div>
+                <div class="site-feature-item animate-in">
+                    <h4>👥 User Manager</h4>
+                    <p>Search users, manage permissions, freeze/unfreeze accounts, compare users side-by-side, and bulk update</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>🔐 Security Manager</h4>
-                    <p>Review profiles, permission sets, permission set groups, and user assignments</p>
+                    <p>Browse Profiles, Permission Sets, and Permission Set Groups with search and assignment drill-down</p>
                 </div>
                 <div class="site-feature-item animate-in">
-                    <h4>🏢 Org Tools</h4>
-                    <p>Quick access to Login As, custom labels, deployment history, and org limits</p>
+                    <h4>🏢 Org Tools (7 Panels)</h4>
+                    <p>Login As, Custom Labels (with bulk import/export &amp; translations), Deployments, Scheduled Jobs, Debug Logs, Org Limits, Admin Utils</p>
+                </div>
+                <div class="site-feature-item animate-in">
+                    <h4>🎨 Org &amp; Favicon</h4>
+                    <p>Design custom favicons per org with 8 shapes, colours, and badge labels to distinguish environments at a glance</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>📡 Platform Events</h4>
-                    <p>Monitor platform events in real-time or publish test events directly to your org</p>
+                    <p>Real-time CometD streaming for Platform Events with filtering, pause/resume, and auto-scroll</p>
                 </div>
                 <div class="site-feature-item animate-in">
-                    <h4>🧭 TF Sidebar</h4>
-                    <p>Quick-access shortcuts on every Salesforce page with customizable links to your favorite tools</p>
+                    <h4>💬 Lightning Message Service</h4>
+                    <p>Subscribe to and publish LMS channel messages with JSON payload editor and log filtering</p>
+                </div>
+                <div class="site-feature-item animate-in">
+                    <h4>👁️ Show All Data</h4>
+                    <p>Floating inspector on every record page: see all fields (including hidden), search, edit inline, navigate lookups</p>
+                </div>
+                <div class="site-feature-item animate-in">
+                    <h4>🧭 TF Sidebar &amp; Command Palette</h4>
+                    <p>Floating sidebar with shortcuts on every Salesforce page. Ctrl+K command palette with 13+ commands and record ID auto-detection</p>
                 </div>
             </div>
         </div>
@@ -212,15 +224,16 @@
 
             <h4>v1.8.0 — March 18, 2026 (Latest)</h4>
             <ul>
-                <li><strong>Production Edit Safety</strong> — New "Disable Inline Edit in Production" setting prevents accidental field changes in Production orgs while allowing edits in sandboxes</li>
-                <li><strong>Customizable Keyboard Shortcuts</strong> — Configure your own keyboard shortcuts in Settings for Sidebar toggle, Show All Data panel, and Command Palette to avoid conflicts with other extensions</li>
+                <li><strong>Per-Org Inline Edit Safety</strong> — Disable inline editing per org in Settings &gt; Org Management. Prevents accidental field changes in production while keeping sandboxes fully editable.</li>
+                <li><strong>Customisable Keyboard Shortcuts</strong> — Click-to-record interface in Settings &gt; General for Sidebar toggle, Show All Data, and Command Palette. Platform-aware display (Mac/Windows).</li>
+                <li><strong>Tab Reorganisation</strong> — Org Tools and Org &amp; Favicon promoted to top-level tabs. Records tab (renamed from Data Explorer) with User Manager and Security Manager sub-tabs. 11 tabs total.</li>
             </ul>
 
             <h4>v1.7.x — March 2026</h4>
             <ul>
-                <li><strong>Settings Export &amp; Import</strong> — Backup and restore all your custom settings across different orgs and browsers</li>
-                <li><strong>Searchable Object Selector</strong> — SOQL Builder now has a searchable dropdown to quickly find Salesforce objects by name</li>
-                <li><strong>Show All Data Improvements</strong> — Better performance, enhanced record navigation, and improved field display</li>
+                <li><strong>Settings Export &amp; Import</strong> — Backup and restore all settings, query history, and per-org data as JSON</li>
+                <li><strong>Searchable Object Selector</strong> — SOQL Builder combobox with substring filtering and keyboard navigation</li>
+                <li><strong>Show All Data Improvements</strong> — Better performance, breadcrumb navigation, and improved field display</li>
             </ul>
         </div>
 
@@ -236,7 +249,7 @@
     </div>
 
     <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Free Salesforce Admin Toolkit</p>
+        <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
         <div class="footer-links">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
@@ -257,8 +270,6 @@
         </div>
         <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
     </footer>
-
-    <!-- Theme managed by theme.js -->
 
 </body>
 </html>

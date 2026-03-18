@@ -90,17 +90,19 @@
             <h2 class="site-section-title">Browser Permissions Explained</h2>
             <p>TrackForcePro needs a few permissions to work. Here's what each one does in plain English:</p>
             <ul>
-                <li><strong>Tab Access:</strong> Let's us detect when you're on a Salesforce page so we can offer helpful features right where you need them.</li>
-                <li><strong>Cookies:</strong> Helps us read your Salesforce session info so you don't have to log in twice.</li>
-                <li><strong>Local Storage:</strong> Saves your preferences—like theme choice and saved queries—on your device.</li>
-                <li><strong>Content Scripting:</strong> Lets us add helpful tools directly on Salesforce pages (like the Show All Data button).</li>
-                <li><strong>Salesforce Domains:</strong> Allows the extension to talk to Salesforce APIs when you use query builders, data explorer, and audit features.</li>
+                <li><strong>Tab Access:</strong> Lets us detect when you're on a Salesforce page so we can offer helpful features right where you need them.</li>
+                <li><strong>Cookies:</strong> Helps us read your Salesforce session info so you don't have to log in twice. Also serves as a fallback if the service worker restarts.</li>
+                <li><strong>Local Storage:</strong> Saves your preferences — theme, keyboard shortcuts, query history, per-org settings, and saved queries — on your device only.</li>
+                <li><strong>Content Scripting:</strong> Lets us inject helpful tools directly on Salesforce pages — the Show All Data panel, TF Sidebar, and custom favicons.</li>
+                <li><strong>Context Menus:</strong> Enables the right-click menu on Salesforce pages for quick access to Show All Data, Field History, Sharing, SOQL Builder, and Copy Record ID.</li>
+                <li><strong>Browsing Data:</strong> Used only for cache management features within the extension. We never clear your browsing data without your action.</li>
+                <li><strong>Salesforce Domains:</strong> Allows the extension to communicate with Salesforce APIs (*.salesforce.com, *.force.com, *.lightning.force.com, *.visualforce.com) when you use query builders, records explorer, org tools, and audit features.</li>
             </ul>
         </div>
 
         <div class="site-section animate-in">
             <h2 class="site-section-title">Cross-Browser Support</h2>
-            <p>TrackForcePro works on Chrome, Edge, Firefox, and Opera. No matter which browser you use, the same privacy principles apply: your data stays local, no external collection, no tracking.</p>
+            <p>TrackForcePro is currently available on the Chrome Web Store, with Edge and Firefox support coming soon. No matter which browser you use, the same privacy principles apply: your data stays local, no external collection, no tracking. The extension uses Manifest V3 — the latest and most secure extension framework.</p>
         </div>
 
         <div class="site-section animate-in">
@@ -112,10 +114,12 @@
             <h2 class="site-section-title">Data You Control</h2>
             <p>Your preferences and saved data are yours to manage:</p>
             <ul>
-                <li>Export your settings anytime</li>
+                <li>Export all settings, query history, and per-org data as JSON (Settings &gt; Backup &gt; Quick Export)</li>
+                <li>Import settings from a backup file to restore or migrate (Settings &gt; Backup &gt; Quick Import)</li>
                 <li>Clear all data directly in the Settings tab</li>
-                <li>Uninstall the extension at any time</li>
-                <li>Your Salesforce data is never stored unless you export it</li>
+                <li>Uninstall the extension at any time — all local data is removed automatically</li>
+                <li>Your Salesforce data is never stored unless you explicitly export it</li>
+                <li>Inline editing can be disabled per org for extra safety (Settings &gt; Org Management)</li>
             </ul>
         </div>
 
@@ -135,13 +139,15 @@
     </div>
 
     <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
         <div class="footer-links">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
-            <a href="index.html">Documentation</a>
-            <span class="sep">·</span>
             <a href="help.html">Help</a>
+            <span class="sep">·</span>
+            <a href="leaderboard.html">Leaderboard</a>
+            <span class="sep">·</span>
+            <a href="privacy-policy.html">Privacy Policy</a>
             <span class="sep">·</span>
             <a href="quick-start-guide.html">Quick Start</a>
         </div>
