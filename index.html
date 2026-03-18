@@ -95,7 +95,8 @@
         </div>
         <div style="margin-top: 12px;">
             <select id="version-select" class="site-version-select">
-                <option value="1.7.0">v1.7.0 (Latest)</option>
+                <option value="1.7.1">v1.7.1 (Latest)</option>
+                <option value="1.7.0">v1.7.0</option>
                 <option value="1.6.4">v1.6.4</option>
                 <option value="1.6.3">v1.6.3</option>
                 <option value="1.6.2">v1.6.2</option>
@@ -225,7 +226,14 @@
         <div class="site-section site-changelog" style="margin-top: 36px;">
             <h2 class="site-section-title">Recent Changes</h2>
 
-            <h4>v1.7.0 — March 17, 2026 (Latest)</h4>
+            <h4>v1.7.1 — March 18, 2026 (Latest)</h4>
+            <ul>
+                <li><strong>Sidebar Cleanup</strong> — streamlined TF Sidebar from 43 to 19 focused shortcuts; removed low-frequency and redundant items</li>
+                <li><strong>Removed sidebar shortcuts</strong> — Export/Import settings, website links, redundant security/org panels, low-use SF Setup pages</li>
+                <li><strong>Documentation fixes</strong> — corrected stale references to removed sidebar shortcuts in v1.6.3 and v1.6.4 docs</li>
+            </ul>
+
+            <h4>v1.7.0 — March 17, 2026</h4>
             <ul>
                 <li><strong>Complete Settings Export/Import</strong> — 3 new categories: 📐 Layout Settings, 🔑 Login As History, 🛠️ Preferences &amp; UI State (10 total)</li>
                 <li><strong>Selective Import</strong> — per-category toggle switches in import preview let you choose exactly which categories to apply</li>
@@ -238,7 +246,7 @@
             <ul>
                 <li><strong>Category-Aware Export/Import</strong> — select which settings categories to export: Appearance, Tabs, Org, SOQL, GraphQL, Sidebar, Pinned Records</li>
                 <li><strong>Smart Import Preview</strong> — inspect and validate import data with category counts before applying</li>
-                <li><strong>Export/Import Sidebar Shortcuts</strong> — 2 new TF Sidebar shortcuts (📤 Export, 📥 Import) with deep linking to Settings → General</li>
+                <li><del>Export/Import Sidebar Shortcuts</del> — <em>removed in v1.7.1; access via Settings → General</em></li>
                 <li><strong>Tab Button Visibility Fix</strong> — inactive tabs now clearly visible with frosted glass background instead of invisible transparent</li>
                 <li><strong>Sub-tab Dark Theme</strong> — added missing dark theme variants for sub-tab buttons</li>
                 <li><strong>Data Management UI</strong> — new panel layout with category grid, export preview, danger zone components</li>
@@ -253,7 +261,7 @@
                 <li><strong>Keyboard Shortcut</strong> — <kbd>Ctrl+Shift+X</kbd> / <kbd>⌘+Shift+X</kbd> toggles Show All Data panel on record pages</li>
                 <li><strong>SOQL Fallback</strong> — automatic <code>FIELDS(ALL)</code> fallback when UI API fails for unsupported objects</li>
                 <li><strong>Website Integration</strong> — Help, About, and Settings tabs now link to TrackForcePro website (help, quick start, quiz, leaderboard)</li>
-                <li><strong>TF Sidebar Shortcuts</strong> — 5 new sidebar shortcuts for quick access to website resources</li>
+                <li><del>TF Sidebar Shortcuts — 5 website shortcuts</del> — <em>removed in v1.7.1; links kept in sidebar footer</em></li>
             </ul>
 
             <h4>v1.6.2 — March 16, 2026</h4>
