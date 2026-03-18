@@ -4,39 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrackForcePro Documentation</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
     <script src="theme.js"></script>
     <link rel="stylesheet" href="shared.css">
     <style>
-        /* ── Documentation-specific overrides ── */
-        :root {
-            --gray-100: #f3f3f3;
-            --gray-200: #e5e5e5;
-            --gray-300: #c9c9c9;
-            --gray-600: #706e6b;
-            --gray-800: #3e3e3c;
-            --gray-900: #181818;
-        }
-
-        [data-theme="dark"] {
-            --gray-100: #2a2a2a;
-            --gray-200: #383838;
-            --gray-300: #4a4a4a;
-            --gray-600: #a0a0a0;
-            --gray-800: #d4d4d4;
-            --gray-900: #e8e8e8;
-        }
-
-        /* Sticky Navigation — handled by shared.css .site-nav */
-
-        /* Header */
+        /* ── Documentation Layout ── */
         .header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 20px 40px;
+            padding: 28px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -64,384 +42,136 @@
             font-size: 14px;
         }
 
-        /* Version Selector */
-        .version-selector {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .version-selector label {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .version-selector select {
-            padding: 8px 16px;
-            border-radius: 6px;
-            border: none;
-            font-size: 14px;
-            font-weight: 600;
-            background: white;
-            color: var(--primary);
-            cursor: pointer;
-            min-width: 140px;
-        }
-
-        .version-selector select:focus {
-            outline: 2px solid rgba(255,255,255,0.5);
-        }
-
-        /* Main Layout */
-        .main-container {
-            display: flex;
-            min-height: calc(100vh - 140px);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: var(--card-bg);
-            border-right: 1px solid var(--border);
-            padding: 20px 0;
-            overflow-y: auto;
-            position: sticky;
-            top: 140px;
-            max-height: calc(100vh - 140px);
-            transition: background var(--transition-normal), color var(--transition-normal);
-        }
-
-        .sidebar-section {
-            margin-bottom: 24px;
-        }
-
-        .sidebar-title {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--gray-600);
-            padding: 0 20px;
-            margin-bottom: 8px;
-            transition: color var(--transition-normal);
-        }
-
-        .sidebar-nav {
-            list-style: none;
-        }
-
-        .sidebar-nav li a {
-            display: block;
-            padding: 10px 20px;
-            color: var(--gray-800);
-            text-decoration: none;
-            font-size: 14px;
-            border-left: 3px solid transparent;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .sidebar-nav li a:hover {
-            background: var(--gray-100);
-            color: var(--primary);
-        }
-
-        .sidebar-nav li a.active {
-            background: rgba(1, 118, 211, 0.1);
-            color: var(--primary);
-            border-left-color: var(--primary);
-            font-weight: 600;
-        }
-
-        [data-theme="dark"] .sidebar-nav li a {
-            color: var(--gray-800);
-        }
-
-        [data-theme="dark"] .sidebar-nav li a:hover {
-            background: var(--gray-200);
-        }
-
-        .sidebar-nav li a .badge {
-            font-size: 10px;
-            background: var(--success);
+        .version-badge {
+            background: rgba(255,255,255,0.2);
             color: white;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-left: 8px;
-        }
-
-        .sidebar-nav li a .badge.new {
-            background: var(--warning);
-        }
-
-        /* Content Area */
-        .content {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .content-header {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-            transition: border var(--transition-normal);
-        }
-
-        .content-header h2 {
-            font-size: 28px;
-            color: var(--gray-900);
-            margin-bottom: 8px;
-            transition: color var(--transition-normal);
-        }
-
-        .content-header .version-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            letter-spacing: 0.05em;
         }
 
-        .content-header .date {
-            color: var(--gray-600);
-            font-size: 14px;
-            margin-top: 8px;
-            transition: color var(--transition-normal);
+        .content {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        /* Documentation Sections */
-        .doc-section {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            scroll-margin-top: 180px;
-            transition: background var(--transition-normal), color var(--transition-normal);
+        .section {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .doc-section h3 {
-            font-size: 20px;
-            color: var(--gray-900);
-            margin-bottom: 16px;
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: color var(--transition-normal);
-        }
-
-        .doc-section h3 .icon {
-            font-size: 24px;
-        }
-
-        .doc-section h4 {
-            font-size: 16px;
-            color: var(--gray-800);
-            margin: 20px 0 12px;
-            transition: color var(--transition-normal);
-        }
-
-        .doc-section p {
-            color: var(--gray-800);
-            margin-bottom: 12px;
-            transition: color var(--transition-normal);
-        }
-
-        .doc-section ul, .doc-section ol {
-            margin-left: 20px;
-            margin-bottom: 16px;
-        }
-
-        .doc-section li {
-            margin-bottom: 8px;
-            color: var(--gray-800);
-            transition: color var(--transition-normal);
-        }
-
-        .doc-section code {
-            background: var(--gray-100);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'SF Mono', Monaco, Consolas, monospace;
-            font-size: 13px;
-            color: var(--danger);
-            transition: background var(--transition-normal), color var(--transition-normal);
-        }
-
-        .doc-section pre {
-            background: var(--gray-900);
-            color: #f8f8f2;
-            padding: 16px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 16px 0;
-            transition: background var(--transition-normal);
-        }
-
-        [data-theme="dark"] .doc-section pre {
-            background: #1a1a1a;
-        }
-
-        .doc-section pre code {
-            background: none;
-            color: inherit;
-            padding: 0;
-        }
-
-        /* Feature Cards */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .feature-card {
-            background: var(--gray-100);
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 4px solid var(--primary);
-            transition: background var(--transition-normal), color var(--transition-normal);
-        }
-
-        .feature-card h5 {
-            font-size: 15px;
-            color: var(--gray-900);
-            margin-bottom: 8px;
-            transition: color var(--transition-normal);
-        }
-
-        .feature-card p {
-            font-size: 13px;
-            color: var(--gray-600);
-            margin: 0;
-            transition: color var(--transition-normal);
-        }
-
-        /* Tables */
-        .doc-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-        }
-
-        .doc-table th, .doc-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-            transition: border var(--transition-normal);
-        }
-
-        .doc-table th {
-            background: var(--gray-100);
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            transition: background var(--transition-normal);
-        }
-
-        [data-theme="dark"] .doc-table th {
-            background: var(--gray-200);
-        }
-
-        .doc-table td {
-            font-size: 14px;
-            color: var(--gray-800);
-            transition: color var(--transition-normal);
-        }
-
-        /* Alerts */
-        .alert {
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin: 16px 0;
-            display: flex;
-            align-items: flex-start;
             gap: 12px;
-            transition: background var(--transition-normal), border var(--transition-normal);
         }
 
-        .alert-info {
-            background: rgba(1, 118, 211, 0.1);
-            border-left: 4px solid var(--primary);
+        .section h2 .emoji {
+            font-size: 1.6rem;
         }
 
-        [data-theme="dark"] .alert-info {
-            background: rgba(1, 118, 211, 0.2);
+        .section-intro {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
         }
 
-        .alert-warning {
-            background: rgba(254, 147, 57, 0.1);
-            border-left: 4px solid var(--warning);
+        .steps {
+            counter-reset: step-counter;
+            margin: 24px 0;
         }
 
-        [data-theme="dark"] .alert-warning {
-            background: rgba(254, 147, 57, 0.2);
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: flex-start;
         }
 
-        .alert-success {
-            background: rgba(46, 132, 74, 0.1);
-            border-left: 4px solid var(--success);
+        .step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
-        [data-theme="dark"] .alert-success {
-            background: rgba(46, 132, 74, 0.2);
+        .step-content h3 {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+            font-size: 1rem;
         }
 
-        .alert .icon {
-            font-size: 20px;
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
         }
 
-        .alert-content {
-            flex: 1;
+        .site-tip, .site-warning {
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        .alert-content strong {
+        .site-tip strong, .site-warning strong {
             display: block;
             margin-bottom: 4px;
+            color: var(--text);
         }
 
-        /* Footer — handled by shared.css .site-footer */
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .main-container {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                position: relative;
-                top: 0;
-                max-height: none;
-            }
-            .header {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
-            .navbar-content {
-                padding: 0 20px;
-                gap: 20px;
-            }
+        /* Section-specific spacing */
+        .section.short {
+            margin-bottom: 32px;
         }
 
-        /* Version-specific content */
-        .version-content {
-            display: none;
+        /* Feature highlights */
+        .highlight {
+            background: var(--bg-alt);
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
         }
-        .version-content.active {
-            display: block;
+
+        .highlight em {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        a[href^="http"] {
+            word-break: break-word;
         }
     </style>
 </head>
 <body>
-    <!-- Top Navigation Bar -->
+
     <nav class="site-nav">
         <div class="site-nav-inner">
             <a href="index.html">Home</a>
@@ -458,1698 +188,707 @@
         </div>
     </nav>
 
-    <!-- Main Header with Version Selector -->
-    <header class="header">
+    <div class="header">
         <h1>
-            <img src="../icons/Icon-32.png" alt="TrackForcePro" style="width: 36px; height: 36px; border-radius: 6px;" id="header-logo">
-            TrackForcePro Documentation
+            <img src="../icons/Icon-32.png" alt="TrackForcePro" class="logo">
+            Documentation
         </h1>
-        <div class="version-selector">
-            <label for="version-select">Version:</label>
-            <select id="version-select" onchange="switchVersion(this.value)">
-                <option value="1.7.2" selected>v1.7.2 (Latest)</option>
-                <option value="1.7.1">v1.7.1</option>
-                <option value="1.7.0">v1.7.0</option>
-                <option value="1.6.4">v1.6.4</option>
-                <option value="1.6.3">v1.6.3</option>
-                <option value="1.3.6">v1.3.6</option>
-            </select>
+        <span class="version-badge">v1.8.0</span>
+    </div>
+
+    <div class="content">
+
+        <!-- 1. AUDIT TRAIL EXTRACTION -->
+        <div class="section">
+            <h2><span class="emoji">📋</span> Audit Trail Extraction</h2>
+            <p class="section-intro">
+                Fetch and analyze Salesforce audit logs. View who changed what, when, and export to CSV for compliance and troubleshooting.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Open the Audit Trails Tab</h3>
+                        <p>Click the Audit Trails icon in the TrackForcePro popup to view the audit log interface.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Set Date Range</h3>
+                        <p>Select a start and end date. Salesforce typically retains audit logs for 6 months to 10 years depending on your edition.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Filter Results</h3>
+                        <p>Filter by user, object type, action (Create, Update, Delete, etc.), or search by field name to narrow results.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Fetch Audit Logs</h3>
+                        <p>Click the fetch button to retrieve logs from your Salesforce org. Results appear in a searchable table.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Export to CSV</h3>
+                        <p>Click Export to download the results as a CSV file for use in Excel, Google Sheets, or other analysis tools.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use the search box to find specific audit records. Perfect for tracking field changes on specific records or monitoring user activity.
+            </div>
         </div>
-    </header>
 
-    <div class="main-container">
-        <aside class="sidebar">
-            <div class="sidebar-section">
-                <div class="sidebar-title">Getting Started</div>
-                <ul class="sidebar-nav">
-                    <li><a href="#overview" class="sidebar-link active">Overview</a></li>
-                    <li><a href="#installation" class="sidebar-link">Installation</a></li>
-                    <li><a href="#quick-start" class="sidebar-link">Quick Start</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-section">
-                <div class="sidebar-title">Features</div>
-                <ul class="sidebar-nav">
-                    <li><a href="#audit-extractor" class="sidebar-link">Audit Extractor</a></li>
-                    <li><a href="#soql-builder" class="sidebar-link">SOQL Builder</a></li>
-                    <li><a href="#graphql-builder" class="sidebar-link">GraphQL Builder</a></li>
-                    <li><a href="#record-scanner" class="sidebar-link">Record Scanner</a></li>
-                    <li><a href="#user-manager" class="sidebar-link">User Manager</a></li>
-                    <li><a href="#favicon-manager" class="sidebar-link">Favicon Manager</a></li>
-                    <li><a href="#security-manager" class="sidebar-link">Security Manager</a></li>
-                    <li><a href="#org-tools" class="sidebar-link">Org Tools</a></li>
-                    <li><a href="#platform-events" class="sidebar-link">Platform Events</a></li>
-                    <li><a href="#tf-sidebar" class="sidebar-link">TF Sidebar</a></li>
-                    <li><a href="#data-explorer" class="sidebar-link">Data Explorer</a></li>
-                    <li><a href="#cache-manager" class="sidebar-link">Cache Manager</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-section">
-                <div class="sidebar-title">Reference</div>
-                <ul class="sidebar-nav">
-                    <li><a href="#changelog" class="sidebar-link">Changelog</a></li>
-                    <li><a href="#troubleshooting" class="sidebar-link">Troubleshooting</a></li>
-                    <li><a href="#api-reference" class="sidebar-link">API Reference</a></li>
-                </ul>
-            </div>
-        </aside>
+        <!-- 2. SOQL BUILDER -->
+        <div class="section">
+            <h2><span class="emoji">🔍</span> SOQL Builder</h2>
+            <p class="section-intro">
+                Write and test SOQL queries without leaving Salesforce. Visual builder helps you construct queries with autocomplete guidance.
+            </p>
 
-        <main class="content">
-            <!-- Version 1.7.2 Content (Latest - DEFAULT) -->
-            <div id="content-1.7.2" class="version-content active">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2 (Latest)</span>
-                    <div class="date">Released: March 18, 2026</div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Click SOQL Builder Tab</h3>
+                        <p>Open the SOQL Builder from the main popup menu.</p>
+                    </div>
                 </div>
 
-                <section class="doc-section">
-                    <h3><span class="icon">🐛</span> Show All Data — Keyboard Shortcut Toggle Fix</h3>
-                    <p>TrackForcePro v1.7.2 is a bug-fix release that resolves two issues with the <kbd>Ctrl+Shift+X</kbd> / <kbd>⌘+Shift+X</kbd> keyboard shortcut for the Show All Data panel on Salesforce record pages.</p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h5>🔧 Shortcut Now Works</h5>
-                            <p><kbd>Ctrl+Shift+X</kbd> / <kbd>⌘+Shift+X</kbd> now reliably opens <strong>and</strong> closes the Show All Data panel — fixed duplicate listener causing open+immediate close</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🎯 Robust Close Detection</h5>
-                            <p>Keyboard shortcut handler now checks the DOM directly via <code>document.getElementById()</code> for reliable close, independent of variable state during SPA navigation</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🛡️ Dual-Check Toggle</h5>
-                            <p><code>toggleShowAllDataPanel()</code> uses both variable and DOM lookup for close detection — works reliably from button click, keyboard shortcut, and Escape key</p>
-                        </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Select an Object</h3>
+                        <p>Choose a Salesforce object (Account, Contact, Lead, etc.) from the searchable dropdown. Type to filter the list.</p>
                     </div>
-
-                    <h4>Bug Fixes</h4>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Issue</th><th>Root Cause</th><th>Fix</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Shortcut appeared to do nothing</td>
-                                <td>Duplicate <code>toggleShowAllData</code> message listener — both fired, causing double-toggle (open then immediate close)</td>
-                                <td>Removed duplicate listener from <code>injectShowAllDataButton()</code></td>
-                            </tr>
-                            <tr>
-                                <td>Shortcut could not close panel</td>
-                                <td><code>_showAllDataPanel</code> variable out of sync with DOM after SPA navigation</td>
-                                <td>Keyboard handler checks DOM directly via <code>document.getElementById()</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-            </div>
-
-            <!-- Version 1.7.1 Content -->
-            <div id="content-1.7.1" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 18, 2026</div>
                 </div>
 
-                <section class="doc-section">
-                    <h3><span class="icon">🧹</span> Sidebar Cleanup &amp; Documentation Fixes</h3>
-                    <p>TrackForcePro v1.7.2 is a maintenance release that streamlines the TF Sidebar by removing 24 low-value or redundant shortcuts, bringing the total from 43 down to <strong>19 focused, high-frequency shortcuts</strong>. It also fixes stale documentation references from previous releases.</p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h5>🧭 Sidebar Streamlined</h5>
-                            <p>TF Sidebar reduced from 43 to 19 shortcuts — only high-frequency admin tools remain for a cleaner, faster workflow</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🗑️ Removed Redundancy</h5>
-                            <p>Removed Export/Import shortcuts (use Settings → General), website links (kept in footer), and panel shortcuts accessible via parent tools</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>📝 Documentation Fixes</h5>
-                            <p>Corrected stale v1.6.3 and v1.6.4 documentation that referenced sidebar shortcuts that no longer exist</p>
-                        </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Add Fields</h3>
+                        <p>Click the plus icon to add fields from the object. Select common fields or search for specific ones. Click checkboxes to include in your query.</p>
                     </div>
-
-                    <h4>Remaining Sidebar Shortcuts (19)</h4>
-                    <ul>
-                        <li><strong>TrackForcePro tabs (5)</strong> — Audit Trails, SOQL Builder, Data Explorer, Platform Events, Settings</li>
-                        <li><strong>Data Explorer tools (5)</strong> — Security Manager, Org Tools, User Manager, Metadata Explorer, Org &amp; Favicon</li>
-                        <li><strong>Org Tools panels (4)</strong> — Custom Labels, Deployments, Debug Logs, Org Limits</li>
-                        <li><strong>Salesforce Setup pages (5)</strong> — Setup Home, Developer Console, Object Manager, Deployment Status, Debug Logs</li>
-                    </ul>
-                </section>
-            </div>
-
-            <!-- Version 1.7.0 Content -->
-            <div id="content-1.7.0" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 17, 2026</div>
                 </div>
 
-                <section class="doc-section">
-                    <h3><span class="icon">📦</span> Complete Settings Export/Import</h3>
-                    <p>Comprehensive settings portability with 10 export categories, selective import with per-category toggles, sensitive data protection, and dynamic version stamping.</p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h5>📐 3 New Export Categories</h5>
-                            <p>Layout Settings, Login As History, and Preferences &amp; UI State — bringing the total to 10 categories</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔀 Selective Import</h5>
-                            <p>Per-category toggle switches in import preview let you choose exactly which categories to apply</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔒 Sensitive Data Protection</h5>
-                            <p>Session tokens and OAuth keys automatically excluded from all exports via SENSITIVE_KEYS blocklist</p>
-                        </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Build Filters (Optional)</h3>
+                        <p>Add WHERE conditions to limit results. Set field, operator (equals, contains, greater than, etc.), and value.</p>
                     </div>
-                </section>
-            </div>
-
-            <!-- Version 1.6.4 Content -->
-            <div id="content-1.6.4" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 17, 2026</div>
                 </div>
 
-                <section class="doc-section">
-                    <h3><span class="icon">📦</span> What's New in v1.6.4</h3>
-                    <p>Data Management Overhaul, Tab Visibility Fix &amp; Sidebar Export/Import Shortcuts</p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h5>📤 Category-Aware Export</h5>
-                            <p>Select which settings categories to export: Appearance, Tabs, Org, SOQL, GraphQL, Sidebar, Pinned Records — or export everything with Full Backup</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>📥 Smart Import Preview</h5>
-                            <p>Inspect and validate import data with category counts and key listing before applying changes to your settings</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🧭 Export/Import Shortcuts <em>(removed in v1.7.1)</em></h5>
-                            <p>Export/Import settings accessible via Settings → General tab. Sidebar shortcuts were removed in v1.7.1 to streamline the sidebar.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>👁️ Tab Visibility Fix</h5>
-                            <p>Inactive tab buttons now clearly visible with frosted glass background — no more invisible tabs against the header gradient</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🌙 Sub-tab Dark Theme</h5>
-                            <p>Added missing dark theme variants for sub-tab buttons with proper inactive, hover, and active states</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🎨 Data Management UI</h5>
-                            <p>New panel layout with category toggle grid, export preview, and clearly marked danger zone for destructive actions</p>
-                        </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Execute Query</h3>
+                        <p>Click Execute to run the SOQL query and see results instantly in a table below.</p>
                     </div>
-                </section>
-
-                <section class="doc-section">
-                    <h3><span class="icon">📋</span> Changelog</h3>
-
-                    <h4>✨ New Features</h4>
-
-                    <h5>Data Management — Category-Aware Export &amp; Import</h5>
-                    <ul>
-                        <li><strong>Selective category export</strong> — 7 categories with toggle switches: Appearance &amp; Theme, Tab Visibility &amp; Order, Org Info &amp; Favicons, SOQL Tabs &amp; History, GraphQL Tabs &amp; History, Sidebar Settings, Pinned Records</li>
-                        <li><strong>Export Selected</strong> — exports only checked categories to a timestamped JSON file with version metadata</li>
-                        <li><strong>Export All (Full Backup)</strong> — exports every storage key regardless of category selection</li>
-                        <li><strong>Smart import with preview</strong> — shows category counts, key listing, and version/date metadata before applying imported data</li>
-                        <li><strong>Import validation</strong> — validates file format and structure; rejects invalid files with descriptive errors</li>
-                        <li><strong>Danger Zone</strong> — clear query history and reset all settings moved to a clearly marked danger section with confirmation dialogs</li>
-                    </ul>
-
-                    <h5>Sidebar Shortcuts — Export &amp; Import Settings</h5>
-                    <ul>
-                        <li><del>2 new sidebar shortcuts (📤 Export Settings, 📥 Import Settings)</del> — <em>removed in v1.7.1; Export/Import accessible via Settings → General tab</em></li>
-                        <li><strong>New <code>__TFP_SETTINGS__</code> URL pattern</strong> — enables deep-linking to specific Settings sub-tabs from the TF Sidebar</li>
-                        <li><strong>Settings sub-tab deep linking</strong> — popup.js now handles <code>tab=settings&amp;subtab=settings-general</code> hash parameters</li>
-                    </ul>
-
-                    <h4>🐛 Bug Fixes</h4>
-                    <ul>
-                        <li><strong>Tab button visibility</strong> — changed from transparent background with muted <code>#64748b</code> text to frosted glass effect with white text for clear readability</li>
-                        <li><strong>Sub-tab button contrast</strong> — inactive text darkened from <code>#6c757d</code> to <code>#495057</code>; hover shows brand blue</li>
-                        <li><strong>Dark theme sub-tab buttons</strong> — added missing <code>[data-theme="dark"]</code> CSS rules for inactive, hover, and active states</li>
-                    </ul>
-                </section>
-            </div>
-
-            <!-- Version 1.6.3 Content -->
-            <div id="content-1.6.3" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 17, 2026</div>
                 </div>
 
-                <section id="overview" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro is a comprehensive Salesforce developer toolkit that lives right inside your Salesforce pages. After installing the extension, a <strong>floating TF button</strong> appears at the <strong>bottom-right corner</strong> of every Salesforce page — click it to instantly access all tools without leaving the page you're working on.</p>
-
-                    <div class="alert alert-info">
-                        <span class="icon">🧭</span>
-                        <div class="alert-content">
-                            <strong>Getting Started is Easy</strong>
-                            Install the extension → navigate to any Salesforce page → look for the <strong>floating TF icon</strong> at the <strong>bottom-right corner</strong> of the page → click it → start using any tool.
-                        </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Export or Edit Results</h3>
+                        <p>Export results to CSV, or double-click any cell to edit inline directly from the results table.</p>
                     </div>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h5>🧭 TF Sidebar</h5>
-                            <p>One-click floating button at the bottom-right of every Salesforce page — your launchpad to all tools</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔍 Audit Trails</h5>
-                            <p>Extract and export setup audit trails with advanced filtering and search</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>📊 SOQL Builder</h5>
-                            <p>Visual query builder with smart field suggestions, real-time execution, inline edit, and row delete</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔗 GraphQL Builder</h5>
-                            <p>UI API GraphQL queries with CodeMirror 6 editor, child record export, and accordion table view</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔬 Record Scanner</h5>
-                            <p>Scan records, view field history, analyze relationships and permissions</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>👥 User Manager</h5>
-                            <p>Manage user permissions, sessions, and access across your org</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🎨 Favicon Manager</h5>
-                            <p>Custom org icons with shapes, colors, labels and logo colorization</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔐 Security Manager</h5>
-                            <p>Browse Profiles, Permission Sets, and Permission Set Groups</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🏢 Org Tools</h5>
-                            <p>Login As, Custom Labels, Deployments, Debug Logs, Org Limits</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>📡 Platform Events</h5>
-                            <p>Subscribe to and publish platform events in real-time</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>📦 Data Explorer</h5>
-                            <p>Metadata Explorer, Automation Inspector, Schema Visualizer, API Dashboard</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🌐 Edge &amp; Chrome</h5>
-                            <p>Available on both Chrome Web Store and Edge Add-ons</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="installation" class="doc-section">
-                    <h3><span class="icon">📥</span> Installation</h3>
-                    <h4>Chrome Web Store (Recommended)</h4>
-                    <ol>
-                        <li>Visit <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">TrackForcePro on Chrome Web Store</a></li>
-                        <li>Click <strong>"Add to Chrome"</strong> → confirm with <strong>"Add extension"</strong></li>
-                        <li>Navigate to any <strong>Salesforce page</strong></li>
-                        <li>Look for the <strong>floating TF icon</strong> at the <strong>bottom-right corner</strong> of the page — that's your entry point!</li>
-                    </ol>
-
-                    <h4>Edge Add-ons</h4>
-                    <p>TrackForcePro is also available on the <strong>Microsoft Edge Add-ons</strong> store. Install from Edge Add-ons, or sideload the same ZIP package via <code>edge://extensions/</code> with Developer Mode enabled. The TF Sidebar button appears the same way on Edge.</p>
-
-                    <h4>Manual Installation (Developer Mode)</h4>
-                    <ol>
-                        <li>Download the extension files from GitHub</li>
-                        <li>Extract the ZIP file to a folder</li>
-                        <li>Open Chrome/Edge and go to <code>chrome://extensions/</code> (or <code>edge://extensions/</code>)</li>
-                        <li>Enable "Developer mode" (top-right toggle)</li>
-                        <li>Click "Load unpacked" and select the extension folder</li>
-                        <li>Navigate to a Salesforce page — the <strong>TF floating button</strong> appears at the bottom-right</li>
-                    </ol>
-
-                    <div class="alert alert-info">
-                        <span class="icon">💡</span>
-                        <div class="alert-content">
-                            <strong>No toolbar icon needed!</strong>
-                            You don't need to pin or find the extension in the toolbar. The <strong>TF Sidebar button</strong> appears automatically on every Salesforce page at the <strong>bottom-right corner</strong>. Just click it to get started.
-                        </div>
-                    </div>
-                </section>
-
-                <section id="quick-start" class="doc-section">
-                    <h3><span class="icon">🚀</span> Quick Start</h3>
-
-                    <h4>Step 1: Find the TF Button</h4>
-                    <p>After installing TrackForcePro, navigate to any Salesforce page. You'll see a small <strong>floating circular button</strong> with the TrackForcePro icon at the <strong>bottom-right corner</strong> of the page.</p>
-
-                    <h4>Step 2: Open the Sidebar</h4>
-                    <p>Click the floating button. The <strong>TF Sidebar</strong> panel slides open, showing a list of all available tools organized by category — extension tabs, Data Explorer tools, Security panels, Org Tools, and Salesforce Setup shortcuts.</p>
-
-                    <h4>Step 3: Launch Any Tool</h4>
-                    <p>Click any shortcut in the sidebar to open that tool directly. For example:</p>
-                    <ul>
-                        <li>Click <strong>"SOQL Builder"</strong> → opens the SOQL query builder</li>
-                        <li>Click <strong>"Security Manager"</strong> → opens profile &amp; permission set browser</li>
-                        <li>Click <strong>"Custom Labels"</strong> → opens the labels manager with inline editing</li>
-                        <li>Click <strong>"Audit Trails"</strong> → opens the audit trail extractor</li>
-                        <li>Click <strong>"GraphQL Builder"</strong> → opens the GraphQL editor with child record export</li>
-                    </ul>
-
-                    <div class="alert alert-info">
-                        <span class="icon">⚡</span>
-                        <div class="alert-content">
-                            <strong>Alternative: Toolbar Popup</strong>
-                            You can also click the TrackForcePro icon in the browser toolbar (if pinned) to open the full popup with all tabs. But the <strong>TF Sidebar</strong> is faster — it's always visible on any Salesforce page, no pinning required.
-                        </div>
-                    </div>
-
-                    <h4>Common Workflows</h4>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Task</th><th>Sidebar Shortcut</th><th>What It Does</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Extract audit trails</td><td>Audit Trails</td><td>Filter and export setup audit trail events to CSV</td></tr>
-                            <tr><td>Run SOQL queries</td><td>SOQL Builder</td><td>Visual query builder with inline edit and row delete</td></tr>
-                            <tr><td>Run GraphQL queries</td><td>GraphQL Builder</td><td>UI API queries with child record export</td></tr>
-                            <tr><td>Scan a record</td><td>Record Scanner</td><td>View fields, history, relationships, FLS, and sharing</td></tr>
-                            <tr><td>Manage users</td><td>User Manager</td><td>Search, update, freeze, compare users</td></tr>
-                            <tr><td>Set org favicon</td><td>Org &amp; Favicon</td><td>Custom icons to distinguish orgs visually</td></tr>
-                            <tr><td>Browse profiles</td><td>Security Manager → Profiles</td><td>View profile permissions and assignments</td></tr>
-                            <tr><td>Login as another user</td><td>Org Tools → Login As</td><td>Log in as a user with incognito and history</td></tr>
-                            <tr><td>Manage custom labels</td><td>Org Tools → Custom Labels</td><td>Search, edit, translate, import, and export labels</td></tr>
-                            <tr><td>Monitor events</td><td>Platform Events</td><td>Subscribe and publish platform events in real-time</td></tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section id="graphql-builder" class="doc-section">
-                    <h3><span class="icon">🔗</span> GraphQL Query Builder</h3>
-                    <p>Compose and execute GraphQL queries against Salesforce's UI API with a CodeMirror 6 editor featuring syntax highlighting, bracket matching, and schema-aware autocomplete.</p>
-
-                    <h4>Three-Screen Flow</h4>
-                    <ol>
-                        <li><strong>Object Selection</strong> — Browse or search object cards, click to enter the builder</li>
-                        <li><strong>Query Builder</strong> — Select fields (checkboxes), add filters, set order/pagination. Live query preview in the editor.</li>
-                        <li><strong>Results</strong> — View JSON or switch to table view. Export as CSV, TSV, or JSON.</li>
-                    </ol>
-
-                    <h4>Child Record Handling</h4>
-                    <p>When querying objects with child relationships (e.g., Accounts with Contacts):</p>
-                    <ul>
-                        <li><strong>Table View (Accordion)</strong> — Child records display as expandable accordion sections. Click the count badge (e.g., "3 records ▸ Contacts") to see child data in a nested mini-table. Nested lookups within children are automatically flattened.</li>
-                        <li><strong>CSV/TSV Export</strong> — Child records are expanded into separate rows with parent fields repeated. For example, an Account with 3 Contacts produces 3 CSV rows. Child fields are prefixed (e.g., <code>Contacts.FirstName</code>, <code>Contacts.Email</code>).</li>
-                        <li><strong>JSON Export</strong> — Preserves the full nested structure with child arrays intact.</li>
-                    </ul>
-
-                    <h4>Additional Features</h4>
-                    <ul>
-                        <li>Mutation support: Create, Update, Delete with auto-generated variables</li>
-                        <li>Schema introspection and field suggestions</li>
-                        <li>Cursor-based pagination with page navigation history</li>
-                        <li>Query history for quick recall</li>
-                    </ul>
-                </section>
-
-                <section id="tf-sidebar" class="doc-section">
-                    <h3><span class="icon">🧭</span> TF Sidebar — Your Quick-Access Launchpad</h3>
-                    <p>The TF Sidebar is the <strong>fastest way</strong> to access any TrackForcePro tool. It's a floating panel that appears on every Salesforce page — no need to find the extension icon in your toolbar, no need to pin anything.</p>
-
-                    <h4>Where to Find It</h4>
-                    <p>Look at the <strong>bottom-right corner</strong> of any Salesforce page. You'll see a small <strong>circular floating button</strong> with the TrackForcePro icon. This button is always there — on every Salesforce page, every org, every time.</p>
-
-                    <h4>How to Use It</h4>
-                    <ol>
-                        <li><strong>Click the floating TF button</strong> at the bottom-right corner of any Salesforce page</li>
-                        <li>The sidebar panel slides open with all available tool shortcuts</li>
-                        <li><strong>Click any shortcut</strong> to open that tool instantly (e.g., SOQL Builder, Custom Labels, Security Manager)</li>
-                        <li>The tool opens in the TrackForcePro window — ready to use</li>
-                    </ol>
-
-                    <h4>Available Shortcuts</h4>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Category</th><th>Shortcuts</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>Extension Tabs</strong></td><td>Audit Trails, SOQL Builder, GraphQL Builder, Platform Events, LMS, Data Explorer, Settings</td></tr>
-                            <tr><td><strong>Data Explorer</strong></td><td>Record Scanner, Org &amp; Favicon, User Manager, Metadata Explorer, Schema Visualizer</td></tr>
-                            <tr><td><strong>Security</strong></td><td>Profiles, Permission Sets, Permission Set Groups</td></tr>
-                            <tr><td><strong>Org Tools</strong></td><td>Login As, Custom Labels, Deployments, Scheduled Jobs, Debug Logs, Org Limits</td></tr>
-                            <tr><td><strong>Salesforce Setup</strong></td><td>Direct links to Setup pages (Users, Profiles, Object Manager, etc.)</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Customization</h4>
-                    <ul>
-                        <li><strong>Position</strong> — Move the sidebar to the left or right side of the screen</li>
-                        <li><strong>Auto-collapse</strong> — Sidebar closes automatically after clicking a shortcut</li>
-                        <li><strong>Visibility</strong> — Show or hide individual shortcuts via Settings → Sidebar</li>
-                    </ul>
-
-                    <h4>Quick Tools</h4>
-                    <p>Built-in tools at the top of the sidebar for instant access without leaving the current page:</p>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Tool</th><th>Description</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><strong>🔓 Login As</strong></td><td>Search for any active user and log in as them. Three modes with icon buttons: <strong>🔑 Login</strong> (current tab), <strong>🖥️ Window</strong> (new window), <strong>🕶️ Incognito</strong> (private window — preserves your admin session)</td></tr>
-                            <tr><td><strong>🌐 Language Switcher</strong></td><td>Instantly switch the current user's Salesforce language without navigating to Setup</td></tr>
-                            <tr><td><strong>🗑️ Clear Cache</strong></td><td>Clears browser cache, localStorage, sessionStorage and performs a hard refresh</td></tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section id="audit-extractor" class="doc-section">
-                    <h3><span class="icon">🔍</span> Audit Trail Extractor</h3>
-                    <p>The Audit Trail Extractor allows you to efficiently extract, filter, and export Salesforce setup audit trail events — all without leaving your current page.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Filter by date range, user, action type, and entity</li>
-                        <li>Full-text search across all audit trail fields</li>
-                        <li>Export to CSV or JSON formats</li>
-                        <li>Real-time preview of results with sortable columns</li>
-                        <li>Support for bulk exports of large datasets</li>
-                    </ul>
-
-                    <h4>How to Use</h4>
-                    <ol>
-                        <li>Open TrackForcePro via the TF Sidebar button or browser toolbar</li>
-                        <li>Click <strong>"Audit Trails"</strong> tab</li>
-                        <li>Configure your date range and filters (optional)</li>
-                        <li>Click <strong>"Fetch"</strong> to load audit trail entries</li>
-                        <li>Use the search bar to narrow results</li>
-                        <li>Click <strong>"Export"</strong> to download your data as CSV or JSON</li>
-                    </ol>
-                </section>
-
-                <section id="soql-builder" class="doc-section">
-                    <h3><span class="icon">📊</span> SOQL Query Builder</h3>
-                    <p>Build and execute SOQL queries with an intuitive visual interface, intelligent field suggestions, inline editing, and row deletion.</p>
-
-                    <h4>Key Features</h4>
-                    <ul>
-                        <li><strong>Searchable SObject Combobox</strong> — Type to filter objects with substring matching, keyboard navigation, and highlighted matches</li>
-                        <li><strong>Visual Query Builder</strong> — Select fields via checkboxes, add WHERE conditions, configure ORDER BY and LIMIT</li>
-                        <li><strong>Smart Field Suggestions</strong> — Context-aware dropdown with field type icons and relationship navigation</li>
-                        <li><strong>FIELDS(ALL) Mode</strong> — Query all fields at once with automatic field expansion</li>
-                        <li><strong>Inline Edit</strong> — Double-click result cells to edit values directly, with auto-save via REST API PATCH</li>
-                        <li><strong>Row Delete</strong> — Delete records from the results table with confirmation dialog</li>
-                        <li><strong>Query History</strong> — Access previously executed queries for quick recall</li>
-                        <li><strong>SOQL Guidance Engine</strong> — Real-time rule-based suggestions for query optimization</li>
-                        <li><strong>Export</strong> — Download results as CSV or JSON</li>
-                    </ul>
-
-                    <h4>Building a Query</h4>
-                    <ol>
-                        <li>Type an object name in the searchable combobox (e.g., "Account", "Contact")</li>
-                        <li>Select fields by clicking the checkboxes in the field picker</li>
-                        <li>Add WHERE conditions as needed using the filter builder</li>
-                        <li>Configure ORDER BY and LIMIT</li>
-                        <li>Click <strong>"Execute"</strong> to run the query</li>
-                        <li>View results in the table — double-click cells to edit, use the delete button to remove rows</li>
-                    </ol>
-                </section>
-
-                <section id="record-scanner" class="doc-section">
-                    <h3><span class="icon">🔬</span> Record Scanner</h3>
-                    <p>Comprehensive record analysis tool with multiple scanning modes. Scan any Salesforce record by entering a Record ID to view all fields, history, relationships, permissions, and sharing rules.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li><strong>All Fields Table</strong> — Paginated view (100 fields/page) with search/filter, sortable columns, and field type indicators</li>
-                        <li><strong>Inline Field Editing</strong> — Double-click any updateable field to edit inline with type-aware inputs (text, boolean, textarea)</li>
-                        <li><strong>Lookup Navigation</strong> — Click lookup field values to navigate to related records with breadcrumb trail</li>
-                        <li><strong>Pinned Records</strong> — Pin frequently-accessed records for quick re-lookup (org-scoped)</li>
-                        <li><strong>Bulk Scan</strong> — Scan up to 200 records with rate-limited batch processing</li>
-                        <li><strong>FLS Analysis</strong> — Check Field Level Security permissions for the current user</li>
-                        <li><strong>Sharing Analysis</strong> — View sharing rules and access levels for a record</li>
-                        <li><strong>Field History</strong> — View the history of changes to tracked fields</li>
-                    </ul>
-
-                    <h4>Usage</h4>
-                    <ol>
-                        <li>Open the <strong>Data Explorer</strong> tab → <strong>Record Scanner</strong></li>
-                        <li>Enter a Salesforce Record ID (15 or 18 characters)</li>
-                        <li>Click <strong>"Search"</strong> to load the record</li>
-                        <li>Browse fields, navigate lookups via breadcrumbs, or pin the record for later</li>
-                    </ol>
-                </section>
-
-                <section id="user-manager" class="doc-section">
-                    <h3><span class="icon">👥</span> User Manager</h3>
-                    <p>Comprehensive user and permission management tool for your Salesforce org.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li><strong>Current User</strong> — View details and permissions for the logged-in user</li>
-                        <li><strong>User Search</strong> — Find users by name, username, email, or profile</li>
-                        <li><strong>User Update</strong> — Modify user details and profile assignments</li>
-                        <li><strong>Reset Password</strong> — Trigger password reset for any user</li>
-                        <li><strong>Permission Matrix</strong> — View user permissions across profiles and permission sets</li>
-                        <li><strong>Session Manager</strong> — Monitor active user sessions and terminate when needed</li>
-                        <li><strong>Freeze/Unfreeze Users</strong> — Quickly toggle user login access</li>
-                        <li><strong>Access Summary</strong> — Get a comprehensive overview of user access rights</li>
-                        <li><strong>Bulk Update</strong> — Update multiple users at once</li>
-                        <li><strong>User Comparison</strong> — Compare permissions between two users side by side</li>
-                    </ul>
-
-                    <h4>Accessing User Manager</h4>
-                    <p>Open the <strong>Data Explorer</strong> tab → click <strong>"User Manager"</strong> in the sub-tab navigation, or use the TF Sidebar shortcut.</p>
-                </section>
-
-                <section id="favicon-manager" class="doc-section">
-                    <h3><span class="icon">🎨</span> Favicon &amp; Org Branding</h3>
-                    <p>Assign custom icons, colors, and labels to each Salesforce org — making it easy to distinguish between Production, Sandbox, QA, and Dev environments at a glance.</p>
-
-                    <h4>Icon Shapes</h4>
-                    <p>Eight built-in shapes are available for favicon icons:</p>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Shape</th><th>Value</th><th>Description</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>☁️</td><td><code>cloud</code></td><td>Classic cloud shape (default)</td></tr>
-                            <tr><td>●</td><td><code>circle</code></td><td>Solid circle</td></tr>
-                            <tr><td>■</td><td><code>square</code></td><td>Solid square</td></tr>
-                            <tr><td>☁</td><td><code>sfcloud</code></td><td>Salesforce-style cloud with bumps</td></tr>
-                            <tr><td>◆</td><td><code>diamond</code></td><td>Diamond / rotated square</td></tr>
-                            <tr><td>⬡</td><td><code>hexagon</code></td><td>Six-sided hexagon</td></tr>
-                            <tr><td>▢</td><td><code>rounded</code></td><td>Rounded badge</td></tr>
-                            <tr><td>🛡</td><td><code>shield</code></td><td>Shield shape</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Tab Color Presets</h4>
-                    <p>Quick-pick color presets for common environments, plus a full color picker for custom colors:</p>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Color</th><th>Hex</th><th>Suggested Use</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>🔴</td><td><code>#e03131</code></td><td>Production (PROD)</td></tr>
-                            <tr><td>🟠</td><td><code>#ffa500</code></td><td>Staging</td></tr>
-                            <tr><td>🟡</td><td><code>#ffd43b</code></td><td>UAT</td></tr>
-                            <tr><td>🟢</td><td><code>#51cf66</code></td><td>Training</td></tr>
-                            <tr><td>🔵</td><td><code>#339af0</code></td><td>QA</td></tr>
-                            <tr><td>🟣</td><td><code>#9775fa</code></td><td>Development (DEV)</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Additional Features</h4>
-                    <ul>
-                        <li><strong>Badge Labels</strong> — Up to 3 characters displayed on the icon (e.g., DEV, PRD, QA)</li>
-                        <li><strong>Dynamic Text Color</strong> — Dark text on light backgrounds, white text on dark backgrounds (with manual override)</li>
-                        <li><strong>Logo Colorization</strong> — Salesforce header logo tinted to match org color via CSS filters</li>
-                        <li><strong>Tab Title Prefix</strong> — Browser tab title prefixed with badge label (e.g., [DEV] Account | Salesforce)</li>
-                        <li><strong>Multi-Org Support</strong> — Each org stores its own favicon settings independently with per-org isolation</li>
-                    </ul>
-                </section>
-
-                <section id="security-manager" class="doc-section">
-                    <h3><span class="icon">🔐</span> Security Manager</h3>
-                    <p>Browse and analyze Profiles, Permission Sets, and Permission Set Groups in your Salesforce org.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li><strong>Profile Browser</strong> — View all profiles, their assigned permissions, and user assignments</li>
-                        <li><strong>Permission Set Management</strong> — Explore individual permission sets and their scope</li>
-                        <li><strong>Permission Set Groups</strong> — Analyze permission set group memberships and included permission sets</li>
-                        <li><strong>Permission Search</strong> — Search for specific permissions across profiles and sets</li>
-                    </ul>
-
-                    <h4>Accessing Security Manager</h4>
-                    <p>Open the <strong>Data Explorer</strong> tab → click <strong>"Security"</strong> in the sub-tab navigation, or use the TF Sidebar shortcut "Security Manager → Profiles/Permission Sets/PS Groups".</p>
-                </section>
-
-                <section id="org-tools" class="doc-section">
-                    <h3><span class="icon">🏢</span> Org Tools</h3>
-                    <p>Essential org administration tools all in one place — accessible from the Data Explorer sub-tabs or TF Sidebar shortcuts.</p>
-
-                    <h4>Available Tools</h4>
-                    <ul>
-                        <li><strong>Login As</strong> — Switch between users with three modes: current tab, new window, or incognito (preserves admin session). Includes login history.</li>
-                        <li><strong>Custom Labels</strong> — Browse, search, create, edit, translate, and bulk import/export custom labels with real-time search, category filtering, inline editing, and pagination (up to 20,000 labels)</li>
-                        <li><strong>Deployments</strong> — View deployment history and status</li>
-                        <li><strong>Scheduled Jobs</strong> — Monitor scheduled batch jobs and Apex jobs</li>
-                        <li><strong>Debug Logs</strong> — Access and manage debug log entries</li>
-                        <li><strong>Org Limits</strong> — View API limits, storage usage, and other org limits</li>
-                        <li><strong>Admin Utils</strong> — Additional admin utility tools</li>
-                    </ul>
-                </section>
-
-                <section id="platform-events" class="doc-section">
-                    <h3><span class="icon">📡</span> Platform Events &amp; LMS</h3>
-                    <p>Monitor and debug Platform Events and Lightning Message Service communications in real-time.</p>
-
-                    <h4>Platform Events</h4>
-                    <ul>
-                        <li>Subscribe to any Platform Event channel via CometD streaming</li>
-                        <li>Publish platform events with custom payloads</li>
-                        <li>Real-time event log with timestamp, replay ID, and payload inspection</li>
-                        <li>Event filtering and search</li>
-                    </ul>
-
-                    <h4>Lightning Message Service (LMS)</h4>
-                    <ul>
-                        <li>Monitor LMS channel subscriptions</li>
-                        <li>Track message publishing across Lightning components</li>
-                        <li>Payload inspection and formatting</li>
-                    </ul>
-                </section>
-
-                <section id="data-explorer" class="doc-section">
-                    <h3><span class="icon">📦</span> Data Explorer Advanced Tools</h3>
-                    <p>Advanced data exploration and analysis capabilities accessible from the TF Sidebar or Data Explorer tab.</p>
-
-                    <h4>Sub-Tools</h4>
-                    <ul>
-                        <li><strong>Metadata Explorer</strong> — Browse all metadata types and components in your org</li>
-                        <li><strong>Automation Inspector</strong> — Analyze Flows, Process Builder, Workflow Rules, and other automation</li>
-                        <li><strong>Schema Visualizer</strong> — Visualize object relationships and schema diagrams</li>
-                        <li><strong>API Usage Dashboard</strong> — Track API calls, usage patterns, and limits</li>
-                    </ul>
-                </section>
-
-                <section id="cache-manager" class="doc-section">
-                    <h3><span class="icon">💾</span> Cache Manager</h3>
-                    <p>Manage extension cache and stored data. All cache keys are org-scoped to prevent cross-org data leaks.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li><strong>Org-Scoped Caching</strong> — Cache keys include org ID to prevent data leakage when switching orgs</li>
-                        <li><strong>Clear Cache</strong> — Remove all cached data and force fresh API calls</li>
-                        <li><strong>Storage Management</strong> — View and manage chrome.storage.local usage</li>
-                    </ul>
-
-                    <div class="alert alert-info">
-                        <span class="icon">💡</span>
-                        <div class="alert-content">
-                            <strong>Quick Cache Clear</strong>
-                            You can also use the TF Sidebar "Clear Cache" quick tool to clear browser cache, localStorage, and sessionStorage with a hard refresh — all without leaving the current Salesforce page.
-                        </div>
-                    </div>
-                </section>
-
-                <section id="changelog" class="doc-section">
-                    <h3><span class="icon">📋</span> Changelog</h3>
-
-                    <h4>v1.6.3 - March 17, 2026</h4>
-                    <ul>
-                        <li>🔍 <strong>Searchable SObject Combobox</strong> — SOQL Builder object selector replaced with searchable combobox; type to filter with substring matching, keyboard navigation, and highlighted matches</li>
-                        <li>🛠️ <strong>Suggestion Dropdown Fix</strong> — field suggestion dropdown no longer clipped by builder panel; uses fixed positioning with dynamic JS coordinates</li>
-                        <li>🔧 <strong>Show All Data Fix</strong> — Fixed CORS issue blocking API calls; now routes through background.js via FETCH_API message passing</li>
-                        <li>🎨 <strong>Show All Data Buttons</strong> — Header buttons (Copy ID, Open in SF) now visible with semi-transparent glass-style on blue gradient header</li>
-                        <li>⌨️ <strong>Keyboard Shortcut</strong> — <kbd>Ctrl+Shift+X</kbd> / <kbd>⌘+Shift+X</kbd> toggles Show All Data panel on record pages</li>
-                        <li>🔄 <strong>SOQL Fallback</strong> — Automatic <code>FIELDS(ALL)</code> fallback when UI API fails for unsupported sObject types</li>
-                        <li>🌐 <strong>Website Integration</strong> — Help, About, and Settings tabs now link to TrackForcePro website</li>
-                        <li>📌 <strong>TF Sidebar Shortcuts</strong> — 5 new sidebar shortcuts for website resources (Website, Help, Quick Start, Quiz, Leaderboard)</li>
-                    </ul>
-
-                    <h4>v1.6.2 - March 16, 2026</h4>
-                    <ul>
-                        <li>🏆 <strong>Dedicated Leaderboard Page</strong> — New standalone leaderboard page with player stats, mode filtering, search, and CSV export</li>
-                        <li>🖥️ <strong>Server-Side Score Persistence</strong> — Scores saved to Heroku Node.js API with localStorage fallback</li>
-                        <li>📊 <strong>Player Stats Dashboard</strong> — Total players, games played, highest score, and average accuracy</li>
-                        <li>🔄 <strong>Auto-Refresh</strong> — Leaderboard polls server every 30 seconds for live updates</li>
-                        <li>📤 <strong>CSV Export</strong> — One-click download of all leaderboard data</li>
-                    </ul>
-
-                    <h4>v1.6.0 - March 16, 2026</h4>
-                    <ul>
-                        <li>🎮 <strong>Interactive Quiz &amp; Games</strong> — 9 game modes including Knowledge Quiz, Speed Round, Survival Mode, and Type Race</li>
-                        <li>📖 <strong>Shared CSS</strong> — Unified design system across all documentation pages</li>
-                        <li>🧭 <strong>Cross-Page Navigation</strong> — Consistent navbar across Home, Quick Start, Docs, Help, Quiz, Leaderboard, and Privacy pages</li>
-                    </ul>
-
-                    <h4>v1.5.0 - March 16, 2026</h4>
-                    <ul>
-                        <li>🔍 <strong>Show All Data</strong> — Floating button on every SF record page with full field explorer, search, lookup navigation, and inline field editing</li>
-                        <li>⌨️ <strong>Command Palette</strong> — Ctrl+K / Cmd+K for instant access to 13+ commands and record lookup</li>
-                        <li>🖱️ <strong>Context Menu</strong> — Right-click on SF pages for Show All Data, Field History, Sharing, SOQL Builder, Copy Record ID</li>
-                        <li>✏️ <strong>Inline Field Editing</strong> — Double-click updateable fields to edit inline with type-aware inputs (Data Explorer All Fields table and Show All Data panel)</li>
-                        <li>📌 <strong>Pinned Records</strong> — Pin frequently-accessed records for quick re-lookup, org-scoped</li>
-                        <li>📄 <strong>Paginated All Fields Table</strong> — 100 fields per page with Prev/Next controls</li>
-                    </ul>
-
-                    <h4>v1.4.5 - March 16, 2026</h4>
-                    <ul>
-                        <li>🌐 <strong>Translation Overhaul</strong> — New Export Template → Import Translations → Update &amp; Deploy workflow replaces direct "Create Translations"</li>
-                        <li>📤 <strong>Export Template</strong> — Download CSV template with columns for FullName, MasterLabel, OriginalValue, TranslatedValue, Category, Language</li>
-                        <li>📥 <strong>Import Translations</strong> — Load translated CSV or JSON files back into the dialog; values fill inline inputs matched by FullName</li>
-                        <li>🔧 <strong>Centralized API Methods</strong> — New <code>patchLabel()</code> and <code>createLabel()</code> methods with automatic Tooling API / ExternalString REST fallback</li>
-                        <li>♿ <strong>Accessibility</strong> — Added <code>aria-label</code> to all Custom Labels toolbar buttons; search button changed to <code>btn-primary</code></li>
-                        <li>🎨 <strong>Inline Styles Eliminated</strong> — Pagination, NEW indicators, and translate UI now use CSS classes with dark theme variants</li>
-                        <li>✏️ <strong>Inline Translation Inputs</strong> — Translate dialog shows editable text inputs per label with original value as placeholder</li>
-                        <li>🧪 <strong>~20 new tests</strong> — ExternalString fallback, translation template export/import, round-trip workflow, Escape key close</li>
-                        <li>3319+ tests across 67 test suites (all passing)</li>
-                    </ul>
-
-                    <h4>v1.4.4 - March 16, 2026</h4>
-                    <ul>
-                        <li>🎨 <strong>Shape Rendering Overhaul</strong> — Cloud, SF Cloud, and Shield shapes completely redesigned with clean bezier paths</li>
-                        <li>🐛 <strong>Shield Shape Fix</strong> — Fixed degenerate quadratic curves that made the shield look pinched/collapsed</li>
-                        <li>☁️ <strong>Cloud Shapes Redesigned</strong> — Replaced blobby overlapping circles with single-path bezier silhouettes for crisp rendering at all sizes</li>
-                        <li>🔄 <strong>Renderer Sync</strong> — All 3 favicon renderers now use identical bezier path calculations</li>
-                        <li>🏷️ <strong>Custom Labels Fix</strong> — Removed SOQL <code>LIMIT 2000</code> that prevented loading more than 2000 labels; now loads all labels up to 20,000 via pagination</li>
-                        <li>📄 <strong>Custom Labels Pagination</strong> — Added client-side pagination (50/100/200/500 per page) with navigation controls for large label sets</li>
-                        <li>3303+ tests across 67 test suites (all passing)</li>
-                    </ul>
-
-                    <h4>v1.4.2 - March 16, 2026</h4>
-                    <ul>
-                        <li>🎨 <strong>Dynamic Favicon Text Color</strong> — Dark text on light backgrounds, white text on dark backgrounds (was always white)</li>
-                        <li>🆕 <strong>Custom Text Color Control</strong> — Auto toggle + color picker for manual text color selection</li>
-                        <li>☁️ <strong>Cloud Shape Artifact Fix</strong> — Fixed visual artifacts in cloud shapes caused by path rendering</li>
-                        <li>🆕 <strong>New shapes:</strong> Rounded badge (▢) and Shield (🛡) — total shapes now 8</li>
-                        <li>🔄 <strong>Full text color pipeline</strong> — Save, apply, restore, render, and reset text color across all paths</li>
-                    </ul>
-
-                    <h4>v1.4.1 - March 16, 2026</h4>
-                    <ul>
-                        <li>🎨 <strong>Dynamic Favicon Text Color</strong> — Dark text on light backgrounds, white text on dark backgrounds (was always white)</li>
-                        <li>☁️ <strong>Redesigned Cloud Shapes</strong> — Both <code>cloud</code> and <code>sfcloud</code> replaced with puffy overlapping-circle approach (no longer cramped)</li>
-                        <li>🆕 <strong>New shapes:</strong> Rounded badge (▢) and Shield (🛡) — total shapes now 8</li>
-                        <li>🔄 <strong>Renderer Sync</strong> — All 3 favicon renderers (content.js, data_explorer_helper.js, injectFaviconUpdate fallback) now produce identical output</li>
-                        <li>V5 shape selector: added cloud, rounded, shield; Settings: added rounded, shield, fixed duplicate icons</li>
-                        <li>3303+ tests across 67 test suites (all passing)</li>
-                    </ul>
-
-                    <h4>v1.4.0 - March 16, 2026</h4>
-                    <ul>
-                        <li>🕶️ <strong>Sidebar Login As: Incognito Mode</strong> — New incognito button on each Login As search result, opens in private window to preserve admin session</li>
-                        <li>🎨 <strong>SVG Icon Buttons</strong> — Login As buttons now use compact SVG icons: 🔑 sign-in arrow (Login), 🖥️ monitor (Window), 🕶️ glasses (Incognito)</li>
-                        <li>Dark mode support for the new incognito button styling</li>
-                        <li>3303+ tests across 67 test suites (all passing)</li>
-                    </ul>
-
-                    <h4>v1.3.9 - March 16, 2026</h4>
-                    <ul>
-                        <li>🐛 <strong>Multi-Org Favicon Isolation</strong> — Fixed critical bug where editing a non-active org's favicon applied changes to the active org</li>
-                        <li>Per-org draft config persistence with backward-compatible migration</li>
-                        <li>Enhanced Org Details panel: Display Name, Connection Status, Hostname link, Trial Expiration, Notes</li>
-                        <li>Connection status dots (🟢/⚪) in the org list for active/offline orgs</li>
-                        <li>"Open in Salesforce" button for non-active saved orgs</li>
-                        <li>19 new tests in <code>multi_org_save_isolation.test.js</code></li>
-                    </ul>
-
-                    <h4>v1.3.8 - March 16, 2026</h4>
-                    <ul>
-                        <li>Org &amp; Favicon Manager improvements and bug fixes</li>
-                    </ul>
-
-                    <h4>v1.3.7 - March 15, 2026</h4>
-                    <ul>
-                        <li>🧩 New game mode — <strong>Fill in the Blank</strong>: 16 questions with keyword-fill gameplay, 110pts base + streak bonus</li>
-                        <li>💀 New game mode — <strong>Survival Mode</strong>: 40 questions, 3 lives, escalating points, play until you drop</li>
-                        <li>✅ True/False expanded from 20 → 30 questions (+query history, debug logs, API usage, LMS, bulk update, cookie fallback)</li>
-                        <li>🎯 Scenario Challenge expanded from 10 → 15 scenarios (+Data Architect, Label Translation, Security review, GraphQL workflow, IT investigation)</li>
-                        <li>📖 TF Sidebar footer: new "Learn TrackForcePro" icon link to docs homepage on GitHub Pages</li>
-                        <li>❓ TF Sidebar footer: new "Quiz & Games" icon link to interactive quiz on GitHub Pages</li>
-                        <li>↗️ "Open Full App" button converted to compact 32×32px icon matching the social links row</li>
-                        <li>🏆 New badges: 🧩 Word Wizard, 📝 Perfect Fill, 🛡️ Survivor, 💀 Unkillable, 👑 Legendary</li>
-                        <li>Total game modes: 5 → 7 | Total question pool: 130+ across all modes</li>
-                        <li>3021+ tests across 58 test suites (all passing)</li>
-                    </ul>
-
-                    <h4>v1.3.6 - March 15, 2026</h4>
-                    <ul>
-                        <li>📊 GraphQL child record export — child arrays expanded into separate CSV/Excel rows with parent fields repeated</li>
-                        <li>New <code>expandChildRecordsToRows()</code> function for child field prefixing (e.g., <code>Contacts.FirstName</code>)</li>
-                        <li>Accordion table improvements — nested lookups flattened, count badges, complete column coverage</li>
-                        <li>🚢 Edge Add-ons automated CI/CD publishing via <code>publish-edge.yml</code> GitHub Actions workflow</li>
-                        <li>Edge Publish API integration with OAuth2 token flow, upload polling, and dry-run mode</li>
-                        <li>42 new tests for child record export (expansion, CSV, TSV, JSON, table rendering, edge cases)</li>
-                        <li>3063+ tests across 58 test suites (all passing)</li>
-                    </ul>
-
-                    <h4>v1.3.5 - March 15, 2026</h4>
-                    <ul>
-                        <li>TF Sidebar icon upgrade — actual extension icon replaces text placeholder</li>
-                        <li>AGENTS.md enhancements with service worker and popup initialization patterns</li>
-                    </ul>
-
-                    <h4>v1.3.4 - March 15, 2026</h4>
-                    <ul>
-                        <li>Social links fix — correct LinkedIn URL across all surfaces</li>
-                        <li>Developer website link added to sidebar, popup, and docs</li>
-                    </ul>
-
-                    <h4>v1.3.3 - March 15, 2026</h4>
-                    <ul>
-                        <li>CodeMirror 6 GraphQL editor with syntax highlighting and autocomplete</li>
-                        <li>SOQL field picker improvements, API v66.0</li>
-                    </ul>
-
-                    <h4>v1.3.0–v1.3.2 - March 13–14, 2026</h4>
-                    <ul>
-                        <li>Multi-org session isolation and single-instance enforcement</li>
-                        <li>TF Sidebar "Detect New Org" for multi-org discovery</li>
-                        <li>SOQL guidance engine with rule-based suggestions</li>
-                    </ul>
-
-                    <h4>v1.2.9 - March 13, 2026</h4>
-                    <ul>
-                        <li>SOQL Inline Edit — toggle-switch UI, enabled by default</li>
-                        <li>Row Delete with confirmation dialog and DELETE API</li>
-                        <li>GraphQL advanced: persisted mode, User field editing, picklist dropdowns</li>
-                    </ul>
-
-                    <h4>v1.2.7 - March 12, 2026</h4>
-                    <ul>
-                        <li>Custom Labels Enhancement — inline editing, translation, import/export</li>
-                        <li>Real-time search, category filter, keyboard navigation</li>
-                    </ul>
-
-                    <h4>v1.2.6 - March 12, 2026</h4>
-                    <ul>
-                        <li>Comprehensive documentation update for all features</li>
-                        <li>GraphQL mutations, schema suggestions, table view, CSV/JSON export</li>
-                        <li>TF Sidebar: category grouping, drag reorder, custom shortcuts</li>
-                    </ul>
-                </section>
-
-                <section id="troubleshooting" class="doc-section">
-                    <h3><span class="icon">🔧</span> Troubleshooting</h3>
-                    <h4>Common Issues</h4>
-                    <ul>
-                        <li><strong>TF Sidebar button not visible</strong> — Make sure you're on a Salesforce page (not a non-SF page). Try refreshing the page. Check that the extension is enabled in <code>chrome://extensions/</code>.</li>
-                        <li><strong>Sidebar shortcuts missing</strong> — Some shortcuts may be hidden. Go to Settings → Sidebar to toggle visibility.</li>
-                        <li><strong>"SF" badge not appearing on toolbar icon</strong> — Navigate to a Salesforce page first. On Edge, the extension uses fallback mechanisms automatically. The TF Sidebar works regardless of the badge.</li>
-                        <li><strong>Session expired</strong> — Refresh your Salesforce page. The TF Sidebar will reconnect automatically.</li>
-                        <li><strong>GraphQL child export issues</strong> — Ensure your query includes child relationship fields. CSV export auto-expands children into rows.</li>
-                        <li><strong>Extension not loading at all</strong> — Go to <code>chrome://extensions/</code>, check for errors, and try "Reload" on TrackForcePro.</li>
-                    </ul>
-                </section>
-
-                <section id="api-reference" class="doc-section">
-                    <h3><span class="icon">📚</span> API Reference</h3>
-                    <p>TrackForcePro uses the following Salesforce APIs:</p>
-                    <ul>
-                        <li><strong>REST API</strong> — Record CRUD, describe, query execution</li>
-                        <li><strong>Tooling API</strong> — Metadata operations, debug logs, deployment status</li>
-                        <li><strong>UI API (GraphQL)</strong> — Schema introspection, record queries with UI metadata</li>
-                        <li><strong>Streaming API (CometD)</strong> — Platform Event subscriptions</li>
-                    </ul>
-                    <p>Default API version: <code>v66.0</code> (configurable in Settings)</p>
-                </section>
-            </div>
-
-            <!-- Version 1.3.6 Content -->
-            <div id="content-1.3.6" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 15, 2026</div>
                 </div>
-                <section id="overview-1-3-6" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.7.2 overhauls how GraphQL query results with child/nested objects are exported and displayed. Child records are now properly expanded into separate CSV/Excel rows instead of being JSON-stringified into a single cell.</p>
-                    <div class="alert alert-info">
-                        <span class="icon">ℹ️</span>
-                        <div class="alert-content">For the latest features including new quiz game modes and TF Sidebar redesign, upgrade to <strong>v1.6.3</strong>.</div>
-                    </div>
-                </section>
-                <section id="changelog-1-3-6" class="doc-section">
-                    <h3><span class="icon">📋</span> What's New</h3>
-                    <ul>
-                        <li>📊 GraphQL child record export — child arrays expanded into separate CSV/Excel rows with parent fields repeated</li>
-                        <li>New <code>expandChildRecordsToRows()</code> function for child field prefixing (e.g., <code>Contacts.FirstName</code>)</li>
-                        <li>Accordion table improvements — nested lookups flattened, count badges, complete column coverage</li>
-                        <li>🚢 Edge Add-ons automated CI/CD publishing via <code>publish-edge.yml</code> GitHub Actions workflow</li>
-                        <li>42 new tests for child record export (expansion, CSV, TSV, JSON, table rendering, edge cases)</li>
-                        <li>3063+ tests across 58 test suites (all passing)</li>
-                    </ul>
-                </section>
             </div>
 
-            <!-- Version 1.2.9 Content -->
-            <div id="content-1.2.9" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 13, 2026</div>
-                </div>
-                <section id="overview-1-2-9" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.7.2 introduces SOQL Inline Edit with toggle-switch UI, Row Delete with DELETE API, and GraphQL advanced enhancements.</p>
-                    <div class="alert alert-info">
-                        <span class="icon">ℹ️</span>
-                        <div class="alert-content">For the latest features including new quiz game modes and TF Sidebar redesign, upgrade to <strong>v1.6.3</strong>.</div>
-                    </div>
-                </section>
-                <section id="changelog-1-2-9" class="doc-section">
-                    <h3><span class="icon">📋</span> What's New</h3>
-                    <ul>
-                        <li>SOQL Inline Edit — toggle-switch UI, enabled by default, auto-describe on query</li>
-                        <li>Row Delete with confirmation dialog and DELETE API</li>
-                        <li>GraphQL advanced: persisted mode, User field editing, picklist dropdowns</li>
-                        <li>Record page autofill for SOQL editor</li>
-                        <li>10 new tests, 2741+ total passing</li>
-                    </ul>
-                </section>
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Copy your generated SOQL query to use in the Salesforce Developer Console or Reports. The visual builder shows syntax guidance as you build.
             </div>
+        </div>
 
-            <!-- Version 1.2.7 Content -->
-            <div id="content-1.2.7" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 12, 2026</div>
+        <!-- 3. GRAPHQL BUILDER -->
+        <div class="section">
+            <h2><span class="emoji">⚡</span> GraphQL Builder</h2>
+            <p class="section-intro">
+                Build and test GraphQL queries for Salesforce using a powerful code editor with autocomplete and formatting.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Open GraphQL Builder</h3>
+                        <p>Click the GraphQL Builder tab in the popup.</p>
+                    </div>
                 </div>
 
-                <section id="overview-1-2-7" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro is a comprehensive Salesforce developer toolkit. It provides powerful tools for auditing, querying, record scanning, security management, org administration, platform events monitoring, and Lightning Message Service debugging.</p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h5>🔍 Audit Trails</h5>
-                            <p>Extract and export setup audit trails with advanced filtering and search</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>📊 SOQL Builder</h5>
-                            <p>Visual query builder with smart field suggestions, real-time execution, inline edit, and row delete</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔗 GraphQL Builder</h5>
-                            <p>Compose UI API GraphQL queries with interactive schema browser</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔬 Record Scanner</h5>
-                            <p>Scan records, view field history, analyze relationships and permissions</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>👥 User Manager</h5>
-                            <p>Manage user permissions, sessions, and access across your org</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🎨 Favicon Manager</h5>
-                            <p>Custom org icons with shapes, colors, labels and logo colorization</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔐 Security Manager</h5>
-                            <p>Browse Profiles, Permission Sets, and Permission Set Groups</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🏢 Org Tools</h5>
-                            <p>Login As, Custom Labels, Deployments, Debug Logs, Org Limits</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>📡 Platform Events</h5>
-                            <p>Subscribe to and publish platform events in real-time</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🎯 Page Blinker</h5>
-                            <p>Visual feedback and debugging for Lightning page interactions</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>⚡ TF Sidebar</h5>
-                            <p>Customizable shortcuts and quick access to tools</p>
-                        </div>
-                        <div class="feature-card">
-                            <h5>🔍 Data Explorer</h5>
-                            <p>Metadata explorer, automation inspector, schema visualizer, API dashboard</p>
-                        </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Write Your Query</h3>
+                        <p>Type or paste your GraphQL query in the editor. Get real-time syntax hints as you type.</p>
                     </div>
-                </section>
-
-                <section id="whats-new-1-2-7" class="doc-section">
-                    <h3><span class="icon">🆕</span> What's New in v1.2.9</h3>
-                    <p>v1.2.9 overhauls the SOQL inline edit experience with a toggle-switch UI, enables it by default, adds row deletion with confirmation, and improves first-run defaults:</p>
-                    <ul>
-                        <li><strong>✏️ Inline Edit Toggle-Switch</strong> - Replaced pill button with a checkbox toggle matching the Advanced and Guided Builder toggles</li>
-                        <li><strong>✅ Inline Edit Enabled by Default</strong> - Editable cells appear automatically after running a query</li>
-                        <li><strong>🗑️ Row Delete</strong> - Delete records directly from the results table with confirmation dialog and Salesforce REST DELETE API</li>
-                        <li><strong>📊 Actions Column</strong> - New "Actions" column in the advanced table when inline edit is active</li>
-                        <li><strong>⚡ Auto-Describe</strong> - Object describe fetched automatically so editable fields are ready immediately</li>
-                        <li><strong>📋 Record Page Autofill</strong> - SOQL editor prefills query from Salesforce record pages</li>
-                        <li><strong>🔗 GraphQL Enhancements</strong> - Persisted advanced mode, inline User field editing, picklist-backed dropdowns</li>
-                        <li><strong>🧪 10 New Tests</strong> - Toggle UI, delete button, confirmation, row removal (2741+ total tests, 53 suites)</li>
-                    </ul>
-                </section>
-
-                <section id="installation-1-2-7" class="doc-section">
-                    <h3><span class="icon">⬇️</span> Installation</h3>
-                    <h4>Chrome Web Store (Recommended)</h4>
-                    <p>Visit the Chrome Web Store and search for TrackForcePro, or use the direct link to install the extension.</p>
-                    <ol>
-                        <li>Open Chrome and navigate to the Chrome Web Store</li>
-                        <li>Search for "TrackForcePro"</li>
-                        <li>Click "Add to Chrome"</li>
-                        <li>Confirm the permissions prompt</li>
-                        <li>The extension icon will appear in your toolbar</li>
-                    </ol>
-
-                    <h4>Manual Installation (Developer Mode)</h4>
-                    <p>For development or when the extension is not yet available in the Web Store:</p>
-                    <ol>
-                        <li>Download the extension files from GitHub</li>
-                        <li>Extract the ZIP file to a folder</li>
-                        <li>Open Chrome and go to <code>chrome://extensions/</code></li>
-                        <li>Enable "Developer mode" (top-right toggle)</li>
-                        <li>Click "Load unpacked"</li>
-                        <li>Select the extension folder</li>
-                        <li>TrackForcePro will appear in your extensions list</li>
-                    </ol>
-
-                    <div class="alert alert-info">
-                        <span class="icon">💡</span>
-                        <div class="alert-content">
-                            <strong>Browser Requirements</strong>
-                            TrackForcePro requires Chrome 90+ or any Chromium-based browser (Edge, Brave, etc.)
-                        </div>
-                    </div>
-                </section>
-
-                <section id="quick-start-1-2-7" class="doc-section">
-                    <h3><span class="icon">🚀</span> Quick Start</h3>
-                    <h4>First Launch</h4>
-                    <ol>
-                        <li>Install TrackForcePro from the Chrome Web Store</li>
-                        <li>Navigate to your Salesforce org</li>
-                        <li>Click the TrackForcePro icon in your toolbar</li>
-                        <li>The popup will appear with quick links to all features</li>
-                    </ol>
-
-                    <h4>Common Tasks</h4>
-                    <ul>
-                        <li><strong>Extract Audit Trails</strong> - Click "Audit Extractor" and configure your filters</li>
-                        <li><strong>Query with SOQL</strong> - Use the SOQL Builder for visual query composition</li>
-                        <li><strong>Scan Records</strong> - Navigate to any record and click "Record Scanner"</li>
-                        <li><strong>Manage Users</strong> - Go to Setup > Users to access User Manager</li>
-                        <li><strong>Set Org Favicon</strong> - Click the extension icon and select "Favicon Manager"</li>
-                    </ul>
-                </section>
-
-                <section id="audit-extractor-1-2-7" class="doc-section">
-                    <h3><span class="icon">🔍</span> Audit Trail Extractor</h3>
-                    <p>The Audit Trail Extractor allows you to efficiently extract, filter, and export Salesforce setup audit trail events.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Filter by date range, user, action type, and entity</li>
-                        <li>Search for specific values or changes</li>
-                        <li>Export to CSV or JSON formats</li>
-                        <li>Real-time preview of results</li>
-                        <li>Support for bulk exports of large datasets</li>
-                    </ul>
-
-                    <h4>How to Use</h4>
-                    <ol>
-                        <li>Go to Setup > Audit Trail</li>
-                        <li>Click the TrackForcePro Audit Extractor button</li>
-                        <li>Configure your filters (optional)</li>
-                        <li>Preview the results</li>
-                        <li>Click "Export" to download your data</li>
-                    </ol>
-                </section>
-
-                <section id="soql-builder-1-2-7" class="doc-section">
-                    <h3><span class="icon">📊</span> SOQL Query Builder</h3>
-                    <p>Build and execute SOQL queries with an intuitive visual interface and intelligent field suggestions.</p>
-
-                    <h4>Key Features</h4>
-                    <ul>
-                        <li>Visual query builder with drag-and-drop fields</li>
-                        <li>Smart field suggestions based on selected objects</li>
-                        <li>Relationship navigation and sub-queries</li>
-                        <li>Real-time query syntax validation</li>
-                        <li>Execute queries and view results in a formatted table</li>
-                        <li>Export results to CSV or JSON</li>
-                    </ul>
-
-                    <h4>Building a Query</h4>
-                    <ol>
-                        <li>Select the main object (Account, Contact, etc.)</li>
-                        <li>Add fields by clicking the checkboxes</li>
-                        <li>Add WHERE conditions as needed</li>
-                        <li>Configure ORDER BY and LIMIT</li>
-                        <li>Click "Execute" to run the query</li>
-                    </ol>
-                </section>
-
-                <section id="graphql-builder-1-2-7" class="doc-section">
-                    <h3><span class="icon">🔗</span> GraphQL Query Builder</h3>
-                    <p>Compose and execute GraphQL queries against Salesforce's UI API with an integrated schema browser.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Interactive schema browser with full API documentation</li>
-                        <li>Query composition with field selection</li>
-                        <li>Support for arguments and variables</li>
-                        <li>Query execution and result visualization</li>
-                        <li>Syntax highlighting and error messages</li>
-                    </ul>
-
-                    <h4>Getting Started</h4>
-                    <p>Open the GraphQL Builder from the extension popup. Use the schema browser to explore available objects and fields, then compose your query.</p>
-                </section>
-
-                <section id="record-scanner-1-2-7" class="doc-section">
-                    <h3><span class="icon">🔬</span> Record Scanner</h3>
-                    <p>Comprehensive record analysis tool with multiple scanning modes for different use cases.</p>
-
-                    <h4>Scanning Modes</h4>
-                    <ul>
-                        <li><strong>Single Record Scan</strong> - View all fields, values, and metadata for a single record</li>
-                        <li><strong>Bulk Scan</strong> - Analyze multiple records at once</li>
-                        <li><strong>Record Comparison</strong> - Compare field values across multiple records</li>
-                        <li><strong>FLS Analysis</strong> - Check Field Level Security permissions for current user</li>
-                        <li><strong>Sharing Analysis</strong> - View sharing rules and access levels</li>
-                        <li><strong>History Timeline</strong> - Visualize field history changes over time</li>
-                    </ul>
-
-                    <h4>Usage</h4>
-                    <p>Click the Record Scanner button on any Salesforce record page to launch the scanner.</p>
-                </section>
-
-                <section id="user-manager-1-2-7" class="doc-section">
-                    <h3><span class="icon">👥</span> User Manager</h3>
-                    <p>Comprehensive user and permission management tool for your Salesforce org.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li><strong>Permission Matrix</strong> - View user permissions across profiles and permission sets</li>
-                        <li><strong>Session Manager</strong> - Monitor active user sessions and terminate when needed</li>
-                        <li><strong>Freeze/Unfreeze Users</strong> - Quickly toggle user login access</li>
-                        <li><strong>Access Summary</strong> - Get a quick overview of user access rights</li>
-                        <li><strong>Bulk Update</strong> - Update multiple users at once</li>
-                        <li><strong>User Comparison</strong> - Compare permissions between users</li>
-                    </ul>
-
-                    <h4>Accessing User Manager</h4>
-                    <p>Go to Setup > Users and click the TrackForcePro User Manager button to access all features.</p>
-                </section>
-
-                <section id="favicon-manager-1-2-7" class="doc-section">
-                    <h3><span class="icon">🎨</span> Favicon & Org Branding</h3>
-                    <p>TrackForcePro's Favicon Manager lets you assign custom icons, colors, and labels to each Salesforce org—making it easy to distinguish between Production, Sandbox, QA, and Dev environments at a glance.</p>
-
-                    <h4>Icon Shapes</h4>
-                    <p>Six built-in shapes are available for favicon icons:</p>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Shape</th><th>Value</th><th>Description</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>☁️</td><td><code>cloud</code></td><td>Classic cloud shape (default)</td></tr>
-                            <tr><td>●</td><td><code>circle</code></td><td>Solid circle</td></tr>
-                            <tr><td>■</td><td><code>square</code></td><td>Solid square</td></tr>
-                            <tr><td>☁</td><td><code>sfcloud</code></td><td>Salesforce-style cloud with bumps</td></tr>
-                            <tr><td>◆</td><td><code>diamond</code></td><td>Diamond / rotated square</td></tr>
-                            <tr><td>⬡</td><td><code>hexagon</code></td><td>Six-sided hexagon</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Tab Color Presets</h4>
-                    <p>Quick-pick color presets are provided for common environments. A full color picker is also available for custom colors.</p>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Preset</th><th>Color</th><th>Suggested Use</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td style="color:#e03131;">●</td><td><code>#e03131</code></td><td>Production (PROD)</td></tr>
-                            <tr><td style="color:#ff6b6b;">●</td><td><code>#ff6b6b</code></td><td>Development (DEV)</td></tr>
-                            <tr><td style="color:#ffa500;">●</td><td><code>#ffa500</code></td><td>Orange / Staging</td></tr>
-                            <tr><td style="color:#ffd43b;">●</td><td><code>#ffd43b</code></td><td>Yellow / UAT</td></tr>
-                            <tr><td style="color:#51cf66;">●</td><td><code>#51cf66</code></td><td>Green / Training</td></tr>
-                            <tr><td style="color:#20c997;">●</td><td><code>#20c997</code></td><td>Teal</td></tr>
-                            <tr><td style="color:#339af0;">●</td><td><code>#339af0</code></td><td>Blue / QA</td></tr>
-                            <tr><td style="color:#9775fa;">●</td><td><code>#9775fa</code></td><td>Purple</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h4>Badge Labels</h4>
-                    <p>Up to 3 characters displayed on the favicon icon (e.g., <strong>DEV</strong>, <strong>PRD</strong>, <strong>QA</strong>, <strong>UAT</strong>). Labels are rendered in bold white text with adaptive outlines for readability on both light and dark icon colors.</p>
-
-                    <h4>How Favicons Work</h4>
-                    <ul>
-                        <li><strong>Creation</strong> — A 32×32 canvas is drawn with the selected shape, color, and label. The canvas is converted to a PNG data URL.</li>
-                        <li><strong>Storage</strong> — Favicon settings are saved to <code>chrome.storage.local</code> in two structures: <code>orgFavicons</code> (legacy, keyed by org ID) and <code>orgRecords</code> (comprehensive org data with <code>iconConfig</code>).</li>
-                        <li><strong>Rendering</strong> — The <code>drawFaviconShape()</code> function exists in both <code>content.js</code> and <code>data_explorer_helper.js</code> to ensure preview matches the actual favicon.</li>
-                        <li><strong>Application</strong> — On page load, <code>content.js</code> calls <code>applyFaviconOnLoad()</code> which reads saved favicons from storage and matches by org ID (exact or normalized 15-char), hostname, or partial hostname.</li>
-                        <li><strong>Tab Application</strong> — When saving, <code>applyFaviconToTabs()</code> sends <code>updateFavicon</code> messages to all matching Salesforce tabs (filtered by hostname to prevent cross-org contamination).</li>
-                    </ul>
-
-                    <h4>Org Branding Features</h4>
-                    <ul>
-                        <li><strong>Logo Colorization</strong> — The Salesforce cloud logo in the page header is tinted to match your org color using CSS <code>hue-rotate()</code> filters. A colored bar indicator also appears below the logo.</li>
-                        <li><strong>Tab Title Customization</strong> — The browser tab title is prefixed with the badge label (e.g., <code>[DEV] Account | Salesforce</code>).</li>
-                        <li><strong>Multi-Org Support</strong> — Each org stores its own favicon settings independently. Favicons auto-apply based on org ID detection from the page.</li>
-                        <li><strong>Per-Org Isolation</strong> — Favicon updates include org ID verification to prevent cross-org contamination when multiple orgs are open simultaneously.</li>
-                    </ul>
-
-                    <h4>Where Favicons Appear</h4>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Location</th><th>Details</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Browser Tab</td><td>Replaces the default Salesforce favicon with the custom shaped icon</td></tr>
-                            <tr><td>Browser Tab Title</td><td>Prefixed with badge label (e.g., [DEV])</td></tr>
-                            <tr><td>Salesforce Header Logo</td><td>Cloud logo colorized with CSS filters + colored bar indicator</td></tr>
-                            <tr><td>Extension Popup</td><td>Favicon preview shown in Sandbox Manager and Settings</td></tr>
-                            <tr><td>Saved Org List</td><td>Canvas-rendered previews in the saved favicons grid</td></tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section id="security-manager-1-2-7" class="doc-section">
-                    <h3><span class="icon">🔐</span> Security Manager</h3>
-                    <p>Browse and analyze Profiles, Permission Sets, and Permission Set Groups in your Salesforce org.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li><strong>Profile Browser</strong> - View all profiles and their assigned permissions</li>
-                        <li><strong>Permission Set Management</strong> - Explore individual permission sets and their scope</li>
-                        <li><strong>Permission Set Groups</strong> - Analyze permission set group memberships and permissions</li>
-                        <li><strong>Permission Search</strong> - Search for specific permissions across profiles and sets</li>
-                        <li><strong>User Assignment</strong> - View which users are assigned to each profile/permission set</li>
-                    </ul>
-
-                    <h4>Usage</h4>
-                    <p>Access Security Manager from Setup > Administration to browse and manage security configurations.</p>
-                </section>
-
-                <section id="org-tools-1-2-7" class="doc-section">
-                    <h3><span class="icon">🏢</span> Org Tools</h3>
-                    <p>Essential org administration tools all in one place.</p>
-
-                    <h4>Available Tools</h4>
-                    <ul>
-                        <li><strong>Login As</strong> - Quickly switch between users without logging out</li>
-                        <li><strong>Custom Labels</strong> - Browse, search, create, edit, translate, and import/export custom labels with real-time search, category filtering, and inline editing</li>
-                        <li><strong>Deployments</strong> - View deployment history and status</li>
-                        <li><strong>Scheduled Jobs</strong> - Monitor scheduled batch jobs and Apex jobs</li>
-                        <li><strong>Debug Logs</strong> - Access and manage debug logs</li>
-                        <li><strong>Org Limits</strong> - View your org's API limits and usage</li>
-                    </ul>
-
-                    <h4>Accessing Org Tools</h4>
-                    <p>Go to Setup and click the TrackForcePro Org Tools button to access the full suite.</p>
-                </section>
-
-                <section id="platform-events-1-2-7" class="doc-section">
-                    <h3><span class="icon">📡</span> Platform Events & LMS</h3>
-                    <p>Monitor and debug Platform Events and Lightning Message Service communications.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Real-time Platform Event subscription and publishing</li>
-                        <li>LMS message tracking and debugging</li>
-                        <li>Event filtering and search capabilities</li>
-                        <li>Payload inspection and formatting</li>
-                        <li>Performance metrics and statistics</li>
-                    </ul>
-
-                    <h4>Usage</h4>
-                    <p>Open the Platform Events tool from the extension popup and configure your subscriptions.</p>
-                </section>
-
-                <section id="page-blinker-1-2-7" class="doc-section">
-                    <h3><span class="icon">💫</span> Page Blinker</h3>
-                    <p>Visual debugging tool for Lightning page interactions and component rendering.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Highlight component boundaries on Lightning pages</li>
-                        <li>Track component lifecycle events</li>
-                        <li>Performance profiling for components</li>
-                        <li>Visual indicators for updates and rerenders</li>
-                    </ul>
-                </section>
-
-                <section id="tf-sidebar-1-2-7" class="doc-section">
-                    <h3><span class="icon">⚡</span> TF Sidebar</h3>
-                    <p>Customizable sidebar with quick shortcuts to all TrackForcePro tools.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Add/remove shortcuts to your favorite tools</li>
-                        <li>Custom sidebar organization</li>
-                        <li>One-click access to any feature</li>
-                        <li>Configurable sidebar position and size</li>
-                    </ul>
-
-                    <h4>Configuration</h4>
-                    <p>Click the settings icon in the TF Sidebar to customize which tools appear and how they're organized.</p>
-                </section>
-
-                <section id="data-explorer-1-2-7" class="doc-section">
-                    <h3><span class="icon">🔍</span> Data Explorer Tools</h3>
-                    <p>Advanced data exploration and analysis capabilities for developers.</p>
-
-                    <h4>Sub-Tools</h4>
-                    <ul>
-                        <li><strong>Metadata Explorer</strong> - Browse all metadata types and components in your org</li>
-                        <li><strong>Automation Inspector</strong> - Analyze Flow, Process Builder, and automation rules</li>
-                        <li><strong>Schema Visualizer</strong> - Visualize object relationships and schema</li>
-                        <li><strong>API Usage Dashboard</strong> - Track API calls and usage patterns</li>
-                    </ul>
-
-                    <h4>Usage</h4>
-                    <p>Access Data Explorer tools from the extension menu for comprehensive org analysis.</p>
-                </section>
-
-                <section id="cache-manager-1-2-7" class="doc-section">
-                    <h3><span class="icon">💾</span> Cache Manager</h3>
-                    <p>Manage extension cache and stored data.</p>
-
-                    <h4>Features</h4>
-                    <ul>
-                        <li>View cache statistics</li>
-                        <li>Clear cache for specific features</li>
-                        <li>Export cached data</li>
-                        <li>Manage storage quota</li>
-                    </ul>
-
-                    <h4>Common Tasks</h4>
-                    <ul>
-                        <li><strong>Clear All Cache</strong> - Removes all stored data and forces a refresh</li>
-                        <li><strong>Reset Extension</strong> - Returns extension to default state</li>
-                        <li><strong>Export Settings</strong> - Backup your configuration and saved favicons</li>
-                    </ul>
-                </section>
-
-                <section id="changelog-1-2-7" class="doc-section">
-                    <h3><span class="icon">📋</span> Changelog</h3>
-
-                    <h4>v1.2.9 - March 13, 2026</h4>
-                    <ul>
-                        <li>✏️ SOQL Inline Edit — toggle-switch UI replacing the old pill button, matching Advanced &amp; Guided Builder toggles</li>
-                        <li>Inline Edit enabled by default — editable cells appear automatically after running a query</li>
-                        <li>🗑️ Row Delete — delete button per row with confirmation dialog, DELETE API call, in-memory row removal</li>
-                        <li>Actions column — new "Actions" header in advanced table when inline edit is active</li>
-                        <li>Auto-describe on query — object describe fetched automatically so editable fields are ready immediately</li>
-                        <li>Record page autofill — SOQL editor prefills SELECT Id FROM Object WHERE Id = 'recordId'</li>
-                        <li>GraphQL advanced enhancements — persisted advanced mode, inline User field editing, picklist dropdowns</li>
-                        <li>10 new tests, 2741+ total tests passing across 53 test suites</li>
-                    </ul>
-
-                    <h4>v1.2.8 - March 13, 2026</h4>
-                    <ul>
-                        <li>TF Blinker redesign — 40px circular FAB, frosted glass, extension icon, entrance animation, dark mode</li>
-                        <li>Sidebar social links — Buy Me a Coffee + LinkedIn icons in sidebar footer</li>
-                        <li>Currently Active fix — badge only shows for the connected org</li>
-                        <li>Org list icon overflow fix — increased icon size with proportional label scaling</li>
-                        <li>Login As History cross-org isolation — storage key scoped per org</li>
-                    </ul>
-
-                    <h4>v1.2.7 - March 12, 2026</h4>
-                    <ul>
-                        <li>🏷️ Custom Labels Enhancement — complete feature overhaul in Org Tools</li>
-                        <li>Real-time search with 300ms debounce, category dropdown filter, multi-field search</li>
-                        <li>Inline editing — edit labels in-place with save via Tooling API PATCH</li>
-                        <li>🌐 Translation feature — create translations in 20 languages with duplicate detection</li>
-                        <li>Import update mode — PATCH existing + POST new labels in a single batch</li>
-                        <li>Export selected only — row checkboxes with select-all, export filtered to CSV/JSON</li>
-                        <li>UI/UX: search highlighting, keyboard navigation, close detail, count badge, dark theme</li>
-                        <li>45 new tests, 2723+ total tests passing across 53 test suites</li>
-                        <li>All guides, references, and HTML pages updated to v1.2.7</li>
-                    </ul>
-
-                    <h4>v1.2.6 - March 12, 2026</h4>
-                    <ul>
-                        <li>Comprehensive documentation &amp; guide update — every feature fully documented</li>
-                        <li>GraphQL Builder: mutations, schema suggestions, table view, CSV/JSON export, visual summary</li>
-                        <li>Data Explorer: Favicon Manager with live/draft preview, 6 shapes, 6 presets</li>
-                        <li>Platform Events &amp; LMS: configurable settings, URL-based Lightning detection</li>
-                        <li>TF Sidebar: category grouping, drag reorder, add/delete custom shortcuts, reset</li>
-                        <li>Multi-Org Support: detect, switch, save orgs, cross-org protection, hostname syncing</li>
-                        <li>Security: org ID normalization (15/18 char), CSP compliance</li>
-                        <li>All guides, references, and HTML pages updated to v1.2.6</li>
-                        <li>52 test suites, 2678+ passing tests</li>
-                    </ul>
-
-                    <h4>v1.2.5 - March 12, 2026</h4>
-                    <ul>
-                        <li>Comprehensive feature release — every feature fully documented</li>
-                        <li>Audit Trail Extractor, SOQL Builder, GraphQL Builder all fully documented</li>
-                        <li>Data Explorer (Favicon, User Manager, Record Scanner) complete documentation</li>
-                        <li>Security Manager, Org Tools, Data Explorer Tools documented</li>
-                        <li>Platform Events, LMS, Appearance Settings, TF Sidebar documented</li>
-                        <li>All guides, references, and HTML pages updated to v1.2.5</li>
-                    </ul>
-
-                    <h4>v1.2.4 - March 11, 2026</h4>
-                    <ul>
-                        <li>Comprehensive documentation refresh for all guides and references</li>
-                        <li>Version synchronization across 20+ documentation files</li>
-                        <li>Updated User Guide, Developer Guide, and Quick Start Guide</li>
-                        <li>Added missing v1.2.3 changelog entry</li>
-                        <li>General stability and reliability improvements</li>
-                    </ul>
-
-                    <h4>v1.2.3 - March 11, 2026</h4>
-                    <ul>
-                        <li>Documentation refresh with comprehensive feature documentation</li>
-                        <li>Fixed sidebar navigation and smooth scrolling</li>
-                        <li>Added sticky navigation bar with cross-page links</li>
-                        <li>Fixed version content divs with proper unique section IDs</li>
-                    </ul>
-
-                    <h4>v1.2.2 - March 11, 2026</h4>
-                    <ul>
-                        <li>Data Explorer enhancements and stability improvements</li>
-                        <li>Org Tools refactoring with better error handling</li>
-                        <li>Content script optimizations</li>
-                        <li>General stability and reliability improvements</li>
-                    </ul>
-
-                    <h4>v1.2.0 - March 11, 2026</h4>
-                    <ul>
-                        <li>Added Security Manager for profile and permission set browsing</li>
-                        <li>Added Org Tools with Login As, Custom Labels, Deployments, Debug Logs</li>
-                        <li>Added TF Sidebar with customizable shortcuts</li>
-                        <li>Added Data Explorer Tools (Metadata Explorer, Automation Inspector, Schema Visualizer, API Dashboard</li>
-                        <li>Enhanced UI/UX across all features</li>
-                    </ul>
-
-                    <h4>v1.1.19 - March 10, 2026</h4>
-                    <ul>
-                        <li>Version bump, documentation updates, stability improvements</li>
-                    </ul>
-
-                    <h4>v1.1.18 - March 10, 2026</h4>
-                    <ul>
-                        <li>Appearance Settings (font size, theme, accent color)</li>
-                        <li>GraphQL compact UI enhancements</li>
-                        <li>SOQL simplified query construction</li>
-                        <li>XSS prevention improvements</li>
-                    </ul>
-
-                    <h4>v1.1.0 - Earlier Releases</h4>
-                    <ul>
-                        <li>Initial core features: Audit Extractor, SOQL Builder, Record Scanner</li>
-                        <li>User Manager and Favicon Manager</li>
-                        <li>Platform Events and Page Blinker</li>
-                        <li>Cache Manager and troubleshooting tools</li>
-                    </ul>
-                </section>
-
-                <section id="troubleshooting-1-2-7" class="doc-section">
-                    <h3><span class="icon">🔧</span> Troubleshooting</h3>
-
-                    <h4>Extension not appearing in toolbar</h4>
-                    <p><strong>Solution:</strong> Check that the extension is enabled in <code>chrome://extensions/</code>. If installed from Chrome Web Store, wait a few moments for it to activate.</p>
-
-                    <h4>Favicon not applying to tab</h4>
-                    <p><strong>Solution:</strong> Ensure you're on a Salesforce page (*.salesforce.com). Clear the extension cache and refresh the page.</p>
-
-                    <h4>SOQL query not executing</h4>
-                    <p><strong>Solution:</strong> Verify that your org has API access enabled and you're not hitting rate limits. Check the browser console for error messages.</p>
-
-                    <h4>Record Scanner showing no data</h4>
-                    <p><strong>Solution:</strong> Confirm you have FLS permissions to view the record. Try reloading the page and launching the scanner again.</p>
-
-                    <h4>Permission errors when using tools</h4>
-                    <p><strong>Solution:</strong> Ensure your Salesforce user has sufficient permissions for the operation. Some tools require admin access.</p>
-
-                    <h4>Cache or performance issues</h4>
-                    <p><strong>Solution:</strong> Open Cache Manager and clear all cache. Then refresh your Salesforce tab. If the problem persists, try uninstalling and reinstalling the extension.</p>
-
-                    <div class="alert alert-warning">
-                        <span class="icon">⚠️</span>
-                        <div class="alert-content">
-                            <strong>Still stuck?</strong>
-                            Check the Help section for additional support resources and contact information.
-                        </div>
-                    </div>
-                </section>
-
-                <section id="api-reference-1-2-7" class="doc-section">
-                    <h3><span class="icon">📚</span> API Reference</h3>
-
-                    <h4>Extension API</h4>
-                    <p>TrackForcePro provides several APIs for developers who want to extend or integrate with the extension.</p>
-
-                    <h4>Message Passing</h4>
-                    <p>The extension uses Chrome's message passing API for communication between content scripts and background scripts.</p>
-
-                    <pre><code>chrome.runtime.sendMessage({
-  action: 'queryRecords',
-  query: 'SELECT Id, Name FROM Account LIMIT 10'
-}, function(response) {
-  console.log(response.records);
-});</code></pre>
-
-                    <h4>Storage API</h4>
-                    <p>Configuration and cached data are stored using <code>chrome.storage.local</code> and <code>chrome.storage.sync</code>.</p>
-
-                    <pre><code>chrome.storage.local.get(['orgFavicons'], function(result) {
-  console.log('Saved favicons:', result.orgFavicons);
-});</code></pre>
-
-                    <h4>Common Actions</h4>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>Action</th><th>Parameters</th><th>Description</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>queryRecords</td><td>query (string)</td><td>Execute a SOQL query</td></tr>
-                            <tr><td>getRecord</td><td>recordId (string)</td><td>Get record details</td></tr>
-                            <tr><td>updateFavicon</td><td>iconConfig (object)</td><td>Update org favicon</td></tr>
-                            <tr><td>getOrgInfo</td><td>none</td><td>Get current org information</td></tr>
-                        </tbody>
-                    </table>
-
-                    <div class="alert alert-info">
-                        <span class="icon">💡</span>
-                        <div class="alert-content">
-                            <strong>Developer Documentation</strong>
-                            For detailed API documentation and examples, visit the GitHub repository.
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Version 1.2.2 Content -->
-            <div id="content-1.2.2" class="version-content">
-                <!-- V1.2.2 sections with unique IDs: overview-1-2-2, installation-1-2-2, etc. -->
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 11, 2026</div>
                 </div>
 
-                <section id="overview-1-2-2" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.7.2 is a maintenance release with Data Explorer &amp; Org Tools enhancements and stability improvements.</p>
-                    <div class="alert alert-info">
-                        <span class="icon">ℹ️</span>
-                        <div class="alert-content">
-                            For the latest features, please upgrade to v1.6.3 which includes comprehensive documentation of all features.
-                        </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Format Query</h3>
+                        <p>Click the Format button to auto-format your query for readability.</p>
                     </div>
-                </section>
-
-                <section id="changelog-1-2-2" class="doc-section">
-                    <h3><span class="icon">📋</span> What's New</h3>
-                    <ul>
-                        <li>Data Explorer enhancements and stability improvements</li>
-                        <li>Org Tools refactoring with better error handling</li>
-                        <li>Content script optimizations for better performance</li>
-                        <li>General stability and reliability improvements</li>
-                    </ul>
-                </section>
-            </div>
-
-            <!-- Version 1.2.0 Content -->
-            <div id="content-1.2.0" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 11, 2026</div>
                 </div>
 
-                <section id="overview-1-2-0" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.7.2 introduces major new features: Security Manager, Org Tools, TF Sidebar, and Data Explorer Tools.</p>
-                </section>
-
-                <section id="whats-new-1-2-0" class="doc-section">
-                    <h3><span class="icon">🆕</span> Major Features in v1.2.0</h3>
-                    <ul>
-                        <li><strong>Security Manager</strong> - Browse Profiles, Permission Sets, and PS Groups</li>
-                        <li><strong>Org Tools</strong> - Login As, Custom Labels, Deployments, Debug Logs, Org Limits</li>
-                        <li><strong>TF Sidebar</strong> - Customizable sidebar with quick tool shortcuts</li>
-                        <li><strong>Data Explorer Tools</strong> - Metadata Explorer, Automation Inspector, Schema Visualizer, API Dashboard</li>
-                    </ul>
-                </section>
-            </div>
-
-            <!-- Version 1.1.19 Content -->
-            <div id="content-1.1.19" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 10, 2026</div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Execute</h3>
+                        <p>Click Execute to run the query. Results display in a formatted JSON response below.</p>
+                    </div>
                 </div>
 
-                <section id="overview-1-1-19" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.7.2 is a maintenance release with stability improvements and documentation updates.</p>
-                </section>
-
-                <section id="fixes-1-1-19" class="doc-section">
-                    <h3><span class="icon">🔧</span> Bug Fixes</h3>
-                    <ul>
-                        <li>Record scanner reliability improvements</li>
-                        <li>SOQL builder performance enhancements</li>
-                        <li>Favicon manager color picker improvements</li>
-                    </ul>
-                </section>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Export Results</h3>
+                        <p>Export the GraphQL response to JSON or copy it to your clipboard.</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Version 1.1.18 Content -->
-            <div id="content-1.1.18" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 10, 2026</div>
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use GraphQL for complex nested queries. The autocomplete feature learns from your org's schema to provide intelligent suggestions.
+            </div>
+        </div>
+
+        <!-- 4. DATA EXPLORER -->
+        <div class="section">
+            <h2><span class="emoji">📊</span> Data Explorer</h2>
+            <p class="section-intro">
+                Look up any Salesforce record by ID, view all fields, edit inline, navigate between related records, and compare records side-by-side.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Open Data Explorer</h3>
+                        <p>Click the Data Explorer tab in the popup.</p>
+                    </div>
                 </div>
 
-                <section id="overview-1-1-18" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.7.2 includes Appearance Settings, GraphQL compact UI, SOQL simplification, and XSS prevention.</p>
-                </section>
-            </div>
-
-            <!-- Version 1.1.17 Content -->
-            <div id="content-1.1.17" class="version-content">
-                <div class="content-header">
-                    <h2>TrackForcePro Documentation</h2>
-                    <span class="version-badge">v1.7.2</span>
-                    <div class="date">Released: March 9, 2026</div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Search for a Record</h3>
+                        <p>Enter a Salesforce record ID (15 or 18 character) in the search box and press Enter. Or use the single/bulk record scanner for more control.</p>
+                    </div>
                 </div>
 
-                <section id="overview-1-1-17" class="doc-section">
-                    <h3><span class="icon">📖</span> Overview</h3>
-                    <p>TrackForcePro v1.7.2 includes stability improvements and documentation updates.</p>
-                </section>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>View All Fields</h3>
+                        <p>See every field on the record—including read-only fields not visible in Salesforce. Results are paginated (100 fields per page).</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Edit Fields Inline (Optional)</h3>
+                        <p>Double-click any editable field to change its value. Press Enter to save or Escape to cancel. Changes update Salesforce immediately.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Navigate Related Records</h3>
+                        <p>Click a lookup field to jump to the related record. A breadcrumb trail keeps track of your navigation history.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Pin Frequently-Used Records</h3>
+                        <p>Click the pin icon on any record to save it. Pinned records appear at the top for quick re-access.</p>
+                    </div>
+                </div>
             </div>
-        </main>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use Bulk Record Scanner to search up to 200 record IDs at once. Results show in a sortable table. Compare records side-by-side to spot differences.
+            </div>
+
+            <div class="site-warning">
+                <strong>⚠️ Inline Edit Security:</strong> In Settings > General, you can disable inline editing in production orgs to prevent accidental changes. This setting protects production data while allowing edits in sandboxes.
+            </div>
+        </div>
+
+        <!-- 5. SECURITY MANAGER -->
+        <div class="section">
+            <h2><span class="emoji">🔐</span> Security Manager</h2>
+            <p class="section-intro">
+                Browse and analyze Salesforce security configurations: Profiles, Permission Sets, and Permission Set Groups.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Open Org Tools Tab</h3>
+                        <p>Click Org Tools in the main popup, then select Security Manager.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Browse Profiles</h3>
+                        <p>View all Salesforce profiles in your org. See which objects and fields each profile can access.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>View Permission Sets</h3>
+                        <p>Check individual permission sets and understand what permissions they grant users.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Inspect Permission Set Groups</h3>
+                        <p>See groups and the permission sets they contain.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use this tool to audit user permissions and understand your org's security model without manual Salesforce UI navigation.
+            </div>
+        </div>
+
+        <!-- 6. USER MANAGER -->
+        <div class="section">
+            <h2><span class="emoji">👥</span> User Manager</h2>
+            <p class="section-intro">
+                Search users, view detailed profiles, freeze/unfreeze accounts, and see permission assignments at a glance.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Open Org Tools > User Manager</h3>
+                        <p>Navigate to Org Tools and select User Manager.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Search Users</h3>
+                        <p>Type a name or email in the search box to find users. Filter by active/inactive status.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>View User Details</h3>
+                        <p>Click a user to see full profile info: email, role, profile, permission sets, and status.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Freeze or Unfreeze Users</h3>
+                        <p>Click the freeze/unfreeze button to temporarily disable a user account without deleting it.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Check Permission Matrix</h3>
+                        <p>View which permission sets and profiles are assigned to each user.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use User Manager to quickly deactivate contractors or temp users without accessing Salesforce Setup.
+            </div>
+        </div>
+
+        <!-- 7. ORG TOOLS -->
+        <div class="section">
+            <h2><span class="emoji">🛠️</span> Org Tools</h2>
+            <p class="section-intro">
+                Quick access to org utilities: Login As, Custom Labels, Deployments, Debug Logs, Org Limits, and Scheduled Jobs.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Open Org Tools</h3>
+                        <p>Click the Org Tools tab in the popup.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Login As Another User</h3>
+                        <p>Search for a user and click Login As to assume their identity for troubleshooting.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Browse Custom Labels</h3>
+                        <p>View all custom labels in your org. Search by label name or category.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Monitor Deployments</h3>
+                        <p>See recent deployment history with status and details.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Check Debug Logs</h3>
+                        <p>View recent debug logs and download them for analysis.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Monitor Org Limits</h3>
+                        <p>See API calls used, data storage, file storage, and other org limits in real-time.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>View Scheduled Jobs</h3>
+                        <p>See all scheduled batch jobs, their status, and next execution time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Check Org Limits regularly to monitor API usage and storage. Use Debug Logs to troubleshoot code execution issues.
+            </div>
+        </div>
+
+        <!-- 8. PLATFORM EVENTS -->
+        <div class="section">
+            <h2><span class="emoji">📡</span> Platform Events</h2>
+            <p class="section-intro">
+                Subscribe to and publish Salesforce Platform Events in real-time. Monitor event streams for debugging and testing.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Open Platform Events Tab</h3>
+                        <p>Click Platform Events in the popup menu.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Select an Event</h3>
+                        <p>Choose a Platform Event from your org's list.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Subscribe to Events</h3>
+                        <p>Click Subscribe to listen to incoming events. Events appear in real-time as they're published.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Publish a Test Event</h3>
+                        <p>Enter event payload data and click Publish to send a test event to your subscribers.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Monitor Event Stream</h3>
+                        <p>View all events received in JSON format. Clear logs or download for analysis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use Platform Events for testing integrations and debugging event-driven workflows without manual triggering.
+            </div>
+        </div>
+
+        <!-- 9. LIGHTNING MESSAGE SERVICE (LMS) -->
+        <div class="section">
+            <h2><span class="emoji">💬</span> Lightning Message Service</h2>
+            <p class="section-intro">
+                Subscribe to and publish LMS channels for testing component communication in Lightning.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Open LMS Tab</h3>
+                        <p>Click Lightning Message Service (LMS) in the popup.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Select a Channel</h3>
+                        <p>Choose an LMS channel from your org.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Subscribe to Channel</h3>
+                        <p>Click Subscribe to listen for messages on the selected channel.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Publish Messages</h3>
+                        <p>Enter message payload and click Publish. Subscribers receive the message instantly.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>View Message Log</h3>
+                        <p>All sent and received messages appear in a scrollable log with timestamps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use LMS testing to verify Lightning component communication works correctly without manually triggering actions.
+            </div>
+        </div>
+
+        <!-- 10. SHOW ALL DATA -->
+        <div class="section">
+            <h2><span class="emoji">👁️</span> Show All Data</h2>
+            <p class="section-intro">
+                Floating button appears on every Salesforce record. Click to see all fields—including hidden ones—and edit them directly on the page.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Navigate to Any Salesforce Record</h3>
+                        <p>Open any record page in Salesforce (Account, Contact, Opportunity, etc.).</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Click the Show All Data Button</h3>
+                        <p>A floating TrackForcePro button appears in the top corner. Click it to open the All Fields inspector.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Search Fields (Optional)</h3>
+                        <p>Use the search box to find specific fields by name or value.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Edit Fields</h3>
+                        <p>Double-click any field value to edit. Type your changes and press Enter to save instantly.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Navigate Related Records</h3>
+                        <p>Click lookup fields to jump to related records. Breadcrumbs track your navigation history. Click breadcrumbs to go back.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use Show All Data to see formula results, system fields (CreatedDate, CreatedById), and fields hidden by page layouts.
+            </div>
+        </div>
+
+        <!-- 11. TRACKFORCEPRO SIDEBAR -->
+        <div class="section">
+            <h2><span class="emoji">⚙️</span> TrackForcePro Sidebar</h2>
+            <p class="section-intro">
+                Quick shortcuts appear as a sidebar on every Salesforce page. Customize shortcuts to your favorite tools in Settings.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Sidebar Appears Automatically</h3>
+                        <p>A floating sidebar with shortcuts is visible on all Salesforce pages.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Click Shortcuts</h3>
+                        <p>Click any shortcut to trigger the action (Show All Data, Field History, SOQL Builder, etc.).</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Customize Shortcuts</h3>
+                        <p>Open Settings > Sidebar and configure which shortcuts appear on your sidebar.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Hide Sidebar (Optional)</h3>
+                        <p>Click the minimize icon to hide the sidebar. It reappears when you navigate to a new Salesforce page.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Customize shortcuts in Settings to match your workflow. Add frequently-used tools to the sidebar for quick access.
+            </div>
+        </div>
+
+        <!-- 12. COMMAND PALETTE -->
+        <div class="section">
+            <h2><span class="emoji">⌨️</span> Command Palette</h2>
+            <p class="section-intro">
+                Global command search accessible from any Salesforce page. Press Ctrl+K (or Cmd+K on Mac) to open and search for commands.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Press Ctrl+K (or Cmd+K)</h3>
+                        <p>From any Salesforce page, press Ctrl+K to open the Command Palette.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Search Commands</h3>
+                        <p>Type to search: "Audit," "SOQL," "Show All Data," "Security," etc. Matching commands appear instantly.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Navigate Results</h3>
+                        <p>Use arrow keys to move between results. Press Enter to execute the selected command.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Record ID Lookup</h3>
+                        <p>Type a record ID (15-18 characters) to auto-trigger a record lookup in Data Explorer.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Close Palette</h3>
+                        <p>Press Escape to close the Command Palette anytime.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> The Command Palette supports 13+ built-in commands. Customize shortcut keys in Settings > General > Configurable Keyboard Shortcuts.
+            </div>
+        </div>
+
+        <!-- 13. CONTEXT MENU -->
+        <div class="section">
+            <h2><span class="emoji">🖱️</span> Context Menu</h2>
+            <p class="section-intro">
+                Right-click on any Salesforce record page for quick access to Show All Data, Field History, Sharing, SOQL Builder, and more.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Right-Click on a Salesforce Page</h3>
+                        <p>Navigate to any Salesforce record and right-click the page.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Use Context Menu Options</h3>
+                        <p>A TrackForcePro menu appears with 5 options:</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Available Actions</h3>
+                        <p><em>Show All Data</em> - Open the field inspector. <em>Field History</em> - View field change history. <em>Sharing</em> - Check record sharing settings. <em>SOQL Builder</em> - Write queries for the current object. <em>Copy Record ID</em> - Copy the record ID to clipboard.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Right-click is faster than navigating the popup menu for quick actions on record pages.
+            </div>
+        </div>
+
+        <!-- 14. SETTINGS -->
+        <div class="section">
+            <h2><span class="emoji">⚙️</span> Settings</h2>
+            <p class="section-intro">
+                Customize TrackForcePro behavior, appearance, and keyboard shortcuts. Settings are saved per browser profile.
+            </p>
+
+            <div class="highlight">
+                <strong>General Settings:</strong> Disable inline edit in production orgs, configure keyboard shortcuts (Ctrl+K toggle, Show All Data, etc.), set theme preference.
+            </div>
+
+            <div class="highlight">
+                <strong>Org & Favicon:</strong> Manage org logos and custom favicons. Show org icons on browser tabs for easy identification.
+            </div>
+
+            <div class="highlight">
+                <strong>Appearance:</strong> Choose light, dark, or auto theme. Customize colors and font sizes for accessibility.
+            </div>
+
+            <div class="highlight">
+                <strong>Sidebar:</strong> Configure which shortcuts appear on the Salesforce sidebar. Reorder or disable individual shortcuts.
+            </div>
+
+            <div class="highlight">
+                <strong>Layout:</strong> Adjust column widths in tables. Settings persist across sessions.
+            </div>
+
+            <div class="highlight">
+                <strong>Backup:</strong> Export or import your entire TrackForcePro configuration. Useful when switching browsers or computers.
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 New in v1.8.0:</strong> Disable Inline Edit in Production—blocks inline edits on production orgs while allowing them in sandboxes. Configurable Keyboard Shortcuts—set custom key combos for Toggle Sidebar, Show All Data, and Command Palette.
+            </div>
+        </div>
+
     </div>
 
     <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> v1.6.4 — Salesforce Developer Toolkit</p>
+        <p><strong>TrackForcePro</strong> — Open Source Chrome Extension</p>
         <div class="footer-links">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
-            <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a>
+            <a href="help.html">Help</a>
             <span class="sep">·</span>
-            <a href="privacy-policy.html">Privacy</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <span class="sep">·</span>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="sep">·</span>
+            <a href="quick-start-guide.html">Quick Start</a>
         </div>
         <div class="footer-social">
             <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
@@ -2158,98 +897,8 @@
             <span class="sep">·</span>
             <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">Portfolio</a>
         </div>
-        <p class="footer-copy">© 2026 TrackForcePro. All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Initialize sidebar links with click handlers
-        function initSidebarLinks() {
-            const sidebarLinks = document.querySelectorAll('.sidebar-link');
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const href = this.getAttribute('href');
-                    const targetId = href.substring(1); // Remove #
-                    const targetSection = document.getElementById(targetId);
-
-                    if (targetSection) {
-                        // Update active state
-                        sidebarLinks.forEach(l => l.classList.remove('active'));
-                        this.classList.add('active');
-
-                        // Smooth scroll
-                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                });
-            });
-        }
-
-        // Switch version and update sidebar/content
-        function switchVersion(version) {
-            // Hide all content
-            const allContent = document.querySelectorAll('.version-content');
-            allContent.forEach(content => content.classList.remove('active'));
-
-            // Show selected version
-            const selectedContent = document.getElementById('content-' + version);
-            if (selectedContent) {
-                selectedContent.classList.add('active');
-            }
-
-            // Update sidebar links to point to sections within the active version content
-            const sidebarLinks = document.querySelectorAll('.sidebar-link');
-            const versionSuffix = (version === '1.6.3') ? '' : '-' + version.replace(/\./g, '-');
-            sidebarLinks.forEach(link => {
-                const baseHref = link.getAttribute('data-base-href') || link.getAttribute('href');
-                // Store original href on first call
-                if (!link.getAttribute('data-base-href')) {
-                    link.setAttribute('data-base-href', baseHref);
-                }
-                const baseId = baseHref.substring(1); // Remove #
-                // Try version-specific ID first, fall back to base
-                const versionId = baseId + versionSuffix;
-                const target = document.getElementById(versionId) || document.getElementById(baseId);
-                link.setAttribute('href', target ? '#' + target.id : baseHref);
-            });
-
-            // Scroll to top
-            document.querySelector('.content').scrollTop = 0;
-
-            // Reset sidebar active state to first link
-            sidebarLinks.forEach(link => link.classList.remove('active'));
-            if (sidebarLinks.length > 0) {
-                sidebarLinks[0].classList.add('active');
-            }
-        }
-
-        // Intersection Observer for scroll-based active state
-        function initScrollObserver() {
-            const sections = document.querySelectorAll('.doc-section');
-            const sidebarLinks = document.querySelectorAll('.sidebar-link');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        sidebarLinks.forEach(link => link.classList.remove('active'));
-                        const activeLink = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
-                        if (activeLink) {
-                            activeLink.classList.add('active');
-                        }
-                    }
-                });
-            }, {
-                threshold: 0.3,
-                rootMargin: '-100px 0px -66%'
-            });
-
-            sections.forEach(section => observer.observe(section));
-        }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            initSidebarLinks();
-            initScrollObserver();
-        });
-    </script>
 </body>
 </html>

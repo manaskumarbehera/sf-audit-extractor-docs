@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Salesforce toolkit: Audit extractor, SOQL/GraphQL builders, record scanner, org favicon manager, platform events & LMS.">
-    <title>TrackForcePro - Documentation</title>
+    <meta name="description" content="TrackForcePro: The complete Salesforce admin toolkit with audit trails, query builders, record scanner, and more. Free browser extension for Chrome, Edge, Firefox, and Opera.">
+    <title>TrackForcePro - Salesforce Admin Toolkit</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
@@ -94,18 +94,7 @@
             </a>
         </div>
         <div style="margin-top: 12px;">
-            <select id="version-select" class="site-version-select">
-                <option value="1.7.2">v1.7.2 (Latest)</option>
-                <option value="1.7.1">v1.7.1</option>
-                <option value="1.7.0">v1.7.0</option>
-                <option value="1.6.4">v1.6.4</option>
-                <option value="1.6.3">v1.6.3</option>
-                <option value="1.6.2">v1.6.2</option>
-                <option value="1.3.7">v1.3.7</option>
-                <option value="1.3.6">v1.3.6</option>
-                <option value="1.2.9">v1.2.9</option>
-                <option value="1.2.7">v1.2.7</option>
-            </select>
+            <span class="site-version-badge">v1.8.0</span>
         </div>
     </div>
 
@@ -117,12 +106,12 @@
                 <div class="stat-label">Power Tools</div>
             </div>
             <div class="stat-pill">
-                <div class="stat-num">130+</div>
-                <div class="stat-label">Quiz Questions</div>
+                <div class="stat-num">4</div>
+                <div class="stat-label">Browsers</div>
             </div>
             <div class="stat-pill">
-                <div class="stat-num">7</div>
-                <div class="stat-label">Game Modes</div>
+                <div class="stat-num">Free</div>
+                <div class="stat-label">Forever</div>
             </div>
             <div class="stat-pill">
                 <div class="stat-num">0</div>
@@ -138,7 +127,7 @@
             <a href="documentation.html" class="site-card animate-in">
                 <div class="card-icon">📖</div>
                 <h2>Full Documentation</h2>
-                <p>Complete documentation with version history. Select any version to view its docs.</p>
+                <p>Complete guide to all features, with detailed walkthroughs and examples.</p>
                 <span class="site-badge primary">Comprehensive</span>
             </a>
 
@@ -159,27 +148,21 @@
             <a href="help.html" class="site-card animate-in">
                 <div class="card-icon">💡</div>
                 <h2>Help &amp; Support</h2>
-                <p>Complete help documentation, FAQs, troubleshooting, and support resources.</p>
+                <p>Answers to common questions, troubleshooting tips, and how to get support.</p>
             </a>
 
             <a href="quiz.html" class="site-card animate-in">
                 <div class="card-icon">🎮</div>
                 <h2>Quiz &amp; Games</h2>
-                <p>Test your Salesforce toolkit knowledge with interactive quizzes, feature matching, and speed challenges!</p>
+                <p>Test your Salesforce toolkit knowledge with interactive quizzes and fun challenges!</p>
                 <span class="site-badge fun">7 Modes</span>
             </a>
 
             <a href="leaderboard.html" class="site-card animate-in">
                 <div class="card-icon">🏆</div>
                 <h2>Leaderboard</h2>
-                <p>See top scores, track your progress, and compete with other players across all quiz game modes.</p>
+                <p>See top scores, track your progress, and compete with other players across quiz modes.</p>
                 <span class="site-badge warning">Compete</span>
-            </a>
-
-            <a href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" class="site-card animate-in" target="_blank">
-                <div class="card-icon">🐛</div>
-                <h2>Report Issue</h2>
-                <p>Found a bug or have a feature request? Submit an issue on GitHub.</p>
             </a>
         </div>
 
@@ -190,111 +173,54 @@
             <div class="site-feature-grid">
                 <div class="site-feature-item animate-in">
                     <h4>🔍 Audit Trail</h4>
-                    <p>Extract and export setup audit logs with advanced filtering</p>
+                    <p>Extract and export setup audit logs with advanced filtering, date ranges, and detailed change tracking</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>🔗 GraphQL Builder</h4>
-                    <p>Visual query composition for Salesforce UI API</p>
+                    <p>Build complex GraphQL queries visually for the Salesforce UI API without memorizing syntax</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>📊 SOQL Builder</h4>
-                    <p>Build queries with filters, ordering &amp; limits</p>
+                    <p>Create SOQL queries with point-and-click filters, ordering, field selection, and limits</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>🔬 Record Scanner</h4>
-                    <p>Single, bulk, &amp; compare record scanning</p>
+                    <p>Inspect single records, scan multiple records at once, or compare records side-by-side</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>🔐 Security Manager</h4>
-                    <p>Profiles, Permission Sets, PS Groups</p>
+                    <p>Review profiles, permission sets, permission set groups, and user assignments</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>🏢 Org Tools</h4>
-                    <p>Login As, Labels, Deployments, Limits</p>
+                    <p>Quick access to Login As, custom labels, deployment history, and org limits</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>📡 Platform Events</h4>
-                    <p>Monitor and publish events in real-time</p>
+                    <p>Monitor platform events in real-time or publish test events directly to your org</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>🧭 TF Sidebar</h4>
-                    <p>Customizable shortcuts on SF pages</p>
+                    <p>Quick-access shortcuts on every Salesforce page with customizable links to your favorite tools</p>
                 </div>
             </div>
         </div>
 
-        <!-- Changelog -->
+        <!-- What's New -->
         <div class="site-section site-changelog" style="margin-top: 36px;">
-            <h2 class="site-section-title">Recent Changes</h2>
+            <h2 class="site-section-title">What's New</h2>
 
-            <h4>v1.7.2 — March 18, 2026 (Latest)</h4>
+            <h4>v1.8.0 — March 18, 2026 (Latest)</h4>
             <ul>
-                <li><strong>Show All Data Shortcut Fix</strong> — <kbd>Ctrl+Shift+X</kbd> / <kbd>⌘+Shift+X</kbd> now reliably toggles the panel open <em>and</em> closed</li>
-                <li><strong>Duplicate Listener Fix</strong> — removed duplicate <code>toggleShowAllData</code> message handler that caused the shortcut to appear unresponsive (open + immediate close)</li>
-                <li><strong>Robust Close Detection</strong> — keyboard shortcut handler checks the DOM directly via <code>document.getElementById()</code> for reliable close regardless of variable state</li>
+                <li><strong>Production Edit Safety</strong> — New "Disable Inline Edit in Production" setting prevents accidental field changes in Production orgs while allowing edits in sandboxes</li>
+                <li><strong>Customizable Keyboard Shortcuts</strong> — Configure your own keyboard shortcuts in Settings for Sidebar toggle, Show All Data panel, and Command Palette to avoid conflicts with other extensions</li>
             </ul>
 
-            <h4>v1.7.1 — March 18, 2026</h4>
+            <h4>v1.7.x — March 2026</h4>
             <ul>
-                <li><strong>Sidebar Cleanup</strong> — streamlined TF Sidebar from 43 to 19 focused shortcuts; removed low-frequency and redundant items</li>
-                <li><strong>Removed sidebar shortcuts</strong> — Export/Import settings, website links, redundant security/org panels, low-use SF Setup pages</li>
-                <li><strong>Documentation fixes</strong> — corrected stale references to removed sidebar shortcuts in v1.6.3 and v1.6.4 docs</li>
-            </ul>
-
-            <h4>v1.7.0 — March 17, 2026</h4>
-            <ul>
-                <li><strong>Complete Settings Export/Import</strong> — 3 new categories: 📐 Layout Settings, 🔑 Login As History, 🛠️ Preferences &amp; UI State (10 total)</li>
-                <li><strong>Selective Import</strong> — per-category toggle switches in import preview let you choose exactly which categories to apply</li>
-                <li><strong>Sensitive Data Protection</strong> — session tokens and OAuth keys automatically excluded from all exports</li>
-                <li><strong>Expanded Categories</strong> — Org Info now includes draft icon configs; GraphQL now includes schema cache</li>
-                <li><strong>Dynamic Version Stamp</strong> — export files now use the actual installed version instead of hardcoded strings</li>
-            </ul>
-
-            <h4>v1.6.4 — March 17, 2026</h4>
-            <ul>
-                <li><strong>Category-Aware Export/Import</strong> — select which settings categories to export: Appearance, Tabs, Org, SOQL, GraphQL, Sidebar, Pinned Records</li>
-                <li><strong>Smart Import Preview</strong> — inspect and validate import data with category counts before applying</li>
-                <li><del>Export/Import Sidebar Shortcuts</del> — <em>removed in v1.7.1; access via Settings → General</em></li>
-                <li><strong>Tab Button Visibility Fix</strong> — inactive tabs now clearly visible with frosted glass background instead of invisible transparent</li>
-                <li><strong>Sub-tab Dark Theme</strong> — added missing dark theme variants for sub-tab buttons</li>
-                <li><strong>Data Management UI</strong> — new panel layout with category grid, export preview, danger zone components</li>
-            </ul>
-
-            <h4>v1.6.3 — March 17, 2026</h4>
-            <ul>
-                <li><strong>Searchable SObject Combobox</strong> — SOQL Builder object selector now supports type-to-filter with substring matching and keyboard navigation</li>
-                <li><strong>Suggestion Dropdown Fix</strong> — field suggestion dropdown no longer clipped by builder panel overflow; uses fixed positioning with dynamic coordinates</li>
-                <li><strong>Show All Data Fix</strong> — fixed CORS issue preventing record data from loading; API calls now proxy through background.js</li>
-                <li><strong>Show All Data Buttons</strong> — header buttons (Copy ID, Open in SF) now visible with glass-style on the blue gradient header</li>
-                <li><strong>Keyboard Shortcut</strong> — <kbd>Ctrl+Shift+X</kbd> / <kbd>⌘+Shift+X</kbd> toggles Show All Data panel on record pages</li>
-                <li><strong>SOQL Fallback</strong> — automatic <code>FIELDS(ALL)</code> fallback when UI API fails for unsupported objects</li>
-                <li><strong>Website Integration</strong> — Help, About, and Settings tabs now link to TrackForcePro website (help, quick start, quiz, leaderboard)</li>
-                <li><del>TF Sidebar Shortcuts — 5 website shortcuts</del> — <em>removed in v1.7.1; links kept in sidebar footer</em></li>
-            </ul>
-
-            <h4>v1.6.2 — March 16, 2026</h4>
-            <ul>
-                <li><strong>Leaderboard Page</strong> — dedicated page with player stats, mode filtering, search, accuracy bars, and CSV export</li>
-                <li><strong>Server-Side Scores</strong> — leaderboard API on Heroku (<code>/api/leaderboard</code>) with localStorage fallback for GitHub Pages</li>
-                <li><strong>Cross-page Navigation</strong> — leaderboard links from quiz results, quiz leaderboard tab, and docs index</li>
-            </ul>
-
-            <h4>v1.6.0 — March 16, 2026</h4>
-            <ul>
-                <li><strong>UI Modernization</strong> — glassmorphism, refined typography (Inter), smoother animations, modern color palette</li>
-                <li><strong>Modern Tab Design</strong> — pill-shaped tabs with active glow, hover micro-interactions</li>
-                <li><strong>Enhanced Modals</strong> — frosted glass backdrop, spring-like entrance animations</li>
-                <li><strong>Command Palette Fix</strong> — overlay no longer sticks after selecting a command</li>
-                <li><strong>Docs Redesign</strong> — all documentation pages modernized with gradient hero, glassmorphism cards</li>
-            </ul>
-
-            <h4>v1.5.0 — March 16, 2026</h4>
-            <ul>
-                <li><strong>Show All Data</strong> — floating inspector button on Salesforce record pages with field explorer, search, lookup navigation, and inline editing</li>
-                <li><strong>Command Palette</strong> (Ctrl+K / Cmd+K) — global search with 13+ commands and record ID auto-detection</li>
-                <li><strong>Context Menu</strong> — right-click on SF pages for Show All Data, Field History, Sharing, SOQL Builder, Copy Record ID</li>
-                <li><strong>Inline Field Editing</strong> — double-click any updateable field to edit with type-aware inputs (Data Explorer &amp; Show All Data)</li>
-                <li><strong>Record Breadcrumbs &amp; Pinned Records</strong> — navigate lookup chains with breadcrumb trail, pin favorites</li>
+                <li><strong>Settings Export &amp; Import</strong> — Backup and restore all your custom settings across different orgs and browsers</li>
+                <li><strong>Searchable Object Selector</strong> — SOQL Builder now has a searchable dropdown to quickly find Salesforce objects by name</li>
+                <li><strong>Show All Data Improvements</strong> — Better performance, enhanced record navigation, and improved field display</li>
             </ul>
         </div>
 
@@ -310,7 +236,7 @@
     </div>
 
     <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Open Source Chrome Extension</p>
+        <p><strong>TrackForcePro</strong> — Free Salesforce Admin Toolkit</p>
         <div class="footer-links">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>

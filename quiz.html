@@ -1128,15 +1128,17 @@
     </div>
 
     <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> v1.6.2 — Salesforce Developer Toolkit</p>
+        <p><strong>TrackForcePro</strong> — Free Salesforce Admin Toolkit</p>
         <div class="footer-links">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">🛒 Chrome Web Store</a>
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
-            <a href="https://github.com/manaskumarbehera/sf-audit-extractor" target="_blank">GitHub</a>
+            <a href="help.html">Help</a>
             <span class="sep">·</span>
-            <a href="documentation.html">📖 Documentation</a>
+            <a href="leaderboard.html">Leaderboard</a>
             <span class="sep">·</span>
-            <a href="privacy-policy.html">🔐 Privacy</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <span class="sep">·</span>
+            <a href="quick-start-guide.html">Quick Start</a>
         </div>
         <div class="footer-social">
             <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
@@ -1470,10 +1472,10 @@ const quizQuestions = [
         explanation: "The TF Sidebar appears as a slim <strong>edge-anchored vertical tab on the right side</strong> of every Salesforce page. Just click it (or press Ctrl+Shift+S) to access all TrackForcePro tools!"
     },
     {
-        q: "What does TrackForcePro use to build GraphQL queries with syntax highlighting?",
-        opts: ["Monaco Editor", "Ace Editor", "CodeMirror 6", "VS Code Embedded"],
-        answer: 2,
-        explanation: "TrackForcePro uses <strong>CodeMirror 6</strong> for the GraphQL editor — it provides syntax highlighting, bracket matching, and schema-aware autocomplete."
+        q: "What features does the GraphQL Builder offer for writing queries?",
+        opts: ["Plain text only — no formatting", "Syntax highlighting, bracket matching, and autocomplete", "Only copy-paste from documentation", "A drag-and-drop visual designer"],
+        answer: 1,
+        explanation: "The GraphQL Builder provides <strong>syntax highlighting, bracket matching, and schema-aware autocomplete</strong> — making it easy to write complex queries without memorizing syntax."
     },
     {
         q: "How are child records (e.g., Contacts under an Account) exported to CSV in the GraphQL Builder?",
@@ -1483,9 +1485,9 @@ const quizQuestions = [
     },
     {
         q: "What is the SOQL Builder's inline edit feature?",
-        opts: ["A text editor for writing raw SOQL", "Edit query results directly in the table — changes are saved to Salesforce via API", "A drag-and-drop query designer", "An import tool for CSV data"],
+        opts: ["A text editor for writing raw SOQL", "Edit query results directly in the table — changes are saved back to Salesforce", "A drag-and-drop query designer", "An import tool for CSV data"],
         answer: 1,
-        explanation: "Inline edit lets you <strong>edit query results directly in the table</strong>. Each cell becomes editable, and changes are saved back to Salesforce via the REST API. You can even delete rows!"
+        explanation: "Inline edit lets you <strong>edit query results directly in the table</strong>. Each cell becomes editable, and changes are saved back to Salesforce. You can even delete rows!"
     },
     {
         q: "Which browsers does TrackForcePro support?",
@@ -1500,10 +1502,10 @@ const quizQuestions = [
         explanation: "The Favicon Manager lets you assign <strong>custom colors, shapes, and labels</strong> to each Salesforce org's browser tab — so you can instantly tell Production (🔴) from Sandbox (🟢) at a glance."
     },
     {
-        q: "How does TrackForcePro prevent cross-org data leakage in its cache?",
-        opts: ["It doesn't cache anything", "All data is stored server-side", "Cache keys are scoped by org ID", "It clears cache on every page load"],
+        q: "How does TrackForcePro prevent data from mixing between different Salesforce orgs?",
+        opts: ["It doesn't cache anything", "All data is stored server-side", "All cached data is isolated per org", "It clears everything on every page load"],
         answer: 2,
-        explanation: "The Cache Manager <strong>scopes all keys by org ID</strong> (e.g., <code>cache_{orgId}_{key}</code>). This prevents data from one org bleeding into another when you switch between Salesforce orgs."
+        explanation: "TrackForcePro <strong>isolates all cached data per org</strong>. This prevents data from one org bleeding into another when you switch between Salesforce orgs."
     },
     {
         q: "What does the Record Scanner's 'Compare' mode do?",
@@ -1512,10 +1514,10 @@ const quizQuestions = [
         explanation: "Compare mode takes <strong>two Record IDs</strong> and shows a side-by-side field comparison with <strong>diff highlighting</strong> — green for matching values, red for differences."
     },
     {
-        q: "What streaming protocol does TrackForcePro use for Platform Events?",
-        opts: ["WebSocket", "Server-Sent Events", "CometD", "gRPC"],
-        answer: 2,
-        explanation: "TrackForcePro uses <strong>CometD</strong> (Salesforce's Bayeux-based streaming protocol) to subscribe to Platform Events in real-time."
+        q: "What can you do with Platform Events in TrackForcePro?",
+        opts: ["Only view event definitions", "Subscribe to events in real-time and publish test events", "Only export event logs to CSV", "Only create new event types"],
+        answer: 1,
+        explanation: "The Platform Events tab lets you <strong>subscribe to events in real-time</strong> to see payloads as they arrive, and <strong>publish test events</strong> directly to your org."
     },
     {
         q: "What is the TF Sidebar's primary advantage over the toolbar popup?",
@@ -1597,10 +1599,10 @@ const quizQuestions = [
         explanation: "Org Limits shows <strong>all governor limits</strong> including API call usage, data/file storage, and other platform limits with current usage percentages."
     },
     {
-        q: "How does TrackForcePro detect your Salesforce session?",
-        opts: ["You enter credentials manually", "It uses an OAuth login popup", "A content script on Salesforce pages detects the session automatically", "It reads saved passwords"],
+        q: "How does TrackForcePro connect to your Salesforce session?",
+        opts: ["You enter credentials manually", "It uses an OAuth login popup", "It automatically detects your active session — no login needed", "It reads saved passwords"],
         answer: 2,
-        explanation: "A <strong>content script</strong> injected into Salesforce pages automatically detects your session — no manual login or credential entry needed!"
+        explanation: "TrackForcePro <strong>automatically detects your active Salesforce session</strong> — no manual login or credential entry needed!"
     },
     {
         q: "What does the Schema Visualizer show?",
@@ -1663,10 +1665,10 @@ const quizQuestions = [
         explanation: "Auto mode (default) uses <strong>luminance-based detection</strong> — dark text (#1a1a1a) on light backgrounds (luminance > 0.55) and white text on dark backgrounds. You can also disable Auto and pick a custom text color."
     },
     {
-        q: "What rendering technique do the cloud and shield favicon shapes use?",
-        opts: ["Overlapping circles", "SVG paths", "Single-path bezier curves", "Rasterized bitmaps"],
+        q: "How do the cloud and shield favicon shapes appear at different sizes?",
+        opts: ["They look pixelated at small sizes", "They have jagged edges", "They render smoothly and crisply at all sizes", "They only work at large sizes"],
         answer: 2,
-        explanation: "Cloud, SF Cloud, and Shield shapes use <strong>single-path bezier curves</strong> (via bezierCurveTo) for smooth, crisp rendering at all sizes — from 16px favicons to 48px previews."
+        explanation: "Cloud, SF Cloud, and Shield shapes use <strong>smooth curves</strong> that render crisply at all sizes — from tiny browser tab favicons to larger previews in the Favicon Manager."
     },
     {
         q: "How does Custom Labels pagination work in Org Tools?",
@@ -1682,9 +1684,9 @@ const quizQuestions = [
     },
     {
         q: "How many shortcut categories does the TF Sidebar support?",
-        opts: ["3 — TFP, External, Tools", "5 — tfp, de-tool, sec-panel, org-panel, external", "7 — one per tab", "2 — Internal and External"],
+        opts: ["3 — Extension, External, Tools", "5 — Extension Tabs, Data Explorer, Security, Org Tools, and External", "7 — one per tab", "2 — Internal and External"],
         answer: 1,
-        explanation: "The TF Sidebar has <strong>5 shortcut categories</strong>: tfp (extension tabs), de-tool (Data Explorer tools), sec-panel (Security Manager panels), org-panel (Org Tools panels), and external (Salesforce Setup pages)."
+        explanation: "The TF Sidebar has <strong>5 shortcut categories</strong>: Extension Tabs, Data Explorer Tools, Security Manager Panels, Org Tools Panels, and External (Salesforce Setup pages)."
     },
     {
         q: "What does the 📌 button in the TF Sidebar header do?",
@@ -1699,10 +1701,10 @@ const quizQuestions = [
         explanation: "Login As has three icon modes: <strong>🔑 current tab, 🖥️ new window, 🕶️ incognito</strong>. This lets you troubleshoot user issues without losing your admin session."
     },
     {
-        q: "Where can you customize the TF Sidebar keyboard shortcut?",
-        opts: ["TrackForcePro Settings", "chrome://extensions/shortcuts", "Salesforce Setup", "The sidebar itself"],
+        q: "Where can you customize TrackForcePro's keyboard shortcuts?",
+        opts: ["Only in Salesforce Setup", "In TrackForcePro Settings under Keyboard Shortcuts", "Only by reinstalling the extension", "The sidebar itself"],
         answer: 1,
-        explanation: "Visit <strong>chrome://extensions/shortcuts</strong> to customize or reassign TrackForcePro's keyboard shortcut. The default is Ctrl+Shift+S."
+        explanation: "Go to <strong>TrackForcePro Settings → Keyboard Shortcuts</strong> to customize shortcuts for the Sidebar toggle, Show All Data, and Command Palette."
     }
 ];
 
@@ -1710,14 +1712,14 @@ const quizQuestions = [
 const matchPairs = [
     { feature: "🧭 TF Sidebar", desc: "Edge-anchored tab on the right side of every Salesforce page" },
     { feature: "📊 SOQL Builder", desc: "Visual query builder with inline edit and row delete" },
-    { feature: "🔗 GraphQL Builder", desc: "CodeMirror 6 editor with child record export to CSV" },
+    { feature: "🔗 GraphQL Builder", desc: "Query editor with syntax highlighting and child record CSV export" },
     { feature: "🎨 Favicon Manager", desc: "Custom org icons with shapes, colors, and labels" },
     { feature: "🔐 Security Manager", desc: "Browse Profiles, Permission Sets, and PS Groups" },
     { feature: "🔬 Record Scanner", desc: "Field history, FLS analysis, and record comparison" },
-    { feature: "📡 Platform Events", desc: "Real-time CometD streaming and publishing" },
+    { feature: "📡 Platform Events", desc: "Real-time event streaming and test event publishing" },
     { feature: "🏢 Org Tools", desc: "Login As, Custom Labels, Deployments, Debug Logs" },
     { feature: "👥 User Manager", desc: "Permission Matrix, Sessions, Freeze, Bulk Update" },
-    { feature: "💾 Cache Manager", desc: "Org-scoped caching to prevent cross-org data leaks" },
+    { feature: "💾 Cache Manager", desc: "Per-org data isolation to prevent cross-org data leaks" },
     { feature: "🔍 Audit Extractor", desc: "Filter and export setup audit trail events to CSV" },
     { feature: "📦 Data Explorer Tools", desc: "Metadata Explorer, Schema Visualizer, API Dashboard" },
     { feature: "🧊 Freeze/Unfreeze", desc: "Temporarily prevent a user from logging in" },
@@ -1729,7 +1731,7 @@ const matchPairs = [
     { feature: "📊 API Usage", desc: "Monitor API request counts and governor limits" },
     { feature: "🚀 Deployment Tracker", desc: "View active, queued, and completed deployments" },
     { feature: "🎨 Custom Text Color", desc: "Auto luminance-based or manual color picker for favicon labels" },
-    { feature: "☁️ Bezier Shapes", desc: "Single-path bezier curves for clean cloud, sfcloud, and shield rendering" },
+    { feature: "☁️ Smooth Shapes", desc: "Crisp cloud, sfcloud, and shield favicon rendering at all sizes" },
     { feature: "📄 Labels Pagination", desc: "Client-side pagination with 50/100/200/500 page sizes for custom labels" },
     { feature: "⌨️ Sidebar Shortcut", desc: "Ctrl+Shift+S toggles the TF Sidebar on Salesforce pages" },
     { feature: "📌 Pin Sidebar", desc: "Keeps the sidebar open permanently with a page margin push" },
@@ -1740,11 +1742,11 @@ const matchPairs = [
 const speedQuestions = [
     { icon: "🧭", feature: "TF Sidebar location?", opts: ["Top-left", "Right edge", "Center", "Top-right"], answer: 1 },
     { icon: "📊", feature: "SOQL result editing?", opts: ["Copy only", "Inline Edit", "Download only", "Read-only"], answer: 1 },
-    { icon: "🔗", feature: "GraphQL editor?", opts: ["Monaco", "CodeMirror 6", "Ace", "Quill"], answer: 1 },
-    { icon: "📡", feature: "Streaming protocol?", opts: ["WebSocket", "gRPC", "CometD", "SSE"], answer: 2 },
+    { icon: "🔗", feature: "GraphQL Builder features?", opts: ["Plain text only", "Syntax highlighting + autocomplete", "Copy-paste only", "No editor"], answer: 1 },
+    { icon: "📡", feature: "Platform Events can?", opts: ["View definitions only", "Export logs only", "Stream + publish events", "Create event types"], answer: 2 },
     { icon: "🎨", feature: "Favicon shapes?", opts: ["2", "4", "8", "10"], answer: 2 },
     { icon: "🔬", feature: "Record Scanner modes?", opts: ["1", "2", "3", "5"], answer: 2 },
-    { icon: "💾", feature: "Cache scoped by?", opts: ["User", "Org ID", "Browser", "Tab"], answer: 1 },
+    { icon: "💾", feature: "Data isolated by?", opts: ["User", "Org", "Browser", "Tab"], answer: 1 },
     { icon: "🏢", feature: "Custom Labels feature?", opts: ["View only", "Full CRUD + translate", "Export only", "Delete only"], answer: 1 },
     { icon: "🔐", feature: "Security Manager browses?", opts: ["Passwords", "Profiles & Perm Sets", "Encryption", "Cookies"], answer: 1 },
     { icon: "👥", feature: "User comparison?", opts: ["Not available", "Side-by-side diff", "List view", "Chart"], answer: 1 },
@@ -1757,23 +1759,23 @@ const speedQuestions = [
     { icon: "🏷️", feature: "Label translation langs?", opts: ["5", "10", "20", "50"], answer: 2 },
     { icon: "🔍", feature: "Audit Trail export?", opts: ["PDF", "CSV", "XML", "Excel"], answer: 1 },
     { icon: "📊", feature: "FIELDS() auto-query?", opts: ["ALL only", "ALL/STANDARD/CUSTOM", "STANDARD only", "Not supported"], answer: 1 },
-    { icon: "🔄", feature: "Session detection?", opts: ["Manual login", "OAuth popup", "Content script", "API key"], answer: 2 },
+    { icon: "🔄", feature: "Session detection?", opts: ["Manual login", "OAuth popup", "Automatic", "API key"], answer: 2 },
     { icon: "🏢", feature: "Org Limits shows?", opts: ["Storage only", "All governor limits", "Users only", "Apex limits"], answer: 1 },
     { icon: "🚀", feature: "Deployment tracker?", opts: ["Past only", "Active + queued", "Failed only", "Not available"], answer: 1 },
     { icon: "🎨", feature: "Text color mode?", opts: ["Always white", "Luminance-based auto", "Always black", "Manual only"], answer: 1 },
-    { icon: "☁️", feature: "Cloud shapes rendering?", opts: ["Circles", "Bezier curves", "SVG", "Bitmap"], answer: 1 },
+    { icon: "☁️", feature: "Cloud shapes quality?", opts: ["Pixelated", "Smooth at all sizes", "Blurry", "Low resolution"], answer: 1 },
     { icon: "🏷️", feature: "Labels page sizes?", opts: ["10/25/50", "50/100/200/500", "100/500", "All at once"], answer: 1 },
     { icon: "⌨️", feature: "Toggle sidebar shortcut?", opts: ["Ctrl+T", "Ctrl+Shift+S", "Alt+S", "Ctrl+F"], answer: 1 },
     { icon: "📌", feature: "Pin sidebar does what?", opts: ["Saves position", "Keeps sidebar open", "Locks settings", "Bookmarks page"], answer: 1 },
     { icon: "🕶️", feature: "🕶️ Login As icon means?", opts: ["Dark mode", "Incognito login", "VPN", "Anonymous"], answer: 1 },
     { icon: "⌨️", feature: "Close sidebar key?", opts: ["Tab", "Escape", "Enter", "Backspace"], answer: 1 },
-    { icon: "🔗", feature: "Sidebar shortcut categories?", opts: ["2", "5", "7", "10"], answer: 1 }
+    { icon: "🧭", feature: "Sidebar shortcut categories?", opts: ["2", "5", "7", "10"], answer: 1 }
 ];
 
 // ── Fun Facts ──
 const funFacts = [
-    "💡 <strong>Did you know?</strong> TrackForcePro has over 3,300 automated tests across 67 test suites!",
-    "💡 <strong>Fun fact:</strong> The TF Sidebar supports 5 categories of shortcuts — extension tabs, Data Explorer tools, Security panels, Org Tools panels, and Salesforce Setup pages.",
+    "💡 <strong>Did you know?</strong> TrackForcePro is rigorously tested to ensure reliability across all supported browsers!",
+    "💡 <strong>Fun fact:</strong> The TF Sidebar organizes shortcuts into 5 categories — Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and Salesforce Setup pages.",
     "💡 <strong>Pro tip:</strong> You can customize which shortcuts appear in the TF Sidebar via Settings → Sidebar.",
     "💡 <strong>Did you know?</strong> The GraphQL Builder can export child records (like Contacts under an Account) as expanded CSV rows — no more JSON blobs in cells!",
     "💡 <strong>Fun fact:</strong> TrackForcePro supports Custom Labels translation into 20 languages with duplicate detection.",
@@ -1781,7 +1783,7 @@ const funFacts = [
     "💡 <strong>Did you know?</strong> The Favicon Manager lets you use 8 different shapes (circle, square, rounded, cloud, sfcloud, diamond, hexagon, shield) with custom 3-character labels.",
     "💡 <strong>Fun fact:</strong> TrackForcePro's SOQL Builder supports inline editing — click a cell in the query results to edit and save directly to Salesforce!",
     "💡 <strong>Pro tip:</strong> The TF Sidebar button is an edge-anchored tab on the right side of every Salesforce page — no toolbar pinning needed. Press Ctrl+Shift+S to toggle it!",
-    "💡 <strong>Did you know?</strong> TrackForcePro automatically scopes all cached data by org ID to prevent cross-org data leaks when switching between orgs.",
+    "💡 <strong>Did you know?</strong> TrackForcePro automatically isolates all cached data per org to prevent cross-org data leaks when switching between orgs.",
     "💡 <strong>Pro tip:</strong> Hold Shift and click the pop button to open TrackForcePro as a standalone window — great for multi-monitor setups!",
     "💡 <strong>Did you know?</strong> The User Manager can freeze a user's login without deactivating their account — perfect for security investigations.",
     "💡 <strong>Fun fact:</strong> The Automation Inspector shows all Flows, Triggers, Process Builders, and Workflow Rules in one unified view.",
@@ -1792,18 +1794,18 @@ const funFacts = [
     "💡 <strong>Did you know?</strong> The Permission Matrix traces a user's permissions across their Profile, Permission Sets, and Permission Set Groups in one grid.",
     "💡 <strong>Fun fact:</strong> TrackForcePro works on Chrome, Edge, Brave, Opera, and other Chromium-based browsers — not just Chrome!",
     "💡 <strong>Pro tip:</strong> The Deployment tracker shows active, queued, and completed deployments in real time — catch failures before they escalate.",
-    "💡 <strong>Did you know?</strong> The sidebar's Login As incognito mode sends an OPEN_INCOGNITO message to the background service worker, with automatic fallback to a regular window if incognito is unavailable.",
-    "💡 <strong>Did you know?</strong> In v1.4.4, cloud and shield favicon shapes were redesigned using single-path bezier curves, replacing overlapping circles for crisp rendering at all sizes.",
+    "💡 <strong>Did you know?</strong> The sidebar's Login As incognito mode automatically falls back to a regular new window if your browser doesn't support incognito — so it always works!",
+    "💡 <strong>Did you know?</strong> Cloud and shield favicon shapes were redesigned for crisp, smooth rendering at all sizes — from tiny 16px browser tabs to larger previews!",
     "💡 <strong>Pro tip:</strong> Favicon text color is now luminance-based by default — dark text on light backgrounds, white text on dark. Disable Auto mode to pick any custom text color!",
-    "💡 <strong>Fun fact:</strong> The Custom Labels tool previously capped at 2000 labels due to a SOQL LIMIT clause. Since v1.4.4, it loads all labels via API pagination up to the 20,000 hard cap.",
-    "💡 <strong>Did you know?</strong> All three favicon renderers (content.js, data_explorer_helper.js, and injectFaviconUpdate) now produce pixel-identical bezier shape output.",
+    "💡 <strong>Fun fact:</strong> The Custom Labels tool can load all labels in your org (up to 20,000) with automatic pagination — no artificial limits!",
+    "💡 <strong>Did you know?</strong> Favicon shapes look identical everywhere they appear — browser tabs, the popup, and the Favicon Manager preview all render the same crisp output.",
     "💡 <strong>Pro tip:</strong> Custom Labels pagination lets you choose 50, 100, 200, or 500 labels per page — keeping the DOM fast even with thousands of labels.",
     "💡 <strong>Did you know?</strong> Since v1.4.5, the Custom Labels translation workflow supports Export Template → Import Translations → Update & Deploy — translate labels offline in spreadsheets!",
-    "💡 <strong>Pro tip:</strong> The centralized patchLabel() method in v1.4.5 automatically routes label updates to the Tooling API or ExternalString REST API based on how the labels were loaded.",
+    "💡 <strong>Pro tip:</strong> Custom Labels automatically saves your edits using the correct method — whether you loaded labels from the Tooling interface or the standard view, TrackForcePro handles it seamlessly.",
     "💡 <strong>Fun fact:</strong> Custom Labels translate dialog now shows inline text inputs per label with the original value as placeholder — review and edit translations before deploying.",
     "💡 <strong>Pro tip:</strong> Press Ctrl+Shift+S (⌘⇧S on Mac) to toggle the TF Sidebar without touching the mouse — a must-know shortcut for power users!",
-    "💡 <strong>Did you know?</strong> The TF Sidebar has 5 shortcut categories: extension tabs, Data Explorer tools, Security panels, Org Tools panels, and external Salesforce Setup pages.",
-    "💡 <strong>Pro tip:</strong> You can customize TrackForcePro's keyboard shortcut at chrome://extensions/shortcuts — assign any key combo you prefer!",
+    "💡 <strong>Did you know?</strong> The TF Sidebar has 5 shortcut categories: Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and External Salesforce Setup pages.",
+    "💡 <strong>Pro tip:</strong> You can customize TrackForcePro's keyboard shortcuts in Settings → Keyboard Shortcuts — assign any key combo you prefer for the Sidebar, Show All Data, and Command Palette!",
     "💡 <strong>Fun fact:</strong> The TF Sidebar blinker is an edge-anchored vertical tab that slides in from the side — designed to avoid conflicts with Salesforce's own help button and utility bar."
 ];
 
@@ -1815,14 +1817,14 @@ const trueFalseQuestions = [
         explanation: "False! It appears as an <strong>edge-anchored vertical tab on the right side</strong> of every Salesforce page."
     },
     {
-        statement: "TrackForcePro uses CometD for Platform Event streaming.",
+        statement: "TrackForcePro can stream Platform Events in real-time.",
         answer: true,
-        explanation: "Correct! TrackForcePro uses <strong>CometD</strong> (Salesforce's Bayeux-based streaming protocol) for real-time Platform Event streaming."
+        explanation: "Correct! TrackForcePro supports <strong>real-time Platform Event streaming</strong> — you can subscribe to events and see payloads as they arrive."
     },
     {
-        statement: "The GraphQL Builder uses Monaco Editor for syntax highlighting.",
-        answer: false,
-        explanation: "False! It uses <strong>CodeMirror 6</strong>, not Monaco Editor. CodeMirror 6 provides syntax highlighting, bracket matching, and schema-aware autocomplete."
+        statement: "The GraphQL Builder provides syntax highlighting and autocomplete.",
+        answer: true,
+        explanation: "Correct! The GraphQL Builder includes <strong>syntax highlighting, bracket matching, and schema-aware autocomplete</strong> to help you write queries efficiently."
     },
     {
         statement: "You can inline-edit query results directly in the SOQL Builder's results table.",
@@ -1840,9 +1842,9 @@ const trueFalseQuestions = [
         explanation: "Correct! Eight shapes: <strong>circle, square, rounded, cloud, sfcloud, diamond, hexagon, shield</strong> — each with custom colors and labels."
     },
     {
-        statement: "Cache keys in TrackForcePro are global and shared across all orgs.",
+        statement: "Cached data in TrackForcePro is shared across all your Salesforce orgs.",
         answer: false,
-        explanation: "False! Cache keys are <strong>scoped by org ID</strong> (e.g., <code>cache_{orgId}_{key}</code>) to prevent cross-org data leaks."
+        explanation: "False! All cached data is <strong>isolated per org</strong> to prevent cross-org data leaks."
     },
     {
         statement: "The Security Manager can browse Profiles, Permission Sets, and Permission Set Groups.",
@@ -1862,7 +1864,7 @@ const trueFalseQuestions = [
     {
         statement: "TrackForcePro requires you to enter your Salesforce credentials manually.",
         answer: false,
-        explanation: "False! A <strong>content script</strong> automatically detects your Salesforce session — no manual login needed."
+        explanation: "False! TrackForcePro <strong>automatically detects your active Salesforce session</strong> — no manual login or credential entry needed."
     },
     {
         statement: "Custom Labels in Org Tools support translation into 20 languages.",
@@ -1956,9 +1958,9 @@ const trueFalseQuestions = [
         explanation: "False! You can <strong>view and manage scheduled jobs</strong> — including seeing next execution times and job details."
     },
     {
-        statement: "TrackForcePro can detect sessions from cookies as a fallback if the service worker crashes.",
+        statement: "TrackForcePro has a backup method to detect your session if the primary method is temporarily unavailable.",
         answer: true,
-        explanation: "Correct! If the service worker is unavailable, <strong>getSessionFromCookies()</strong> retrieves the session directly via the chrome.cookies API as a critical fallback."
+        explanation: "Correct! If the primary session detection is temporarily unavailable, TrackForcePro has a <strong>built-in fallback</strong> that retrieves your session automatically — you won't even notice."
     },
     // ── v1.4.x T/F questions ──
     {
@@ -1967,14 +1969,14 @@ const trueFalseQuestions = [
         explanation: "False! Since v1.4.2, text color is <strong>dynamic based on luminance</strong> — dark text on light backgrounds, white text on dark backgrounds. You can also set a custom text color."
     },
     {
-        statement: "The cloud and shield favicon shapes are rendered using single-path bezier curves for crisp rendering at all sizes.",
+        statement: "The cloud and shield favicon shapes render crisply at all sizes, from tiny tabs to large previews.",
         answer: true,
-        explanation: "Correct! Since v1.4.4, cloud, sfcloud, and shield shapes use <strong>single-path bezier curves</strong> (bezierCurveTo) instead of overlapping circles, producing clean silhouettes at any size."
+        explanation: "Correct! Cloud, sfcloud, and shield shapes use <strong>smooth curves</strong> that produce clean, crisp silhouettes at any size — from 16px browser tabs to larger previews."
     },
     {
         statement: "Custom Labels in Org Tools can only load up to 2000 labels.",
         answer: false,
-        explanation: "False! The SOQL LIMIT 2000 was removed in v1.4.4. Custom Labels now loads <strong>all labels via API pagination</strong> up to the 20,000 hard cap."
+        explanation: "False! Custom Labels loads <strong>all labels in your org</strong> with automatic pagination — up to the 20,000 platform limit."
     },
     {
         statement: "The Favicon Manager supports custom text color with an Auto toggle and manual color picker.",
@@ -1984,17 +1986,17 @@ const trueFalseQuestions = [
     {
         statement: "The keyboard shortcut Ctrl+Shift+S toggles the TF Sidebar on Salesforce pages.",
         answer: true,
-        explanation: "Correct! <strong>Ctrl+Shift+S</strong> (⌘⇧S on Mac) toggles the sidebar. You can reassign this at chrome://extensions/shortcuts."
+        explanation: "Correct! <strong>Ctrl+Shift+S</strong> (⌘⇧S on Mac) is the default. You can customize this in Settings → Keyboard Shortcuts."
     },
     {
         statement: "The TF Sidebar supports only 2 shortcut categories — internal and external.",
         answer: false,
-        explanation: "False! It supports <strong>5 categories</strong>: tfp, de-tool, sec-panel, org-panel, and external."
+        explanation: "False! It supports <strong>5 categories</strong>: Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and External."
     },
     {
-        statement: "When the TF Sidebar is pinned, the page content shifts to make room with a 320px margin.",
+        statement: "When the TF Sidebar is pinned, the page content shifts to make room for the sidebar.",
         answer: true,
-        explanation: "Correct! Pinning adds a <strong>320px margin</strong> to the page body so the sidebar doesn't overlap content."
+        explanation: "Correct! Pinning the sidebar <strong>shifts the page content</strong> so the sidebar doesn't overlap anything."
     },
     {
         statement: "The 🕶️ icon in Login As opens the user's profile page.",
@@ -2002,9 +2004,9 @@ const trueFalseQuestions = [
         explanation: "False! 🕶️ opens an <strong>incognito/private browser window</strong> logged in as that user."
     },
     {
-        statement: "You can customize TrackForcePro's keyboard shortcut at chrome://extensions/shortcuts.",
+        statement: "You can customize TrackForcePro's keyboard shortcuts in the Settings tab.",
         answer: true,
-        explanation: "Correct! Chrome lets you reassign extension keyboard shortcuts at <strong>chrome://extensions/shortcuts</strong>."
+        explanation: "Correct! Go to <strong>Settings → Keyboard Shortcuts</strong> to customize shortcuts for the Sidebar toggle, Show All Data panel, and Command Palette."
     }
 ];
 
@@ -2231,25 +2233,25 @@ const blankQuestions = [
         explanation: "The TF Sidebar is an edge-anchored vertical tab at the <strong>right edge</strong> — always accessible via click or Ctrl+Shift+S."
     },
     {
-        sentence: "TrackForcePro uses _____ for the GraphQL editor with syntax highlighting.",
-        blank: "CodeMirror 6",
-        opts: ["Monaco Editor", "CodeMirror 6", "Ace Editor", "VS Code"],
+        sentence: "The GraphQL Builder provides syntax highlighting, bracket matching, and _____.",
+        blank: "autocomplete",
+        opts: ["spell check", "autocomplete", "code compilation", "version control"],
         answer: 1,
-        explanation: "<strong>CodeMirror 6</strong> provides syntax highlighting, bracket matching, and schema-aware autocomplete."
+        explanation: "The GraphQL Builder includes <strong>autocomplete</strong> along with syntax highlighting and bracket matching."
     },
     {
-        sentence: "Cache keys are scoped by _____ to prevent cross-org data leaks.",
-        blank: "Org ID",
-        opts: ["User ID", "Browser ID", "Org ID", "Tab ID"],
+        sentence: "Cached data is isolated by _____ to prevent cross-org data leaks.",
+        blank: "org",
+        opts: ["user", "browser", "org", "tab"],
         answer: 2,
-        explanation: "Cache keys use the pattern <code>cache_{orgId}_{key}</code> — <strong>scoped by Org ID</strong> for isolation."
+        explanation: "All cached data is <strong>isolated per org</strong> for complete data separation."
     },
     {
-        sentence: "Platform Events use the _____ streaming protocol for real-time data.",
-        blank: "CometD",
-        opts: ["WebSocket", "gRPC", "Server-Sent Events", "CometD"],
+        sentence: "Platform Events can be monitored in _____ within TrackForcePro.",
+        blank: "real-time",
+        opts: ["batch mode only", "daily reports", "weekly summaries", "real-time"],
         answer: 3,
-        explanation: "<strong>CometD</strong> (Bayeux protocol) is Salesforce's standard for streaming Platform Events."
+        explanation: "Platform Events can be monitored in <strong>real-time</strong> — you see event payloads as they arrive."
     },
     {
         sentence: "The Favicon Manager supports _____ different shapes for custom org icons.",
@@ -2301,11 +2303,11 @@ const blankQuestions = [
         explanation: "<strong>FIELDS()</strong> mode uses FIELDS(ALL), FIELDS(STANDARD), or FIELDS(CUSTOM) keywords."
     },
     {
-        sentence: "A _____ injected into Salesforce pages automatically detects your session.",
-        blank: "content script",
-        opts: ["popup script", "content script", "background worker", "iframe widget"],
+        sentence: "TrackForcePro _____ detects your Salesforce session — no login needed.",
+        blank: "automatically",
+        opts: ["never", "automatically", "manually", "occasionally"],
         answer: 1,
-        explanation: "A <strong>content script</strong> detects your Salesforce session — no manual credential entry needed."
+        explanation: "TrackForcePro <strong>automatically</strong> detects your Salesforce session — no manual credential entry needed."
     },
     {
         sentence: "Favicon labels support up to _____ characters for org abbreviations.",
@@ -2336,11 +2338,11 @@ const blankQuestions = [
         explanation: "The Automation Inspector shows all automation including Flows, Triggers, <strong>Process Builders</strong>, and Workflow Rules."
     },
     {
-        sentence: "The cloud and shield favicon shapes are rendered using single-path _____ for crisp results.",
-        blank: "bezier curves",
-        opts: ["SVG paths", "overlapping circles", "bezier curves", "raster pixels"],
+        sentence: "The cloud and shield favicon shapes render _____ at all sizes from tiny tabs to large previews.",
+        blank: "crisply",
+        opts: ["blurrily", "pixelated", "crisply", "differently"],
         answer: 2,
-        explanation: "Shapes use <strong>bezier curves</strong> (bezierCurveTo) for smooth, single-path silhouettes that render cleanly at all sizes."
+        explanation: "Shapes render <strong>crisply</strong> with smooth curves that produce clean silhouettes at any size."
     },
     {
         sentence: "Favicon text color is determined by _____ when Auto mode is enabled.",
@@ -2361,14 +2363,14 @@ const blankQuestions = [
         blank: "Ctrl+Shift+S",
         opts: ["Ctrl+Alt+T", "Ctrl+Shift+S", "Alt+S", "Ctrl+F12"],
         answer: 1,
-        explanation: "<strong>Ctrl+Shift+S</strong> (⌘⇧S on Mac) toggles the TF Sidebar. Customizable at chrome://extensions/shortcuts."
+        explanation: "<strong>Ctrl+Shift+S</strong> (⌘⇧S on Mac) is the default. Customizable in Settings → Keyboard Shortcuts."
     },
     {
         sentence: "The TF Sidebar supports _____ shortcut categories.",
         blank: "5",
         opts: ["3", "5", "7", "10"],
         answer: 1,
-        explanation: "<strong>5 categories</strong>: tfp, de-tool, sec-panel, org-panel, and external."
+        explanation: "<strong>5 categories</strong>: Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and External."
     },
     {
         sentence: "The 🕶️ icon in Login As opens an _____ window.",
@@ -2378,11 +2380,11 @@ const blankQuestions = [
         explanation: "🕶️ opens an <strong>incognito/private</strong> window logged in as the selected user."
     },
     {
-        sentence: "Pinning the sidebar adds a _____ margin to the page body.",
-        blank: "320px",
-        opts: ["200px", "280px", "320px", "400px"],
+        sentence: "Pinning the sidebar causes the page content to _____ to make room.",
+        blank: "shift over",
+        opts: ["disappear", "shrink", "shift over", "scroll down"],
         answer: 2,
-        explanation: "Pinning adds a <strong>320px margin</strong> so the sidebar doesn't overlap page content."
+        explanation: "Pinning causes the page content to <strong>shift over</strong> so the sidebar doesn't overlap anything."
     }
 ];
 
@@ -2425,26 +2427,26 @@ const shortcutQuestions = [
         explanation: "🖥️ = <strong>Login as user in a new window</strong> — keeps your original tab intact."
     },
     {
-        action: "Which sidebar shortcut URL pattern opens a specific TFP tab?",
-        opts: ["__TFP_TAB__<name>", "__TFP_OPEN__<name>", "/tfp/<name>", "#tab=<name>"],
+        action: "What happens when you click a sidebar shortcut for an extension tab?",
+        opts: ["Opens TrackForcePro to that specific tab", "Opens a new browser window", "Opens Salesforce Setup", "Shows a tooltip only"],
         answer: 0,
-        explanation: "The <strong>__TFP_TAB__</strong> prefix opens TrackForcePro directly to a specific tab (e.g., __TFP_TAB__soql)."
+        explanation: "Clicking an extension tab shortcut <strong>opens TrackForcePro directly to that specific tab</strong> — e.g., clicking SOQL Builder opens TrackForcePro with the SOQL tab active."
     },
     {
-        action: "Which sidebar shortcut URL pattern opens a specific panel within a sub-tab?",
-        opts: ["__TFP_SUBTAB__<id>", "__TFP_PANEL__<subTab>:<panel>", "/panel/<id>", "__TFP_OPEN__<panel>"],
+        action: "What happens when you click a sidebar shortcut for a specific panel (e.g., Custom Labels)?",
+        opts: ["Opens TrackForcePro to the home tab", "Opens TrackForcePro directly to that specific panel", "Opens a web browser", "Shows a help dialog"],
         answer: 1,
-        explanation: "<strong>__TFP_PANEL__</strong> opens a specific panel — e.g., __TFP_PANEL__org-tools:custom-labels opens Custom Labels."
+        explanation: "Panel shortcuts <strong>open TrackForcePro directly to that specific panel</strong> — e.g., clicking Custom Labels opens Org Tools with the Custom Labels panel already selected."
     },
     {
         action: "How many shortcut categories does the TF Sidebar support?",
         opts: ["3", "5", "7", "10"],
         answer: 1,
-        explanation: "<strong>5 categories</strong>: tfp (extension tabs), de-tool (Data Explorer), sec-panel (Security), org-panel (Org Tools), external (SF pages)."
+        explanation: "<strong>5 categories</strong>: Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and External (Salesforce Setup pages)."
     },
     {
         action: "Where do you customize which shortcuts appear in the sidebar?",
-        opts: ["popup.html directly", "Settings → Sidebar", "manifest.json", "content.js"],
+        opts: ["Browser settings", "Settings → Sidebar", "Salesforce Setup", "The extension store page"],
         answer: 1,
         explanation: "Go to <strong>Settings → Sidebar</strong> to toggle shortcut visibility, reorder, and add custom shortcuts."
     },
@@ -2455,10 +2457,10 @@ const shortcutQuestions = [
         explanation: "<strong>📌 pins the sidebar open</strong> — the page content shifts to make room, and the sidebar stays visible."
     },
     {
-        action: "What keyboard shortcut opens Chrome extension shortcuts settings?",
-        opts: ["chrome://shortcuts", "chrome://extensions/shortcuts", "chrome://keys", "chrome://commands"],
+        action: "Where can you customize TrackForcePro's keyboard shortcuts?",
+        opts: ["Browser address bar", "Settings → Keyboard Shortcuts", "Salesforce Setup", "Right-click the extension icon"],
         answer: 1,
-        explanation: "Visit <strong>chrome://extensions/shortcuts</strong> to customize or reassign TrackForcePro's keyboard shortcut."
+        explanation: "Go to <strong>Settings → Keyboard Shortcuts</strong> to customize or reassign TrackForcePro's keyboard shortcuts."
     },
     {
         action: "What does the ✏️ button in the sidebar header do?",
@@ -2476,7 +2478,7 @@ const shortcutQuestions = [
         action: "What happens when the TF Sidebar is pinned?",
         opts: ["Page scrolls left", "Sidebar floats over content", "Page content shifts to make room", "Sidebar becomes transparent"],
         answer: 2,
-        explanation: "When pinned, the page gets a <strong>margin push</strong> (320px) so content shifts and the sidebar doesn't overlap anything."
+        explanation: "When pinned, the <strong>page content shifts</strong> to make room so the sidebar doesn't overlap anything."
     },
     {
         action: "How do external shortcuts (Salesforce Setup pages) work?",
@@ -2486,27 +2488,27 @@ const shortcutQuestions = [
     },
     {
         action: "What does the Clear Cache shortcut in Quick Tools do?",
-        opts: ["Clears SOQL history", "Clears browser cache + localStorage + hard refreshes", "Clears favicon cache", "Resets extension settings"],
+        opts: ["Clears SOQL history", "Clears all cached data and performs a hard page refresh", "Clears favicon cache", "Resets extension settings"],
         answer: 1,
-        explanation: "Clear Cache <strong>clears browser cache, localStorage, sessionStorage</strong>, then performs a hard page refresh."
+        explanation: "Clear Cache <strong>clears all cached data</strong> and performs a hard page refresh."
     },
     {
         action: "The Language switcher in Quick Tools changes what?",
-        opts: ["Browser language", "Salesforce user's language locale", "Extension UI language", "Page translation"],
+        opts: ["Browser language", "Salesforce user's display language", "Extension UI language", "Page translation"],
         answer: 1,
-        explanation: "The Language switcher changes the <strong>Salesforce user's LanguageLocaleKey</strong> via the REST API."
+        explanation: "The Language switcher changes the <strong>Salesforce user's display language</strong> — useful for testing how your org looks in different languages."
     },
     {
         action: "What does the API version dropdown in the sidebar control?",
-        opts: ["Chrome extension version", "Salesforce REST API version for all requests", "JavaScript version", "Node.js version"],
+        opts: ["Chrome extension version", "Salesforce API version used for requests", "Browser version", "Salesforce release version"],
         answer: 1,
-        explanation: "The API version dropdown sets the <strong>Salesforce REST API version</strong> (e.g., v66.0) used by all sidebar API calls."
+        explanation: "The API version dropdown sets the <strong>Salesforce API version</strong> (e.g., v66.0) used by all TrackForcePro requests from the sidebar."
     },
     {
         action: "Which default shortcut categories are collapsed by default?",
-        opts: ["tfp and external", "sec-panel and org-panel", "de-tool and external", "All categories"],
+        opts: ["Extension Tabs and External", "Security Panels and Org Tools Panels", "Data Explorer and External", "All categories"],
         answer: 1,
-        explanation: "<strong>sec-panel and org-panel</strong> are collapsed by default since they duplicate de-tool subtab shortcuts."
+        explanation: "<strong>Security Panels and Org Tools Panels</strong> are collapsed by default since they duplicate Data Explorer sub-tab shortcuts."
     }
 ];
 
@@ -2531,10 +2533,10 @@ const typeRaceQuestions = [
         explanation: "<strong>Shift + Click</strong> the pop button to open as a standalone window."
     },
     {
-        action: "Open Chrome extension keyboard shortcuts page",
-        acceptedAnswers: ["chrome://extensions/shortcuts"],
-        display: "chrome://extensions/shortcuts",
-        explanation: "Navigate to <strong>chrome://extensions/shortcuts</strong> to customize shortcuts."
+        action: "Where to customize keyboard shortcuts in TrackForcePro?",
+        acceptedAnswers: ["settings", "keyboard shortcuts", "settings keyboard shortcuts"],
+        display: "Settings → Keyboard Shortcuts",
+        explanation: "Go to <strong>Settings → Keyboard Shortcuts</strong> to customize your shortcuts."
     },
     {
         action: "Login As user in current tab (icon)",
@@ -2567,22 +2569,22 @@ const typeRaceQuestions = [
         explanation: "The <strong>✏️ pencil icon</strong> toggles edit mode for sidebar shortcuts."
     },
     {
-        action: "URL prefix to open a TFP tab from sidebar",
-        acceptedAnswers: ["__tfp_tab__", "__TFP_TAB__"],
-        display: "__TFP_TAB__",
-        explanation: "<strong>__TFP_TAB__</strong> prefix opens a specific TrackForcePro tab."
+        action: "What does clicking a sidebar extension tab shortcut do?",
+        acceptedAnswers: ["opens tab", "opens tfp tab", "opens trackforcepro tab", "opens that tab"],
+        display: "Opens that TFP tab",
+        explanation: "Clicking an extension tab shortcut <strong>opens TrackForcePro directly to that tab</strong>."
     },
     {
-        action: "URL prefix to open a specific panel within a sub-tab",
-        acceptedAnswers: ["__tfp_panel__", "__TFP_PANEL__"],
-        display: "__TFP_PANEL__",
-        explanation: "<strong>__TFP_PANEL__</strong> prefix opens a specific panel within a sub-tab."
+        action: "What does clicking a sidebar panel shortcut do?",
+        acceptedAnswers: ["opens panel", "opens that panel", "opens specific panel"],
+        display: "Opens that panel",
+        explanation: "Clicking a panel shortcut <strong>opens TrackForcePro directly to that specific panel</strong>."
     },
     {
-        action: "URL prefix to open a Data Explorer sub-tab",
-        acceptedAnswers: ["__tfp_subtab__", "__TFP_SUBTAB__"],
-        display: "__TFP_SUBTAB__",
-        explanation: "<strong>__TFP_SUBTAB__</strong> prefix opens a specific Data Explorer sub-tab."
+        action: "How many shortcut categories does the sidebar have?",
+        acceptedAnswers: ["5", "five"],
+        display: "5",
+        explanation: "The sidebar has <strong>5</strong> shortcut categories: Extension Tabs, Data Explorer, Security, Org Tools, and External."
     },
     {
         action: "Search/filter shortcuts in the sidebar",
@@ -2607,9 +2609,9 @@ const typeRaceQuestions = [
 // ── Survival Mode Data (40 questions from all categories) ──
 const survivalQuestions = [
     { q: "Where does the TF Sidebar button appear?", opts: ["Top-left", "Right edge", "Center", "Toolbar"], answer: 1 },
-    { q: "Which editor does the GraphQL Builder use?", opts: ["Ace", "CodeMirror 6", "Monaco", "Quill"], answer: 1 },
-    { q: "What protocol streams Platform Events?", opts: ["WebSocket", "CometD", "gRPC", "SSE"], answer: 1 },
-    { q: "How are cache keys scoped?", opts: ["By user", "By org ID", "By browser", "Globally"], answer: 1 },
+    { q: "What features does the GraphQL Builder offer?", opts: ["Plain text only", "Syntax highlighting + autocomplete", "Copy-paste only", "No editor"], answer: 1 },
+    { q: "Can Platform Events be monitored in real-time?", opts: ["No", "Yes — stream and publish", "Export only", "View definitions only"], answer: 1 },
+    { q: "How is cached data isolated?", opts: ["By user", "By org", "By browser", "Not isolated"], answer: 1 },
     { q: "How many favicon shapes are available?", opts: ["3", "6", "8", "12"], answer: 2 },
     { q: "What does Freeze do to a user?", opts: ["Deletes them", "Blocks login", "Resets password", "Removes profile"], answer: 1 },
     { q: "FIELDS(ALL) queries which fields?", opts: ["Standard only", "Custom only", "Every field", "Id only"], answer: 2 },
@@ -2617,7 +2619,7 @@ const survivalQuestions = [
     { q: "Custom Labels support how many languages?", opts: ["5", "10", "20", "50"], answer: 2 },
     { q: "Record Scanner Compare uses which colors?", opts: ["Blue/yellow", "Green/red", "Black/white", "Orange/gray"], answer: 1 },
     { q: "Security Manager browses what?", opts: ["Passwords", "Profiles & Perm Sets", "Cookies", "Tokens"], answer: 1 },
-    { q: "How is the session detected?", opts: ["Manual login", "Content script", "OAuth popup", "API key"], answer: 1 },
+    { q: "How is the session detected?", opts: ["Manual login", "Automatically", "OAuth popup", "API key"], answer: 1 },
     { q: "Favicon labels max characters?", opts: ["1", "2", "3", "5"], answer: 2 },
     { q: "Login As has how many icon modes?", opts: ["1", "2", "3", "4"], answer: 2 },
     { q: "Deployment Tracker shows what?", opts: ["Past only", "Active + queued + completed", "Failed only", "Code only"], answer: 1 },
@@ -2629,7 +2631,7 @@ const survivalQuestions = [
     { q: "User Manager Bulk Update does what?", opts: ["Delete users", "Update multiple users at once", "Export users", "Create users"], answer: 1 },
     { q: "LMS stands for what?", opts: ["Login Management System", "Lightning Message Service", "Local Memory Store", "List Manager Service"], answer: 1 },
     { q: "Org Limits shows what?", opts: ["Storage only", "All governor limits", "Users only", "Apex limits only"], answer: 1 },
-    { q: "SOQL Builder inline edit saves via?", opts: ["CSV import", "REST API", "Bulk API", "Metadata API"], answer: 1 },
+    { q: "SOQL Builder inline edit saves to?", opts: ["CSV file", "Salesforce directly", "Local storage", "Clipboard"], answer: 1 },
     { q: "GraphQL child records export as?", opts: ["JSON in cell", "Expanded rows", "Separate file", "Skipped"], answer: 1 },
     { q: "Permission Matrix traces across?", opts: ["Profile only", "Profile + PS + PS Groups", "PS only", "Roles only"], answer: 1 },
     { q: "Query History does what?", opts: ["Deletes queries", "Saves + replays queries", "Logs API calls", "Caches results"], answer: 1 },
@@ -2637,7 +2639,7 @@ const survivalQuestions = [
     { q: "Automation Inspector covers what?", opts: ["Triggers only", "Flows + Triggers + WF Rules + PBs", "Flows only", "Email alerts"], answer: 1 },
     { q: "Metadata Explorer does what?", opts: ["Deploy metadata", "Browse metadata types + deps", "Export XML", "Create objects"], answer: 1 },
     { q: "API Usage dashboard monitors?", opts: ["REST only", "Request counts + limits", "SOAP only", "Bandwidth"], answer: 1 },
-    { q: "Content script fallback uses?", opts: ["OAuth", "chrome.cookies API", "Bookmarks", "localStorage"], answer: 1 },
+    { q: "Session detection has a backup method?", opts: ["No backup", "Yes — automatic fallback", "Manual only", "Requires restart"], answer: 1 },
     { q: "Scheduled Jobs panel shows?", opts: ["Cron only", "Jobs + next execution times", "Apex classes", "Email logs"], answer: 1 },
     { q: "Match Game pairs features with?", opts: ["Icons", "Descriptions", "Screenshots", "Code samples"], answer: 1 },
     { q: "User Comparison shows what?", opts: ["Photos", "Side-by-side diff", "Org chart", "Login count"], answer: 1 },
@@ -2645,10 +2647,10 @@ const survivalQuestions = [
     { q: "Sidebar Quick Tools include?", opts: ["Calculator", "Login As + Language + Cache", "Email", "Chat"], answer: 1 },
     { q: "Data Explorer has how many sub-tabs?", opts: ["2", "3", "5", "8"], answer: 2 },
     { q: "Custom Labels bulk import supports?", opts: ["CSV only", "Update mode", "JSON only", "XML only"], answer: 1 },
-    { q: "Cookie fallback retrieves what?", opts: ["Username", "sid cookie", "Password", "OAuth token"], answer: 1 },
+    { q: "What happens if session detection is temporarily unavailable?", opts: ["Extension stops working", "Automatic fallback kicks in", "Must reinstall", "Manual login needed"], answer: 1 },
     { q: "Reset Password feature is in?", opts: ["Security Manager", "User Manager", "Org Tools", "Settings"], answer: 1 },
     { q: "Favicon text color is determined by?", opts: ["Always white", "Luminance-based auto", "Always black", "Random"], answer: 1 },
-    { q: "Cloud shapes use what rendering?", opts: ["Overlapping circles", "Bezier curves", "SVG paths", "Bitmap"], answer: 1 },
+    { q: "Cloud shapes quality?", opts: ["Pixelated", "Smooth at all sizes", "Blurry", "Low resolution"], answer: 1 },
     { q: "Custom Labels max loaded?", opts: ["2000", "5000", "All via pagination", "500"], answer: 2 },
     { q: "Custom Labels page sizes?", opts: ["10/25/50", "50/100/200/500", "100/500/1000", "25/50/100"], answer: 1 },
     { q: "Text color Auto can be?", opts: ["Disabled for custom color", "Not changeable", "Only white or black", "Only profile-based"], answer: 0 },
@@ -2656,9 +2658,9 @@ const survivalQuestions = [
     { q: "Close sidebar shortcut?", opts: ["Ctrl+W", "Escape", "Alt+F4", "Backspace"], answer: 1 },
     { q: "Pin sidebar icon?", opts: ["🔒", "📌", "📎", "🖇️"], answer: 1 },
     { q: "How many sidebar shortcut categories?", opts: ["3", "5", "7", "10"], answer: 1 },
-    { q: "Sidebar shortcut URL prefix for tabs?", opts: ["__TFP_TAB__", "__TFP_OPEN__", "/tab/", "#tab="], answer: 0 },
+    { q: "Tab shortcuts in the sidebar open?", opts: ["That specific TFP tab", "A new browser tab", "Salesforce Setup", "A help page"], answer: 0 },
     { q: "🕶️ Login As icon means?", opts: ["Dark mode", "Incognito window", "Hide user", "Anonymous"], answer: 1 },
-    { q: "Where to customize sidebar shortcuts?", opts: ["manifest.json", "Settings → Sidebar", "content.js", "popup.html"], answer: 1 },
+    { q: "Where to customize sidebar shortcuts?", opts: ["Browser settings", "Settings → Sidebar", "Salesforce Setup", "Extension store"], answer: 1 },
     { q: "Sidebar Quick Tools include?", opts: ["Calculator", "Login As + Language + Cache", "Email", "Chat"], answer: 1 }
 ];
 

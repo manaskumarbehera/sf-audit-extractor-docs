@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrackForcePro - Help</title>
+    <title>TrackForcePro - Help & Support</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
     <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
@@ -24,7 +24,6 @@
         [data-theme="dark"] .badge-accent  { background: rgba(34,211,238,0.2); color: #22d3ee; }
         [data-theme="dark"] .badge-warning { background: rgba(251,180,73,0.2); color: #fbb449; }
 
-        /* Troubleshooting highlight */
         .site-table td:first-child { font-weight: 600; color: var(--text); }
     </style>
     <script src="theme.js"></script>
@@ -50,8 +49,8 @@
     <div class="site-hero">
         <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
         <h1>Help &amp; Support</h1>
-        <p>Documentation, Resources &amp; Troubleshooting</p>
-        <span class="version-badge">Version 1.7.2</span>
+        <p>Get answers, explore features, and troubleshoot issues</p>
+        <span class="version-badge">Version 1.8.0</span>
     </div>
 
     <div class="site-container narrow">
@@ -68,100 +67,110 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td><a href="quick-start-guide.html">Quick Start Guide</a> <span class="badge badge-success">Recommended</span></td>
+                        <td>Step-by-step visual walkthrough: installation, first launch, and basic usage</td>
+                    </tr>
+                    <tr>
+                        <td><a href="documentation.html">Full Documentation</a> <span class="badge badge-accent">Detailed</span></td>
+                        <td>Complete feature reference, changelog, and version history</td>
+                    </tr>
+                    <tr>
                         <td><a href="index.html">Home</a></td>
                         <td>Main landing page with overview and feature highlights</td>
                     </tr>
                     <tr>
-                        <td><a href="documentation.html">Full Documentation</a> <span class="badge badge-accent">New</span></td>
-                        <td>Complete versioned documentation with all features and changelog</td>
-                    </tr>
-                    <tr>
-                        <td><a href="quick-start-guide.html">Quick Start Guide</a> <span class="badge badge-success">Recommended</span></td>
-                        <td>Step-by-step visual guide to install and use TrackForcePro</td>
-                    </tr>
-                    <tr>
                         <td><a href="privacy-policy.html">Privacy Policy</a></td>
-                        <td>Information about data handling, security, and privacy practices</td>
+                        <td>How we handle your data, security practices, and privacy</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Features Section -->
+        <!-- Features Overview Section -->
         <div class="site-section animate-in">
-            <h2 class="site-section-title">✨ Features Overview</h2>
+            <h2 class="site-section-title">✨ All Features</h2>
             <table class="site-table">
                 <thead>
                     <tr>
                         <th>Feature</th>
-                        <th>Description</th>
+                        <th>What It Does</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>🔍 Audit Trail Extraction</td>
-                        <td>Extract and export setup audit logs from Salesforce orgs</td>
+                        <td>🔍 Audit Trail Extractor</td>
+                        <td>Extract, search, and export Salesforce Setup Audit Trail logs for compliance and analysis</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
-                        <td>📊 SOQL Builder</td>
-                        <td>Visual query builder with field suggestions, inline editing, row delete, and query history</td>
+                        <td>📊 SOQL Query Builder</td>
+                        <td>Build and execute SOQL queries with field selection, filtering, ordering, and execution history</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
-                        <td>🔗 GraphQL Builder</td>
-                        <td>CodeMirror 6 editor with schema-aware autocomplete, syntax highlighting, and child record export</td>
+                        <td>🔗 GraphQL Query Builder</td>
+                        <td>Advanced query builder with schema-aware autocomplete, syntax highlighting, and child record export</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>💾 Data Explorer</td>
-                        <td>Record scanner with All Fields table, inline field editing, breadcrumb navigation, pinned records, and Org &amp; Favicon tools</td>
+                        <td>Powerful record scanner with All Fields table, inline editing, pinned records, and advanced tools</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>👤 User Manager</td>
-                        <td>Search, update, freeze/unfreeze users, permission matrix, sessions, and bulk operations</td>
+                        <td>Search, view, update users; manage permissions, sessions, and perform bulk operations</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>🔒 Security Manager</td>
-                        <td>Browse and manage profiles, permission sets, and permission set groups</td>
+                        <td>Browse and manage profiles, permission sets, and permission set groups with ease</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>🛠️ Org Tools</td>
-                        <td>Login As, custom labels, deployments, scheduled jobs, debug logs, org limits, and admin utilities</td>
+                        <td>Login As users, manage custom labels, deployments, scheduled jobs, debug logs, and org limits</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>📡 Platform Events</td>
-                        <td>Monitor and publish platform events in real-time via CometD</td>
+                        <td>Monitor and publish platform events in real-time with live streaming capabilities</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>📢 Lightning Message Service</td>
-                        <td>Monitor and publish messages on LMS channels</td>
+                        <td>Monitor and publish messages on LMS channels for inter-component communication</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>🔎 Show All Data</td>
-                        <td>Floating inspector on every SF record page — view all fields, search, filter, inline edit updateable fields, and navigate lookups with breadcrumbs</td>
+                        <td>Floating inspector on record pages: view all fields, search, filter, inline edit, and navigate related records</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>🧭 TF Sidebar</td>
-                        <td>Quick-access shortcut panel on Salesforce pages (<kbd>Ctrl+Shift+S</kbd>)</td>
+                        <td>Quick-access panel on Salesforce pages with shortcuts to all tools (Ctrl+Shift+S)</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>🎯 Command Palette</td>
-                        <td>Quick navigation to any tab or sub-tab with <kbd>Ctrl+K</kbd> / <kbd>Cmd+K</kbd></td>
+                        <td>Global command search and navigation across all tabs and features (Ctrl+K)</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                     <tr>
                         <td>🖱️ Context Menu</td>
-                        <td>Right-click on SF pages for Show All Data, Field History, Sharing, SOQL Builder, and Copy Record ID</td>
+                        <td>Right-click on Salesforce pages for quick access to Show All Data, SOQL Builder, and more</td>
+                        <td><span class="badge badge-success">Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>🔐 Production Edit Safety (v1.8.0)</td>
+                        <td>Optional setting to disable inline field editing in production orgs to prevent accidental changes</td>
+                        <td><span class="badge badge-success">Available</span></td>
+                    </tr>
+                    <tr>
+                        <td>⌨️ Customizable Shortcuts (v1.8.0)</td>
+                        <td>Configure keyboard shortcuts for your favorite actions in Settings &gt; General</td>
                         <td><span class="badge badge-success">Available</span></td>
                     </tr>
                 </tbody>
@@ -171,41 +180,50 @@
         <!-- Keyboard Shortcuts Section -->
         <div class="site-section animate-in">
             <h2 class="site-section-title">⌨️ Keyboard Shortcuts</h2>
+            <p style="color: var(--text-muted); margin-bottom: 16px;">All shortcuts below are customizable in <strong>Settings &gt; General</strong> — click on any action to rebind it to your preferred key combination.</p>
             <table class="site-table">
                 <thead>
                     <tr>
                         <th>Shortcut</th>
                         <th>Action</th>
+                        <th>Customizable</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></td>
-                        <td>Toggle TF Sidebar (on any Salesforce page)</td>
+                        <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td>
+                        <td>Toggle TF Sidebar on Salesforce pages</td>
+                        <td><span class="badge badge-success">Yes</span></td>
                     </tr>
                     <tr>
-                        <td><kbd>Alt/⌥</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd></td>
-                        <td>Toggle Show All Data panel (on Salesforce record pages)</td>
+                        <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></td>
+                        <td>Toggle Show All Data panel on record pages</td>
+                        <td><span class="badge badge-success">Yes</span></td>
                     </tr>
                     <tr>
-                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>K</kbd></td>
-                        <td>Open Command Palette (inside extension popup)</td>
+                        <td><kbd>Ctrl</kbd>+<kbd>K</kbd></td>
+                        <td>Open Command Palette inside extension popup</td>
+                        <td><span class="badge badge-success">Yes</span></td>
                     </tr>
                     <tr>
-                        <td><kbd>Ctrl/Cmd</kbd> + <kbd>Enter</kbd></td>
-                        <td>Execute query (in SOQL Builder)</td>
+                        <td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td>
+                        <td>Execute query in SOQL/GraphQL Builder</td>
+                        <td><span class="badge badge-accent">Fixed</span></td>
                     </tr>
                     <tr>
-                        <td><kbd>Ctrl</kbd> + <kbd>Space</kbd></td>
-                        <td>Trigger autocomplete (in GraphQL Builder)</td>
+                        <td><kbd>Ctrl</kbd>+<kbd>Space</kbd></td>
+                        <td>Trigger autocomplete in GraphQL Editor</td>
+                        <td><span class="badge badge-accent">Fixed</span></td>
                     </tr>
                     <tr>
                         <td><kbd>Double-click</kbd></td>
-                        <td>Inline edit a field value (in Data Explorer All Fields table)</td>
+                        <td>Inline edit field value in Data Explorer (if enabled)</td>
+                        <td><span class="badge badge-accent">Fixed</span></td>
                     </tr>
                     <tr>
                         <td><kbd>Esc</kbd></td>
-                        <td>Close panel, modal, or cancel inline edit</td>
+                        <td>Close panel, modal, dropdown, or cancel inline edit</td>
+                        <td><span class="badge badge-accent">Fixed</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -216,61 +234,71 @@
             <h2 class="site-section-title">💬 Frequently Asked Questions</h2>
 
             <div class="site-faq-item">
-                <div class="site-faq-question">How do I install the extension?</div>
-                <div class="site-faq-answer">Follow our <a href="quick-start-guide.html">Quick Start Guide</a> for detailed installation instructions with screenshots.</div>
+                <div class="site-faq-question">How do I install TrackForcePro?</div>
+                <div class="site-faq-answer">Visit the <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> and click "Add to Chrome." The extension is also available for Edge, Firefox, and Opera. See our <a href="quick-start-guide.html">Quick Start Guide</a> for detailed steps.</div>
             </div>
 
             <div class="site-faq-item">
                 <div class="site-faq-question">Is my Salesforce data secure?</div>
-                <div class="site-faq-answer">Yes! TrackForcePro processes all data locally in your browser. No data is sent to external servers. See our <a href="privacy-policy.html">Privacy Policy</a> for details.</div>
+                <div class="site-faq-answer">Yes! TrackForcePro processes all data locally in your browser — no data is sent to external servers. The extension only communicates directly with your Salesforce org using your own session credentials. See our <a href="privacy-policy.html">Privacy Policy</a> for full details.</div>
             </div>
 
             <div class="site-faq-item">
                 <div class="site-faq-question">Which Salesforce editions are supported?</div>
-                <div class="site-faq-answer">TrackForcePro works with all Salesforce editions including Developer, Professional, Enterprise, and Unlimited.</div>
+                <div class="site-faq-answer">TrackForcePro works with all Salesforce editions: Developer, Professional, Enterprise, and Unlimited. It supports both Production and Sandbox environments.</div>
             </div>
 
             <div class="site-faq-item">
-                <div class="site-faq-question">Does it work with Salesforce Sandbox?</div>
-                <div class="site-faq-answer">Yes! TrackForcePro fully supports both Production and Sandbox environments.</div>
+                <div class="site-faq-question">How do I enable inline field editing?</div>
+                <div class="site-faq-answer">In the Data Explorer tab, go to All Fields and double-click any field value to edit it. Changes are saved directly to Salesforce via the REST API. You can disable this for Production orgs in <strong>Settings &gt; General</strong> to prevent accidental changes.</div>
+            </div>
+
+            <div class="site-faq-item">
+                <div class="site-faq-question">Can I customize my keyboard shortcuts?</div>
+                <div class="site-faq-answer">Yes! Open the extension and go to <strong>Settings &gt; General</strong>. You'll see click-to-record buttons for the three main actions: Toggle Sidebar, Toggle Show All Data, and Command Palette. Click any button to rebind it to your preferred keys. Your custom shortcuts are saved automatically.</div>
+            </div>
+
+            <div class="site-faq-item">
+                <div class="site-faq-question">What if I accidentally edit a field in Production?</div>
+                <div class="site-faq-answer">You can disable inline editing for Production orgs. Go to <strong>Settings &gt; General</strong> and enable "Disable Inline Edit in Production." You'll see a warning if you try to edit a field in a Production org when this setting is on. Sandboxes are always editable for testing.</div>
             </div>
 
             <div class="site-faq-item">
                 <div class="site-faq-question">How do I export audit logs?</div>
-                <div class="site-faq-answer">Navigate to the Audit Trail tab, set your filters, then click the Export button. You can export in CSV or JSON format.</div>
+                <div class="site-faq-answer">Navigate to the <strong>Audit Trail</strong> tab, set your filters (date range, object, action), and click the Export button. You can export in CSV or JSON format for further analysis.</div>
             </div>
 
             <div class="site-faq-item">
-                <div class="site-faq-question">Can I use GraphQL with any Salesforce org?</div>
-                <div class="site-faq-answer">Yes, the GraphQL Builder uses Salesforce's UI API which is available in all orgs with API access enabled.</div>
+                <div class="site-faq-question">The extension shows "Not Connected" — what do I do?</div>
+                <div class="site-faq-answer">Make sure you have an active, logged-in Salesforce tab open in your browser. The extension detects your session from open tabs. Log in to Salesforce, keep the tab open, refresh your Salesforce page, and then open the extension again.</div>
             </div>
         </div>
 
         <!-- Support Section -->
         <div class="site-section animate-in">
-            <h2 class="site-section-title">🛠️ Support</h2>
+            <h2 class="site-section-title">🛠️ Support &amp; Feedback</h2>
             <table class="site-table">
                 <thead>
                     <tr>
-                        <th>Action</th>
+                        <th>Need Help?</th>
                         <th>Description</th>
-                        <th>Link</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>🐛 Report a Bug</td>
-                        <td>Found an issue? Let us know so we can fix it</td>
+                        <td>Found an issue? Help us fix it by reporting it</td>
                         <td><a href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" target="_blank">Create Issue</a></td>
                     </tr>
                     <tr>
                         <td>💡 Feature Request</td>
-                        <td>Have an idea for a new feature? We'd love to hear it</td>
+                        <td>Have an idea for a new feature or improvement?</td>
                         <td><a href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" target="_blank">Submit Request</a></td>
                     </tr>
                     <tr>
                         <td>❓ Ask a Question</td>
-                        <td>Need help with something? Open a discussion</td>
+                        <td>Need help with something specific?</td>
                         <td><a href="https://github.com/manaskumarbehera/sf-audit-extractor-docs/issues" target="_blank">Ask Question</a></td>
                     </tr>
                 </tbody>
@@ -289,24 +317,32 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Extension not appearing</td>
-                        <td>Make sure you're on a Salesforce page (*.salesforce.com or *.force.com)</td>
+                        <td>Extension not appearing on Salesforce</td>
+                        <td>Ensure you're on a Salesforce page (*.salesforce.com or *.force.com). The TF button appears at the bottom-right corner.</td>
                     </tr>
                     <tr>
-                        <td>Queries not executing</td>
-                        <td>Check that you have API access enabled in your Salesforce profile</td>
+                        <td>Session expired or "No access token" error</td>
+                        <td>Log out and log back into your Salesforce org. Refresh the page. The extension will detect the new session automatically.</td>
                     </tr>
                     <tr>
-                        <td>Session expired error</td>
-                        <td>Refresh your Salesforce page to get a new session token</td>
+                        <td>Queries not executing or returning errors</td>
+                        <td>Verify you have API access enabled in your Salesforce profile. Check object/field names for accuracy. Review the error message for hints.</td>
                     </tr>
                     <tr>
-                        <td>Export not working</td>
-                        <td>Ensure your browser allows downloads from extensions</td>
+                        <td>Objects/fields not loading in builders</td>
+                        <td>Check your internet connection. Verify you're logged into Salesforce. Click the Refresh button. Clear your browser cache if issues persist.</td>
                     </tr>
                     <tr>
-                        <td>GraphQL errors</td>
-                        <td>Verify your object and field names are correct and accessible</td>
+                        <td>Export or download not working</td>
+                        <td>Ensure your browser allows downloads from extensions. Check your browser's download settings and security policies.</td>
+                    </tr>
+                    <tr>
+                        <td>Inline edit not working</td>
+                        <td>Verify the field is editable (not a formula or system field). Check that "Disable Inline Edit in Production" is not blocking you. Ensure you have write permissions on the object.</td>
+                    </tr>
+                    <tr>
+                        <td>Platform Events or LMS not streaming</td>
+                        <td>Verify the channel exists and you have publish/subscribe permissions. Try refreshing the page. Check for connection errors in the browser console.</td>
                     </tr>
                 </tbody>
             </table>
@@ -315,7 +351,7 @@
     </div>
 
     <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Open Source Chrome Extension</p>
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
         <div class="footer-links">
             <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
             <span class="sep">·</span>
