@@ -95,7 +95,8 @@
         </div>
         <div style="margin-top: 12px;">
             <select id="version-select" class="site-version-select">
-                <option value="1.7.1">v1.7.1 (Latest)</option>
+                <option value="1.7.2">v1.7.2 (Latest)</option>
+                <option value="1.7.1">v1.7.1</option>
                 <option value="1.7.0">v1.7.0</option>
                 <option value="1.6.4">v1.6.4</option>
                 <option value="1.6.3">v1.6.3</option>
@@ -226,7 +227,14 @@
         <div class="site-section site-changelog" style="margin-top: 36px;">
             <h2 class="site-section-title">Recent Changes</h2>
 
-            <h4>v1.7.1 — March 18, 2026 (Latest)</h4>
+            <h4>v1.7.2 — March 18, 2026 (Latest)</h4>
+            <ul>
+                <li><strong>Show All Data Shortcut Fix</strong> — <kbd>Ctrl+Shift+X</kbd> / <kbd>⌘+Shift+X</kbd> now reliably toggles the panel open <em>and</em> closed</li>
+                <li><strong>Duplicate Listener Fix</strong> — removed duplicate <code>toggleShowAllData</code> message handler that caused the shortcut to appear unresponsive (open + immediate close)</li>
+                <li><strong>Robust Close Detection</strong> — keyboard shortcut handler checks the DOM directly via <code>document.getElementById()</code> for reliable close regardless of variable state</li>
+            </ul>
+
+            <h4>v1.7.1 — March 18, 2026</h4>
             <ul>
                 <li><strong>Sidebar Cleanup</strong> — streamlined TF Sidebar from 43 to 19 focused shortcuts; removed low-frequency and redundant items</li>
                 <li><strong>Removed sidebar shortcuts</strong> — Export/Import settings, website links, redundant security/org panels, low-use SF Setup pages</li>
