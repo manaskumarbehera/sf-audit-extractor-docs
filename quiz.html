@@ -1581,7 +1581,7 @@ const quizQuestions = [
         explanation: "The Permission Matrix shows a <strong>comprehensive grid of all permissions</strong> assigned to a user — tracing them across their Profile, Permission Sets, and Permission Set Groups."
     },
     {
-        q: "What does the Metadata Explorer in Data Explorer Tools do?",
+        q: "What does the Metadata Explorer in Records Tools do?",
         opts: ["Exports metadata to XML", "Browse and inspect org metadata types, components, and dependencies", "Deploys metadata packages", "Only shows custom objects"],
         answer: 1,
         explanation: "The Metadata Explorer lets you <strong>browse and inspect metadata types, components, and their dependencies</strong> — a powerful way to understand your org's configuration."
@@ -1684,9 +1684,9 @@ const quizQuestions = [
     },
     {
         q: "How many shortcut categories does the TF Sidebar support?",
-        opts: ["3 — Extension, External, Tools", "5 — Extension Tabs, Data Explorer, Security, Org Tools, and External", "7 — one per tab", "2 — Internal and External"],
+        opts: ["3 — Extension, External, Tools", "4 — Extension Tabs, Records Tools, Org Tools Panels, and External", "7 — one per tab", "2 — Internal and External"],
         answer: 1,
-        explanation: "The TF Sidebar has <strong>5 shortcut categories</strong>: Extension Tabs, Data Explorer Tools, Security Manager Panels, Org Tools Panels, and External (Salesforce Setup pages)."
+        explanation: "The TF Sidebar has <strong>4 shortcut categories</strong>: Extension Tabs, Records Tools, Org Tools Panels, and External (Salesforce Setup pages)."
     },
     {
         q: "What does the 📌 button in the TF Sidebar header do?",
@@ -1721,7 +1721,7 @@ const matchPairs = [
     { feature: "👥 User Manager", desc: "Permission Matrix, Sessions, Freeze, Bulk Update" },
     { feature: "💾 Cache Manager", desc: "Per-org data isolation to prevent cross-org data leaks" },
     { feature: "🔍 Audit Extractor", desc: "Filter and export setup audit trail events to CSV" },
-    { feature: "📦 Data Explorer Tools", desc: "Metadata Explorer, Schema Visualizer, API Dashboard" },
+    { feature: "📦 Records Tools", desc: "Metadata Explorer, Schema Visualizer, API Dashboard" },
     { feature: "🧊 Freeze/Unfreeze", desc: "Temporarily prevent a user from logging in" },
     { feature: "🔄 Automation Inspector", desc: "View all Flows, Triggers, and Workflow Rules" },
     { feature: "📈 Schema Visualizer", desc: "Visual object relationship diagrams" },
@@ -1775,7 +1775,7 @@ const speedQuestions = [
 // ── Fun Facts ──
 const funFacts = [
     "💡 <strong>Did you know?</strong> TrackForcePro is rigorously tested to ensure reliability across all supported browsers!",
-    "💡 <strong>Fun fact:</strong> The TF Sidebar organizes shortcuts into 5 categories — Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and Salesforce Setup pages.",
+    "💡 <strong>Fun fact:</strong> The TF Sidebar organizes shortcuts into 4 categories — Extension Tabs, Records Tools, Org Tools Panels, and Salesforce Setup pages.",
     "💡 <strong>Pro tip:</strong> You can customize which shortcuts appear in the TF Sidebar via Settings → Sidebar.",
     "💡 <strong>Did you know?</strong> The GraphQL Builder can export child records (like Contacts under an Account) as expanded CSV rows — no more JSON blobs in cells!",
     "💡 <strong>Fun fact:</strong> TrackForcePro supports Custom Labels translation into 20 languages with duplicate detection.",
@@ -1804,7 +1804,7 @@ const funFacts = [
     "💡 <strong>Pro tip:</strong> Custom Labels automatically saves your edits using the correct method — whether you loaded labels from the Tooling interface or the standard view, TrackForcePro handles it seamlessly.",
     "💡 <strong>Fun fact:</strong> Custom Labels translate dialog now shows inline text inputs per label with the original value as placeholder — review and edit translations before deploying.",
     "💡 <strong>Pro tip:</strong> Press Ctrl+Shift+S (⌘⇧S on Mac) to toggle the TF Sidebar without touching the mouse — a must-know shortcut for power users!",
-    "💡 <strong>Did you know?</strong> The TF Sidebar has 5 shortcut categories: Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and External Salesforce Setup pages.",
+    "💡 <strong>Did you know?</strong> The TF Sidebar has 4 shortcut categories: Extension Tabs, Records Tools, Org Tools Panels, and External Salesforce Setup pages.",
     "💡 <strong>Pro tip:</strong> You can customize TrackForcePro's keyboard shortcuts in Settings → Keyboard Shortcuts — assign any key combo you prefer for the Sidebar, Show All Data, and Command Palette!",
     "💡 <strong>Fun fact:</strong> The TF Sidebar blinker is an edge-anchored vertical tab that slides in from the side — designed to avoid conflicts with Salesforce's own help button and utility bar."
 ];
@@ -1991,7 +1991,7 @@ const trueFalseQuestions = [
     {
         statement: "The TF Sidebar supports only 2 shortcut categories — internal and external.",
         answer: false,
-        explanation: "False! It supports <strong>5 categories</strong>: Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and External."
+        explanation: "False! It supports <strong>4 categories</strong>: Extension Tabs, Records Tools, Org Tools Panels, and External."
     },
     {
         statement: "When the TF Sidebar is pinned, the page content shifts to make room for the sidebar.",
@@ -2367,10 +2367,10 @@ const blankQuestions = [
     },
     {
         sentence: "The TF Sidebar supports _____ shortcut categories.",
-        blank: "5",
-        opts: ["3", "5", "7", "10"],
+        blank: "4",
+        opts: ["3", "4", "7", "10"],
         answer: 1,
-        explanation: "<strong>5 categories</strong>: Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and External."
+        explanation: "<strong>4 categories</strong>: Extension Tabs, Records Tools, Org Tools Panels, and External."
     },
     {
         sentence: "The 🕶️ icon in Login As opens an _____ window.",
@@ -2440,9 +2440,9 @@ const shortcutQuestions = [
     },
     {
         action: "How many shortcut categories does the TF Sidebar support?",
-        opts: ["3", "5", "7", "10"],
+        opts: ["3", "4", "7", "10"],
         answer: 1,
-        explanation: "<strong>5 categories</strong>: Extension Tabs, Data Explorer Tools, Security Panels, Org Tools Panels, and External (Salesforce Setup pages)."
+        explanation: "<strong>4 categories</strong>: Extension Tabs, Records Tools, Org Tools Panels, and External (Salesforce Setup pages)."
     },
     {
         action: "Where do you customize which shortcuts appear in the sidebar?",
@@ -2506,9 +2506,9 @@ const shortcutQuestions = [
     },
     {
         action: "Which default shortcut categories are collapsed by default?",
-        opts: ["Extension Tabs and External", "Security Panels and Org Tools Panels", "Data Explorer and External", "All categories"],
+        opts: ["Extension Tabs and External", "Records Tools and Org Tools Panels", "Data Explorer and External", "All categories"],
         answer: 1,
-        explanation: "<strong>Security Panels and Org Tools Panels</strong> are collapsed by default since they duplicate Data Explorer sub-tab shortcuts."
+        explanation: "<strong>Records Tools and Org Tools Panels</strong> are collapsed by default since they are sub-tabs and panels within the main extension tabs."
     }
 ];
 
@@ -2582,9 +2582,9 @@ const typeRaceQuestions = [
     },
     {
         action: "How many shortcut categories does the sidebar have?",
-        acceptedAnswers: ["5", "five"],
-        display: "5",
-        explanation: "The sidebar has <strong>5</strong> shortcut categories: Extension Tabs, Data Explorer, Security, Org Tools, and External."
+        acceptedAnswers: ["4", "four"],
+        display: "4",
+        explanation: "The sidebar has <strong>4</strong> shortcut categories: Extension Tabs, Records Tools, Org Tools Panels, and External."
     },
     {
         action: "Search/filter shortcuts in the sidebar",
@@ -2645,7 +2645,7 @@ const survivalQuestions = [
     { q: "User Comparison shows what?", opts: ["Photos", "Side-by-side diff", "Org chart", "Login count"], answer: 1 },
     { q: "Sidebar shortcuts open TFP to?", opts: ["Home page", "Specific tool or panel", "Settings", "About page"], answer: 1 },
     { q: "Sidebar Quick Tools include?", opts: ["Calculator", "Login As + Language + Cache", "Email", "Chat"], answer: 1 },
-    { q: "Data Explorer has how many sub-tabs?", opts: ["2", "3", "5", "8"], answer: 2 },
+    { q: "Records tab has how many sub-tabs?", opts: ["2", "3", "5", "8"], answer: 2 },
     { q: "Custom Labels bulk import supports?", opts: ["CSV only", "Update mode", "JSON only", "XML only"], answer: 1 },
     { q: "What happens if session detection is temporarily unavailable?", opts: ["Extension stops working", "Automatic fallback kicks in", "Must reinstall", "Manual login needed"], answer: 1 },
     { q: "Reset Password feature is in?", opts: ["Security Manager", "User Manager", "Org Tools", "Settings"], answer: 1 },
