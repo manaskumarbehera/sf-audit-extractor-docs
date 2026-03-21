@@ -1494,9 +1494,9 @@ const quizQuestions = [
     },
     {
         q: "Which browsers does TrackForcePro currently support?",
-        opts: ["Chrome only (Edge & Firefox coming soon)", "Chrome and Firefox", "Chrome, Edge, and other Chromium-based browsers", "All major browsers including Safari"],
+        opts: ["Chrome and Firefox", "Chrome only", "Chrome, Edge, and Safari", "Firefox only"],
         answer: 0,
-        explanation: "TrackForcePro is currently available on the <strong>Chrome Web Store</strong>. Edge and Firefox support are coming soon."
+        explanation: "TrackForcePro is currently available on the <strong>Chrome Web Store</strong> and on <strong>Firefox Add-ons</strong>. Edge is still a placeholder in the docs."
     },
     {
         q: "What does the Favicon Manager do?",
@@ -1795,7 +1795,7 @@ const funFacts = [
     "💡 <strong>Fun fact:</strong> The Schema Visualizer creates visual relationship diagrams between Salesforce objects — parent-child and lookups at a glance.",
     "💡 <strong>Pro tip:</strong> SOQL Builder's FIELDS(ALL) mode queries every field on an object automatically — no more selecting dozens of fields manually.",
     "💡 <strong>Did you know?</strong> The Permission Matrix traces a user's permissions across their Profile, Permission Sets, and Permission Set Groups in one grid.",
-    "💡 <strong>Fun fact:</strong> TrackForcePro is available on the Chrome Web Store now, with Edge and Firefox support coming soon!",
+    "💡 <strong>Fun fact:</strong> TrackForcePro is available on the Chrome Web Store and on Firefox Add-ons, while Edge is still shown as a placeholder in the docs.",
     "💡 <strong>Pro tip:</strong> The Deployment tracker shows active, queued, and completed deployments in real time — catch failures before they escalate.",
     "💡 <strong>Did you know?</strong> The sidebar's Login As incognito mode automatically falls back to a regular new window if your browser doesn't support incognito — so it always works!",
     "💡 <strong>Did you know?</strong> Cloud and shield favicon shapes were redesigned for crisp, smooth rendering at all sizes — from tiny 16px browser tabs to larger previews!",
@@ -1836,8 +1836,8 @@ const trueFalseQuestions = [
     },
     {
         statement: "TrackForcePro is currently available only on the Chrome Web Store.",
-        answer: true,
-        explanation: "Correct! TrackForcePro is currently published on the <strong>Chrome Web Store</strong>. Edge and Firefox support are coming soon."
+        answer: false,
+        explanation: "Correct! TrackForcePro is currently published on the <strong>Chrome Web Store</strong> and on <strong>Firefox Add-ons</strong>. Edge is still a placeholder in the docs."
     },
     {
         statement: "The Favicon Manager supports 8 different shapes for custom org icons.",
@@ -2626,7 +2626,7 @@ const survivalQuestions = [
     { q: "Favicon labels max characters?", opts: ["1", "2", "3", "5"], answer: 2 },
     { q: "Login As has how many icon modes?", opts: ["1", "2", "3", "4"], answer: 2 },
     { q: "Deployment Tracker shows what?", opts: ["Past only", "Active + queued + completed", "Failed only", "Code only"], answer: 1 },
-    { q: "Which browsers are supported?", opts: ["Chrome (Edge & Firefox coming soon)", "Chrome + Edge + Chromium", "Firefox only", "All browsers"], answer: 0 },
+    { q: "Which browsers are supported?", opts: ["Chrome + Firefox", "Chrome only", "Firefox only", "All browsers"], answer: 0 },
     { q: "Audit Trail exports to what format?", opts: ["PDF", "CSV", "XML", "Excel"], answer: 1 },
     { q: "How many windows per org?", opts: ["Unlimited", "1", "2", "3"], answer: 1 },
     { q: "Schema Visualizer shows what?", opts: ["SQL plans", "Object relationships", "Apex code", "Layouts"], answer: 1 },

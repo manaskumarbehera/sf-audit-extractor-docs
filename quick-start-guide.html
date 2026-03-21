@@ -147,6 +147,13 @@
             font-weight: 600;
             color: var(--text);
         }
+        .browser-badge.firefox-live {
+            border-color: rgba(255, 113, 57, 0.35);
+            background: rgba(255, 113, 57, 0.12);
+        }
+        .browser-badge.edge-placeholder {
+            opacity: 0.72;
+        }
 
         .cta-banner {
             background: linear-gradient(135deg, #032d60, #0176d3, #1b96ff);
@@ -233,19 +240,24 @@
                 <h2><span class="step-number">1</span> Install the Extension</h2>
             </div>
             <div class="section-content">
-                <h3>Install from the Chrome Web Store (Recommended)</h3>
-                <p>TrackForcePro is available on the Chrome Web Store, and the codebase also supports Edge, Firefox, and Opera builds.</p>
+                <h3>Install from Chrome or Firefox</h3>
+                <p>TrackForcePro is available on the Chrome Web Store and on Firefox Add-ons. Edge stays a placeholder in the docs until that store listing is live.</p>
 
                 <p style="margin: 20px 0;">
                     <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="site-btn site-btn-success site-btn-lg">
                         Add to Chrome — It's Free
                     </a>
                 </p>
+                <p style="margin: 0 0 20px 0;">
+                    <a href="https://addons.mozilla.org/en-US/firefox/addon/trackforcepro/" target="_blank" class="site-btn site-btn-lg" style="background:#ff7139;color:white;">
+                        🦊 Install from Firefox Add-ons
+                    </a>
+                </p>
 
                 <div class="browser-badges">
                     <span class="browser-badge">🌐 Chrome — Available Now</span>
-                    <span class="browser-badge">🔷 Edge — Build Supported</span>
-                    <span class="browser-badge">🦊 Firefox — Build Supported</span>
+                    <span class="browser-badge firefox-live">🦊 Firefox — Available Now</span>
+                    <span class="browser-badge edge-placeholder">🔷 Edge — Placeholder Only</span>
                     <span class="browser-badge">🅾️ Opera — Build Supported</span>
                 </div>
 
@@ -271,7 +283,7 @@
                 </div>
 
                 <div class="tip">
-                    <strong>Trainer note:</strong> if your team installs packaged builds outside Chrome, keep the Chrome Web Store link as the main onboarding path and use the Training Guide for role-based adoption.
+                    <strong>Trainer note:</strong> Chrome and Firefox are the current direct-install paths. Keep Edge labeled as a placeholder in training materials until the Edge Add-ons listing is actually published.
                 </div>
             </div>
         </div>

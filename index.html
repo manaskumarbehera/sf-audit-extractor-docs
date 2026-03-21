@@ -57,6 +57,30 @@
         .cta-section > * { position: relative; z-index: 1; }
         .cta-section h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
         .cta-section p { opacity: 0.9; margin-bottom: 24px; font-size: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .store-link-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+        .store-link-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+            border: 1px solid rgba(255,255,255,0.22);
+            background: rgba(255,255,255,0.12);
+            color: white;
+        }
+        .store-link-badge.chrome::before { content: '◎'; font-size: 1rem; }
+        .store-link-badge.firefox::before { content: '🦊'; font-size: 1rem; }
+        .store-link-badge.edge::before { content: '◇'; font-size: 1rem; }
+        .store-link-badge.placeholder { opacity: 0.72; cursor: default; }
     </style>
 </head>
 <body>
@@ -89,6 +113,11 @@
             <a href="quick-start-guide.html" class="site-btn site-btn-outline site-btn-lg site-btn-pill" style="border-color: rgba(255,255,255,0.4); color: white;">
                 Quick Start Guide
             </a>
+        </div>
+        <div class="store-link-row">
+            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="store-link-badge chrome">Chrome Web Store</a>
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/trackforcepro/" target="_blank" class="store-link-badge firefox">Firefox Add-ons</a>
+            <span class="store-link-badge edge placeholder">Edge Add-ons Placeholder</span>
         </div>
             <div style="margin-top: 12px;">
             <span class="site-version-badge">v1.8.7</span>

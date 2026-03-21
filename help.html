@@ -22,6 +22,16 @@
         .badge-accent  { background: #cffafe; color: #0e7490; }
         .badge-warning { background: #fce4b6; color: #6b3b04; }
         .badge-beta    { background: #fef3c7; color: #92400e; }
+        .browser-store-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .browser-store-link.chrome::before { content: '◎'; }
+        .browser-store-link.firefox::before { content: '🦊'; }
+        .browser-store-link.edge::before { content: '◇'; }
         [data-theme="dark"] .badge-success { background: rgba(69,198,90,0.2); color: #6ee77a; }
         [data-theme="dark"] .badge-accent  { background: rgba(34,211,238,0.2); color: #22d3ee; }
         [data-theme="dark"] .badge-warning { background: rgba(251,180,73,0.2); color: #fbb449; }
@@ -236,7 +246,7 @@
 
             <div class="site-faq-item">
                 <div class="site-faq-question">How do I install TrackForcePro?</div>
-                <div class="site-faq-answer">Visit the <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> and click "Add to Chrome." The codebase supports Chrome, Edge, Firefox, and Opera builds. See our <a href="quick-start-guide.html">Quick Start Guide</a> for detailed steps.</div>
+                <div class="site-faq-answer">Install from the <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a> or from <a href="https://addons.mozilla.org/en-US/firefox/addon/trackforcepro/" target="_blank">Firefox Add-ons</a>. Edge remains a docs placeholder for now. See our <a href="quick-start-guide.html">Quick Start Guide</a> for detailed steps.</div>
             </div>
 
             <div class="site-faq-item">
@@ -376,9 +386,9 @@
             <table class="site-table">
                 <thead><tr><th>Browser</th><th>Install Source</th><th>Status</th></tr></thead>
                 <tbody>
-                    <tr><td>Google Chrome</td><td><a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a></td><td><span class="badge badge-success">Available Now</span></td></tr>
-                    <tr><td>Microsoft Edge</td><td>Packaged build / Edge Add-ons path</td><td><span class="badge badge-accent">Build Supported</span></td></tr>
-                    <tr><td>Mozilla Firefox</td><td>Packaged build / Firefox Add-ons path</td><td><span class="badge badge-accent">Build Supported</span></td></tr>
+                    <tr><td>Google Chrome</td><td><a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="browser-store-link chrome">Chrome Web Store</a></td><td><span class="badge badge-success">Available Now</span></td></tr>
+                    <tr><td>Mozilla Firefox</td><td><a href="https://addons.mozilla.org/en-US/firefox/addon/trackforcepro/" target="_blank" class="browser-store-link firefox">Firefox Add-ons</a></td><td><span class="badge badge-success">Available Now</span></td></tr>
+                    <tr><td>Microsoft Edge</td><td><span class="browser-store-link edge">Edge Add-ons Placeholder</span></td><td><span class="badge badge-warning">Coming Soon</span></td></tr>
                     <tr><td>Opera</td><td>Packaged build / Opera extensions path</td><td><span class="badge badge-accent">Build Supported</span></td></tr>
                 </tbody>
             </table>

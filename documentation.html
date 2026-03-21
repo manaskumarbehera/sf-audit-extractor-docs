@@ -49,6 +49,16 @@
             font-weight: 600;
             letter-spacing: 0.05em;
         }
+        .browser-store-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .browser-store-link.chrome::before { content: '◎'; }
+        .browser-store-link.firefox::before { content: '🦊'; }
+        .browser-store-link.edge::before { content: '◇'; }
         .content {
             max-width: 920px;
             margin: 40px auto;
@@ -1075,15 +1085,15 @@
         <div class="section" id="cross-browser">
             <h2><span class="emoji">🌐</span> Cross-Browser Support</h2>
             <p class="section-intro">
-                TrackForcePro is published through the Chrome Web Store, and the codebase also supports packaged builds for Edge, Firefox, and Opera.
+                TrackForcePro is published through the Chrome Web Store and Firefox Add-ons. Edge remains a placeholder in the docs until the Edge Add-ons listing is live.
             </p>
 
             <table class="site-table" style="margin: 16px 0;">
                 <thead><tr><th>Browser</th><th>Install Source</th><th>Status</th></tr></thead>
                 <tbody>
-                    <tr><td><strong>Google Chrome</strong></td><td><a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a></td><td>Available now — all features supported</td></tr>
-                    <tr><td><strong>Microsoft Edge</strong></td><td>Edge Add-ons</td><td>Coming soon</td></tr>
-                    <tr><td><strong>Mozilla Firefox</strong></td><td>Firefox Add-ons</td><td>Coming soon</td></tr>
+                    <tr><td><strong>Google Chrome</strong></td><td><a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank" class="browser-store-link chrome">Chrome Web Store</a></td><td>Available now — all features supported</td></tr>
+                    <tr><td><strong>Mozilla Firefox</strong></td><td><a href="https://addons.mozilla.org/en-US/firefox/addon/trackforcepro/" target="_blank" class="browser-store-link firefox">Firefox Add-ons</a></td><td>Available now — verified listing</td></tr>
+                    <tr><td><strong>Microsoft Edge</strong></td><td><span class="browser-store-link edge">Edge Add-ons Placeholder</span></td><td>Coming soon</td></tr>
                 </tbody>
             </table>
         </div>
