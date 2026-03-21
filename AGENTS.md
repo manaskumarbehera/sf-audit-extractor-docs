@@ -8,7 +8,7 @@
 
 - **Runtime**: Node.js LTS (v20+) on Heroku-24 stack in EU region
 - **Server**: Custom minimal HTTP server (`server.js`) with routing and MIME-type handling
-- **Frontend**: Vanilla HTML5 + inline CSS (`assets/styles.css`) + vanilla JS (`assets/common.js`)
+- **Frontend**: Vanilla HTML5 + shared CSS (`shared.css`) + vanilla JS (`theme.js`, `adaptive_quiz.js`)
 - **UI Design**: Glassmorphism cards, dark Salesforce blue palette, responsive grid layouts
 - **Hosting**: Heroku with GitHub Actions CI/CD (planned: PMD code quality checks)
 - **State**: Browser localStorage only (quiz leaderboard, player names)
@@ -22,7 +22,7 @@
 | `landing.html` | Initial landing page | Hero CTA, feature highlights |
 | `index.html` | Main hub/documentation home | Release notes, link catalog, version picker entry |
 | `documentation.html` | Canonical long-form docs | Multi-version selector + `switchVersion()`, sidebar nav with section IDs |
-| `guide.html` | Richer walkthrough | Screenshots, embedded YouTube playlist ready-to-toggle |
+| `guide.html` | Role-based training guide | Surface model, hands-on labs, trainer notes |
 | `quick-start-guide.html` | Install + first-use workflow | Concise steps, integration flowchart |
 | `help.html` | FAQ + troubleshooting | Searchable table, known issues, support links |
 | `quiz.html` | Interactive learning app | Multiple game modes, localStorage leaderboard, HTML escaping via `escapeHtmlLocal` |
@@ -40,11 +40,12 @@
 
 ### Asset Pipeline
 
-- **`assets/styles.css`** (367 lines): Dark theme CSS variables, card layouts, animations
+- **`shared.css`**: Shared design system, card layouts, navigation, badges, and responsive page scaffolding
   - Colors: `--bg` (#0b1020), `--primary` (#5aa9ff), `--accent` (#7af5c8)
   - Glassmorphism: backdrop-filter blur, subtle shadows
   - Responsive grid: `.grid`, `.col-8`, `.col-4`
-- **`assets/common.js`**: Shared utilities (version switching, nav highlighting, potential YouTube embed toggling)
+- **`theme.js`**: Shared theme toggle and favicon helpers
+- **`adaptive_quiz.js`**: Client-side quiz/game runtime
 - **`icons/`**: Favicon set (16px-1024px) for Chrome Web Store compatibility
 - **`screenshots/`**: Reference images for guide.html walkthroughs
 
@@ -77,7 +78,7 @@
 - **Glassmorphism cards**: `.card` + backdrop-filter blur with rgba glass backgrounds
 - **Hero sections**: Large responsive grids with accent gradients
 - **Animations**: Page load fades, hover scale effects on links
-- **Dark mode**: Single theme, CSS variables for accent/primary/surface swaps
+- **Themes**: Light/dark variants driven by CSS variables and `theme.js`
 - **Responsive**: Mobile-first `min(width, vw)` container constraints
 
 ## Heroku Deployment Workflow

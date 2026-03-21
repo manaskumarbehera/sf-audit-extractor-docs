@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TrackForcePro: The complete Salesforce admin toolkit with 11 tabs, audit trails, query builders, record explorer, org tools, and more. Free Chrome extension. Edge and Firefox coming soon.">
+    <meta name="description" content="TrackForcePro: a Salesforce admin and developer toolkit with a launcher popup, workspace tab, and in-page overlays for search, records, metadata, org tools, and troubleshooting.">
     <title>TrackForcePro - Salesforce Admin Toolkit</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
     <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
@@ -65,6 +65,7 @@
         <div class="site-nav-inner">
             <a href="index.html" class="active">Home</a>
             <a href="quick-start-guide.html">Quick Start</a>
+            <a href="guide.html">Training Guide</a>
             <a href="documentation.html">Docs</a>
             <a href="help.html">Help</a>
             <a href="quiz.html">Quiz &amp; Games</a>
@@ -98,12 +99,12 @@
     <div class="site-container narrow" style="padding-bottom: 0;">
         <div class="stats-banner animate-in">
             <div class="stat-pill">
-                <div class="stat-num">11</div>
-                <div class="stat-label">Tabs</div>
+                <div class="stat-num">3</div>
+                <div class="stat-label">Core Surfaces</div>
             </div>
             <div class="stat-pill">
-                <div class="stat-num">3</div>
-                <div class="stat-label">Browsers Planned</div>
+                <div class="stat-num">4</div>
+                <div class="stat-label">Browsers Supported</div>
             </div>
             <div class="stat-pill">
                 <div class="stat-num">Free</div>
@@ -123,7 +124,7 @@
             <a href="documentation.html" class="site-card animate-in">
                 <div class="card-icon">📖</div>
                 <h2>Full Documentation</h2>
-                <p>Complete guide to all 11 tabs, on-page features, shortcuts, and settings — with step-by-step walkthroughs.</p>
+                <p>Complete guide to the launcher, workspace, on-page overlays, metadata search, shortcuts, and admin workflows.</p>
                 <span class="site-badge primary">Comprehensive</span>
             </a>
 
@@ -132,6 +133,13 @@
                 <h2>Quick Start Guide</h2>
                 <p>Install from your browser store, connect to Salesforce, and explore every feature in minutes.</p>
                 <span class="site-badge success">Recommended</span>
+            </a>
+
+            <a href="guide.html" class="site-card animate-in">
+                <div class="card-icon">🧑‍🏫</div>
+                <h2>Training Guide</h2>
+                <p>Role-based onboarding for admins, developers, support teams, and internal trainers.</p>
+                <span class="site-badge accent">New</span>
             </a>
 
             <a href="privacy-policy.html" class="site-card animate-in">
@@ -215,6 +223,10 @@
                     <h4>🧭 TF Sidebar &amp; Command Palette</h4>
                     <p>Floating sidebar with shortcuts on every Salesforce page. Ctrl+K command palette with 13+ commands and record ID auto-detection</p>
                 </div>
+                <div class="site-feature-item animate-in">
+                    <h4>🗂️ Setup Search &amp; Metadata Search</h4>
+                    <p>Search Setup and metadata by API name from Salesforce pages, then hand off into the workspace for deeper inspection</p>
+                </div>
             </div>
         </div>
 
@@ -222,18 +234,18 @@
         <div class="site-section site-changelog" style="margin-top: 36px;">
             <h2 class="site-section-title">What's New</h2>
 
-            <h4>v1.8.6 — March 20, 2026 (Latest)</h4>
+            <h4>v1.8.8 — March 21, 2026 (Latest)</h4>
             <ul>
-                <li><strong>Independent Button Positioning</strong> — Show All Data button and Command Palette trigger now have their own position settings (Right / Left / Bottom), independent of the sidebar. Configure each in Settings &gt; Sidebar.</li>
-                <li><strong>Command Palette Fix</strong> — <kbd>Ctrl</kbd>+<kbd>K</kbd> now works reliably. Added <kbd>/</kbd> key alternative and clickable ⌘ button for popup mode.</li>
-                <li><strong>Custom Labels Fix</strong> — Edit, import, and translation deployment now use correct Salesforce API endpoints.</li>
+                <li><strong>Settings architecture refactor</strong> — the first shared settings schema/service is now in place, starting with Sidebar panel settings for a more consistent Save &amp; Apply model.</li>
+                <li><strong>Metadata search improvements</strong> — Setup Search and Metadata Explorer now support broader API-name discovery, especially for flows and security-related metadata.</li>
+                <li><strong>New Training Guide</strong> — a role-based learning path for admins, developers, support teams, and trainers is now part of the docs hub.</li>
             </ul>
 
-            <h4>v1.8.5 — March 19, 2026</h4>
+            <h4>v1.8.6 — March 20, 2026</h4>
             <ul>
-                <li><strong>Per-Org Inline Edit Safety</strong> — Disable inline editing per org in Settings &gt; Org Management. Prevents accidental field changes in production while keeping sandboxes fully editable.</li>
-                <li><strong>Customisable Keyboard Shortcuts</strong> — Click-to-record interface in Settings &gt; General for Sidebar toggle, Show All Data, and Command Palette. Platform-aware display (Mac/Windows).</li>
-                <li><strong>Tab Reorganisation</strong> — Org Tools and Org &amp; Favicon promoted to top-level tabs. Records tab (renamed from Data Explorer) with User Manager and Security Manager sub-tabs. 11 tabs total.</li>
+                <li><strong>Independent Button Positioning</strong> — Show All Data button and Command Palette trigger now have their own position settings (Right / Left / Bottom), independent of the sidebar.</li>
+                <li><strong>Command Palette Fix</strong> — <kbd>Ctrl</kbd>+<kbd>K</kbd> now works more reliably, with a popup-safe alternative and visual trigger.</li>
+                <li><strong>Custom Labels Fix</strong> — edit, import, and translation deployment now use corrected Salesforce API flows.</li>
             </ul>
 
             <h4>v1.7.x — March 2026</h4>
@@ -263,6 +275,8 @@
             <a href="help.html">Help</a>
             <span class="sep">·</span>
             <a href="leaderboard.html">Leaderboard</a>
+            <span class="sep">·</span>
+            <a href="guide.html">Training Guide</a>
             <span class="sep">·</span>
             <a href="privacy-policy.html">Privacy Policy</a>
             <span class="sep">·</span>
