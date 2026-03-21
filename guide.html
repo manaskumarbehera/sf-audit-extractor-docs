@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TrackForcePro Training Guide — a role-based walkthrough for Salesforce admins and developers to learn the launcher, workspace, overlays, and troubleshooting workflows.">
+    <title>TrackForcePro - Training Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="shared.css">
+    <script src="theme.js"></script>
+    <style>
+        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
+        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+        .guide-nav, .guide-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+        .guide-nav {
+            position: sticky;
+            top: 20px;
+            padding: 18px;
+        }
+        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
+        .guide-nav a {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 10px;
+            color: var(--text-link);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+        .guide-nav a:hover { background: var(--bg-alt); }
+        .guide-main { display: grid; gap: 22px; }
+        .guide-card { padding: 24px 26px; }
+        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
+        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
+        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
+        .guide-pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+        .guide-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .guide-surface-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+        .guide-surface {
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--card-bg), var(--bg-alt));
+        }
+        .guide-surface h3 { font-size: 1rem; margin-bottom: 6px; color: var(--text); }
+        .guide-lab {
+            margin-top: 14px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            background: var(--bg-alt);
+            border: 1px dashed var(--border);
+        }
+        .guide-lab strong { color: var(--text); }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .guide-table th, .guide-table td {
+            text-align: left;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .guide-highlight {
+            margin-top: 16px;
+            padding: 16px 18px;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04));
+        }
+        @media (max-width: 900px) {
+            .guide-grid { grid-template-columns: 1fr; }
+            .guide-nav { position: static; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="index.html">Home</a>
+            <a href="quick-start-guide.html">Quick Start</a>
+            <a href="guide.html" class="active">Training Guide</a>
+            <a href="documentation.html">Docs</a>
+            <a href="help.html">Help</a>
+            <a href="quiz.html">Quiz &amp; Games</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="site-hero">
+        <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
+        <h1>Training Guide</h1>
+        <p>Learn TrackForcePro like a Salesforce admin coach would teach it: start with the right surface, use the right workflow, and build confidence with practice labs.</p>
+        <span class="version-badge">Version 1.8.8</span>
+    </div>
+
+    <div class="guide-shell">
+        <div class="guide-grid">
+            <aside class="guide-nav">
+                <h2>In This Guide</h2>
+                <a href="#operating-model">Operating Model</a>
+                <a href="#role-paths">Role-Based Learning Paths</a>
+                <a href="#daily-work">Daily Workflows</a>
+                <a href="#labs">Hands-On Labs</a>
+                <a href="#trainer-notes">Trainer Notes</a>
+            </aside>
+
+            <main class="guide-main">
+                <section class="guide-card" id="operating-model">
+                    <h2>1. Operating Model</h2>
+                    <p>TrackForcePro works best when users know which surface to use first. The product is no longer just a popup. It is a three-surface toolkit.</p>
+                    <div class="guide-surface-grid">
+                        <div class="guide-surface">
+                            <h3>Launcher Popup</h3>
+                            <p>Use it to check the current org, jump into a tool quickly, and resume your last workspace. It should be the fastest starting point, not the place for long tasks.</p>
+                        </div>
+                        <div class="guide-surface">
+                            <h3>Workspace Tab</h3>
+                            <p>Use this for serious work: SOQL, GraphQL, Records, Org Tools, Debug Logs, Label translation, and settings. Anything with tables, builders, or multi-step flows belongs here.</p>
+                        </div>
+                        <div class="guide-surface">
+                            <h3>In-Page Overlays</h3>
+                            <p>Use these on Salesforce pages when the current page context matters. This includes TF Sidebar, Show All Data, right-click actions, and Setup Search.</p>
+                        </div>
+                    </div>
+                    <div class="guide-highlight">
+                        <strong>Trainer recommendation:</strong> teach users to ask one question before every action: <em>Do I need a quick jump, deep workspace, or page context?</em> That single habit removes most confusion.
+                    </div>
+                </section>
+
+                <section class="guide-card" id="role-paths">
+                    <h2>2. Role-Based Learning Paths</h2>
+                    <p>Different Salesforce roles need different first wins. Start training with the path that matches the person’s daily work.</p>
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Role</th>
+                                <th>Start Here</th>
+                                <th>Primary Skills</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Admin</td>
+                                <td>Records, Org Tools, Setup Search</td>
+                                <td>Find metadata by API name, manage debug logs, custom labels, validate field values, move quickly through Setup.</td>
+                            </tr>
+                            <tr>
+                                <td>Developer</td>
+                                <td>SOQL, GraphQL, Metadata Explorer</td>
+                                <td>Query data, inspect flows and Apex, compare objects, use page overlays to jump from context into workspace.</td>
+                            </tr>
+                            <tr>
+                                <td>Support / Ops</td>
+                                <td>Show All Data, Sharing, Field History</td>
+                                <td>Triage record issues, verify user access, inspect values directly from a Salesforce page.</td>
+                            </tr>
+                            <tr>
+                                <td>Consultant / Trainer</td>
+                                <td>Launcher, Training Guide, Quiz</td>
+                                <td>Teach the surface model, guide first-use flows, reinforce learning with labs and quiz-based recall.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="guide-pill-row">
+                        <span class="guide-pill">Launcher for entry</span>
+                        <span class="guide-pill">Workspace for depth</span>
+                        <span class="guide-pill">Overlays for context</span>
+                        <span class="guide-pill">Quiz for retention</span>
+                    </div>
+                </section>
+
+                <section class="guide-card" id="daily-work">
+                    <h2>3. Daily Workflows to Teach First</h2>
+                    <ol>
+                        <li><strong>Find a record problem fast:</strong> open a record page, launch Show All Data, inspect fields, jump to Sharing or Field History, then open Records for deeper comparison.</li>
+                        <li><strong>Search metadata by API name:</strong> use Setup Search on any Salesforce page for quick discovery, then use Metadata Explorer in the workspace when you need broader results and follow-up actions.</li>
+                        <li><strong>Triage a failing automation:</strong> search the Flow by API name, open Debug Logs, run the record context through SOQL or Records, and capture the result path for the incident owner.</li>
+                        <li><strong>Translate or update labels safely:</strong> use Org Tools for export/import/translation workflows instead of doing repeated manual label edits.</li>
+                    </ol>
+                    <div class="guide-lab">
+                        <strong>UX coaching note:</strong> if a workflow needs scrolling through a big table, multiple result sets, or more than one decision, move to the workspace early instead of forcing users to stay in the popup.
+                    </div>
+                </section>
+
+                <section class="guide-card" id="labs">
+                    <h2>4. Hands-On Labs</h2>
+                    <p>These labs are designed for training sessions, onboarding, or self-study. Each one teaches both product navigation and Salesforce problem solving.</p>
+                    <div class="guide-lab">
+                        <strong>Lab A: Metadata Discovery</strong>
+                        <p>Search a Flow API name, Permission Set API name, and Record Type API name from Setup Search. Then repeat the same search in Metadata Explorer and compare which surface feels faster for discovery versus detail.</p>
+                    </div>
+                    <div class="guide-lab">
+                        <strong>Lab B: Page Context Triage</strong>
+                        <p>From a record page, use the context menu to open Show All Data, then open Field History or Sharing, and finally route into the workspace. The goal is to understand handoff between overlays and deep tools.</p>
+                    </div>
+                    <div class="guide-lab">
+                        <strong>Lab C: Safe Admin Work</strong>
+                        <p>Open Settings, verify inline edit protections for production orgs, then practice changing a harmless visual setting and using Save &amp; Apply. This teaches the difference between editing a setting and applying it across surfaces.</p>
+                    </div>
+                </section>
+
+                <section class="guide-card" id="trainer-notes">
+                    <h2>5. Trainer Notes</h2>
+                    <p>When users struggle, the issue is usually not feature depth. It is feature selection. The best coaching sequence is:</p>
+                    <ol>
+                        <li>Identify the user’s job to be done.</li>
+                        <li>Pick the correct surface first.</li>
+                        <li>Teach only the next two actions, not the whole product.</li>
+                        <li>Reinforce with one lab and one quiz round.</li>
+                    </ol>
+                    <div class="guide-highlight">
+                        <strong>Best practice:</strong> after training, ask users to explain when they would use <em>Setup Search</em> versus <em>Metadata Explorer</em>. If they can answer that clearly, they usually understand the broader product model too.
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <div class="site-footer-links">
+            <a href="index.html">Home</a>
+            <a href="quick-start-guide.html">Quick Start</a>
+            <a href="guide.html">Training Guide</a>
+            <a href="documentation.html">Docs</a>
+            <a href="quiz.html">Quiz</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+    </footer>
+</body>
+</html>
