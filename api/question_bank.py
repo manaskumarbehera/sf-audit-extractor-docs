@@ -438,7 +438,7 @@ QUESTIONS = [
         "q": "What keyboard shortcut opens the Command Palette?",
         "opts": ["Ctrl+P", "Ctrl+K / Cmd+K", "Ctrl+Shift+P", "Alt+Space"],
         "answer": 1,
-        "explanation": "<strong>Ctrl+K / Cmd+K</strong> opens the command palette with 13+ built-in commands.",
+        "explanation": "Use the popup or workspace header trigger or your saved shortcut to open the command palette. In popup mode, browsers may intercept <strong>Ctrl+K / Cmd+K</strong>.",
         "tags": ["general", "command-palette", "shortcuts"],
     },
     {
@@ -479,10 +479,10 @@ QUESTIONS = [
         "topic": "general",
         "difficulty": 1,
         "mode": ["quiz", "truefalse"],
-        "q": "What keyboard shortcut toggles the Show All Data panel on a Salesforce record page?",
-        "opts": ["Ctrl+Shift+S / Cmd+Shift+S", "Ctrl+Shift+X / ⌘+Shift+X", "Ctrl+K / Cmd+K", "Ctrl+D / Cmd+D"],
+        "q": "How do you add a keyboard shortcut for Show All Data on a Salesforce record page?",
+        "opts": ["Use the built-in Ctrl+Shift+S default", "Assign it in Settings > General", "It can only be opened from Salesforce Setup", "It is controlled from browser extension settings only"],
         "answer": 1,
-        "explanation": "<strong>Ctrl+Shift+X / ⌘+Shift+X</strong> toggles Show All Data. Ctrl+Shift+S is for the TF Sidebar, and Ctrl+K is for the Command Palette.",
+        "explanation": "Show All Data is a <strong>page action you can assign in Settings > General</strong>. The only built-in default shortcut is for the TF Sidebar.",
         "tags": ["general", "show-all-data", "shortcuts"],
     },
     {

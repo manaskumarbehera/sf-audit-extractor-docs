@@ -1,27 +1,49 @@
-TrackForcePro — Docs Guide
+TrackForcePro Docs Guide
 
-This folder contains the public-facing HTML documentation for TrackForcePro. Use this guide to keep docs in sync with releases.
+This Markdown file is the maintenance companion for the public docs in `docs/`.
 
-Files of interest
-- index.html — Landing / marketing page
-- quick-start-guide.html — Quick start for admins
-- documentation.html — Full feature documentation
-- help.html — FAQ / troubleshooting
-- privacy-policy.html — Privacy policy
+Core docs pages
+- `index.html` - landing page and product story
+- `quick-start-guide.html` - first-run onboarding
+- `guide.html` - trainer-facing learning path
+- `documentation.html` - feature reference
+- `help.html` - FAQ and troubleshooting
+- `quiz.html` - learner reinforcement
+- `privacy-policy.html` - legal and trust information
 
-Keeping docs in sync
-1. Bump version in `manifest.json`.
-2. Run the docs updater to propagate the version into HTML files:
+Current product model to teach
+- Launcher popup for quick entry
+- Workspace for deep tasks
+- In-page overlays for contextual Salesforce actions
 
-   node scripts/update-docs-version.js --changelog "Short description of changes"
+Command and search language rules
+- Do not teach `Ctrl/Cmd+K` as guaranteed inside popup mode.
+- Prefer: "Open the Command Palette from the header trigger or your shortcut; in popup mode the browser may intercept Ctrl/Cmd+K."
+- Distinguish clearly between:
+  - popup/workspace Command Palette
+  - Command Palette (Page)
+  - Setup Search (Page)
+  - Metadata Explorer in the workspace
 
-3. Review `docs/` files and `DOCUMENTATION/CHANGELOG.md` for release notes.
-4. Commit and push changes. Optionally run `npm run package` to build release zips.
+Shortcut documentation rules
+- Use `Settings > General` as the shortcut settings path.
+- Do not describe shortcuts as only a 3-action model.
+- Reflect the grouped shortcut model:
+  - main actions
+  - page actions
+  - workspace tabs
+  - Records tools
+  - Org Tools panels
 
-Quick note about v1.8.7
-- Small UI tweak: swapped positions for the Show All Data (green) and Setup Search (yellow) trigger buttons on record pages. See `content.js` for implementation details.
+Docs sync workflow
+1. Update `manifest.json` version if this is a release change.
+2. Run `node scripts/update-docs-version.js`.
+3. Review all docs language that mentions shortcuts, surfaces, or setup flows.
+4. Update `DOCUMENTATION/CHANGELOG.md` if the docs or training model changed materially.
 
-Contributing
-- When adding new docs pages, place them under `docs/` and update the navigation links in `docs/index.html` and `docs/documentation.html`.
-- Use the `scripts/update-docs-version.js` to keep version badges consistent.
-
+Trainer review checklist
+- Does the page teach the correct surface first?
+- Does it describe popup/workspace/page actions accurately?
+- Does shortcut guidance match the live Settings UI?
+- Does it avoid promising browser-intercepted shortcuts as guaranteed?
+- Does it help the user choose between Setup Search and Metadata Explorer?

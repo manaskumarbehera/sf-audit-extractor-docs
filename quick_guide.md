@@ -1,19 +1,31 @@
-Quick Guide — TrackForcePro
+Quick Guide - TrackForcePro
 
 Install
-1. Open the Chrome Web Store link and install TrackForcePro.
-2. After install, open the extension in the browser toolbar.
+1. Install TrackForcePro from the Chrome Web Store or Firefox Add-ons.
+2. Open a logged-in Salesforce tab.
+3. Open TrackForcePro from the browser toolbar.
 
-Basic Usage
-- Command Palette (⚡): Use the purple floating button or `Ctrl/Cmd+K` to open. Search tabs, commands, or paste a record ID to jump.
-- Show All Data (🔍): On any Salesforce record detail page, click the green floating blinker to open the All Fields panel.
-- Setup Search (🔧): Use the yellow floating button to quickly search Salesforce Setup pages.
+Use the right surface
+- Launcher popup: start fast, check org context, and open the right tool.
+- Workspace: use for deep work like SOQL, GraphQL, Records, Org Tools, and Settings.
+- Salesforce page overlays: use Show All Data, TF Sidebar, Command Palette (Page), and Setup Search when current page context matters.
 
-Tips
-- Toggle inline editing per-org from Settings → General.
-- Pin frequent records with the pin icon in the Records tab.
-- Use the SOQL Builder searchable object combobox for quick field selection.
+Command and search surfaces
+- Popup or workspace Command Palette: open it from the header trigger or your shortcut. In popup mode, the browser may intercept `Ctrl/Cmd+K`.
+- Command Palette (Page): use on Salesforce pages for context-aware actions.
+- Setup Search (Page): use on Salesforce pages to search Setup navigation and metadata by API name.
+- Metadata Explorer: use in the workspace when you need broader results and deeper follow-up actions.
+
+Shortcuts
+- Go to Settings -> General to customize shortcuts.
+- Shortcut groups include main actions, page actions, workspace tabs, Records tools, and Org Tools panels.
+- TF Sidebar defaults to `Ctrl/Cmd+Shift+S`.
+- Show All Data, Command Palette (Page), and Setup Search (Page) are available to assign even when no default is set.
+
+Daily wins
+- Find a flow or permission set by API name from Setup Search.
+- Inspect a record from the page with Show All Data.
+- Jump into workspace tools when the task becomes multi-step.
 
 Version
-- Current: v1.8.7 — includes a minor UI tweak swapping the green and yellow trigger positions.
-
+- Keep this file aligned with the version shown in `manifest.json` and the public docs pages.

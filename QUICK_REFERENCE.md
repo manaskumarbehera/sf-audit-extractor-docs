@@ -12,15 +12,17 @@
 | `server.js` | Node.js HTTP server (no external deps) |
 | `package.json` | Node.js configuration (v1.0.0, node >=20) |
 | `Procfile` | Heroku process specification |
-| `assets/styles.css` | Glassmorphism dark theme (367 lines) |
-| `assets/common.js` | Shared utilities (version switch, nav, YouTube embed) |
-| `landing.html` | Hero landing page (route: `/`) |
-| `index.html` | Documentation hub (route: `/docs`) |
+| `shared.css` | Shared docs design system and browser availability component |
+| `theme.js` | Shared theme toggling and page helpers |
+| `index.html` | Documentation hub / landing page |
 | `documentation.html` | Multi-version canonical docs |
-| `guide.html` | Visual guide with screenshots |
+| `guide.html` | Trainer-facing learning path |
+| `guide.md` | Docs maintenance guide and language rules |
 | `quick-start-guide.html` | Installation workflow |
+| `quick_guide.md` | Short maintainer and user quick reference |
 | `help.html` | FAQ & troubleshooting |
 | `quiz.html` | Interactive learning app |
+| `leaderboard.html` | Quiz ranking page |
 | `privacy-policy.html` | Legal document |
 
 ## Local Development
@@ -30,10 +32,10 @@
 node server.js
 # Open http://localhost:3000
 
-# No build step needed - edit and refresh!
+# No build step needed - edit and refresh
 # HTML: edit .html files
-# CSS: modify assets/styles.css
-# JS: update assets/common.js
+# CSS: modify shared.css
+# JS: update theme.js or page-local scripts when needed
 \`\`\`
 
 ## Deploy to Heroku
@@ -56,7 +58,7 @@ heroku logs --tail --app trackforcepro
 - **Runtime**: Node.js 24.14.0 LTS (Heroku)
 - **Region**: EU (heroku-24 stack)
 - **Frontend**: Vanilla HTML5 + CSS + JavaScript
-- **Design**: Glassmorphism, dark Salesforce blue, responsive
+- **Design**: Shared docs system, Salesforce-inspired surfaces, responsive layout
 - **State**: Browser localStorage only (quiz app)
 - **Dependencies**: Zero external npm packages
 
@@ -79,15 +81,17 @@ heroku logs --tail --app trackforcepro
 
 ## Critical Patterns
 
-### Multi-Version Docs
-- Add `<option value="X.Y.Z">` in dropdown
-- Add `<div id="content-X.Y.Z">` content block
-- Update version strings everywhere (index, docs, footer)
+### Version Sync
+- `manifest.json` is the version source of truth
+- Run `node scripts/update-docs-version.js`
+- Update docs copy and `DOCUMENTATION/CHANGELOG.md` when release messaging changes
 
 ### Cross-Page Consistency
 - Navigation hardcoded per page
 - Favicon IDs: `fav32`, `fav16`, `favshort`
 - External links: keep URLs consistent
+- Keep the 3-surface language consistent: launcher, workspace, overlays
+- Keep command/search surfaces distinct: popup/workspace Command Palette, Command Palette (Page), Setup Search (Page), Metadata Explorer
 
 ### Quiz App (quiz.html)
 - Global state, mode-specific
@@ -100,8 +104,8 @@ The repo is synced from a private repository. If files are removed during sync, 
 
 1. Checking git history: `git show <commit>:<filepath>`
 2. Re-creating files with correct specs
-3. Committing: `git add . && git commit -m "restore: ..."`
-4. Pushing: `git push origin main && git push heroku main`
+3. Re-creating files with current docs patterns
+4. Re-testing local docs behavior before any commit or deploy
 
 ## Troubleshooting
 

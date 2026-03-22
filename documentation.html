@@ -834,7 +834,7 @@
 
             <h3>General</h3>
             <div class="highlight">
-                <strong>Configurable Keyboard Shortcuts:</strong> Click-to-record interface for three actions — Toggle Sidebar, Toggle Show All Data, and Command Palette. Each shortcut supports Ctrl, Shift, Alt, and Meta modifiers. Reset individual shortcuts to defaults with one click. Display is platform-aware (Mac shows ⌘, Windows shows Ctrl).
+                <strong>Configurable Keyboard Shortcuts:</strong> Settings &gt; General now supports click-to-record shortcuts across multiple groups: main actions, page actions, workspace tabs, Records tools, and Org Tools panels. Each shortcut supports Ctrl, Shift, Alt, and Meta modifiers. Reset individual shortcuts to defaults with one click. Display is platform-aware (Mac shows ⌘, Windows shows Ctrl).
             </div>
 
             <h3>Sidebar</h3>
@@ -971,14 +971,14 @@
         <div class="section" id="command-palette">
             <h2><span class="emoji">⌨️</span> Command Palette</h2>
             <p class="section-intro">
-                A global command search accessible from the extension popup. Press <kbd>Ctrl</kbd>+<kbd>K</kbd> (or <kbd>Cmd</kbd>+<kbd>K</kbd>) to open, type to search across all tabs and features, and execute commands instantly.
+                A global command search accessible from the extension popup and workspace. Open it from the header trigger or your saved shortcut, type to search across tabs and features, and execute commands instantly. In popup mode, the browser may intercept <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd>.
             </p>
 
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
                         <h4>Open the Palette</h4>
-                        <p>Press <kbd>Ctrl</kbd>+<kbd>K</kbd> from the extension popup. A search overlay appears.</p>
+                        <p>Click the header trigger or use your saved shortcut from the extension popup or workspace. In popup mode, treat <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> as optional rather than guaranteed.</p>
                     </div>
                 </div>
                 <div class="step">
@@ -1002,7 +1002,7 @@
             </div>
 
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> The Command Palette is the fastest way to navigate TrackForcePro — memorise <kbd>Ctrl</kbd>+<kbd>K</kbd> and you'll never need to click through tabs again.
+                <strong>💡 Pro Tip:</strong> Use the popup/workspace Command Palette for cross-feature navigation, the page Command Palette for page-aware actions, and Setup Search for setup-plus-metadata discovery on Salesforce pages.
             </div>
         </div>
 
@@ -1045,10 +1045,13 @@
                 <thead><tr><th>Default Shortcut</th><th>Action</th><th>Where</th></tr></thead>
                 <tbody>
                     <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Toggle TF Sidebar</td><td>Any Salesforce page</td></tr>
-                    <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></td><td>Toggle Show All Data</td><td>Record pages</td></tr>
-                    <tr><td><kbd>Ctrl</kbd>+<kbd>K</kbd></td><td>Open Command Palette</td><td>Extension popup</td></tr>
+                    <tr><td>Not assigned by default</td><td>Toggle Show All Data</td><td>Record pages</td></tr>
+                    <tr><td><kbd>Ctrl</kbd>+<kbd>K</kbd> / <kbd>Cmd</kbd>+<kbd>K</kbd> or custom</td><td>Open popup/workspace Command Palette</td><td>Extension UI; browser may intercept in popup mode</td></tr>
+                    <tr><td>Not assigned by default</td><td>Open Command Palette (Page)</td><td>Any Salesforce page</td></tr>
+                    <tr><td>Not assigned by default</td><td>Open Setup Search (Page)</td><td>Any Salesforce page</td></tr>
                 </tbody>
             </table>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 10px;">Additional shortcut groups in <strong>Settings &gt; General</strong> cover workspace tabs, Records tools, and Org Tools panels.</p>
 
             <h3>Fixed Shortcuts</h3>
             <table class="site-table" style="margin: 16px 0;">
