@@ -18,9 +18,9 @@ Current product model to teach
 
 Command and search language rules
 - Do not teach `Ctrl/Cmd+K` as guaranteed inside popup mode.
-- Prefer: "Open the Command Palette from the header trigger or your shortcut; in popup mode the browser may intercept Ctrl/Cmd+K."
+- Prefer: "Open the Command Palette from the header trigger or your shortcut; in launcher popup mode the browser may intercept Ctrl/Cmd+K."
 - Distinguish clearly between:
-  - popup/workspace Command Palette
+  - launcher/workspace Command Palette
   - Command Palette (Page)
   - Setup Search (Page)
   - Metadata Explorer in the workspace

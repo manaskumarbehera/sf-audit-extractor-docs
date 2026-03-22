@@ -11,7 +11,7 @@ Use the right surface
 - Salesforce page overlays: use Show All Data, TF Sidebar, Command Palette (Page), and Setup Search when current page context matters.
 
 Command and search surfaces
-- Popup or workspace Command Palette: open it from the header trigger or your shortcut. In popup mode, the browser may intercept `Ctrl/Cmd+K`.
+- Launcher or workspace Command Palette: open it from the header trigger or your shortcut. In launcher popup mode, the browser may intercept `Ctrl/Cmd+K`.
 - Command Palette (Page): use on Salesforce pages for context-aware actions.
 - Setup Search (Page): use on Salesforce pages to search Setup navigation and metadata by API name.
 - Metadata Explorer: use in the workspace when you need broader results and deeper follow-up actions.

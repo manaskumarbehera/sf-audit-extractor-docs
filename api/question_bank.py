@@ -435,10 +435,10 @@ QUESTIONS = [
         "topic": "general",
         "difficulty": 1,
         "mode": ["quiz"],
-        "q": "What keyboard shortcut opens the Command Palette?",
-        "opts": ["Ctrl+P", "Ctrl+K / Cmd+K", "Ctrl+Shift+P", "Alt+Space"],
-        "answer": 1,
-        "explanation": "Use the popup or workspace header trigger or your saved shortcut to open the command palette. In popup mode, browsers may intercept <strong>Ctrl+K / Cmd+K</strong>.",
+        "q": "What is the most reliable way to open the launcher/workspace Command Palette?",
+        "opts": ["Use the header trigger or your saved shortcut", "Right-click anywhere on the page", "Press Ctrl+Shift+S", "It only opens from Setup Search"],
+        "answer": 0,
+        "explanation": "Use the <strong>header trigger or your saved shortcut</strong> to open the launcher/workspace Command Palette. In launcher popup mode, browsers may intercept <strong>Ctrl+K / Cmd+K</strong>, so the trigger is the dependable option.",
         "tags": ["general", "command-palette", "shortcuts"],
     },
     {
@@ -544,22 +544,22 @@ QUESTIONS = [
 # fmt: on
 
 
-def get_questions_by_topic(topic: str) -> list:
+def get_questions_by_topic(topic):
     """Get all questions for a specific topic."""
     return [q for q in QUESTIONS if q["topic"] == topic]
 
 
-def get_questions_by_difficulty(difficulty: int) -> list:
+def get_questions_by_difficulty(difficulty):
     """Get all questions at a specific difficulty level."""
     return [q for q in QUESTIONS if q["difficulty"] == difficulty]
 
 
-def get_questions_by_mode(mode: str) -> list:
+def get_questions_by_mode(mode):
     """Get all questions compatible with a game mode."""
     return [q for q in QUESTIONS if mode in q["mode"]]
 
 
-def get_question_by_id(qid: str):
+def get_question_by_id(qid):
     """Get a single question by ID."""
     for q in QUESTIONS:
         if q["id"] == qid:

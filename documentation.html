@@ -267,8 +267,8 @@
             <img src="../icons/Icon-32.png" alt="TrackForcePro" class="logo">
             Documentation
         </h1>
-        <span class="version-badge">v1.8.8</span>
-        <div style="margin-top:6px; font-size:0.95rem; color:var(--text-secondary);">What's new: settings architecture cleanup, broader metadata search, and a new role-based training guide.</div>
+        <span class="version-badge">v1.8.9</span>
+        <div style="margin-top:6px; font-size:0.95rem; color:var(--text-secondary);">What's new: SOQL Builder can now hand off supported queries into GraphQL Builder, including richer relationship translation, top-level OR handling, and safer advanced-query guardrails.</div>
     </div>
 
     <div class="content">
@@ -971,26 +971,26 @@
         <div class="section" id="command-palette">
             <h2><span class="emoji">⌨️</span> Command Palette</h2>
             <p class="section-intro">
-                A global command search accessible from the extension popup and workspace. Open it from the header trigger or your saved shortcut, type to search across tabs and features, and execute commands instantly. In popup mode, the browser may intercept <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd>.
+                TrackForcePro uses <strong>two Command Palettes</strong>. The <strong>launcher/workspace Command Palette</strong> is for cross-feature navigation inside the extension, while <strong>Command Palette (Page)</strong> is for page-aware actions on Salesforce pages. Setup Search is a separate page tool for Setup navigation plus metadata discovery.
             </p>
 
             <div class="steps">
                 <div class="step">
                     <div class="step-content">
-                        <h4>Open the Palette</h4>
-                        <p>Click the header trigger or use your saved shortcut from the extension popup or workspace. In popup mode, treat <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> as optional rather than guaranteed.</p>
+                        <h4>Open the Launcher/Workspace Palette</h4>
+                        <p>Click the header trigger or use your saved shortcut from the launcher or workspace. In launcher popup mode, treat <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> as optional rather than guaranteed because the browser may intercept it first.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-content">
                         <h4>Search Commands</h4>
-                        <p>Type to search: "Audit," "SOQL," "Show All Data," "Security," "Login As," "Limits," etc. Matching commands appear instantly. 13+ built-in commands cover all tabs and major features.</p>
+                        <p>Type to search: "Audit," "SOQL," "Security," "Login As," "Limits," and more. Matching commands appear instantly and route you into the right workspace area.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-content">
                         <h4>Navigate &amp; Execute</h4>
-                        <p>Use arrow keys to move between results. Press <kbd>Enter</kbd> to execute the selected command. Press <kbd>Esc</kbd> to close.</p>
+                        <p>Use arrow keys to move between results. Press <kbd>Enter</kbd> to execute the selected command. Press <kbd>Esc</kbd> to close. On Salesforce pages, use <strong>Command Palette (Page)</strong> when page context matters.</p>
                     </div>
                 </div>
                 <div class="step">
@@ -1002,7 +1002,7 @@
             </div>
 
             <div class="site-tip">
-                <strong>💡 Pro Tip:</strong> Use the popup/workspace Command Palette for cross-feature navigation, the page Command Palette for page-aware actions, and Setup Search for setup-plus-metadata discovery on Salesforce pages.
+                <strong>💡 Pro Tip:</strong> Think of the surfaces this way: <strong>launcher/workspace Command Palette</strong> for navigating the app, <strong>Command Palette (Page)</strong> for page-aware actions, and <strong>Setup Search (Page)</strong> for setup-plus-metadata discovery.
             </div>
         </div>
 
@@ -1045,13 +1045,13 @@
                 <thead><tr><th>Default Shortcut</th><th>Action</th><th>Where</th></tr></thead>
                 <tbody>
                     <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Toggle TF Sidebar</td><td>Any Salesforce page</td></tr>
-                    <tr><td>Not assigned by default</td><td>Toggle Show All Data</td><td>Record pages</td></tr>
-                    <tr><td><kbd>Ctrl</kbd>+<kbd>K</kbd> / <kbd>Cmd</kbd>+<kbd>K</kbd> or custom</td><td>Open popup/workspace Command Palette</td><td>Extension UI; browser may intercept in popup mode</td></tr>
+                    <tr><td>Not assigned by default</td><td>Toggle Show All Data</td><td>Record pages; assign it in Settings &gt; General if you want keyboard access</td></tr>
+                    <tr><td>Header trigger or assigned shortcut</td><td>Open launcher/workspace Command Palette</td><td>Extension UI; browser may intercept <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> in launcher popup mode</td></tr>
                     <tr><td>Not assigned by default</td><td>Open Command Palette (Page)</td><td>Any Salesforce page</td></tr>
                     <tr><td>Not assigned by default</td><td>Open Setup Search (Page)</td><td>Any Salesforce page</td></tr>
                 </tbody>
             </table>
-            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 10px;">Additional shortcut groups in <strong>Settings &gt; General</strong> cover workspace tabs, Records tools, and Org Tools panels.</p>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 10px;">Additional shortcut groups in <strong>Settings &gt; General</strong> cover workspace tabs, Records tools, Org Tools panels, and page actions.</p>
 
             <h3>Fixed Shortcuts</h3>
             <table class="site-table" style="margin: 16px 0;">

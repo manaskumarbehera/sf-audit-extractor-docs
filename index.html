@@ -138,7 +138,7 @@
             </div>
         </div>
             <div style="margin-top: 12px;">
-            <span class="site-version-badge">v1.8.8</span>
+            <span class="site-version-badge">v1.8.9</span>
         </div>
     </div>
 
@@ -267,8 +267,8 @@
                     <p>Floating inspector on every record page: see all fields (including hidden), search, edit inline, navigate lookups</p>
                 </div>
                 <div class="site-feature-item animate-in">
-                    <h4>🧭 TF Sidebar &amp; Command Palette</h4>
-                    <p>Floating sidebar for page shortcuts plus a separate popup/workspace Command Palette for cross-feature navigation. Use the page Command Palette when Salesforce page context matters.</p>
+                    <h4>🧭 TF Sidebar &amp; Command Palettes</h4>
+                    <p>Floating sidebar for page shortcuts, a launcher/workspace Command Palette for cross-feature navigation, and a separate Command Palette (Page) for page-aware Salesforce actions. Use Setup Search when you want setup navigation plus metadata search.</p>
                 </div>
                 <div class="site-feature-item animate-in">
                     <h4>🗂️ Setup Search &amp; Metadata Search</h4>
@@ -281,7 +281,14 @@
         <div class="site-section site-changelog" style="margin-top: 36px;">
             <h2 class="site-section-title">What's New</h2>
 
-            <h4>v1.8.8 — March 21, 2026 (Latest)</h4>
+            <h4>v1.8.9 — March 22, 2026 (Latest)</h4>
+            <ul>
+                <li><strong>SOQL to GraphQL handoff</strong> — the SOQL Builder now includes a <em>To GraphQL</em> action that converts supported SOQL into editable GraphQL Builder state.</li>
+                <li><strong>Richer relationship conversion</strong> — parent lookups, multiple child subqueries, child filters, ordering, limits, and pure top-level <code>OR</code> logic now carry across more accurately.</li>
+                <li><strong>Stronger regression coverage</strong> — release hardening added tests for nested boolean-group rejection, null comparisons, multi-subquery handoff, and child relationship operator parsing.</li>
+            </ul>
+
+            <h4>v1.8.8 — March 21, 2026</h4>
             <ul>
                 <li><strong>Settings architecture refactor</strong> — the first shared settings schema/service is now in place, starting with Sidebar panel settings for a more consistent Save &amp; Apply model.</li>
                 <li><strong>Metadata search improvements</strong> — Setup Search and Metadata Explorer now support broader API-name discovery, especially for flows and security-related metadata.</li>

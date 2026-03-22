@@ -91,7 +91,7 @@ heroku logs --tail --app trackforcepro
 - Favicon IDs: `fav32`, `fav16`, `favshort`
 - External links: keep URLs consistent
 - Keep the 3-surface language consistent: launcher, workspace, overlays
-- Keep command/search surfaces distinct: popup/workspace Command Palette, Command Palette (Page), Setup Search (Page), Metadata Explorer
+- Keep command/search surfaces distinct: launcher/workspace Command Palette, Command Palette (Page), Setup Search (Page), Metadata Explorer
 
 ### Quiz App (quiz.html)
 - Global state, mode-specific
