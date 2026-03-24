@@ -16,6 +16,17 @@ Current product model to teach
 - Workspace for deep tasks
 - In-page overlays for contextual Salesforce actions
 
+LWC Explorer guidance
+- Teach LWC Explorer as a page troubleshooting tool, not as raw framework noise.
+- Use the live trace categories exactly as shown in product:
+  - Apex
+  - UI API
+  - GraphQL
+  - Fetch/API
+  - Errors
+- Explain that `Edit Code` and `Edit Apex` open the large in-overlay editor window directly from the explorer.
+- Keep screenshots and walkthroughs consistent with the branded TrackForcePro headers used in the LWC Explorer, command palettes, and workspace surfaces.
+
 Command and search language rules
 - Do not teach `Ctrl/Cmd+K` as guaranteed inside popup mode.
 - Prefer: "Open the Command Palette from the header trigger or your shortcut; in launcher popup mode the browser may intercept Ctrl/Cmd+K."

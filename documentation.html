@@ -267,8 +267,8 @@
             <img src="../icons/Icon-32.png" alt="TrackForcePro" class="logo">
             Documentation
         </h1>
-        <span class="version-badge">v1.9.3</span>
-        <div style="margin-top:6px; font-size:0.95rem; color:var(--text-secondary);">What's new: SOQL Builder can now hand off supported queries into GraphQL Builder, including richer relationship translation, top-level OR handling, and safer advanced-query guardrails.</div>
+        <span class="version-badge">v1.9.4</span>
+        <div style="margin-top:6px; font-size:0.95rem; color:var(--text-secondary);">What's new: LWC Explorer now separates imperative Apex, UI API, GraphQL, and Fetch/API traces, and both edit actions open the large in-page editor window.</div>
     </div>
 
     <div class="content">
@@ -291,6 +291,7 @@
                 <div class="toc-divider"></div>
                 <a href="#show-all-data"><span class="toc-emoji">👁️</span> Show All Data (On-Page)</a>
                 <a href="#sidebar"><span class="toc-emoji">🧭</span> TF Sidebar</a>
+                <a href="#lwc-explorer"><span class="toc-emoji">🧩</span> LWC Explorer</a>
                 <a href="#command-palette"><span class="toc-emoji">⌨️</span> Command Palette</a>
                 <a href="#context-menu"><span class="toc-emoji">🖱️</span> Context Menu</a>
                 <a href="#keyboard-shortcuts"><span class="toc-emoji">🎹</span> Keyboard Shortcuts</a>
@@ -961,6 +962,48 @@
 
             <div class="site-tip">
                 <strong>💡 Pro Tip:</strong> The sidebar persists through Salesforce SPA navigation — it stays visible as you move between pages without reloading.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- LWC EXPLORER -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="lwc-explorer">
+            <h2><span class="emoji">🧩</span> LWC Explorer</h2>
+            <p class="section-intro">
+                A page-side troubleshooting overlay for Lightning pages. Inspect the custom component tree, highlight components in place, review categorized request traces, and open LWC or Apex code without leaving the page.
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Scan the Page</h4>
+                        <p>Open LWC Explorer from the sidebar or your assigned shortcut. The tree focuses on custom Lightning components and keeps the inspection row intentionally simple: component name, copy, and <em>Highlight on page</em>.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Review Real Source Categories</h4>
+                        <p>Use the filter chips to separate <strong>Apex</strong>, <strong>UI API</strong>, <strong>GraphQL</strong>, <strong>Fetch/API</strong>, and <strong>Errors</strong>. Only imperative calls imported from <code>@salesforce/apex</code> are shown as Apex, which prevents framework noise from being mislabeled.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Inspect Payloads Faster</h4>
+                        <p>Each entry shows the component, source type, class or module, method or operation, inputs, response, errors, duration, and timestamp. UI API and GraphQL traces prioritize the simplified primary payload first so admins can read the result quickly.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Edit From the Explorer</h4>
+                        <p>Use <em>Edit Code</em> for the selected LWC bundle or <em>Edit Apex</em> from an Apex trace. Both actions open the large TrackForcePro editor window directly inside the explorer so you can save changes without context switching.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> If a page issue is unclear, compare one Apex trace with one UI API or GraphQL trace from the same component before changing code. The category split usually shows whether the problem is server logic, data adapter behavior, or a client-side fetch path.
             </div>
         </div>
 

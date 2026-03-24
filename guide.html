@@ -118,7 +118,7 @@
         <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
         <h1>Training Guide</h1>
         <p>Learn TrackForcePro like a Salesforce admin coach would teach it: start with the right surface, use the right workflow, and build confidence with practice labs.</p>
-        <span class="version-badge">Version 1.9.3</span>
+        <span class="version-badge">Version 1.9.4</span>
     </div>
 
     <div class="guide-shell">
@@ -147,7 +147,7 @@
                         </div>
                         <div class="guide-surface">
                             <h3>In-Page Overlays</h3>
-                            <p>Use these on Salesforce pages when the current page context matters. This includes TF Sidebar, Show All Data, right-click actions, and Setup Search.</p>
+                            <p>Use these on Salesforce pages when the current page context matters. This includes TF Sidebar, Show All Data, LWC Explorer, right-click actions, and Setup Search.</p>
                         </div>
                     </div>
                     <div class="guide-highlight">
@@ -202,6 +202,7 @@
                     <ol>
                         <li><strong>Find a record problem fast:</strong> open a record page, launch Show All Data, inspect fields, jump to Sharing or Field History, then open Records for deeper comparison.</li>
                         <li><strong>Search metadata by API name:</strong> use Setup Search on any Salesforce page for quick discovery, then use Metadata Explorer in the workspace when you need broader results and follow-up actions.</li>
+                        <li><strong>Inspect a broken page component:</strong> open LWC Explorer from the page, select the component, separate Apex vs UI API vs GraphQL traffic, then use the large editor window to jump straight into the LWC bundle or Apex class.</li>
                         <li><strong>Triage a failing automation:</strong> search the Flow by API name, open Debug Logs, run the record context through SOQL or Records, and capture the result path for the incident owner.</li>
                         <li><strong>Translate or update labels safely:</strong> use Org Tools for export/import/translation workflows instead of doing repeated manual label edits.</li>
                     </ol>
@@ -225,6 +226,10 @@
                         <strong>Lab C: Safe Admin Work</strong>
                         <p>Open Settings, verify inline edit protections for production orgs, then practice changing a harmless visual setting and using Save &amp; Apply. This teaches the difference between editing a setting and applying it across surfaces.</p>
                     </div>
+                    <div class="guide-lab">
+                        <strong>Lab D: LWC Troubleshooting</strong>
+                        <p>Open a Salesforce page with custom components, launch LWC Explorer, compare one imperative Apex call with one UI API or GraphQL request, and practice opening both <em>Edit Code</em> and <em>Edit Apex</em> in the large editor window.</p>
+                    </div>
                 </section>
 
                 <section class="guide-card" id="trainer-notes">
@@ -237,7 +242,7 @@
                         <li>Reinforce with one lab and one quiz round.</li>
                     </ol>
                     <div class="guide-highlight">
-                        <strong>Best practice:</strong> after training, ask users to explain when they would use <em>Setup Search</em> versus <em>Metadata Explorer</em>. If they can answer that clearly, they usually understand the broader product model too.
+                        <strong>Best practice:</strong> after training, ask users to explain when they would use <em>Setup Search</em> versus <em>Metadata Explorer</em>, and when they would use <em>LWC Explorer</em> instead of guessing from browser network noise. If they can answer that clearly, they usually understand the broader product model too.
                     </div>
                 </section>
             </main>
