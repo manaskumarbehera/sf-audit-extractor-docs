@@ -145,6 +145,17 @@ These appear in footer, hero CTAs, and help pages; update all occurrences if URL
 
 ## Release History
 
+### v1.9.7 — March 25, 2026
+
+Virtualized SOQL results, compact toolbar, pop-out window, and suggestion engine fixes.
+
+- **Virtualized result table**: New `SoqlVirtualTable` engine renders only visible rows for smooth 1000+ row × 50+ column performance. Three density modes, column pinning, per-column filtering, global search, Smart View, full-screen, and Focus mode.
+- **Compact toolbar**: 30px icon-based `SoqlResultToolbar` replaces old text action bar with density selector, export dropdown (JSON/CSV/TSV), and pop-out button.
+- **Pop-out results**: `result_viewer.html` opens SOQL results in a dedicated browser window with full toolbar/virtual table support via `chrome.storage.session`.
+- **6 suggestion bug fixes**: Stale dropdown after execution, wrong-context insertion, unreachable subquery FROM, incorrect FROM extraction in subqueries, async race condition, and dropdown persistence during filter editing.
+- **Files changed**: `scripts/soql/soql_virtual_table.js` (NEW), `scripts/soql/soql_result_toolbar.js` (NEW), `result_viewer.html` (NEW), `soql_helper.js`, `popup.css`, `build.sh`, `tests/soql_subquery_and_suggest.test.js`
+- **Tests**: 90 suites, 3,867+ tests passing, zero lint warnings.
+
 ### v1.9.6 — March 25, 2026
 
 LMS Explorer redesign, beta phase launch, and stability improvements.
