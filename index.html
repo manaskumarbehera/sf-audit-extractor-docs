@@ -138,7 +138,7 @@
             </div>
         </div>
             <div style="margin-top: 12px;">
-            <span class="site-version-badge">v1.9.5</span>
+            <span class="site-version-badge">v1.9.6</span>
         </div>
     </div>
 
@@ -281,7 +281,24 @@
         <div class="site-section site-changelog" style="margin-top: 36px;">
             <h2 class="site-section-title">What's New</h2>
 
-            <h4>v1.9.4 — March 24, 2026 (Latest)</h4>
+            <h4>v1.9.6 — March 25, 2026 (Latest)</h4>
+            <ul>
+                <li><strong>LMS Explorer redesigned</strong> — channels now appear in the tree pane and selecting one shows its schema, publish form, and activity feed in the detail pane, matching how components work. The old three-panel layout that was too wide has been replaced.</li>
+                <li><strong>LMS Beta phase</strong> — a purple "Beta" badge on the LMS pill, network filter, and an informational banner in the detail pane signals that LMS support is still being refined.</li>
+                <li><strong>Smarter empty states</strong> — the detail pane now shows "Select a channel" or "No channels loaded" instead of the generic "No component selected" when browsing LMS.</li>
+                <li><strong>Readability fix</strong> — long trace payloads no longer stretch the response panel beyond its container.</li>
+                <li><strong>Stability fix</strong> — resolved "Extension context invalidated" console errors that appeared after reloading the extension while a Salesforce tab was open.</li>
+            </ul>
+
+            <h4>v1.9.5 — March 25, 2026</h4>
+            <ul>
+                <li><strong>LMS bridge rewrite</strong> — publish now works on live Salesforce pages via real Aura <code>$A</code> framework integration with four priority strategies.</li>
+                <li><strong>LWC Explorer live mode</strong> — 3-second trace polling, labeled Scan/Live buttons, clear traces, and persistent dock mode.</li>
+                <li><strong>SOQL relationship links</strong> — dot-notation fields like <code>Account.Name</code> render as clickable links with Copy Value action.</li>
+                <li><strong>Two-row header</strong> — tab bar now scrolls horizontally, preventing label overlap on narrow viewports.</li>
+            </ul>
+
+            <h4>v1.9.4 — March 24, 2026</h4>
             <ul>
                 <li><strong>Smarter LWC Explorer traces</strong> — page traffic is now separated into real imperative Apex, UI API, GraphQL, and Fetch/API so non-Apex framework noise no longer shows up as Apex.</li>
                 <li><strong>Large in-page code editor</strong> — both <em>Edit Code</em> and <em>Edit Apex</em> now open the full-sized editor window directly from the explorer.</li>
