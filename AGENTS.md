@@ -143,6 +143,31 @@ node server.js
 
 These appear in footer, hero CTAs, and help pages; update all occurrences if URL changes.
 
+## Release History
+
+### v1.9.6 — March 25, 2026
+
+LMS Explorer redesign, beta phase launch, and stability improvements.
+
+- **LMS detail pane architecture**: Channels render in the tree pane; selecting a channel shows schema, publish, and activity in the detail pane (same pattern as component selection). Replaces the old three-panel layout that was too wide.
+- **LMS Beta badge & banner**: Purple "Beta" badge on LMS type pill and network filter; informational banner at top of LMS detail pane.
+- **Network detail overflow fix**: Response panel no longer stretches when trace payloads contain long lines.
+- **Extension context invalidated fix**: Inner try-catch in storage callbacks prevents uncaught errors after extension reload.
+- **Files changed**: `content.js`, `manifest.json`, `CLAUDE.md`, `AGENTS.md`, `DOCUMENTATION/CHANGELOG.md`, `DOCUMENTATION/RELEASE_NOTES_v1.9.6.md`, `docs/index.html`
+- **Tests**: 90 suites, 3,867 tests passing, zero lint warnings.
+
+### v1.9.5 — March 25, 2026
+
+LMS bridge rewrite, LWC Explorer live mode, SOQL relationship links, two-row header.
+
+### v1.9.4 — March 24, 2026
+
+LWC Explorer trace classification, large in-page editor, branded surfaces.
+
+### v1.9.3 — March 24, 2026
+
+Patch release: version sync, Edge submission artifacts, SOQL robustness.
+
 ## Known Limitations & Trade-Offs
 
 - **No database**: All user quiz data is localStorage (lost on browser clear)
