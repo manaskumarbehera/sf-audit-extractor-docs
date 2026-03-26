@@ -1493,6 +1493,12 @@ const quizQuestions = [
         explanation: "Inline edit lets you <strong>edit query results directly in the table</strong>. Each cell becomes editable, and changes are saved back to Salesforce. You can even delete rows!"
     },
     {
+        q: "What can you do with the REST Explorer tab?",
+        opts: ["Only view API documentation", "Send REST requests, save collections, chain calls, and import cURL commands", "Only run SOQL queries", "Only view response headers"],
+        answer: 1,
+        explanation: "REST Explorer is a full API workbench: <strong>send any Salesforce REST request</strong>, organise requests into collections, chain multiple calls together, use environment variables, and import/export cURL commands."
+    },
+    {
         q: "Which browsers does TrackForcePro currently support?",
         opts: ["Chrome and Firefox", "Chrome only", "Chrome, Edge, and Safari", "Firefox only"],
         answer: 0,
@@ -1719,6 +1725,7 @@ const matchPairs = [
     { feature: "🎨 Favicon Manager", desc: "Custom org icons with shapes, colors, and labels" },
     { feature: "🔐 Security Manager", desc: "Browse Profiles, Permission Sets, and PS Groups" },
     { feature: "🔬 Record Scanner", desc: "Field history, FLS analysis, and record comparison" },
+    { feature: "⚡ REST Explorer", desc: "Send API requests with collections, chain mode, and cURL import" },
     { feature: "📡 Platform Events", desc: "Real-time event streaming and test event publishing" },
     { feature: "🏢 Org Tools", desc: "Login As, Custom Labels, Deployments, Debug Logs" },
     { feature: "👥 User Manager", desc: "Permission Matrix, Sessions, Freeze, Bulk Update" },
@@ -1746,6 +1753,7 @@ const speedQuestions = [
     { icon: "🧭", feature: "TF Sidebar location?", opts: ["Top-left", "Right edge", "Center", "Top-right"], answer: 1 },
     { icon: "📊", feature: "SOQL result editing?", opts: ["Copy only", "Inline Edit", "Download only", "Read-only"], answer: 1 },
     { icon: "🔗", feature: "GraphQL Builder features?", opts: ["Plain text only", "Syntax highlighting + autocomplete", "Copy-paste only", "No editor"], answer: 1 },
+    { icon: "⚡", feature: "REST Explorer supports?", opts: ["GET only", "Collections + chain mode + cURL", "POST only", "No history"], answer: 1 },
     { icon: "📡", feature: "Platform Events can?", opts: ["View definitions only", "Export logs only", "Stream + publish events", "Create event types"], answer: 2 },
     { icon: "🎨", feature: "Favicon shapes?", opts: ["2", "4", "8", "10"], answer: 2 },
     { icon: "🔬", feature: "Record Scanner modes?", opts: ["1", "2", "3", "5"], answer: 2 },
@@ -1883,6 +1891,11 @@ const trueFalseQuestions = [
         statement: "TrackForcePro allows opening multiple windows for the same Salesforce org.",
         answer: false,
         explanation: "False! Single-instance enforcement means <strong>one window per org</strong> — duplicates are prevented and the existing window is focused instead."
+    },
+    {
+        statement: "The REST Explorer tab is visible by default for all new installations.",
+        answer: true,
+        explanation: "Correct! REST Explorer is <strong>enabled by default</strong> in the workspace tab bar. Users can hide it via Settings if they prefer."
     },
     {
         statement: "The Freeze feature in User Manager permanently deletes a user account.",
@@ -2613,6 +2626,7 @@ const typeRaceQuestions = [
 const survivalQuestions = [
     { q: "Where does the TF Sidebar button appear?", opts: ["Top-left", "Right edge", "Center", "Toolbar"], answer: 1 },
     { q: "What features does the GraphQL Builder offer?", opts: ["Plain text only", "Syntax highlighting + autocomplete", "Copy-paste only", "No editor"], answer: 1 },
+    { q: "REST Explorer supports which features?", opts: ["GET requests only", "Collections, chain mode, cURL, and env vars", "Response viewing only", "No history"], answer: 1 },
     { q: "Can Platform Events be monitored in real-time?", opts: ["No", "Yes — stream and publish", "Export only", "View definitions only"], answer: 1 },
     { q: "How is cached data isolated?", opts: ["By user", "By org", "By browser", "Not isolated"], answer: 1 },
     { q: "How many favicon shapes are available?", opts: ["3", "6", "8", "12"], answer: 2 },

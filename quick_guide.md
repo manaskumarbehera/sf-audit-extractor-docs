@@ -7,7 +7,7 @@ Install
 
 Use the right surface
 - Launcher popup: start fast, check org context, and open the right tool.
-- Workspace: use for deep work like SOQL, GraphQL, Records, Org Tools, and Settings.
+- Workspace: use for deep work like SOQL, GraphQL, REST Explorer, Records, Org Tools, and Settings.
 - Salesforce page overlays: use Show All Data, TF Sidebar, Command Palette (Page), and Setup Search when current page context matters.
 
 Command and search surfaces
@@ -25,6 +25,7 @@ Shortcuts
 Daily wins
 - Find a flow or permission set by API name from Setup Search.
 - Inspect a record from the page with Show All Data.
+- Test a Salesforce REST endpoint in REST Explorer with collections, chain mode, and cURL import.
 - Jump into workspace tools when the task becomes multi-step.
 
 Version

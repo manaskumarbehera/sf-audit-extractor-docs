@@ -13,7 +13,7 @@ Core docs pages
 
 Current product model to teach
 - Launcher popup for quick entry
-- Workspace for deep tasks
+- Workspace for deep tasks (includes REST Explorer as a default tab)
 - In-page overlays for contextual Salesforce actions
 
 LWC Explorer guidance

@@ -267,7 +267,7 @@
             <img src="../icons/Icon-32.png" alt="TrackForcePro" class="logo">
             Documentation
         </h1>
-        <span class="version-badge">v2.0.7</span>
+        <span class="version-badge">v2.0.8</span>
         <div style="margin-top:6px; font-size:0.95rem; color:var(--text-secondary);">What's new: Virtualized SOQL result table with 1000+ row performance, compact icon toolbar, pop-out results window, and 6 suggestion engine bug fixes.</div>
     </div>
 
@@ -285,6 +285,7 @@
                 <a href="#security-manager"><span class="toc-emoji">🔐</span> Security Manager</a>
                 <a href="#org-tools"><span class="toc-emoji">🏢</span> Org Tools (7 Panels)</a>
                 <a href="#org-favicon"><span class="toc-emoji">🎨</span> Org &amp; Favicon</a>
+                <a href="#rest-explorer"><span class="toc-emoji">⚡</span> REST Explorer</a>
                 <a href="#platform-events"><span class="toc-emoji">📡</span> Platform Events</a>
                 <a href="#lms"><span class="toc-emoji">💬</span> Lightning Message Service</a>
                 <a href="#settings"><span class="toc-emoji">⚙️</span> Settings (7 Sub-tabs)</a>
@@ -810,6 +811,73 @@
 
             <div class="site-tip">
                 <strong>💡 Pro Tip:</strong> Use LMS testing to verify that your Lightning Web Components respond correctly to channel messages before deploying to production.
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════ -->
+        <!-- REST EXPLORER -->
+        <!-- ═══════════════════════════════════════════════════ -->
+        <div class="section" id="rest-explorer">
+            <h2><span class="emoji">⚡</span> REST Explorer</h2>
+            <p class="section-intro">
+                A full-featured API workbench for Salesforce REST endpoints. Send requests, organise collections, chain calls together, import cURL commands, and browse the Salesforce API catalog — all with your active session credentials. REST Explorer is visible by default in the workspace tab bar.
+            </p>
+
+            <h3>Sending a Request</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Choose Method and URL</h4>
+                        <p>Select GET, POST, PATCH, PUT, or DELETE. Enter a path like <code>/services/data/v62.0/sobjects/Account</code> or use a full URL. The base URL auto-fills from your connected org.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Configure Headers, Params, Body, and Auth</h4>
+                        <p>Use the tabbed editor to add query parameters, custom headers, a JSON body, or switch authentication modes. Environment variables (<code>{{varName}}</code>) are substituted automatically.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h4>Send and Inspect the Response</h4>
+                        <p>Click <strong>Send</strong> to execute. The response viewer shows status, headers, timing, and an interactive JSON tree with expand/collapse, search, and copy actions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Collections</h3>
+            <div class="highlight">
+                Save requests into named collections. Each collection has an emoji label, and you can import/export collections as JSON for sharing with teammates.
+            </div>
+
+            <h3>History</h3>
+            <div class="highlight">
+                Every request is automatically saved (up to 500 entries per org). Filter by method, status, or search text. Click any history entry to replay it instantly.
+            </div>
+
+            <h3>Environment Variables</h3>
+            <div class="highlight">
+                Define key-value pairs and reference them in URLs, headers, or body with <code>{{variableName}}</code>. Variables are org-scoped and persist across sessions.
+            </div>
+
+            <h3>Chain Mode</h3>
+            <div class="highlight">
+                Link multiple requests together and pass data between them. Each step can reference the previous step's response using template expressions. Ideal for multi-step API workflows like creating a record and then querying it.
+            </div>
+
+            <h3>cURL Import &amp; Export</h3>
+            <div class="highlight">
+                Paste a cURL command to import it as a request. Export any request as cURL to share or use in scripts.
+            </div>
+
+            <h3>API Catalog</h3>
+            <div class="highlight">
+                Browse the built-in Salesforce API endpoint catalog. Search by keyword, filter by category, and click any endpoint to pre-fill the request editor.
+            </div>
+
+            <div class="site-tip">
+                <strong>💡 Pro Tip:</strong> Use environment variables for values like record IDs or API versions that change between orgs, then switch orgs without editing every request.
             </div>
         </div>
 

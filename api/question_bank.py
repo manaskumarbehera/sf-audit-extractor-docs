@@ -20,6 +20,7 @@ TOPICS = {
     "data_explorer": "Data Explorer & Record Scanner",
     "security": "Security Manager",
     "org_tools": "Org Tools",
+    "rest_explorer": "REST Explorer",
     "platform_events": "Platform Events & LMS",
     "architecture": "Extension Architecture",
     "user_manager": "User Manager",
@@ -306,6 +307,54 @@ QUESTIONS = [
     },
 
     # ═══════════════════════════════════════════════
+    #  REST EXPLORER  (topic: rest_explorer)
+    # ═══════════════════════════════════════════════
+    {
+        "id": "rest-001",
+        "topic": "rest_explorer",
+        "difficulty": 1,
+        "mode": ["quiz", "speed"],
+        "q": "What can you do with the REST Explorer tab?",
+        "opts": ["Only view API documentation", "Send REST requests, save collections, chain calls, and import cURL", "Only run SOQL queries", "Only view response headers"],
+        "answer": 1,
+        "explanation": "REST Explorer is a full API workbench: <strong>send any Salesforce REST request</strong>, organise collections, chain calls, use environment variables, and import/export cURL.",
+        "tags": ["rest_explorer", "features"],
+    },
+    {
+        "id": "rest-002",
+        "topic": "rest_explorer",
+        "difficulty": 2,
+        "mode": ["quiz"],
+        "q": "How many requests does REST Explorer history store per org?",
+        "opts": ["50", "100", "500", "Unlimited"],
+        "answer": 2,
+        "explanation": "REST Explorer stores up to <strong>500 request history entries per org</strong>, all scoped by org ID.",
+        "tags": ["rest_explorer", "history"],
+    },
+    {
+        "id": "rest-003",
+        "topic": "rest_explorer",
+        "difficulty": 2,
+        "mode": ["quiz", "speed"],
+        "q": "What does Chain Mode in REST Explorer do?",
+        "opts": ["Encrypts requests", "Links multiple requests and passes data between them", "Limits request rate", "Caches responses"],
+        "answer": 1,
+        "explanation": "Chain Mode lets you <strong>link multiple REST requests</strong> sequentially and reference previous response data in later steps.",
+        "tags": ["rest_explorer", "chain_mode"],
+    },
+    {
+        "id": "rest-004",
+        "topic": "rest_explorer",
+        "difficulty": 1,
+        "mode": ["tf"],
+        "q": "Is the REST Explorer tab visible by default for new installations?",
+        "opts": ["Yes — it's a default workspace tab", "No — you must enable it in Settings", "Only for Enterprise edition", "Only on Chrome"],
+        "answer": 0,
+        "explanation": "REST Explorer is <strong>enabled by default</strong> in the workspace tab bar for all new installations.",
+        "tags": ["rest_explorer", "default"],
+    },
+
+    # ═══════════════════════════════════════════════
     #  PLATFORM EVENTS & LMS  (topic: platform_events)
     # ═══════════════════════════════════════════════
     {
@@ -493,7 +542,7 @@ QUESTIONS = [
         "q": "Which TrackForcePro surface should you use first for a long troubleshooting workflow?",
         "opts": ["Launcher popup only", "Workspace tab", "Browser bookmarks", "Leaderboard page"],
         "answer": 1,
-        "explanation": "The <strong>workspace tab</strong> is the right place for deeper work like SOQL, GraphQL, Records, Org Tools, and multi-step troubleshooting.",
+        "explanation": "The <strong>workspace tab</strong> is the right place for deeper work like SOQL, GraphQL, REST Explorer, Records, Org Tools, and multi-step troubleshooting.",
         "tags": ["general", "workspace", "ux", "training"],
     },
     {
