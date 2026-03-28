@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LWC Explorer guide — inspect Lightning Web Components, trace Apex, UI API, GraphQL and LMS traffic on Salesforce pages with TrackForcePro.">
+    <title>TrackForcePro — LWC Explorer Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="../shared.css">
+    <script src="../theme.js"></script>
+    <style>
+        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
+        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+        .guide-nav, .guide-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+        .guide-nav {
+            position: sticky;
+            top: 20px;
+            padding: 18px;
+        }
+        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
+        .guide-nav a {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 10px;
+            color: var(--text-link);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+        .guide-nav a:hover { background: var(--bg-alt); }
+        .guide-nav a.active { background: var(--primary); color: var(--text-inverse); }
+        .guide-main { display: grid; gap: 22px; }
+        .guide-card { padding: 24px 26px; }
+        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
+        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
+        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
+        .guide-pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+        .guide-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .guide-highlight {
+            margin-top: 16px;
+            padding: 16px 18px;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04));
+        }
+        .guide-highlight strong { color: var(--text); }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .guide-table th, .guide-table td {
+            text-align: left;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .guide-table tr:hover { background: var(--bg-alt); }
+        .guide-lab {
+            margin-top: 14px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            background: var(--bg-alt);
+            border: 1px dashed var(--border);
+        }
+        .guide-lab strong { color: var(--text); }
+        .guide-code {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        [data-theme="dark"] .guide-code {
+            background: rgba(0,0,0,0.3);
+            color: #a0aec0;
+        }
+        .version-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: var(--radius);
+            background: var(--accent);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+        .site-hero {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+        .hero-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 16px;
+        }
+        .site-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+        .site-hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 16px;
+            line-height: 1.6;
+        }
+        @media (max-width: 900px) {
+            .guide-grid { grid-template-columns: 1fr; }
+            .guide-nav { position: static; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html" class="active">Feature Guides</a>
+            <a href="../help.html">Help</a>
+            <a href="../quiz.html">Quiz &amp; Games</a>
+            <a href="../leaderboard.html">Leaderboard</a>
+            <a href="../privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="guide-shell">
+        <div class="site-hero">
+            <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
+            <h1>🔎 LWC Explorer</h1>
+            <p>Inspect Lightning Web Components on any Salesforce page — trace server calls, monitor LMS channels, and debug component behavior without browser DevTools.</p>
+            <span class="version-badge">In-Page Overlay</span>
+        </div>
+
+        <div class="guide-grid">
+            <div class="guide-nav">
+                <h2>Guide Contents</h2>
+                <a href="#what-it-does">What It Does</a>
+                <a href="#how-to-open">How to Open</a>
+                <a href="#header-controls">Header Controls</a>
+                <a href="#component-tree">Component Tree</a>
+                <a href="#network-traces">Network Traces</a>
+                <a href="#trace-categories">Trace Categories</a>
+                <a href="#trace-details">Trace Details</a>
+                <a href="#lms-monitoring">LMS Monitoring</a>
+                <a href="#dock-mode">Dock Mode</a>
+                <a href="#tips">Tips &amp; Best Practices</a>
+            </div>
+
+            <div class="guide-main">
+                <!-- Section 1: What It Does -->
+                <div class="guide-card" id="what-it-does">
+                    <h2>What It Does</h2>
+                    <p>LWC Explorer is an in-page overlay that gives you deep insight into Lightning Web Components and Aura components running on any Salesforce page. Without opening browser DevTools, you can:</p>
+                    <ul>
+                        <li><strong>Inspect components</strong> — View the hierarchical component tree, see parent-child relationships, and search by name or type</li>
+                        <li><strong>Trace network traffic</strong> — Automatically capture server calls (Apex, UI API, GraphQL, REST) associated with each component</li>
+                        <li><strong>Debug performance</strong> — Review request/response payloads, timing, and error messages inline</li>
+                        <li><strong>Monitor LMS channels</strong> — Discover Lightning Message Service channels, subscribe/unsubscribe, and publish test messages</li>
+                        <li><strong>Navigate records</strong> — Click lookup fields in trace details to jump to related records with breadcrumb trails</li>
+                    </ul>
+                    <div class="guide-highlight">
+                        <strong>Key insight:</strong> LWC Explorer captures <em>real</em> network traffic from the Salesforce API layer, not mock data. Every trace you see is an actual server call your component made.
+                    </div>
+                </div>
+
+                <!-- Section 2: How to Open -->
+                <div class="guide-card" id="how-to-open">
+                    <h2>How to Open</h2>
+                    <p>You can open the LWC Explorer in three ways:</p>
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Steps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sidebar Button</strong></td>
+                                <td>Click the TrackForcePro sidebar icon in the top-right corner of your Salesforce page, then select <em>LWC Explorer</em> from the menu</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Context Menu</strong></td>
+                                <td>Right-click anywhere on a Salesforce page and select <em>LWC Explorer</em> from the TrackForcePro context menu</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Command Palette</strong></td>
+                                <td>Press <code>Ctrl+K</code> (Windows/Linux) or <code>Cmd+K</code> (Mac) to open the Command Palette, then type <em>LWC Explorer</em> and press Enter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="guide-lab">
+                        <strong>💡 Tip:</strong> The Command Palette is the fastest way if you set a custom keyboard shortcut. Open Settings → General → Keyboard Shortcuts and customize the LWC Explorer trigger.
+                    </div>
+                </div>
+
+                <!-- Section 3: Header Controls -->
+                <div class="guide-card" id="header-controls">
+                    <h2>Header Controls</h2>
+                    <p>The LWC Explorer header provides quick access to scanning, filtering, and recording tools. Here's what each control does:</p>
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Button</th>
+                                <th>Icon</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pick Component</strong></td>
+                                <td>🎯</td>
+                                <td>Click, then hover over the page to visually select a component. The selected component is highlighted and scrolled into view in the tree pane.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refresh Components</strong></td>
+                                <td>⟲</td>
+                                <td>Re-scans the page DOM to rebuild the component tree. Useful after the page loads new components dynamically.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Auto-Capture</strong></td>
+                                <td>⚫ (pulses green when active)</td>
+                                <td>Toggle automatic network trace recording. When active, traces are captured every 3 seconds. Click again to stop.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Clear All</strong></td>
+                                <td>🗑️</td>
+                                <td>Removes all captured network traces from the trace panel. Useful for resetting when you want to focus on new activity.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Expand All</strong></td>
+                                <td>📂 (open)</td>
+                                <td>Expands all nodes in the component tree to show the full hierarchy at once.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Collapse All</strong></td>
+                                <td>📁 (closed)</td>
+                                <td>Collapses all nodes except root-level components. Keeps the tree readable while preserving your ability to drill down.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Section 4: Component Tree -->
+                <div class="guide-card" id="component-tree">
+                    <h2>Component Tree</h2>
+                    <p>The left panel displays a hierarchical tree of all LWC and Aura components on the page. At the top are filter pills and a search box.</p>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Filter Pills</h3>
+                    <p>Click any pill to toggle its filter:</p>
+                    <ul>
+                        <li><strong>All</strong> — Shows all component types</li>
+                        <li><strong>LWC</strong> — Shows only Lightning Web Components</li>
+                        <li><strong>Aura</strong> — Shows only Aura components</li>
+                        <li><strong>LMS</strong> (Beta) — Shows Lightning Message Service channels if discovered</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Search Box</h3>
+                    <p>Type a component name to filter the tree in real-time. Matching components stay expanded so you can navigate to them quickly.</p>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Selecting a Component</h3>
+                    <p>Click any component in the tree to select it. The right panel updates to show the component's metadata (if available) and all related network traces.</p>
+
+                    <div class="guide-highlight">
+                        <strong>Component info:</strong> When a component is selected, you'll see its name, a Copy icon to copy it to the clipboard, and a Highlight button to visually highlight it on the page.
+                    </div>
+                </div>
+
+                <!-- Section 5: Network Traces -->
+                <div class="guide-card" id="network-traces">
+                    <h2>Network Traces</h2>
+                    <p>The right panel shows all captured network traces (API calls) associated with the selected component. Traces are organized by type and are filterable by category.</p>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Trace Filter Chips</h3>
+                    <p>Click any chip to toggle its filter:</p>
+                    <ul>
+                        <li><strong>All</strong> — Shows all captured traces</li>
+                        <li><strong>Apex</strong> — Shows only server-side Apex calls (imperative, wire, enqueued)</li>
+                        <li><strong>UI API</strong> — Shows Salesforce UI API calls for record data, layouts, and metadata</li>
+                        <li><strong>GraphQL</strong> — Shows Salesforce GraphQL operations</li>
+                        <li><strong>Fetch/API</strong> — Shows other REST API calls (tooling, composite, custom)</li>
+                        <li><strong>Errors</strong> — Shows only traces that returned an error status</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Reading a Trace Row</h3>
+                    <p>Each trace row displays:</p>
+                    <ul>
+                        <li><strong>Badge</strong> — Type indicator (color-coded: blue for Apex, teal for UI API, etc.)</li>
+                        <li><strong>Label</strong> — Friendly description (e.g., "fetchUserById", "Get Record Layout")</li>
+                        <li><strong>Method/Endpoint</strong> — HTTP method + target endpoint or Apex class</li>
+                        <li><strong>Status</strong> — HTTP status code (green 2xx, yellow 3xx, red 4xx/5xx)</li>
+                        <li><strong>Timing</strong> — Request duration (e.g., "45ms")</li>
+                    </ul>
+
+                    <p>Click any trace row to expand the detail pane below and see the full request/response payload.</p>
+                </div>
+
+                <!-- Section 6: Trace Categories -->
+                <div class="guide-card" id="trace-categories">
+                    <h2>Trace Categories Explained</h2>
+                    <p>Understanding what each trace type represents helps you debug faster:</p>
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>What It Shows</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Apex</strong></td>
+                                <td>Server-side Apex calls triggered by the component. Includes imperative calls, wire method calls, and enqueued actions. Shows the Apex class name and method that processed the call.</td>
+                                <td><code>getUserAccounts</code> from <code>UserDataController</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>UI API</strong></td>
+                                <td>Salesforce UI API calls for record data, field layouts, picklist values, metadata, and more. These power the Lightning UI.</td>
+                                <td>GET <code>/ui-api/records/001xx000003DHP</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>GraphQL</strong></td>
+                                <td>Salesforce GraphQL operations. Shows the operation name, query text (if available), variables, and response data or errors.</td>
+                                <td>Query <code>getAccounts</code> returning 15 records</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fetch/API</strong></td>
+                                <td>Any other REST API traffic: tooling API, custom endpoints, composite API, external integrations, etc.</td>
+                                <td>POST <code>/services/data/v59.0/tooling/query</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Errors</strong></td>
+                                <td>Any trace that returned an HTTP 4xx or 5xx status, or contained an error payload. Helpful for troubleshooting failed operations.</td>
+                                <td>401 Unauthorized, 404 Not Found, 500 Server Error</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="guide-highlight">
+                        <strong>Internal traffic filtered out:</strong> LWC Explorer ignores internal Salesforce service-component Aura traffic (like fingerprinting and telemetry) so you focus only on meaningful business calls.
+                    </div>
+                </div>
+
+                <!-- Section 7: Trace Details -->
+                <div class="guide-card" id="trace-details">
+                    <h2>Trace Details Pane</h2>
+                    <p>When you click a trace row, the detail pane expands to show the complete information about that call.</p>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Header Row</h3>
+                    <ul>
+                        <li><strong>Call Type</strong> — The category (Apex, UI API, GraphQL, etc.)</li>
+                        <li><strong>Triggered By</strong> — The component name that initiated the call</li>
+                        <li><strong>Server Class</strong> — (For Apex) The controller class that processed the call</li>
+                        <li><strong>Method Name</strong> — (For Apex) The method that was invoked</li>
+                        <li><strong>When</strong> — Timestamp when the call was made (in your browser's local time)</li>
+                        <li><strong>Performance</strong> — Elapsed time from request to response</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Request Section</h3>
+                    <p>Shows the HTTP method, endpoint, and request body (if applicable). The body is formatted as readable JSON with syntax highlighting.</p>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Response Section</h3>
+                    <p>Shows the HTTP status code and response payload. If the response is JSON, it's formatted and syntax-highlighted for easy scanning. If the response contains an error, it's highlighted and summarized.</p>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Lookup Navigation</h3>
+                    <p>If the trace response contains Salesforce record IDs, those IDs appear as clickable links. Click a link to jump to that record in a new panel with a breadcrumb trail. Use breadcrumb links to navigate back through your record history.</p>
+
+                    <div class="guide-lab">
+                        <strong>💡 Pro tip:</strong> Use Ctrl+F (or Cmd+F) to search within the request/response JSON. This is useful for finding specific fields in large payloads.
+                    </div>
+                </div>
+
+                <!-- Section 8: LMS Monitoring -->
+                <div class="guide-card" id="lms-monitoring">
+                    <h2>LMS Monitoring (Beta)</h2>
+                    <p>The LMS (Lightning Message Service) type pill in the component tree gives you access to message channels in your org. This feature is in beta and may not discover all channels in every org.</p>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">LMS Features</h3>
+                    <ul>
+                        <li><strong>Channel discovery</strong> — Automatically scans the page for active LMS channels</li>
+                        <li><strong>Subscribe/Unsubscribe</strong> — Toggle subscriptions to monitor channel activity</li>
+                        <li><strong>Publish test messages</strong> — Send test payloads to a channel to verify behavior</li>
+                        <li><strong>Message schemas</strong> — View the structure of messages expected by each channel</li>
+                        <li><strong>Activity logs</strong> — See a real-time feed of all messages published to subscribed channels</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">LMS Status Indicator</h3>
+                    <p>At the top of the LMS detail pane, you'll see a status pill showing one of three states:</p>
+                    <ul>
+                        <li><strong>Ready</strong> (green dot) — The LMS bridge is active and channels are discoverable</li>
+                        <li><strong>Unavailable</strong> (gray dot) — The LMS is not available in this org</li>
+                        <li><strong>Not Connected</strong> (red dot) — The extension lost connection to the LMS bridge</li>
+                    </ul>
+
+                    <div class="guide-highlight">
+                        <strong>Beta status:</strong> LMS monitoring is a new feature. Some channels may not be discoverable depending on how they're defined in your org. If you encounter channels that don't appear, try refreshing the page and clicking the Refresh Components button in the header.
+                    </div>
+                </div>
+
+                <!-- Section 9: Dock Mode -->
+                <div class="guide-card" id="dock-mode">
+                    <h2>Dock Mode</h2>
+                    <p>The LWC Explorer panel can be docked to different edges of the page to suit your workflow.</p>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Docking Positions</h3>
+                    <ul>
+                        <li><strong>Right side</strong> (default) — Panel docks to the right edge of the page</li>
+                        <li><strong>Bottom</strong> — Panel docks to the bottom of the page (useful on smaller screens)</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">Changing Dock Position</h3>
+                    <p>Look for a dock mode toggle button in the LWC Explorer header. Click it to toggle between docking positions. Your preference is automatically saved and persists across sessions.</p>
+
+                    <div class="guide-highlight">
+                        <strong>Responsive design:</strong> On very small screens, the bottom dock position gives you more horizontal space for the component tree and trace details.
+                    </div>
+                </div>
+
+                <!-- Section 10: Tips & Best Practices -->
+                <div class="guide-card" id="tips">
+                    <h2>Tips &amp; Best Practices</h2>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">For Performance Debugging</h3>
+                    <ul>
+                        <li>Use <strong>Auto-Capture</strong> mode while performing an action on the page (e.g., clicking a button, opening a modal). After the action completes, click Auto-Capture again to stop recording and review the traffic that was triggered.</li>
+                        <li>Filter by <strong>Apex</strong> to focus on server-side performance. If you see long-running Apex calls, those are the first place to optimize.</li>
+                        <li>Look at the <strong>Timing</strong> column to identify slow requests. Anything over 500ms deserves investigation.</li>
+                        <li>Use the <strong>Collapse All</strong> button to simplify the component tree when debugging a single component. Root nodes stay visible so you can still navigate.</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">For Component Inspection</h3>
+                    <ul>
+                        <li>Click the <strong>Pick Component</strong> button, then hover over any element on the page to visually select the component. This is faster than searching the tree.</li>
+                        <li>Use the <strong>search box</strong> in the component tree to quickly navigate to a specific component by name. Matching components stay expanded.</li>
+                        <li>When you've found the component you're interested in, the related network traces are automatically shown on the right. You don't have to click between panels.</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">For Data Exploration</h3>
+                    <ul>
+                        <li>Click any <strong>record ID link</strong> in a trace response to navigate to that record. Use breadcrumbs to walk back through your navigation history.</li>
+                        <li>When reviewing <strong>UI API</strong> calls, look for the <code>fields</code> section in the response to see what data was returned to the component.</li>
+                        <li>Use the <strong>Errors</strong> filter to quickly find failed API calls. Check the error message and stack trace (if available) to understand what went wrong.</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.05rem; margin-top: 18px; color: var(--text);">For LMS Troubleshooting</h3>
+                    <ul>
+                        <li>If <strong>LMS is Unavailable</strong>, your org may not have Lightning Message Service enabled, or the discovery bridge isn't active. Try refreshing the page and clicking Refresh Components.</li>
+                        <li>Use the <strong>publish form</strong> to test a channel with a sample message. If your subscribers receive it, the channel integration is working.</li>
+                        <li>The <strong>activity log</strong> shows a real-time feed of messages published to channels you're subscribed to. This is invaluable for verifying that two components are communicating correctly.</li>
+                    </ul>
+
+                    <div class="guide-highlight">
+                        <strong>Keyboard shortcuts:</strong> Use <code>Ctrl+K</code> (Cmd+K on Mac) to open the Command Palette from anywhere. Type "LWC" to jump to LWC Explorer, or "Clear" to clear all traces without opening the panel.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <div class="site-footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html">Feature Guides</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll to sections and highlight active nav link
+        document.querySelectorAll('.guide-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Update active state
+                        document.querySelectorAll('.guide-nav a').forEach(a => a.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Set active link on page load and scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('.guide-card').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.guide-nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

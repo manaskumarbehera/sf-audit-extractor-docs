@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to subscribe to Salesforce Platform Events and Change Data Capture (CDC) streams with real-time monitoring and live event inspection.">
+    <title>TrackForcePro — 📡 Platform Events Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="../shared.css">
+    <script src="../theme.js"></script>
+    <style>
+        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
+        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+        .guide-nav { position: sticky; top: 20px; padding: 18px; }
+        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
+        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+        .guide-nav a:hover { background: var(--bg-alt); }
+        .guide-main { display: grid; gap: 22px; }
+        .guide-card { padding: 24px 26px; }
+        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
+        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
+        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
+        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
+        .guide-lab strong { color: var(--text); }
+        .guide-badge { display: inline-block; margin-left: 8px; padding: 4px 10px; border-radius: 20px; background: var(--primary); color: white; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html" class="active">Feature Guides</a>
+            <a href="../help.html">Help</a>
+            <a href="../quiz.html">Quiz &amp; Games</a>
+            <a href="../leaderboard.html">Leaderboard</a>
+            <a href="../privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="guide-shell">
+        <div class="guide-grid">
+            <aside class="guide-nav">
+                <h2>On This Page</h2>
+                <a href="#what-it-does">What It Does</a>
+                <a href="#how-to-access">How to Access</a>
+                <a href="#subscribing-to-events">Subscribing to Events</a>
+                <a href="#event-log">Event Log</a>
+                <a href="#change-data-capture">Change Data Capture</a>
+                <a href="#event-payload">Event Payload</a>
+                <a href="#tips">Tips & Best Practices</a>
+            </aside>
+
+            <main class="guide-main">
+                <div class="guide-card">
+                    <h1 style="font-size: 2rem; color: var(--text); margin-bottom: 6px;">📡 Platform Events Guide
+                        <span class="guide-badge">Workspace Tab</span>
+                    </h1>
+                    <p style="color: var(--text-secondary); font-size: 1.05rem;">Subscribe to Salesforce Platform Events and Change Data Capture streams with real-time monitoring and live event inspection.</p>
+                </div>
+
+                <div class="guide-card" id="what-it-does">
+                    <h2>What It Does</h2>
+                    <p>The Platform Events tab lets you subscribe to Salesforce Platform Events and Change Data Capture (CDC) channels directly from TrackForcePro. See events arrive in real time as they're published from your org, integrations, or custom Apex code. No Apex subscriber required — just subscribe and watch the feed. Helpful for monitoring custom event integrations, debugging event flows, and capturing intermittent events that are hard to reproduce in Setup.</p>
+                </div>
+
+                <div class="guide-card" id="how-to-access">
+                    <h2>How to Access</h2>
+                    <p>Open the TrackForcePro workspace popup and click the <strong>Platform Events</strong> tab (📡 icon) in the main tab bar. The tab displays an available events/channels list on the left and a real-time event log on the right.</p>
+                </div>
+
+                <div class="guide-card" id="subscribing-to-events">
+                    <h2>Subscribing to Events</h2>
+                    <p>To start monitoring events:</p>
+                    <ol>
+                        <li>Open the Platform Events tab</li>
+                        <li>Browse the <strong>Available Channels</strong> list on the left, or search by name</li>
+                        <li>Click any Platform Event or CDC channel to select it</li>
+                        <li>Click the <strong>Subscribe</strong> button</li>
+                        <li>The event log on the right opens and begins showing events in real time</li>
+                    </ol>
+                    <p>Once subscribed, events appear in the log immediately as they're published. You can subscribe to multiple channels simultaneously by clicking Subscribe on each one.</p>
+                    <div class="guide-highlight">
+                        <strong>No Code Required:</strong> Platform Events in Salesforce typically require Apex subscribers to process events. TrackForcePro lets you subscribe and monitor without writing any Apex code. Perfect for testing and debugging event flows.
+                    </div>
+                </div>
+
+                <div class="guide-card" id="event-log">
+                    <h2>Event Log</h2>
+                    <p>The event log displays a real-time feed of events from your subscribed channels. Each log entry shows:</p>
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>What It Shows</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Timestamp</strong></td>
+                                <td>When the event was published (in your local timezone)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Channel Name</strong></td>
+                                <td>Which Platform Event or CDC channel the event came from</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Replay ID</strong></td>
+                                <td>Unique identifier for the event (used for replay subscriptions in code)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Payload Preview</strong></td>
+                                <td>First-line summary of event data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 14px;"><strong>Chronological Order:</strong> Events are displayed in reverse chronological order (newest first), so the latest events appear at the top. Scroll down to see older events.</p>
+                    <p><strong>Click to Expand:</strong> Click any event in the log to expand and view its full JSON payload. Expanded payloads show all event fields and data with syntax highlighting for readability.</p>
+                </div>
+
+                <div class="guide-card" id="change-data-capture">
+                    <h2>Change Data Capture (CDC)</h2>
+                    <p>Change Data Capture is a special type of Salesforce event that publishes whenever a record is created, updated, or deleted. CDC subscriptions let you monitor real-time data changes across your org without polling.</p>
+                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">What CDC Events Show</h3>
+                    <ul>
+                        <li><strong>Which fields changed</strong> — Before/after values for each modified field</li>
+                        <li><strong>Who made the change</strong> — User ID and timestamp of the modification</li>
+                        <li><strong>Record ID</strong> — The Salesforce ID of the changed record</li>
+                        <li><strong>Operation type</strong> — Created, Updated, or Deleted</li>
+                        <li><strong>Change number</strong> — Sequential number for ordering events across objects</li>
+                    </ul>
+                    <div class="guide-lab">
+                        <strong>CDC Subscriptions:</strong> CDC is available for all custom objects and many standard objects (Account, Contact, Opportunity, etc.). Check your Salesforce edition to see which objects support CDC.
+                    </div>
+                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Common CDC Use Cases</h3>
+                    <ul>
+                        <li><strong>Debug data sync issues</strong> — See exactly which fields changed during a problematic sync and in what order</li>
+                        <li><strong>Monitor record deletions</strong> — Verify that records are being deleted as expected during cleanup jobs</li>
+                        <li><strong>Track high-frequency changes</strong> — Capture rapid updates that are hard to catch manually</li>
+                        <li><strong>Test integration workflows</strong> — Confirm that external systems are triggering record changes as designed</li>
+                    </ul>
+                </div>
+
+                <div class="guide-card" id="event-payload">
+                    <h2>Event Payload Inspection</h2>
+                    <p>Each event carries a JSON payload with detailed information. Expand any event in the log to see the full payload:</p>
+                    <pre style="background: var(--bg-alt); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 0.9rem; color: var(--text-secondary); margin-top: 12px; border: 1px solid var(--border);"><code>{
+  "event": {
+    "replayId": "5004000",
+    "type": "com.salesforce.cdc.dcapi.Event",
+    "created": "2026-03-27T14:32:45.000+0000"
+  },
+  "sobject": {
+    "Account": {
+      "Id": "001xx000000001",
+      "Name": "Example Corp",
+      "BillingCity": "San Francisco"
+    },
+    "ChangeEventHeader": {
+      "entityName": "Account",
+      "recordIds": ["001xx000000001"],
+      "changeType": "UPDATE",
+      "changedFields": ["Name", "BillingCity"],
+      "commitTimestamp": 1711529565000,
+      "commitUser": "005xx000000001"
+    }
+  }
+}</code></pre>
+                    <p style="margin-top: 14px;">The payload structure varies by event type, but generally includes:</p>
+                    <ul>
+                        <li><code>event</code> — Metadata about the event (replay ID, type, creation timestamp)</li>
+                        <li><code>sobject</code> — The actual data: record fields and a ChangeEventHeader with change details</li>
+                    </ul>
+                </div>
+
+                <div class="guide-card" id="tips">
+                    <h2>Tips & Best Practices</h2>
+                    <ul>
+                        <li><strong>Monitor custom integrations in real time</strong> — Leave a Platform Event subscription running to verify that your integration is publishing events as expected. Faster than waiting for integration logs.</li>
+                        <li><strong>CDC helps debug data sync issues</strong> — See exactly which fields changed and in what order. Invaluable when records are changing unexpectedly or external systems aren't staying in sync.</li>
+                        <li><strong>Capture intermittent events</strong> — Some events are hard to reproduce manually. Leave TrackForcePro open with a subscription running to catch events in the wild.</li>
+                        <li><strong>Use Replay IDs for Apex code</strong> — The Replay ID shown in each event can be used in Apex `CdcEventStore.getEventsByReplayId()` calls to implement event replay subscriptions for recovery and backfilling.</li>
+                        <li><strong>Filter by timestamp for debugging</strong> — If many events are flowing, note the timestamp of the event you're interested in and filter the log to focus on that time window.</li>
+                        <li><strong>Export event payloads for analysis</strong> — Copy and paste event JSON into your editor or IDE for offline analysis and correlation with your code.</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <div class="site-footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html">Feature Guides</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+    </footer>
+</body>
+</html>

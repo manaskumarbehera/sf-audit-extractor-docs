@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Build, execute, and analyze SOQL queries with visual builder, smart autocomplete, inline editing, and virtualized result tables supporting 1000+ rows.">
+    <title>TrackForcePro — 🔍 SOQL Builder Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="../shared.css">
+    <script src="../theme.js"></script>
+    <style>
+        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
+        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+        .guide-nav { position: sticky; top: 20px; padding: 18px; }
+        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
+        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+        .guide-nav a:hover { background: var(--bg-alt); }
+        .guide-main { display: grid; gap: 22px; }
+        .guide-card { padding: 24px 26px; }
+        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
+        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
+        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
+        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
+        .guide-lab strong { color: var(--text); }
+        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html" class="active">Feature Guides</a>
+            <a href="../help.html">Help</a>
+            <a href="../quiz.html">Quiz &amp; Games</a>
+            <a href="../leaderboard.html">Leaderboard</a>
+            <a href="../privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="guide-shell">
+        <div class="guide-grid">
+            <nav class="guide-nav">
+                <h2>SOQL Builder</h2>
+                <a href="#what-it-does">What It Does</a>
+                <a href="#how-to-access">How to Access</a>
+                <a href="#object-selector">Object Selector</a>
+                <a href="#query-builder">Query Builder</a>
+                <a href="#query-editor">Query Editor</a>
+                <a href="#executing">Executing Queries</a>
+                <a href="#result-table">Result Table</a>
+                <a href="#result-toolbar">Result Toolbar</a>
+                <a href="#inline-editing">Inline Editing</a>
+                <a href="#relationship-links">Relationship Links</a>
+                <a href="#pop-out">Pop-Out Results</a>
+                <a href="#tips">Tips</a>
+            </nav>
+
+            <div class="guide-main">
+                <div class="guide-card">
+                    <span class="badge badge-alt">Workspace Tab</span>
+                    <h1 style="font-size: 1.6rem; margin-top: 12px; color: var(--text);">🔍 SOQL Builder Guide</h1>
+                </div>
+
+                <div class="guide-card" id="what-it-does">
+                    <h2>What It Does</h2>
+                    <p>The SOQL Builder is a full-featured query tool for Salesforce Object Query Language. Build queries visually with a guided form, write them directly in the editor, and execute them against your org. Results appear in a high-performance virtualized table that smoothly handles 1000+ rows and 50+ columns.</p>
+                    <p>Edit records inline, navigate relationships with clickable links, filter columns, search globally, export results, and pop queries out to a separate window for side-by-side comparison.</p>
+                </div>
+
+                <div class="guide-card" id="how-to-access">
+                    <h2>How to Access</h2>
+                    <p>Open the TrackForcePro workspace and click the <strong>SOQL</strong> tab. The object selector loads your org's SObjects automatically. You're ready to start building or editing queries.</p>
+                </div>
+
+                <div class="guide-card" id="object-selector">
+                    <h2>Object Selector</h2>
+                    <p>The object selector is a searchable combobox — not a native dropdown. Start typing an object name and the list filters in real time with substring highlighting.</p>
+                    <ul>
+                        <li><strong>Type to Search</strong> — Begin typing "Account" or "Case" and matching objects appear instantly.</li>
+                        <li><strong>Arrow Keys</strong> — Use Up and Down arrows to navigate the dropdown list.</li>
+                        <li><strong>Enter to Select</strong> — Press Enter to pick the highlighted object.</li>
+                        <li><strong>Escape to Close</strong> — Press Escape to close the dropdown without selecting.</li>
+                    </ul>
+                    <p>Selecting an object populates the query builder's FROM clause and triggers field suggestions.</p>
+                </div>
+
+                <div class="guide-card" id="query-builder">
+                    <h2>Query Builder</h2>
+                    <p>The visual builder has sections for each part of your SOQL query:</p>
+                    <ul>
+                        <li><strong>SELECT Fields</strong> — Click to add field names. The builder suggests available fields as you type.</li>
+                        <li><strong>FROM Object</strong> — Set via the object selector above. Only change this to switch objects.</li>
+                        <li><strong>WHERE Clauses</strong> — Add filter conditions. The builder guides you with field names, operators (=, !=, &gt;, &lt;, LIKE, IN, etc.), and value inputs.</li>
+                        <li><strong>ORDER BY</strong> — Sort results by field name in ASC or DESC order.</li>
+                        <li><strong>LIMIT</strong> — Cap the number of rows returned (max 2000 per API limit).</li>
+                        <li><strong>OFFSET</strong> — Skip the first N rows (useful for pagination).</li>
+                    </ul>
+                    <p>The suggestion engine is clause-aware — it knows whether you're building SELECT, WHERE, or ORDER BY and suggests context-appropriate fields.</p>
+                </div>
+
+                <div class="guide-card" id="query-editor">
+                    <h2>Query Editor</h2>
+                    <p>Write or paste SOQL directly in the full text editor. The editor supports:</p>
+                    <ul>
+                        <li>Syntax highlighting for SOQL keywords.</li>
+                        <li>Bracket matching and auto-indentation.</li>
+                        <li>Line numbers for easy reference.</li>
+                        <li>Collapse/expand toggle to give more room for results after execution.</li>
+                    </ul>
+                    <p>Toggle between visual builder mode and text editor mode. You can switch back and forth — the builder will parse what you've written.</p>
+                </div>
+
+                <div class="guide-card" id="executing">
+                    <h2>Executing Queries</h2>
+                    <p>Once your query is ready:</p>
+                    <ul>
+                        <li>Click the <strong>Run</strong> button, or</li>
+                        <li>Press <strong>Ctrl+Enter</strong> (Windows/Linux) or <strong>Cmd+Enter</strong> (Mac).</li>
+                    </ul>
+                    <p>Results appear in the virtualized table below. You can collapse the editor after execution to maximize vertical space for results.</p>
+                </div>
+
+                <div class="guide-card" id="result-table">
+                    <h2>Result Table</h2>
+                    <p>Results render in a virtualized table (SoqlVirtualTable) that shows only visible rows, rendering smoothly even with 1000+ rows and 50+ columns.</p>
+
+                    <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Density Modes</h3>
+                    <p>Choose your preferred row height from the Density dropdown:</p>
+                    <ul>
+                        <li><strong>Normal</strong> — 38px rows, comfortable spacing (default).</li>
+                        <li><strong>Compact</strong> — 26px rows, efficient for scanning.</li>
+                        <li><strong>Dense</strong> — 20px rows, maximum data density.</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Column Features</h3>
+                    <ul>
+                        <li><strong>Sticky Header</strong> — The header row stays visible as you scroll.</li>
+                        <li><strong>Sticky First Column</strong> — The first (usually ID) column pinned on the left while scrolling right.</li>
+                        <li><strong>Column Pinning</strong> — Pin up to 3 columns to keep them visible. Right-click a column header to pin.</li>
+                        <li><strong>Column Resizing</strong> — Drag the column header border to resize.</li>
+                        <li><strong>Column Sorting</strong> — Click a column header to sort ascending/descending. Visual indicator shows sort direction.</li>
+                        <li><strong>Per-Column Filtering</strong> — Click the Filter toggle to show input fields under each column. Type to filter that column's values.</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Search &amp; Selection</h3>
+                    <ul>
+                        <li><strong>Global Search</strong> — Search across all visible cells. Matching text is highlighted in the table.</li>
+                        <li><strong>Row Selection</strong> — Checkboxes in the first column select rows for bulk actions.</li>
+                        <li><strong>Keyboard Navigation</strong> — Arrow keys move between cells. Enter selects a row. Escape deselects.</li>
+                    </ul>
+
+                    <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Smart View Mode</h3>
+                    <p>Toggle Smart View to automatically hide empty and null columns. Great for wide result sets with sparse data.</p>
+                </div>
+
+                <div class="guide-card" id="result-toolbar">
+                    <h2>Result Toolbar</h2>
+                    <p>A 30px compact icon toolbar sits above the results with these controls:</p>
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Control</th>
+                                <th>What It Does</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>View Mode</strong></td>
+                                <td>Toggle between Table (formatted) and Raw (JSON) views.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Density</strong></td>
+                                <td>Dropdown to select row height: Normal, Compact, or Dense.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Smart View</strong></td>
+                                <td>Toggle to hide empty/null columns.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Filter</strong></td>
+                                <td>Toggle per-column filter inputs. Badge shows count of hidden columns.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Inline Edit</strong></td>
+                                <td>Toggle double-click inline editing for updateable fields (if enabled per-org).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Global Search</strong></td>
+                                <td>Expandable search input. Type to highlight matches across all cells.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Export</strong></td>
+                                <td>Dropdown menu: copy as JSON/CSV/TSV or download as file.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Full-Screen</strong></td>
+                                <td>Expand table to fill the workspace, hiding tabs and sidebars.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Focus Mode</strong></td>
+                                <td>Hide the toolbar itself, maximizing table space.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pop-Out</strong></td>
+                                <td>Open results in a separate browser window with full feature parity.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Collapse Editor</strong></td>
+                                <td>Toggle to show/hide the SOQL query editor above the table.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="guide-card" id="inline-editing">
+                    <h2>Inline Editing</h2>
+                    <p>If inline editing is enabled for your org (Settings &gt; General &gt; Org Management), you can edit records directly in the result table:</p>
+                    <ul>
+                        <li><strong>Enable Inline Edit</strong> — Toggle the Inline Edit button in the toolbar.</li>
+                        <li><strong>Double-Click to Edit</strong> — Double-click any updateable cell to enter edit mode.</li>
+                        <li><strong>Type-Aware Inputs</strong> — Text fields are text inputs, boolean fields are dropdowns (True/False), large text fields are textareas.</li>
+                        <li><strong>Save or Cancel</strong> — Press Enter to save (PATCH to REST API), or Escape to cancel.</li>
+                    </ul>
+                    <p>Inline edits are disabled per-org in Settings if your org requires it (e.g., production safety). A warning notifies you if the feature is blocked.</p>
+                </div>
+
+                <div class="guide-card" id="relationship-links">
+                    <h2>Relationship Field Links</h2>
+                    <p>When your SOQL query includes dot-notation relationship fields (e.g., <code>Account.Name</code>, <code>Owner.Email</code>), they render as clickable links in the result table.</p>
+                    <ul>
+                        <li><strong>Click to Navigate</strong> — Click a relationship link to load that related record into the Data Explorer.</li>
+                        <li><strong>Copy Field Value</strong> — Right-click the link to copy the field's value to your clipboard.</li>
+                        <li><strong>Breadcrumb Trail</strong> — Navigation automatically builds a breadcrumb trail so you can backtrack to previous records.</li>
+                    </ul>
+                </div>
+
+                <div class="guide-card" id="pop-out">
+                    <h2>Pop-Out Results</h2>
+                    <p>Click the Pop-Out button in the toolbar to open your results in a separate browser window. The pop-out window has:</p>
+                    <ul>
+                        <li>Full SoqlVirtualTable feature parity (density, sorting, filtering, search, column pinning).</li>
+                        <li>Full SoqlResultToolbar (all controls available).</li>
+                        <li>Independent state — you can modify columns or run a new query in the main tab without affecting the pop-out.</li>
+                    </ul>
+                    <p>Perfect for side-by-side comparison, presenting results to stakeholders, or reference while building a follow-up query.</p>
+                </div>
+
+                <div class="guide-card" id="tips">
+                    <h2>Tips &amp; Best Practices</h2>
+                    <ul>
+                        <li><strong>Smart View for Wide Results</strong> — Toggle Smart View to hide empty columns in result sets with 30+ columns.</li>
+                        <li><strong>Pop-Out for Comparison</strong> — Pop-out your first query result, then run a second query in the main tab. Compare side-by-side without switching windows.</li>
+                        <li><strong>Test with LIMIT</strong> — Always test large queries with a LIMIT clause first (e.g., LIMIT 10) to verify syntax before running against thousands of rows.</li>
+                        <li><strong>Suggestion Engine Reset</strong> — The suggestion engine resets between queries. If suggestions feel stale, close and reopen the SOQL tab.</li>
+                        <li><strong>Export for Reporting</strong> — Export filtered results as CSV to import into Excel, Google Sheets, or your reporting tool.</li>
+                        <li><strong>Keyboard Shortcuts</strong> — Press Ctrl+Enter to run, arrow keys to navigate table, Enter to select rows, Escape to deselect.</li>
+                        <li><strong>Column Pinning</strong> — Pin the ID column plus 2 data columns to keep key info visible while scrolling right.</li>
+                    </ul>
+
+                    <div class="guide-highlight">
+                        <strong>💡 Pro Tip:</strong> For performance with very large result sets (10,000+ rows), use Compact or Dense density mode to render faster. The virtualized table only renders visible rows, but denser rows = fewer scroll events = smoother performance.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <div class="site-footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html">Feature Guides</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+    </footer>
+</body>
+</html>

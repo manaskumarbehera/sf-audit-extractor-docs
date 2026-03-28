@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to use the Records tab to inspect Salesforce record fields, metadata, sharing rules, field history, and manage user permissions with inline editing, breadcrumb navigation, and bulk scanning.">
+    <title>TrackForcePro — 🔬 Records Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="../shared.css">
+    <script src="../theme.js"></script>
+    <style>
+        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
+        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+        .guide-nav { position: sticky; top: 20px; padding: 18px; }
+        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
+        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+        .guide-nav a:hover { background: var(--bg-alt); }
+        .guide-main { display: grid; gap: 22px; }
+        .guide-card { padding: 24px 26px; }
+        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
+        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
+        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
+        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
+        .guide-lab strong { color: var(--text); }
+        .guide-badge { display: inline-block; margin-left: 8px; padding: 4px 10px; border-radius: 20px; background: var(--primary); color: white; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html" class="active">Feature Guides</a>
+            <a href="../help.html">Help</a>
+            <a href="../quiz.html">Quiz &amp; Games</a>
+            <a href="../leaderboard.html">Leaderboard</a>
+            <a href="../privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="guide-shell">
+        <div class="guide-grid">
+            <aside class="guide-nav">
+                <h2>On This Page</h2>
+                <a href="#what-it-does">What It Does</a>
+                <a href="#how-to-access">How to Access</a>
+                <a href="#record-lookup">Record Lookup</a>
+                <a href="#all-fields-table">All Fields Table</a>
+                <a href="#inline-editing">Inline Editing</a>
+                <a href="#pinned-records">Pinned Records</a>
+                <a href="#breadcrumb-navigation">Breadcrumb Navigation</a>
+                <a href="#bulk-record-scan">Bulk Record Scan</a>
+                <a href="#user-manager">User Manager</a>
+                <a href="#security-manager">Security Manager</a>
+                <a href="#tips">Tips</a>
+            </aside>
+
+            <main class="guide-main">
+                <div class="guide-card">
+                    <h1 style="font-size: 2rem; color: var(--text); margin-bottom: 6px;">🔬 Records Guide
+                        <span class="guide-badge">Workspace Tab</span>
+                    </h1>
+                    <p style="color: var(--text-secondary); font-size: 1.05rem;">Inspect Salesforce records in depth with all field values, metadata, sharing rules, field history, and user permissions.</p>
+                </div>
+
+                <div class="guide-card" id="what-it-does">
+                    <h2>What It Does</h2>
+                    <p>The Records tab is your deep-dive inspector for Salesforce records. View every field value, type, and updateability status. Check field history, sharing rules, and user permissions without leaving TrackForcePro. Sub-tabs for User Manager and Security Manager provide specialized inspections. Features include pinned records for quick re-access, breadcrumb navigation for lookup traversal, rate-limited bulk scanning, and inline editing with per-org permission controls.</p>
+                </div>
+
+                <div class="guide-card" id="how-to-access">
+                    <h2>How to Access</h2>
+                    <p>Open the TrackForcePro workspace popup and click the <strong>Records</strong> tab (🔬 icon) in the main tab bar. You can also jump directly to Records from:</p>
+                    <ul>
+                        <li>The Command Palette (Ctrl+K / Cmd+K) — search for "Records" or type a record ID</li>
+                        <li>The Sidebar — click "Records" shortcut on any Salesforce page</li>
+                        <li>Right-click context menu on Salesforce record pages — "Show All Data"</li>
+                    </ul>
+                </div>
+
+                <div class="guide-card" id="record-lookup">
+                    <h2>Record Lookup</h2>
+                    <p>Enter a Salesforce record ID (15 or 18 characters) into the lookup field at the top of the Records tab. Press Enter or click the load button to fetch the record.</p>
+                    <div class="guide-highlight">
+                        <strong>Tip:</strong> The describe cache is org-scoped (keyed by orgId and objectName) to prevent stale metadata from leaking across different Salesforce orgs. Record history stores your last 25 lookups per session for quick re-access.
+                    </div>
+                </div>
+
+                <div class="guide-card" id="all-fields-table">
+                    <h2>All Fields Table</h2>
+                    <p>Once a record is loaded, the All Fields table shows every field on that record object. The table is paginated with 100 fields per page to keep performance smooth even on objects with hundreds of fields.</p>
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>What It Shows</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Field Label</strong></td>
+                                <td>Human-friendly field name as shown in Salesforce</td>
+                            </tr>
+                            <tr>
+                                <td><strong>API Name</strong></td>
+                                <td>Exact API field name used in code and queries</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Value</strong></td>
+                                <td>Current field value for this record</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Type</strong></td>
+                                <td>Salesforce field type (Text, Checkbox, Lookup, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Updateable</strong></td>
+                                <td>Whether the field can be edited by your user</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 14px;">Use <strong>Prev / Next</strong> buttons at the bottom to navigate pages, and a page counter shows your position (e.g., "Page 2 of 8").</p>
+                </div>
+
+                <div class="guide-card" id="inline-editing">
+                    <h2>Inline Editing</h2>
+                    <p>Double-click any updateable field (where the "Updateable" column shows true) to edit it inline. An input field appears with the appropriate type:</p>
+                    <ul>
+                        <li><strong>Text fields</strong> — Standard `&lt;input type="text"&gt;`</li>
+                        <li><strong>Checkbox fields</strong> — Dropdown with true/false options</li>
+                        <li><strong>Long text fields</strong> — Multi-line `&lt;textarea&gt;`</li>
+                    </ul>
+                    <p><strong>To save:</strong> Press Enter. <strong>To cancel:</strong> Press Escape.</p>
+                    <p>Once saved, the edit is sent to Salesforce via PATCH to the REST API endpoint `/sobjects/{Object}/{Id}`. The field updates in real time on the page and also in Salesforce.</p>
+                    <div class="guide-lab">
+                        <strong>Per-Org Permission Guard:</strong> Inline editing respects per-org enable/disable settings in Settings > Inline Edit Permissions. Orgs are allowed by default (fail-open). Explicit deny is required to block editing on an org (useful for production).
+                    </div>
+                </div>
+
+                <div class="guide-card" id="pinned-records">
+                    <h2>Pinned Records</h2>
+                    <p>Pin frequently-accessed records to avoid re-typing their IDs. Click the <strong>Pin</strong> button next to any loaded record to add it to your pinned list.</p>
+                    <p>Pinned records are displayed in a <code>#pinned-records-list</code> container at the top of the Records tab. Click any pinned record to reload it instantly. Pinned records are stored per-org via <code>tfp_pinned_records_{orgId}</code> storage key, so each org has its own pinned list.</p>
+                </div>
+
+                <div class="guide-card" id="breadcrumb-navigation">
+                    <h2>Breadcrumb Navigation</h2>
+                    <p>When you click any lookup field value in the All Fields table, Records automatically navigates to that related record and adds a breadcrumb to the trail. A breadcrumb bar at the top of the tab shows your navigation path.</p>
+                    <p>Click any breadcrumb link to jump back to a previous record. The trail truncates automatically when you navigate backward, keeping your context clean.</p>
+                    <div class="guide-highlight">
+                        <strong>Example:</strong> You're viewing an Opportunity (001xx). You click the Account lookup field → Records loads the Account (001yy) and shows breadcrumb [Opportunity] > [Account]. Click the Account breadcrumb to return to the Opportunity.
+                    </div>
+                </div>
+
+                <div class="guide-card" id="bulk-record-scan">
+                    <h2>Bulk Record Scan</h2>
+                    <p>Scan up to 200 record IDs at once to view multiple records' metadata and values side-by-side. Enter comma-separated record IDs (15 or 18 chars) into the bulk scan field and click Scan.</p>
+                    <p>Processing happens in batches of 5 requests with rate limiting via <code>Utils.createRateLimiter(5)</code> to stay within Salesforce API limits. A progress indicator shows how many records have been scanned and how many remain.</p>
+                    <div class="guide-lab">
+                        <strong>Rate Limiting:</strong> Bulk scans are capped at 200 IDs per scan and process 5 at a time to avoid hitting org API call limits. Typical scan of 50 IDs takes 10–15 seconds.
+                    </div>
+                </div>
+
+                <div class="guide-card" id="user-manager">
+                    <h2>Sub-Tab: User Manager</h2>
+                    <p>The User Manager sub-tab (within the Records tab) lets you inspect and manage user records in detail:</p>
+                    <ul>
+                        <li>Search and filter users by name, email, or username</li>
+                        <li>View user profile assignments and permission sets</li>
+                        <li>Check user activation status, last login, and license type</li>
+                        <li>Inline edit user fields (where permissions allow)</li>
+                    </ul>
+                    <p>User Manager uses the same underlying Records engine, so all standard features (breadcrumbs, pinning, history) work with user records.</p>
+                </div>
+
+                <div class="guide-card" id="security-manager">
+                    <h2>Sub-Tab: Security Manager</h2>
+                    <p>The Security Manager sub-tab provides specialized inspection of record-level security:</p>
+                    <ul>
+                        <li><strong>Sharing Rules</strong> — View all sharing rules that apply to the current record's object</li>
+                        <li><strong>Field-Level Security</strong> — Check which fields your profile can read and update</li>
+                        <li><strong>Object Permissions</strong> — Verify your access (Create, Read, Update, Delete) to the record's object</li>
+                    </ul>
+                    <p>Security Manager helps you debug permission issues without visiting Setup or relying on an admin.</p>
+                </div>
+
+                <div class="guide-card" id="tips">
+                    <h2>Tips & Best Practices</h2>
+                    <ul>
+                        <li><strong>Pin records you check frequently</strong> — Avoid re-typing the same IDs repeatedly. Once pinned, a single click loads the record.</li>
+                        <li><strong>Use breadcrumbs to explore without losing context</strong> — Navigate through related records (Account → Contacts → Opportunities) and jump back with one click.</li>
+                        <li><strong>Bulk scan is rate-limited for your safety</strong> — 5 concurrent requests prevent API limit overages. Typical 50-record scan takes 10–15 seconds.</li>
+                        <li><strong>Inline edit is fail-open by default</strong> — All orgs allow editing unless you explicitly disable it in Settings > Inline Edit Permissions. Good for dev/sandbox, bad for production.</li>
+                        <li><strong>Block inline editing on production</strong> — Use Settings to disable editing on your prod org, preventing accidental data changes by your team.</li>
+                        <li><strong>Record history tracks your last 25 lookups</strong> — Use the history dropdown to quickly jump to recently-viewed records without re-scanning.</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <div class="site-footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html">Feature Guides</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+    </footer>
+</body>
+</html>

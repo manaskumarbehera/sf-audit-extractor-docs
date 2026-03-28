@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View all fields, values, and metadata for any Salesforce record directly on the page with TrackForcePro's Show All Data overlay.">
+    <title>TrackForcePro — Show All Data Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="../shared.css">
+    <script src="../theme.js"></script>
+    <style>
+        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
+        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+        .guide-nav { position: sticky; top: 20px; padding: 18px; }
+        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
+        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+        .guide-nav a:hover { background: var(--bg-alt); }
+        .guide-main { display: grid; gap: 22px; }
+        .guide-card { padding: 24px 26px; }
+        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
+        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
+        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
+        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
+        .guide-lab strong { color: var(--text); }
+        .badge { display: inline-block; margin-top: 8px; padding: 4px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: linear-gradient(135deg, rgba(74,144,226,0.15), rgba(59,130,246,0.1)); color: var(--primary); }
+        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <a href="../index.html">Home</a>
+        <a href="../quick-start-guide.html">Quick Start</a>
+        <a href="../guide.html">Training Guide</a>
+        <a href="../documentation.html">Docs</a>
+        <a href="index.html" class="active">Feature Guides</a>
+        <a href="../help.html">Help</a>
+        <a href="../quiz.html">Quiz &amp; Games</a>
+        <a href="../leaderboard.html">Leaderboard</a>
+        <a href="../privacy-policy.html">Privacy</a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+            <span class="theme-icon"></span>
+            <span class="theme-label"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="guide-shell">
+    <div class="guide-grid">
+        <nav class="guide-nav">
+            <h2>On This Page</h2>
+            <a href="#what-it-does">What It Does</a>
+            <a href="#how-to-open">How to Open</a>
+            <a href="#field-explorer">Field Explorer</a>
+            <a href="#inline-editing">Inline Editing</a>
+            <a href="#lookup-navigation">Lookup Navigation</a>
+            <a href="#related-actions">Related Actions</a>
+            <a href="#tips">Tips &amp; Tricks</a>
+        </nav>
+
+        <div class="guide-main">
+            <div class="guide-card">
+                <h1 style="font-size: 1.85rem; margin: 0 0 8px; color: var(--text);">📊 Show All Data Guide</h1>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 1.05rem;">View all fields, values, and metadata for any Salesforce record directly on the page.</p>
+                <span class="badge">In-Page Overlay</span>
+            </div>
+
+            <div class="guide-card" id="what-it-does">
+                <h2>What It Does</h2>
+                <p>Show All Data opens a comprehensive inspector panel for any Salesforce record, displaying every field with its current value, API name, data type, and editability status. Instead of hunting through Setup, navigating multiple screens, or using Data Loader to inspect record data, you get instant visibility to all fields right on the record page.</p>
+                <p>The floating button appears on every Salesforce record detail page, making data exploration immediate and contextual. No page reloads, no navigation delays — just click and explore.</p>
+            </div>
+
+            <div class="guide-card" id="how-to-open">
+                <h2>How to Open</h2>
+                <p>You have three ways to launch Show All Data:</p>
+                <ol>
+                    <li><strong>Floating Button:</strong> Look for the "TFP Show All Data" button that floats on the right side of the record page (or left/bottom if you've configured it). Click it to slide open the side panel.</li>
+                    <li><strong>Right-Click Menu:</strong> Right-click anywhere on a Salesforce record page and select "Show All Data" from the TrackForcePro context menu.</li>
+                    <li><strong>Keyboard Shortcut:</strong> Press the configured keyboard shortcut (default varies, configurable in Settings → Sidebar). The panel slides in instantly without any mouse interaction.</li>
+                </ol>
+                <p>Once open, the panel slides in from the right (or configured side), overlaying the record details. Click the close button or press Escape to dismiss it. The sidebar stays independent of your Salesforce browsing — it won't interfere with form submission or page navigation.</p>
+            </div>
+
+            <div class="guide-card" id="field-explorer">
+                <h2>Field Explorer</h2>
+                <p>The Show All Data panel displays a comprehensive, paginated table of all fields on the record. Each page shows up to 100 fields to keep the interface responsive.</p>
+                <table class="guide-table">
+                    <thead>
+                        <tr>
+                            <th>Column</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Field Label</strong></td>
+                            <td>The user-friendly name as shown in Salesforce UI (e.g., "Account Name").</td>
+                        </tr>
+                        <tr>
+                            <td><strong>API Name</strong></td>
+                            <td>The technical API identifier used in queries and integrations (e.g., "Name"). Click to copy to clipboard.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Value</strong></td>
+                            <td>The current value stored in the field. Shows "— " if empty or null.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Type</strong></td>
+                            <td>The field's data type: Text, Picklist, Lookup, Formula, Currency, Boolean, Date, DateTime, etc.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 14px;">At the top of the panel is a <strong>search bar</strong>. Type any part of a field label or API name to filter the table in real time. This is especially useful when working with objects that have 50+ fields — search for "phone" to find all phone-related fields instantly.</p>
+                <p>Fields are color-coded by type for quick visual scanning. Lookup fields show a clickable link (see Lookup Navigation below).</p>
+            </div>
+
+            <div class="guide-card" id="inline-editing">
+                <h2>Inline Editing</h2>
+                <p>TrackForcePro lets you edit field values directly from the Show All Data panel without opening edit mode or a separate form. <strong>Double-click any updateable field</strong> to start editing.</p>
+                <p>The input type changes based on the field's data type:</p>
+                <ul>
+                    <li><strong>Text / Email / URL:</strong> Text input box. Type your value and press Enter to save.</li>
+                    <li><strong>Boolean:</strong> Dropdown with True/False options. Select and press Enter to save.</li>
+                    <li><strong>Long Text / Rich Text:</strong> Textarea. Press Ctrl+Enter (or Cmd+Enter on Mac) to save, or click outside to cancel.</li>
+                    <li><strong>Picklist:</strong> Dropdown with available values. Select and press Enter to save.</li>
+                    <li><strong>Date / DateTime:</strong> Date picker. Select the date and time, then press Enter to save.</li>
+                </ul>
+                <p>Press <strong>Escape</strong> at any time to cancel editing without saving. After you press Enter, TrackForcePro sends a PATCH request to the Salesforce REST API to update the field. A success toast confirms the change.</p>
+                <div class="guide-highlight">
+                    <strong>Important:</strong> Inline editing can be disabled per-org in Settings → General → Org Management. If inline edit is blocked for your org, the double-click action is disabled and you'll see a warning notification.
+                </div>
+            </div>
+
+            <div class="guide-card" id="lookup-navigation">
+                <h2>Lookup Navigation</h2>
+                <p>When a field contains a lookup to another Salesforce record (Account, Contact, Opportunity, etc.), the value appears as a clickable link in the Show All Data table. <strong>Click the link</strong> to navigate to that related record.</p>
+                <p>As you click through related records, TrackForcePro builds a <strong>breadcrumb trail</strong> at the top of the panel. For example: "Account (001xx) > Contact (003xx) > Opportunity (006xx)". This trail lets you see your navigation history without getting lost.</p>
+                <p><strong>Click any breadcrumb</strong> to jump back to a previous record. The breadcrumb list truncates as you navigate deeper, keeping the UI clean.</p>
+                <p>This feature is perfect for exploring related data structures: start with a record, follow its parent Account, check the Contact, then jump back to the original Opportunity — all without leaving the Show All Data panel.</p>
+            </div>
+
+            <div class="guide-card" id="related-actions">
+                <h2>Related Actions from Context Menu</h2>
+                <p>The right-click context menu on Salesforce record pages includes two additional Show All Data–related shortcuts:</p>
+                <ul>
+                    <li><strong>Field History:</strong> Opens a history log of changes to tracked fields on the current record. Shows when each field was changed, who changed it, and the old/new values (if field history tracking is enabled on your org).</li>
+                    <li><strong>Sharing:</strong> Displays the current record's sharing rules and access levels. See who has what level of access (Read, Edit, All) to this record.</li>
+                    <li><strong>Copy Record ID:</strong> Copies the record's 18-character ID to your clipboard for quick reference in SOQL queries or API calls.</li>
+                </ul>
+            </div>
+
+            <div class="guide-card" id="tips">
+                <h2>Tips &amp; Tricks</h2>
+                <div class="guide-lab">
+                    <strong>💡 Tip 1: Search by API Name</strong><br>
+                    If you know the technical API name of a field (e.g., "CustomField__c"), search for it directly instead of scrolling. The search bar filters on both label and API name.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 2: Production Orgs Are Safe</strong><br>
+                    Inline editing is automatically disabled for any org marked as Production in Settings. This prevents accidental field updates on live data. To edit production data, you must explicitly enable it per-org.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 3: Explore Record Networks</strong><br>
+                    Use lookup navigation to explore your record relationships. Start with one record, click related lookups, and use breadcrumbs to backtrack. It's a visual way to understand data structure without writing a SOQL query.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 4: Copy API Names Fast</strong><br>
+                    Click the API Name in the table to copy it to your clipboard. Perfect for building SOQL queries or referencing fields in integrations.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 5: Keyboard Shortcut Efficiency</strong><br>
+                    Set a keyboard shortcut for Show All Data in Settings → Sidebar. Pressing that shortcut is faster than clicking a button or using the right-click menu, especially if you inspect records frequently.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 6: Position Independence</strong><br>
+                    The Show All Data button position is independent from the sidebar and Command Palette. If your sidebar is on the left, put the Show All Data button on the right. Configure all three independently in Settings → Sidebar.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+    <div class="site-footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../quick-start-guide.html">Quick Start</a>
+        <a href="../guide.html">Training Guide</a>
+        <a href="../documentation.html">Docs</a>
+        <a href="index.html">Feature Guides</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View, filter, and export Salesforce Setup Audit Trail entries for compliance reporting and change tracking.">
+    <title>TrackForcePro — 📋 Audit Trail Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="../shared.css">
+    <script src="../theme.js"></script>
+    <style>
+        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
+        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+        .guide-nav { position: sticky; top: 20px; padding: 18px; }
+        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
+        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+        .guide-nav a:hover { background: var(--bg-alt); }
+        .guide-main { display: grid; gap: 22px; }
+        .guide-card { padding: 24px 26px; }
+        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
+        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
+        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
+        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
+        .guide-lab strong { color: var(--text); }
+        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html" class="active">Feature Guides</a>
+            <a href="../help.html">Help</a>
+            <a href="../quiz.html">Quiz &amp; Games</a>
+            <a href="../leaderboard.html">Leaderboard</a>
+            <a href="../privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="guide-shell">
+        <div class="guide-grid">
+            <nav class="guide-nav">
+                <h2>Audit Trail</h2>
+                <a href="#what-it-does">What It Does</a>
+                <a href="#how-to-access">How to Access</a>
+                <a href="#filtering">Filtering</a>
+                <a href="#results-table">Results Table</a>
+                <a href="#export">Export</a>
+                <a href="#tips">Tips</a>
+            </nav>
+
+            <div class="guide-main">
+                <div class="guide-card">
+                    <span class="badge badge-alt">Workspace Tab</span>
+                    <h1 style="font-size: 1.6rem; margin-top: 12px; color: var(--text);">📋 Audit Trail Guide</h1>
+                </div>
+
+                <div class="guide-card" id="what-it-does">
+                    <h2>What It Does</h2>
+                    <p>The Audit Trail tab lets you view and export Salesforce Setup Audit Trail entries directly from TrackForcePro. Quickly filter by user, action type, date range, and section. Export results to CSV for compliance reporting, change tracking, and audit investigations.</p>
+                    <p>This is essential for admins who need to investigate who changed what and when, without navigating deep into Salesforce Setup.</p>
+                </div>
+
+                <div class="guide-card" id="how-to-access">
+                    <h2>How to Access</h2>
+                    <p>Open the TrackForcePro workspace (click the extension icon) and click the <strong>Audit</strong> tab — it's the first tab in the workspace. The tab automatically loads recent audit trail entries from your connected org.</p>
+                    <p>Once loaded, you'll see a filter bar at the top and a results table below showing all available audit trail entries.</p>
+                </div>
+
+                <div class="guide-card" id="filtering">
+                    <h2>Filtering</h2>
+                    <p>Use the filter bar to narrow audit trail results. All filters are optional and combine with each other:</p>
+                    <ul>
+                        <li><strong>Date Range Picker</strong> — Click the date fields to select a start date and end date. Only entries within this range will be shown.</li>
+                        <li><strong>User Filter</strong> — Search by username or email. The filter shows matching users as you type.</li>
+                        <li><strong>Action Filter</strong> — Select specific action types (e.g., "Created", "Updated", "Deleted") from the dropdown.</li>
+                        <li><strong>Section Filter</strong> — Choose setup sections like "Security", "Users", "Organization", "Data &amp; Monitoring", etc. Only entries from that section will appear.</li>
+                    </ul>
+                    <p>You can use multiple filters at once. For example: filter by date range AND user AND action to see exactly what one user changed on a specific date.</p>
+                </div>
+
+                <div class="guide-card" id="results-table">
+                    <h2>Results Table</h2>
+                    <p>The results table displays audit trail entries in columns:</p>
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Date/Time</strong></td>
+                                <td>When the change was made (timestamp).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>User</strong></td>
+                                <td>The Salesforce user who made the change.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Action</strong></td>
+                                <td>The specific action (e.g., "User Updated", "Profile Modified", "Permission Set Created").</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Section</strong></td>
+                                <td>The setup area where the change occurred (e.g., "Users", "Security").</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Delegate User</strong></td>
+                                <td>If applicable, the user on whose behalf the change was made.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Click any column header to sort in ascending or descending order. Results load in pages for performance — use the pagination controls to navigate.</p>
+                </div>
+
+                <div class="guide-card" id="export">
+                    <h2>Export</h2>
+                    <p>Click the <strong>Export</strong> button to download filtered results as a CSV file. The export respects all your current filters — only matching entries are included in the file.</p>
+                    <p>The CSV can be opened in Excel, Google Sheets, or any spreadsheet application for further analysis, pivot tables, or sharing with auditors.</p>
+                </div>
+
+                <div class="guide-card" id="tips">
+                    <h2>Tips &amp; Best Practices</h2>
+                    <ul>
+                        <li><strong>Narrow Large Audit Trails</strong> — If your org has years of audit data, always use a date range filter to keep results manageable.</li>
+                        <li><strong>Export for Compliance</strong> — Export filtered results and save them as evidence for compliance audits or regulatory reviews.</li>
+                        <li><strong>Combine Filters</strong> — Use user + action + date filters together to investigate specific changes quickly. For example: "What did Alice do to Security settings last month?"</li>
+                        <li><strong>Delegate User Tracking</strong> — If you see entries with a Delegate User, those are actions taken on behalf of another user (common for IT support scenarios).</li>
+                        <li><strong>Regular Reviews</strong> — Schedule weekly or monthly exports to keep a record of admin activity for governance.</li>
+                    </ul>
+
+                    <div class="guide-highlight">
+                        <strong>💡 Pro Tip:</strong> If an unexpected change happened, filter by the affected section and a narrow date range. Then export and cross-reference the user against your access logs.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <div class="site-footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html">Feature Guides</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+    </footer>
+</body>
+</html>

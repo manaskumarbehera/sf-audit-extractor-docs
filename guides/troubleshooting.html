@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TrackForcePro troubleshooting guide — resolve connection issues, error codes, performance problems, and cross-browser issues.">
+    <title>TrackForcePro — Troubleshooting Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="../shared.css">
+    <script src="../theme.js"></script>
+    <style>
+        .troubleshooting-container {
+            display: flex;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .troubleshooting-sidebar {
+            flex: 0 0 280px;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+        }
+
+        .troubleshooting-sidebar h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin: 0 0 1rem 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .troubleshooting-sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .troubleshooting-sidebar li {
+            margin: 0.5rem 0;
+        }
+
+        .troubleshooting-sidebar a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .troubleshooting-sidebar a:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .troubleshooting-sidebar a.active {
+            background: var(--accent-primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .troubleshooting-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .troubleshooting-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .troubleshooting-section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-primary);
+            padding-bottom: 1rem;
+        }
+
+        .troubleshooting-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .troubleshooting-table th {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9375rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .troubleshooting-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .troubleshooting-table tbody tr:nth-child(odd) {
+            background: var(--bg-secondary);
+        }
+
+        .troubleshooting-table tbody tr:nth-child(even) {
+            background: var(--bg-tertiary);
+        }
+
+        .troubleshooting-table tbody tr:hover {
+            background: var(--bg-hover, rgba(0, 0, 0, 0.02));
+        }
+
+        .troubleshooting-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .error-code {
+            font-family: 'Monaco', 'Courier New', monospace;
+            background: var(--bg-tertiary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            color: var(--accent-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .faq-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-card.expanded {
+            border-color: var(--accent-primary);
+        }
+
+        .faq-header {
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+
+        .faq-card:hover .faq-header {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .faq-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-primary);
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .faq-card.expanded .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-body {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-card.expanded .faq-body {
+            padding: 1rem;
+            max-height: 1000px;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .troubleshooting-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .troubleshooting-sidebar {
+                flex: 0 0 auto;
+                position: relative;
+                top: auto;
+                display: flex;
+                gap: 1rem;
+                padding: 1rem;
+                height: auto;
+                overflow-x: auto;
+            }
+
+            .troubleshooting-sidebar h3 {
+                display: none;
+            }
+
+            .troubleshooting-sidebar ul {
+                display: flex;
+                gap: 0.5rem;
+                white-space: nowrap;
+            }
+
+            .troubleshooting-sidebar li {
+                margin: 0;
+            }
+
+            .troubleshooting-sidebar a {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .troubleshooting-container {
+                padding: 1rem;
+            }
+
+            .troubleshooting-table {
+                font-size: 0.875rem;
+            }
+
+            .troubleshooting-table th,
+            .troubleshooting-table td {
+                padding: 0.75rem;
+            }
+
+            .troubleshooting-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html" class="active">Feature Guides</a>
+            <a href="../help.html">Help</a>
+            <a href="../quiz.html">Quiz &amp; Games</a>
+            <a href="../leaderboard.html">Leaderboard</a>
+            <a href="../privacy-policy.html">Privacy</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span class="theme-icon"></span>
+                <span class="theme-label"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="site-hero">
+        <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
+        <h1>Troubleshooting Guide</h1>
+        <p>Resolve connection issues, error codes, performance problems, and cross-browser issues quickly.</p>
+        <span class="version-badge">Help &amp; Support</span>
+    </div>
+
+    <div class="troubleshooting-container">
+        <aside class="troubleshooting-sidebar">
+            <h3>Sections</h3>
+            <ul>
+                <li><a href="#connection" class="sidebar-link active">Connection Issues</a></li>
+                <li><a href="#errors" class="sidebar-link">Error Code Reference</a></li>
+                <li><a href="#query" class="sidebar-link">SOQL &amp; Query Issues</a></li>
+                <li><a href="#performance" class="sidebar-link">Performance Issues</a></li>
+                <li><a href="#browsers" class="sidebar-link">Cross-Browser Issues</a></li>
+                <li><a href="#lwc" class="sidebar-link">LWC Explorer Issues</a></li>
+                <li><a href="#faq" class="sidebar-link">FAQ</a></li>
+            </ul>
+        </aside>
+
+        <main class="troubleshooting-content">
+            <!-- Connection Issues -->
+            <section class="troubleshooting-section" id="connection">
+                <h2>Connection Issues</h2>
+                <p>Connection problems prevent TrackForcePro from communicating with your Salesforce instance. Use this table to diagnose and resolve authentication and session issues.</p>
+                <table class="troubleshooting-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Issue</th>
+                            <th style="width: 25%;">Root Cause</th>
+                            <th style="width: 50%;">How to Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Not connected to Salesforce</strong></td>
+                            <td>No Salesforce tab open</td>
+                            <td>Open a Salesforce tab and log in. TrackForcePro reads session from the active SF tab. Reopen the extension popup once logged in.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Session expired</strong></td>
+                            <td>Salesforce session timed out</td>
+                            <td>Refresh the Salesforce tab to re-authenticate. Close and reopen the TFP popup to refresh the cached session.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Extension context invalidated</strong></td>
+                            <td>TrackForcePro was updated while the page was open</td>
+                            <td>Reload the Salesforce tab. This re-initializes the content script with the latest extension code. If using Show All Data, close the panel first.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service worker crashed</strong></td>
+                            <td>MV3 service worker timed out or crashed</td>
+                            <td>Close and reopen the TFP popup. You may see a "degraded mode" toast notification. If persistent, restart the browser. Background.js will auto-recover on next message.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Status shows wrong org</strong></td>
+                            <td>Multiple Salesforce tabs open</td>
+                            <td>Click into the correct Salesforce tab first. TrackForcePro reads the org from the focused tab. If using multiple orgs, keep only one SF tab active per session.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Error Code Reference -->
+            <section class="troubleshooting-section" id="errors">
+                <h2>Error Code Reference</h2>
+                <p>Salesforce and REST API errors are returned as HTTP status codes or Salesforce-specific error types. This reference lists the most common errors in TrackForcePro workflows.</p>
+                <table class="troubleshooting-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Error</th>
+                            <th style="width: 35%;">What It Means</th>
+                            <th style="width: 50%;">How to Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="error-code">401</span></td>
+                            <td>Unauthorized access</td>
+                            <td>Session token expired or invalid. Refresh the Salesforce tab. Verify you're logged into the correct Salesforce org.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">403</span></td>
+                            <td>Forbidden — permission denied</td>
+                            <td>Your Salesforce user profile lacks permission for the requested action. Check with your admin to grant API permissions or object-level access (SOQL, field updates, etc.).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">404</span></td>
+                            <td>Not found</td>
+                            <td>Record, object, or field does not exist. Verify the record ID is correct and the object/field name matches the API name (custom fields end in __c).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">400</span></td>
+                            <td>Bad request — malformed input</td>
+                            <td>The request syntax is invalid. Check SOQL grammar, field names, and filter values. Use the Guidance Engine in SOQL Builder for syntax hints.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">500</span></td>
+                            <td>Internal server error</td>
+                            <td>Salesforce platform error. Retry the request in a few moments. If persistent, check Salesforce System Status and contact Salesforce support.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">INVALID_FIELD</span></td>
+                            <td>Field does not exist on the object</td>
+                            <td>Verify the field API name. Check the custom field name ends with __c. Confirm the field exists on the selected object. Use the SOQL field dropdown to select valid fields.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">INVALID_TYPE</span></td>
+                            <td>Field value type mismatch</td>
+                            <td>Value type (text, number, boolean, etc.) doesn't match field type. Example: "true" text vs boolean true. Check field type in Org Tools &gt; Org Limits or Salesforce Setup.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">MALFORMED_QUERY</span></td>
+                            <td>SOQL syntax error</td>
+                            <td>Check SOQL grammar: parentheses balanced, clauses in order (SELECT … FROM … WHERE … ORDER BY …). Use Guidance Engine to auto-correct common mistakes.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">DUPLICATE_VALUE</span></td>
+                            <td>Unique field constraint violated</td>
+                            <td>Field marked "Unique" already has this value on another record. Check existing records using SOQL or Org Tools. Update or delete conflicting record first.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">STRING_TOO_LONG</span></td>
+                            <td>Text exceeds field length</td>
+                            <td>Text field has a character limit. Check Org Tools for field max length. Shorten the value or request field length increase from admin.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">REQUIRED_FIELD_MISSING</span></td>
+                            <td>Mandatory field is empty</td>
+                            <td>Required fields must have a value. For inline edits, ensure all required fields on the record are populated. Check Org Tools for required field list.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">NetworkError</span></td>
+                            <td>Network connectivity lost</td>
+                            <td>Check internet connection. Verify firewall/proxy allows Salesforce API. Browser console may show "Failed to fetch." Retry the request.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="error-code">Request timed out</span></td>
+                            <td>API response exceeded 30 seconds</td>
+                            <td>Query is too complex or processing too many records. Reduce result set: add WHERE filters, increase LIMIT, or split into smaller queries. Check SOQL performance.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SOQL & Query Issues -->
+            <section class="troubleshooting-section" id="query">
+                <h2>SOQL &amp; Query Issues</h2>
+                <p>Query-related problems occur in SOQL Builder, GraphQL Explorer, and REST Explorer. Symptoms include missing objects, invalid fields, empty results, or disabled editing.</p>
+                <table class="troubleshooting-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Issue</th>
+                            <th style="width: 25%;">Root Cause</th>
+                            <th style="width: 50%;">How to Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>No objects in dropdown</strong></td>
+                            <td>Session not connected</td>
+                            <td>Ensure you're logged into Salesforce and the tab is open. Click into the Salesforce tab, then reopen TFP popup. Session is fetched on popup load.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>INVALID_FIELD error</strong></td>
+                            <td>Field doesn't exist on object</td>
+                            <td>Verify field API name (copy from Setup). Custom fields end with __c. Use the SOQL field dropdown to auto-suggest valid fields. Check field-level security.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MALFORMED_QUERY error</strong></td>
+                            <td>SOQL syntax error</td>
+                            <td>Check Guidance Engine hints (red indicators). Ensure parentheses are balanced. Verify clause order: SELECT, FROM, WHERE, GROUP BY, ORDER BY, LIMIT. Test simple query first.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Results are empty</strong></td>
+                            <td>No matching records</td>
+                            <td>Remove or broaden WHERE filters. Start with a simple query: "SELECT Id FROM Account LIMIT 10". Check record count in Salesforce UI. Verify filter syntax and field types.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inline edit doesn't work</strong></td>
+                            <td>Inline editing disabled for this org</td>
+                            <td>Check Settings &gt; Org Management. Verify "Allow Editing" toggle is enabled for your org. If disabled, click to enable. Changes apply immediately to new edits.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>API limit exceeded</strong></td>
+                            <td>Org hit daily REST API call limit</td>
+                            <td>Check Org Tools &gt; Org Limits for remaining API calls. Reduce query frequency. Wait until next day for limit reset (typically 12:00 AM UTC). Contact admin for limit increase.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Performance Issues -->
+            <section class="troubleshooting-section" id="performance">
+                <h2>Performance Issues</h2>
+                <p>Slow queries, laggy UI, or buffer overflows may occur with large datasets or complex operations. These solutions optimize resource usage.</p>
+                <table class="troubleshooting-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Issue</th>
+                            <th style="width: 25%;">Root Cause</th>
+                            <th style="width: 50%;">How to Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Query times out</strong></td>
+                            <td>Too many records or slow filters</td>
+                            <td>Add LIMIT clause: LIMIT 5000. Add WHERE filters to narrow results. Use indexed fields in WHERE clauses. Avoid complex calculations in SELECT clause.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Virtual table laggy</strong></td>
+                            <td>Too many columns (50+) or rows</td>
+                            <td>Use Smart View to auto-hide empty/null columns. Uncheck columns not needed. Select a higher density (Compact or Dense) for smaller rows. Reduce result LIMIT.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LWC Explorer buffer full</strong></td>
+                            <td>Auto-Capture collected too many network traces</td>
+                            <td>Click "Clear All" to reset buffer. Buffer caps at 200 traces. Turn off Auto-Capture if not needed. Traces older than ~10 minutes auto-expire.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bulk scan slow</strong></td>
+                            <td>Processing 200+ records concurrently</td>
+                            <td>Bulk scan is rate-limited to 5 concurrent API calls. Process 200 IDs max per scan. Wait for completion progress bar (green). Split large scans into multiple batches.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Settings won't save</strong></td>
+                            <td>Browser storage quota exceeded</td>
+                            <td>Clear Query History: Settings &gt; Backup &gt; Clear Query History. Export and delete old backups. Restart browser. If persistent, clear site data for extension domain.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Cross-Browser Issues -->
+            <section class="troubleshooting-section" id="browsers">
+                <h2>Cross-Browser Issues</h2>
+                <p>TrackForcePro runs on Chrome, Edge, Firefox, and Opera. Some features behave differently per browser due to API limitations.</p>
+                <table class="troubleshooting-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Browser</th>
+                            <th style="width: 25%;">Issue</th>
+                            <th style="width: 50%;">Resolution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Firefox</strong></td>
+                            <td>declarativeContent not supported</td>
+                            <td>This API is Chrome/Edge-only. TFP automatically falls back to manual context menu triggers. No action needed — fully supported.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Firefox</strong></td>
+                            <td>Popup size differs from other browsers</td>
+                            <td>Use the Pop-out button (opens results in a new tab) for full-width view. Firefox popup window size is controlled by the browser and cannot be customized by extensions.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Edge</strong></td>
+                            <td>Updates lag behind Chrome release</td>
+                            <td>Check edge://extensions and click "Update" manually. Enable auto-update in Edge settings (enabled by default). Allow 24-48 hours for automatic propagation.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Opera</strong></td>
+                            <td>chrome.commands may not register</td>
+                            <td>Use the sidebar toggle button or keyboard shortcut via custom settings. chrome.commands support in Opera is limited. Context menu and manual shortcuts always work.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Safari</strong></td>
+                            <td>Not supported</td>
+                            <td>Safari does not support Manifest V3 extensions. Use Chrome, Edge, Firefox, or Opera instead. No Safari port is planned at this time.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- LWC Explorer Issues -->
+            <section class="troubleshooting-section" id="lwc">
+                <h2>LWC Explorer Issues</h2>
+                <p>LWC Explorer is a page-side inspector for Lightning Web Components, Aura, and LMS. Issues here relate to component detection and network tracing.</p>
+                <table class="troubleshooting-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Issue</th>
+                            <th style="width: 25%;">Root Cause</th>
+                            <th style="width: 50%;">How to Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>"Not connected" LMS status</strong></td>
+                            <td>Page doesn't have LMS or is non-Lightning</td>
+                            <td>LMS only works on Lightning pages with the messaging service. This is normal for non-Lightning Salesforce pages. No action needed.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Component tree empty</strong></td>
+                            <td>No components detected on page</td>
+                            <td>Refresh the Salesforce page. Ensure you're on a Lightning page with components (Home, App Builder, etc.). Some pages may not have explorable components.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Auto-Capture not capturing</strong></td>
+                            <td>Extension context invalid</td>
+                            <td>Reload the Salesforce page. This re-initializes the network injected script. If TFP was updated, you must reload the SF page to load new code.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Traces not showing</strong></td>
+                            <td>Filter is active (not "All")</td>
+                            <td>Click the "All" filter chip at the top to show all trace types. Click specific chips (Apex, UI API, GraphQL, etc.) to filter by type. Traces matching the filter will appear.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- FAQ -->
+            <section class="troubleshooting-section" id="faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>Does TrackForcePro store my credentials?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">No. TrackForcePro never stores or transmits your Salesforce username, password, or security token. It reads your session token from the browser's cookies (automatically set by Salesforce) and uses it to make API calls. Session tokens are browser-managed and never persisted to extension storage.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>Can TrackForcePro access my data when the extension is closed?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">No. TrackForcePro only runs while the popup or content scripts are active. When you close the popup, the extension stops. It cannot access data, read pages, or make API calls in the background. The service worker (background.js) only handles message routing — it does not make unsolicited API calls.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>Does inline editing work on production orgs?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">Yes, inline editing is enabled by default and works on all org types (dev, sandbox, production). You can disable it per-org in Settings &gt; Org Management if needed. Admins can toggle "Allow Editing" for each org individually. Inline edits use the Salesforce REST API PATCH endpoint with full validation.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>Why don't I see all Salesforce objects in SOQL Builder?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">Your Salesforce user profile determines which objects are visible. If you cannot see an object, your profile likely lacks "Read" permission for that object. Contact your Salesforce admin to grant API access to the object. Custom objects are visible only if your profile has access. The object list is filtered by your actual Salesforce permissions.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>Can I use TrackForcePro with multiple orgs simultaneously?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">Yes. TrackForcePro uses org-scoped caching, which prevents data leaks between orgs. You can have multiple Salesforce tabs open, each logged into a different org. TrackForcePro reads the session from the currently focused tab. To avoid confusion, keep only one org tab active at a time, or use multiple browser windows.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>What Salesforce API version does TrackForcePro use?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">TrackForcePro uses Salesforce API versions 60–66, automatically detected from your org. The API version is determined by your Salesforce instance and org settings. In Org Tools, you can see your current instance URL and API version. No manual version selection is needed.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>How do I reset TrackForcePro to factory defaults?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">Go to Settings &gt; Backup &gt; Reset All. This clears all settings, cache, history, and saved preferences. Confirm the action (it cannot be undone). Your Salesforce data is not affected. After reset, all defaults are restored. You can also export settings before reset as a backup.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>Can I export and share my TrackForcePro settings?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">Yes. Go to Settings &gt; Backup &gt; Export All to download a JSON file with all your settings, including theme, layout, keyboard shortcuts, and saved orgs. You can share this file with teammates. To import, click Import All and select the exported JSON file. Settings merge with existing settings (imports do not overwrite).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>Is my Salesforce data sent outside my browser?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">No. TrackForcePro runs entirely in your browser. All API calls go directly from your browser to your Salesforce instance. No data is sent to TrackForcePro servers or external services. The extension is open-source and makes no outbound network calls except to Salesforce APIs. Query results and records are cached locally in your browser storage.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-card">
+                        <div class="faq-header" onclick="toggleFaq(this)">
+                            <span>Why does LWC Explorer show a "Beta" badge?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-body">
+                            <p class="faq-answer">LMS (Lightning Message Service) is in beta and may change in future releases. The rest of LWC Explorer (component inspection, network tracing, Aura/GraphQL capture) is stable. The beta badge indicates that the LMS UI and APIs may be refined. Feedback is welcome. All other features in TrackForcePro are production-ready.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+        <div class="site-footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../quick-start-guide.html">Quick Start</a>
+            <a href="../guide.html">Training Guide</a>
+            <a href="../documentation.html">Docs</a>
+            <a href="index.html">Feature Guides</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Sidebar active link sync
+        const sidebarLinks = document.querySelectorAll('.troubleshooting-sidebar a');
+        const sections = document.querySelectorAll('.troubleshooting-section');
+
+        function updateActiveLink() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+
+        // Smooth scroll for sidebar links
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // FAQ accordion toggle
+        function toggleFaq(header) {
+            const card = header.closest('.faq-card');
+            card.classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quick-access floating toolbar on Salesforce pages with shortcuts to TrackForcePro tools, fully customizable with independent positioning.">
+    <title>TrackForcePro — Sidebar Guide</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
+    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
+    <link rel="stylesheet" href="../shared.css">
+    <script src="../theme.js"></script>
+    <style>
+        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
+        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
+        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+        .guide-nav { position: sticky; top: 20px; padding: 18px; }
+        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
+        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+        .guide-nav a:hover { background: var(--bg-alt); }
+        .guide-main { display: grid; gap: 22px; }
+        .guide-card { padding: 24px 26px; }
+        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
+        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
+        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
+        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
+        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
+        .guide-lab strong { color: var(--text); }
+        .badge { display: inline-block; margin-top: 8px; padding: 4px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: linear-gradient(135deg, rgba(74,144,226,0.15), rgba(59,130,246,0.1)); color: var(--primary); }
+        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <div class="site-nav-inner">
+        <a href="../index.html">Home</a>
+        <a href="../quick-start-guide.html">Quick Start</a>
+        <a href="../guide.html">Training Guide</a>
+        <a href="../documentation.html">Docs</a>
+        <a href="index.html" class="active">Feature Guides</a>
+        <a href="../help.html">Help</a>
+        <a href="../quiz.html">Quiz &amp; Games</a>
+        <a href="../leaderboard.html">Leaderboard</a>
+        <a href="../privacy-policy.html">Privacy</a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+            <span class="theme-icon"></span>
+            <span class="theme-label"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="guide-shell">
+    <div class="guide-grid">
+        <nav class="guide-nav">
+            <h2>On This Page</h2>
+            <a href="#what-it-does">What It Does</a>
+            <a href="#how-to-open">How to Open</a>
+            <a href="#default-shortcuts">Default Shortcuts</a>
+            <a href="#customizing">Customizing Shortcuts</a>
+            <a href="#position-settings">Position Settings</a>
+            <a href="#tips">Tips &amp; Tricks</a>
+        </nav>
+
+        <div class="guide-main">
+            <div class="guide-card">
+                <h1 style="font-size: 1.85rem; margin: 0 0 8px; color: var(--text);">📌 Sidebar Guide</h1>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 1.05rem;">Quick-access floating toolbar on Salesforce pages with shortcuts to TrackForcePro tools.</p>
+                <span class="badge">In-Page Overlay</span>
+            </div>
+
+            <div class="guide-card" id="what-it-does">
+                <h2>What It Does</h2>
+                <p>The TrackForcePro sidebar is a floating toolbar that appears on Salesforce pages, giving you one-click access to your most-used TrackForcePro tools. Instead of opening the extension popup every time you need to run a SOQL query or check a record's fields, the sidebar keeps your favorite shortcuts visible right on the page.</p>
+                <p>The sidebar is persistent and intelligent — it stays visible as you navigate through Salesforce, and you can customize which shortcuts appear so you see only the tools you actually use. It acts as a persistent launchpad for admin and developer workflows without cluttering the Salesforce interface.</p>
+            </div>
+
+            <div class="guide-card" id="how-to-open">
+                <h2>How to Open</h2>
+                <p>The sidebar appears <strong>automatically on Salesforce pages</strong>. Look for the floating vertical toolbar on the right side of the page (or left/bottom if you've configured it).</p>
+                <p>You can toggle the sidebar's visibility with a keyboard shortcut (configurable in Settings). Press the shortcut to show or hide the sidebar instantly without reaching for the mouse. This is perfect if you need to reclaim screen real estate temporarily.</p>
+                <p>The sidebar position is independent — you can place it on the right, left, or as a bottom toolbar. Configure the position in Settings → Sidebar. If Salesforce's native sidebar is on the left, put TrackForcePro's on the right to avoid overlapping.</p>
+            </div>
+
+            <div class="guide-card" id="default-shortcuts">
+                <h2>Default Shortcuts</h2>
+                <p>The sidebar comes with built-in shortcuts to the most common TrackForcePro features:</p>
+                <table class="guide-table">
+                    <thead>
+                        <tr>
+                            <th>Shortcut</th>
+                            <th>Action</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Show All Data</strong></td>
+                            <td>Opens the all-fields inspector for the current record. See every field, value, type, and editability status instantly.</td>
+                            <td>rec-tool</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LWC Explorer</strong></td>
+                            <td>Launches the component and network trace inspector on the current Salesforce page. Inspect Lightning Web Components, Aura, and LMS channels.</td>
+                            <td>rec-tool</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SOQL Builder</strong></td>
+                            <td>Switches to the SOQL Builder tab in the TrackForcePro workspace. Write, test, and execute SOQL queries instantly.</td>
+                            <td>rec-tool</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Records</strong></td>
+                            <td>Opens the Records (formerly Data Explorer) tab in the workspace. Lookup and inspect any Salesforce record.</td>
+                            <td>rec-tool</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Org Tools</strong></td>
+                            <td>Switches to the Org Tools tab. Access metadata, limits, custom settings, and other org-level utilities.</td>
+                            <td>org-tool</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Setup Search</strong></td>
+                            <td>Opens Salesforce Setup with a search field pre-focused. Search for pages, objects, fields, and settings by name.</td>
+                            <td>org-tool</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Copy Record ID</strong></td>
+                            <td>Copies the current record's 18-character ID to your clipboard. Useful for SOQL queries and API calls.</td>
+                            <td>org-tool</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="guide-card" id="customizing">
+                <h2>Customizing Shortcuts</h2>
+                <p>Not every shortcut is useful for every user. TrackForcePro lets you customize the sidebar by showing and hiding individual shortcuts.</p>
+                <p><strong>To customize:</strong></p>
+                <ol>
+                    <li>Open the TrackForcePro workspace (click the extension icon).</li>
+                    <li>Navigate to the Settings tab.</li>
+                    <li>Scroll to the "Sidebar" section under General settings.</li>
+                    <li>You'll see a list of all available shortcuts grouped by category:</li>
+                </ol>
+                <ul>
+                    <li><strong>rec-tool:</strong> Records-related tools (Show All Data, LWC Explorer, SOQL Builder, Records, etc.)</li>
+                    <li><strong>org-tool:</strong> Org-level tools (Org Tools, Setup Search, Copy Record ID)</li>
+                </ul>
+                <p>Each shortcut has a toggle switch. <strong>Turn off the switch</strong> to hide that shortcut from the sidebar. Turn it back on to re-enable it. Your changes are saved immediately.</p>
+                <div class="guide-highlight">
+                    <strong>Pro Tip:</strong> If you rarely use Setup Search or Copy Record ID, hide them to keep the sidebar compact. Show only the 2–3 tools you use daily.
+                </div>
+            </div>
+
+            <div class="guide-card" id="position-settings">
+                <h2>Position Settings</h2>
+                <p>TrackForcePro gives you independent control over the position of three elements:</p>
+                <ol>
+                    <li><strong>Sidebar:</strong> The main floating toolbar with shortcuts.</li>
+                    <li><strong>Show All Data Button:</strong> The floating button that opens the all-fields inspector.</li>
+                    <li><strong>Command Palette Trigger:</strong> The button that opens the command palette.</li>
+                </ol>
+                <p>Each has three position options:</p>
+                <ul>
+                    <li><strong>Right:</strong> Floats on the right edge of the Salesforce page.</li>
+                    <li><strong>Left:</strong> Floats on the left edge (opposite of Salesforce's native sidebar).</li>
+                    <li><strong>Bottom:</strong> Renders as horizontal buttons anchored to the bottom edge, perfect for touchscreen use or compact layouts.</li>
+                </ul>
+                <p><strong>To configure positions:</strong> Open Settings → Sidebar and use the dropdown menus for each element. Your preference is saved to storage.</p>
+                <div class="guide-lab">
+                    <strong>💡 Layout Strategy:</strong> If Salesforce's native sidebar occupies the left, place the TrackForcePro sidebar on the right. Put Show All Data on the opposite corner from the sidebar to avoid crowding. Use bottom position for Command Palette on touch-heavy workflows.
+                </div>
+            </div>
+
+            <div class="guide-card" id="tips">
+                <h2>Tips &amp; Tricks</h2>
+                <div class="guide-lab">
+                    <strong>💡 Tip 1: Keep It Minimal</strong><br>
+                    Hide shortcuts you never use. A slim sidebar with 2–3 tools is more usable than a toolbar crammed with options. Enable only what you actually click.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 2: Position for Non-Overlap</strong><br>
+                    Place the sidebar on the opposite side from Salesforce's native sidebar. If native is left, put TrackForcePro on the right. This prevents overlapping UI and makes both sidebars immediately accessible.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 3: Use Keyboard Toggle</strong><br>
+                    Set a keyboard shortcut to toggle the sidebar visibility in Settings → Sidebar. Pressing a key to hide the sidebar is faster than reaching for it when you need screen space.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 4: Independent Button Positioning</strong><br>
+                    Remember that Show All Data and Command Palette trigger buttons have separate position settings. You can have the sidebar on the right, Show All Data on the left, and Command Palette on the bottom — all at the same time, no conflicts.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 5: Bottom Layout for Mobile</strong><br>
+                    If you use Salesforce on tablet or touch devices, try the "Bottom" position for all three elements. Buttons at the bottom edge are easier to reach with your thumb without blocking content.
+                </div>
+                <div class="guide-lab">
+                    <strong>💡 Tip 6: Sidebar Doesn't Block Form Save</strong><br>
+                    The sidebar is overlay-only and won't interfere with form submission, page navigation, or any Salesforce functionality. It's completely non-blocking.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+    <div class="site-footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../quick-start-guide.html">Quick Start</a>
+        <a href="../guide.html">Training Guide</a>
+        <a href="../documentation.html">Docs</a>
+        <a href="index.html">Feature Guides</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
