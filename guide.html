@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="TrackForcePro Training Guide — a role-based walkthrough for Salesforce admins and developers to learn the launcher, workspace, overlays, and troubleshooting workflows."
+            content="TrackForcePro Training Guide — comprehensive walkthrough for Salesforce admins and developers covering the 3-surface model, 3-mode architecture, and practical exercises."
         />
         <title>TrackForcePro - Training Guide</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32" />
@@ -17,7 +17,7 @@
             .guide-shell {
                 max-width: 1100px;
                 margin: 0 auto;
-                padding: 28px 20px 48px;
+                padding: 36px 24px 48px;
             }
             .guide-grid {
                 display: grid;
@@ -25,46 +25,63 @@
                 gap: 24px;
                 align-items: start;
             }
-            .guide-nav,
+            .guide-nav {
+                position: sticky;
+                top: 20px;
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+            .guide-nav h2 {
+                font-size: 0.85rem;
+                margin-bottom: 14px;
+                color: var(--text);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-weight: 700;
+            }
+            .guide-nav a {
+                display: block;
+                padding: 9px 12px;
+                border-radius: 8px;
+                color: var(--text-link);
+                text-decoration: none;
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+                transition:
+                    background var(--transition-fast),
+                    color var(--transition-fast);
+            }
+            .guide-nav a:hover {
+                background: var(--bg-alt);
+                color: var(--primary);
+            }
+            .guide-main {
+                display: grid;
+                gap: 28px;
+            }
             .guide-card {
                 background: var(--card-bg);
                 border: 1px solid var(--border);
                 border-radius: var(--radius-lg);
+                padding: 28px 32px;
                 box-shadow: var(--shadow);
             }
-            .guide-nav {
-                position: sticky;
-                top: 20px;
-                padding: 18px;
-            }
-            .guide-nav h2 {
-                font-size: 0.95rem;
-                margin-bottom: 12px;
-                color: var(--text);
-            }
-            .guide-nav a {
-                display: block;
-                padding: 8px 10px;
-                border-radius: 10px;
-                color: var(--text-link);
-                text-decoration: none;
-                font-size: 0.92rem;
-                font-weight: 600;
-            }
-            .guide-nav a:hover {
-                background: var(--bg-alt);
-            }
-            .guide-main {
-                display: grid;
-                gap: 22px;
-            }
-            .guide-card {
-                padding: 24px 26px;
-            }
             .guide-card h2 {
-                font-size: 1.35rem;
+                font-size: 1.4rem;
                 color: var(--text);
-                margin-bottom: 10px;
+                margin-bottom: 14px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .guide-card h3 {
+                font-size: 1.05rem;
+                color: var(--text);
+                margin: 24px 0 10px;
+                font-weight: 700;
             }
             .guide-card p,
             .guide-card li {
@@ -73,57 +90,35 @@
             }
             .guide-card ul,
             .guide-card ol {
-                margin: 14px 0 0 18px;
-            }
-            .guide-pill-row {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 14px;
-            }
-            .guide-pill {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 8px 12px;
-                border-radius: 999px;
-                background: var(--bg-alt);
-                border: 1px solid var(--border);
-                color: var(--text);
-                font-size: 0.85rem;
-                font-weight: 700;
+                margin: 14px 0 0 20px;
             }
             .guide-surface-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
                 gap: 14px;
                 margin-top: 16px;
             }
             .guide-surface {
-                padding: 16px;
-                border-radius: 16px;
+                padding: 18px 20px;
+                border-radius: 12px;
                 border: 1px solid var(--border);
-                background: linear-gradient(180deg, var(--card-bg), var(--bg-alt));
+                background: linear-gradient(135deg, var(--card-bg), var(--bg-alt));
             }
             .guide-surface h3 {
                 font-size: 1rem;
-                margin-bottom: 6px;
+                margin: 0 0 8px;
                 color: var(--text);
+                font-weight: 700;
             }
-            .guide-lab {
-                margin-top: 14px;
-                padding: 16px 18px;
-                border-radius: 14px;
-                background: var(--bg-alt);
-                border: 1px dashed var(--border);
-            }
-            .guide-lab strong {
-                color: var(--text);
+            .guide-surface p {
+                margin: 0;
+                font-size: 0.9rem;
+                color: var(--text-secondary);
             }
             .guide-table {
                 width: 100%;
                 border-collapse: collapse;
-                margin-top: 12px;
+                margin-top: 14px;
             }
             .guide-table th,
             .guide-table td {
@@ -131,13 +126,18 @@
                 padding: 12px 14px;
                 border-bottom: 1px solid var(--border);
                 color: var(--text-secondary);
-                vertical-align: top;
             }
             .guide-table th {
+                background: var(--bg-alt);
                 color: var(--text);
-                font-size: 0.85rem;
+                font-size: 0.8rem;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
+                font-weight: 700;
+            }
+            .guide-table td:first-child {
+                font-weight: 600;
+                color: var(--text);
             }
             .guide-highlight {
                 margin-top: 16px;
@@ -145,6 +145,92 @@
                 border-left: 4px solid var(--primary);
                 border-radius: 0 12px 12px 0;
                 background: linear-gradient(135deg, rgba(1, 118, 211, 0.08), rgba(42, 115, 255, 0.04));
+            }
+            .guide-highlight strong {
+                color: var(--text);
+            }
+            .guide-lab {
+                margin-top: 14px;
+                padding: 16px 18px;
+                border-radius: 12px;
+                background: var(--bg-alt);
+                border: 1px dashed var(--border);
+            }
+            .guide-lab strong {
+                color: var(--text);
+                display: block;
+                margin-bottom: 6px;
+            }
+            .guide-lab p {
+                margin: 0;
+                font-size: 0.93rem;
+            }
+            .guide-code {
+                background: var(--bg-alt);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 12px 14px;
+                font-family: 'SF Mono', 'Fira Code', monospace;
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+                margin: 12px 0;
+                overflow-x: auto;
+            }
+            .mode-badge {
+                display: inline-block;
+                padding: 4px 12px;
+                border-radius: 999px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-left: 8px;
+            }
+            .mode-explore {
+                background: #d8edff;
+                color: #014486;
+            }
+            .mode-debug {
+                background: #fce4b6;
+                color: #6b3b04;
+            }
+            .mode-analyze {
+                background: #cdefc8;
+                color: #194e31;
+            }
+            [data-theme='dark'] .mode-explore {
+                background: rgba(27, 150, 255, 0.2);
+                color: #58a6ff;
+            }
+            [data-theme='dark'] .mode-debug {
+                background: rgba(251, 180, 73, 0.2);
+                color: #fbb449;
+            }
+            [data-theme='dark'] .mode-analyze {
+                background: rgba(69, 198, 90, 0.2);
+                color: #6ee77a;
+            }
+            .step-row {
+                display: flex;
+                gap: 14px;
+                margin: 14px 0;
+                align-items: flex-start;
+            }
+            .step-num {
+                flex-shrink: 0;
+                width: 28px;
+                height: 28px;
+                background: var(--primary);
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 0.85rem;
+            }
+            .step-text {
+                flex: 1;
             }
             @media (max-width: 900px) {
                 .guide-grid {
@@ -179,210 +265,592 @@
             <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Training Guide</h1>
             <p>
-                Learn TrackForcePro like a Salesforce admin coach would teach it: start with the right surface, use the
-                right workflow, and build confidence with practice labs.
+                Learn TrackForcePro the way your role works. Follow a guided path for admins, developers, support teams,
+                or trainers.
             </p>
-            <span class="version-badge">Version 2.1.5</span>
+            <span class="version-badge">Version 2.1.6</span>
         </div>
 
         <div class="guide-shell">
             <div class="guide-grid">
+                <!-- Sidebar Navigation -->
                 <aside class="guide-nav">
-                    <h2>In This Guide</h2>
-                    <a href="#operating-model">Operating Model</a>
-                    <a href="#role-paths">Role-Based Learning Paths</a>
-                    <a href="#daily-work">Daily Workflows</a>
-                    <a href="#labs">Hands-On Labs</a>
-                    <a href="#trainer-notes">Trainer Notes</a>
+                    <h2>Contents</h2>
+                    <a href="#surfaces">3-Surface Model</a>
+                    <a href="#modes">3-Mode Architecture</a>
+                    <a href="#learning-paths">Learning Paths</a>
+                    <a href="#workflows">Daily Workflows</a>
+                    <a href="#exercises">Hands-On Labs</a>
+                    <a href="#best-practices">Best Practices</a>
                 </aside>
 
+                <!-- Main Content -->
                 <main class="guide-main">
-                    <section class="guide-card" id="operating-model">
-                        <h2>1. Operating Model</h2>
+                    <!-- 3-Surface Model Section -->
+                    <section class="guide-card" id="surfaces">
+                        <h2>🏗️ Understanding the 3-Surface Model</h2>
                         <p>
-                            TrackForcePro works best when users know which surface to use first. The product is no
-                            longer just a popup. It is a three-surface toolkit.
+                            TrackForcePro isn't just a popup — it's a toolkit across three distinct surfaces.
+                            Understanding which surface to use first prevents confusion and makes users 3x faster.
                         </p>
+
                         <div class="guide-surface-grid">
                             <div class="guide-surface">
-                                <h3>Launcher Popup</h3>
+                                <h3>1️⃣ Launcher Popup</h3>
                                 <p>
-                                    Use it to check the current org, jump into a tool quickly, and resume your last
-                                    workspace. It should be the fastest starting point, not the place for long tasks.
+                                    Quick-access menu on the extension icon. Check current org, jump to a tool, resume
+                                    last workspace. 30-second interactions.
                                 </p>
                             </div>
                             <div class="guide-surface">
-                                <h3>Workspace Tab</h3>
+                                <h3>2️⃣ Workspace Tab</h3>
                                 <p>
-                                    Use this for serious work: SOQL, GraphQL, REST Explorer, Records, Org Tools, Debug
-                                    Logs, Label translation, and settings. Anything with tables, builders, or multi-step
-                                    flows belongs here.
+                                    Full-screen editor for serious work: SOQL, GraphQL, REST, Records, Org Tools.
+                                    Multi-step workflows, tables, builders.
                                 </p>
                             </div>
                             <div class="guide-surface">
-                                <h3>In-Page Overlays</h3>
+                                <h3>3️⃣ In-Page Overlays</h3>
                                 <p>
-                                    Use these on Salesforce pages when the current page context matters. This includes
-                                    TF Sidebar, Show All Data, LWC Explorer, right-click actions, and Setup Search.
+                                    Floating panels on Salesforce pages when context matters. Show All Data, Sidebar,
+                                    LWC Explorer, right-click actions, Command Palette.
                                 </p>
                             </div>
                         </div>
+
                         <div class="guide-highlight">
-                            <strong>Trainer recommendation:</strong> teach users to ask one question before every
-                            action: <em>Do I need a quick jump, deep workspace, or page context?</em> That single habit
-                            removes most confusion.
+                            <strong>Teaching Principle:</strong> Before every action, ask: "Do I need a quick jump
+                            (Launcher), deep work (Workspace), or page context (Overlay)?"
+                        </div>
+
+                        <h3>Decision Tree</h3>
+                        <ul>
+                            <li><strong>I need to jump into a tool quickly:</strong> Launcher → Workspace</li>
+                            <li>
+                                <strong>I'm writing or debugging something complex:</strong> Workspace directly
+                                (Ctrl+click extension icon, or use Launcher to resume)
+                            </li>
+                            <li>
+                                <strong>I'm on a Salesforce page and need context:</strong> Show All Data (double-click
+                                field or right-click), Sidebar (Ctrl+Shift+S), LWC Explorer, context menu
+                            </li>
+                            <li>
+                                <strong>I'm searching metadata or jumping between features:</strong> Command Palette
+                                (Ctrl+K)
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- 3-Mode Architecture Section -->
+                    <section class="guide-card" id="modes">
+                        <h2>🎯 The 3-Mode Architecture</h2>
+                        <p>
+                            All features are organized into three modes. Each mode groups related tasks and appears as a
+                            colored pill in the workspace header.
+                        </p>
+
+                        <h3>Mode 1: Explore (Blue) <span class="mode-badge mode-explore">Explore</span></h3>
+                        <p>For querying, exploring data, and managing users &amp; security:</p>
+                        <ul>
+                            <li>
+                                <strong>SOQL Builder</strong> — Visual query editor with inline result editing and 5
+                                export formats
+                            </li>
+                            <li>
+                                <strong>GraphQL Builder</strong> — Three-pane query editor with real-time validation
+                            </li>
+                            <li>
+                                <strong>Records</strong> — Record scanner with All Fields table, inline edit, breadcrumb
+                                navigation
+                            </li>
+                            <li>
+                                <strong>REST Explorer</strong> — Send any REST API request with collections and history
+                            </li>
+                            <li>
+                                <strong>Schema</strong> — Search objects, fields, flows, permission sets by API name
+                            </li>
+                            <li><strong>User Manager</strong> — Search users, update profiles, manage sessions</li>
+                            <li>
+                                <strong>Security Manager</strong> — Browse Profiles and Permission Sets with drill-down
+                            </li>
+                        </ul>
+
+                        <h3>Mode 2: Debug (Amber) <span class="mode-badge mode-debug">Debug</span></h3>
+                        <p>For monitoring real-time events and troubleshooting:</p>
+                        <ul>
+                            <li><strong>Platform Events</strong> — Real-time CometD streaming with event filtering</li>
+                            <li><strong>Debug Logs</strong> — Fetch, filter, and search Apex debug logs</li>
+                        </ul>
+
+                        <h3>Mode 3: Analyze (Green) <span class="mode-badge mode-analyze">Analyze</span></h3>
+                        <p>For auditing, health checks, and administration:</p>
+                        <ul>
+                            <li>
+                                <strong>Audit Trail</strong> — Fetch Setup Audit Trail with category filter and CSV
+                                export
+                            </li>
+                            <li><strong>Org Health</strong> — Real-time org limits and performance metrics</li>
+                            <li>
+                                <strong>Org Tools</strong> — 7 panels: Login As, Custom Labels, Deployments, Scheduled
+                                Jobs, Debug Logs, Org Limits, Admin Utils
+                            </li>
+                            <li>
+                                <strong>Org &amp; Favicon</strong> — Custom favicons per org with 8 shapes and 8 colors
+                            </li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>Pro Tip:</strong> The mode bar is visible in the workspace header. Switching modes
+                            changes only the view tabs below — all other settings persist. This is intentional to
+                            prevent context-switching friction.
                         </div>
                     </section>
 
-                    <section class="guide-card" id="role-paths">
-                        <h2>2. Role-Based Learning Paths</h2>
-                        <p>
-                            Different Salesforce roles need different first wins. Start training with the path that
-                            matches the person’s daily work.
-                        </p>
+                    <!-- Learning Paths Section -->
+                    <section class="guide-card" id="learning-paths">
+                        <h2>🗺️ Role-Based Learning Paths</h2>
+                        <p>Different roles need different first wins. Start training with your role's path.</p>
+
+                        <h3>👨‍💼 Admin Learning Path</h3>
                         <table class="guide-table">
                             <thead>
                                 <tr>
-                                    <th>Role</th>
-                                    <th>Start Here</th>
-                                    <th>Primary Skills</th>
+                                    <th>Phase</th>
+                                    <th>Focus</th>
+                                    <th>Features to Master</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Admin</td>
-                                    <td>Records, Org Tools, Setup Search</td>
+                                    <td>Beginner (Day 1)</td>
+                                    <td>Getting comfortable with the Launcher and Workspace</td>
+                                    <td>Launcher popup, resume workspace, switch modes, view current org</td>
+                                </tr>
+                                <tr>
+                                    <td>Intermediate (Days 2-3)</td>
+                                    <td>Metadata discovery and record inspection</td>
                                     <td>
-                                        Find metadata by API name, manage debug logs, custom labels, validate field
-                                        values, move quickly through Setup.
+                                        Schema search, Records tab, All Fields table, record history, Show All Data on
+                                        pages
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Developer</td>
-                                    <td>SOQL, GraphQL, REST Explorer, Metadata Explorer</td>
+                                    <td>Advanced (Week 2+)</td>
+                                    <td>Org management and automation troubleshooting</td>
                                     <td>
-                                        Query data, inspect flows and Apex, compare objects, use page overlays to jump
-                                        from context into workspace.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Support / Ops</td>
-                                    <td>Show All Data, Sharing, Field History</td>
-                                    <td>
-                                        Triage record issues, verify user access, inspect values directly from a
-                                        Salesforce page.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Consultant / Trainer</td>
-                                    <td>Launcher, Training Guide, Quiz</td>
-                                    <td>
-                                        Teach the surface model, guide first-use flows, reinforce learning with labs and
-                                        quiz-based recall.
+                                        Org Tools (labels, deployments, scheduled jobs), Debug Logs, Audit Trail, User
+                                        Manager
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="guide-pill-row">
-                            <span class="guide-pill">Launcher for entry</span>
-                            <span class="guide-pill">Workspace for depth</span>
-                            <span class="guide-pill">Overlays for context</span>
-                            <span class="guide-pill">Quiz for retention</span>
-                        </div>
+
+                        <h3>👨‍💻 Developer Learning Path</h3>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Phase</th>
+                                    <th>Focus</th>
+                                    <th>Features to Master</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Beginner (Day 1)</td>
+                                    <td>SOQL querying and REST API exploration</td>
+                                    <td>SOQL Builder with visual editor, REST Explorer, inline result editing</td>
+                                </tr>
+                                <tr>
+                                    <td>Intermediate (Days 2-3)</td>
+                                    <td>Component inspection and event debugging</td>
+                                    <td>LWC Explorer, Platform Events, Debug Logs, GraphQL queries</td>
+                                </tr>
+                                <tr>
+                                    <td>Advanced (Week 2+)</td>
+                                    <td>Advanced queries and automation troubleshooting</td>
+                                    <td>
+                                        SOQL sub-queries and aggregations, GraphQL relationships, Records bulk scan, LWC
+                                        network tracing
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>🎯 Support/Ops Learning Path</h3>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Phase</th>
+                                    <th>Focus</th>
+                                    <th>Features to Master</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Beginner (Day 1)</td>
+                                    <td>Record troubleshooting on Salesforce pages</td>
+                                    <td>Show All Data, context menu, Field History, Sharing tab</td>
+                                </tr>
+                                <tr>
+                                    <td>Intermediate (Days 2-3)</td>
+                                    <td>Data inspection and user access verification</td>
+                                    <td>
+                                        Records tab, All Fields table, User Manager, Security Manager, pinned records
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Advanced (Week 2+)</td>
+                                    <td>Bulk record scanning and complex triage workflows</td>
+                                    <td>
+                                        Bulk scan (200 IDs), breadcrumb navigation, SOQL for data comparison, Search UI
+                                        API queries
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>📚 Trainer/Consultant Learning Path</h3>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Phase</th>
+                                    <th>Focus</th>
+                                    <th>Features to Master</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Beginner (Day 1)</td>
+                                    <td>The three-surface model and three-mode architecture</td>
+                                    <td>Launcher, Workspace switching, Settings, Command Palette</td>
+                                </tr>
+                                <tr>
+                                    <td>Intermediate (Days 2-3)</td>
+                                    <td>Teaching others the product model</td>
+                                    <td>All three surfaces, hands-on labs, quiz platform, leaderboard</td>
+                                </tr>
+                                <tr>
+                                    <td>Advanced (Week 2+)</td>
+                                    <td>Customizing training for different roles</td>
+                                    <td>
+                                        Settings for appearance, sidebar shortcuts, keyboard shortcut customization,
+                                        per-org settings
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
 
-                    <section class="guide-card" id="daily-work">
-                        <h2>3. Daily Workflows to Teach First</h2>
-                        <ol>
-                            <li>
-                                <strong>Find a record problem fast:</strong> open a record page, launch Show All Data,
-                                inspect fields, jump to Sharing or Field History, then open Records for deeper
-                                comparison.
-                            </li>
-                            <li>
-                                <strong>Search metadata by API name:</strong> use Setup Search on any Salesforce page
-                                for quick discovery, then use Metadata Explorer in the workspace when you need broader
-                                results and follow-up actions.
-                            </li>
-                            <li>
-                                <strong>Inspect a broken page component:</strong> open LWC Explorer from the page,
-                                select the component, separate Apex vs UI API vs GraphQL traffic, then use the large
-                                editor window to jump straight into the LWC bundle or Apex class.
-                            </li>
-                            <li>
-                                <strong>Triage a failing automation:</strong> search the Flow by API name, open Debug
-                                Logs, run the record context through SOQL or Records, and capture the result path for
-                                the incident owner.
-                            </li>
-                            <li>
-                                <strong>Translate or update labels safely:</strong> use Org Tools for
-                                export/import/translation workflows instead of doing repeated manual label edits.
-                            </li>
-                        </ol>
-                        <div class="guide-lab">
-                            <strong>UX coaching note:</strong> if a workflow needs scrolling through a big table,
-                            multiple result sets, or more than one decision, move to the workspace early instead of
-                            forcing users to stay in the popup.
-                        </div>
-                    </section>
-
-                    <section class="guide-card" id="labs">
-                        <h2>4. Hands-On Labs</h2>
+                    <!-- Daily Workflows Section -->
+                    <section class="guide-card" id="workflows">
+                        <h2>💼 Common Daily Workflows</h2>
                         <p>
-                            These labs are designed for training sessions, onboarding, or self-study. Each one teaches
-                            both product navigation and Salesforce problem solving.
+                            Master these five workflows and you'll be confident with TrackForcePro in most situations.
                         </p>
+
+                        <h3>Workflow 1: Find a Record Problem Fast</h3>
+                        <div class="step-row">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Navigate to record on Salesforce</strong> — Open any record detail page
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Launch Show All Data</strong> — Press Ctrl+Shift+D, right-click > Show All Data,
+                                or use the floating button
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Inspect fields</strong> — Search by field name, view values, check field history
+                                or sharing
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">4</div>
+                            <div class="step-text">
+                                <strong>Dive deeper if needed</strong> — Click "Field History" or "Sharing" to inspect,
+                                or open Records in Workspace for more context
+                            </div>
+                        </div>
+
+                        <h3>Workflow 2: Search Metadata by API Name</h3>
+                        <div class="step-row">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Quick discovery:</strong> On any Salesforce page, press Ctrl+K to open Command
+                                Palette, type the API name (Flow, Permission Set, etc.)
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Broader results:</strong> Go to Workspace > Explore > Schema, use the search bar
+                                for all objects and fields
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Jump to Setup:</strong> Click the Setup link icon to open the metadata in
+                                Salesforce Setup
+                            </div>
+                        </div>
+
+                        <h3>Workflow 3: Inspect a Broken Page Component</h3>
+                        <div class="step-row">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Open LWC Explorer:</strong> On the Salesforce page, click the LWC Explorer
+                                shortcut in the sidebar or press Ctrl+Shift+L (if configured)
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Select the component:</strong> Click on the component tree to select it, or use
+                                the page inspector to highlight
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Filter traces:</strong> Use the trace filter chips (All, Apex, UI API, GraphQL,
+                                Fetch/API, Errors) to isolate the issue
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">4</div>
+                            <div class="step-text">
+                                <strong>Open the code:</strong> Click "Edit Code" or "Edit Apex" to jump to the
+                                component source or Apex class
+                            </div>
+                        </div>
+
+                        <h3>Workflow 4: Triage a Failing Automation</h3>
+                        <div class="step-row">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Find the Flow:</strong> Open Workspace > Explore > Schema, search for the Flow
+                                API name
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Check debug logs:</strong> Open Workspace > Debug > Debug Logs, filter by
+                                class/trigger name if the Flow calls Apex
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Test the record:</strong> Use Workspace > Explore > Records to scan the record
+                                ID and inspect field values
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">4</div>
+                            <div class="step-text">
+                                <strong>Document results:</strong> Capture the result path and timeline in your incident
+                                report
+                            </div>
+                        </div>
+
+                        <h3>Workflow 5: Translate or Update Labels Safely</h3>
+                        <div class="step-row">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Open Org Tools:</strong> Workspace > Analyze > Org Tools > Custom Labels panel
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Export labels:</strong> Click "Export All" to download a CSV with all labels
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Update locally:</strong> Edit the CSV in your spreadsheet (or use the bulk
+                                import feature)
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">4</div>
+                            <div class="step-text">
+                                <strong>Import back:</strong> Click "Import" and upload your updated CSV — changes are
+                                applied in batch
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Hands-On Exercises Section -->
+                    <section class="guide-card" id="exercises">
+                        <h2>🏋️ Hands-On Labs</h2>
+                        <p>
+                            Use these labs to reinforce learning. Each lab teaches both product navigation and
+                            Salesforce problem-solving.
+                        </p>
+
+                        <h3>Lab A: Metadata Discovery Race</h3>
                         <div class="guide-lab">
-                            <strong>Lab A: Metadata Discovery</strong>
+                            <strong>Objective:</strong> Understand when to use Command Palette (quick) vs. Schema
+                            (comprehensive)
                             <p>
-                                Search a Flow API name, Permission Set API name, and Record Type API name from Setup
-                                Search. Then repeat the same search in Metadata Explorer and compare which surface feels
-                                faster for discovery versus detail.
+                                <strong>Exercise:</strong> (1) Search a Flow API name using Command Palette (Ctrl+K).
+                                (2) Now search the same Flow in Workspace > Explore > Schema. (3) Which surface felt
+                                faster for you? Why? (4) Note the difference: Command Palette shows the top 3 results;
+                                Schema shows all results with filtering. This teaches feature selection.
                             </p>
                         </div>
+
+                        <h3>Lab B: Page Context Handoff</h3>
                         <div class="guide-lab">
-                            <strong>Lab B: Page Context Triage</strong>
+                            <strong>Objective:</strong> Practice moving between overlays and workspace smoothly
                             <p>
-                                From a record page, use the context menu to open Show All Data, then open Field History
-                                or Sharing, and finally route into the workspace. The goal is to understand handoff
-                                between overlays and deep tools.
+                                <strong>Exercise:</strong> (1) Open any record page in Salesforce. (2) Press
+                                Ctrl+Shift+D to open Show All Data. (3) Find a field with history; click "Field
+                                History". (4) Then click "Open in Workspace" to jump to the Records tab. (5) Describe to
+                                someone else: when does Show All Data feel like the right choice vs. Records? This
+                                teaches cognitive load management.
                             </p>
                         </div>
+
+                        <h3>Lab C: Safe Admin Work with Inline Edit</h3>
                         <div class="guide-lab">
-                            <strong>Lab C: Safe Admin Work</strong>
+                            <strong>Objective:</strong> Verify inline edit protections and practice applying settings
                             <p>
-                                Open Settings, verify inline edit protections for production orgs, then practice
-                                changing a harmless visual setting and using Save &amp; Apply. This teaches the
-                                difference between editing a setting and applying it across surfaces.
+                                <strong>Exercise:</strong> (1) Go to Workspace > Settings > Org Management. (2) Find
+                                your production org and verify "Allow Editing" is OFF. (3) Go to Workspace > Explore >
+                                Records, try to edit a field (should be blocked with a warning). (4) Now toggle "Allow
+                                Editing" ON in Settings (for dev org only). (5) Click "Save &amp; Apply" and watch the
+                                setting propagate. (6) Try editing again in Records — it should work now. This teaches
+                                settings management and org-level protections.
                             </p>
                         </div>
+
+                        <h3>Lab D: LWC Troubleshooting Deep Dive</h3>
                         <div class="guide-lab">
-                            <strong>Lab D: LWC Troubleshooting</strong>
+                            <strong>Objective:</strong> Use LWC Explorer to separate Apex, UI API, and GraphQL traffic
                             <p>
-                                Open a Salesforce page with custom components, launch LWC Explorer, compare one
-                                imperative Apex call with one UI API or GraphQL request, and practice opening both
-                                <em>Edit Code</em> and <em>Edit Apex</em> in the large editor window.
+                                <strong>Exercise:</strong> (1) Open a Salesforce page with custom LWC components. (2)
+                                Launch LWC Explorer (sidebar or Ctrl+K). (3) Select a component from the tree. (4)
+                                Compare one Apex action (descriptor starts with apex://) with one UI API trace. (5) Can
+                                you spot the difference in request/response format? (6) Try filtering by "Apex" only,
+                                then "UI API" only. (7) This teaches network analysis and component debugging.
+                            </p>
+                        </div>
+
+                        <h3>Lab E: SOQL Query Building</h3>
+                        <div class="guide-lab">
+                            <strong>Objective:</strong> Build a real SOQL query with relationships and inline editing
+                            <p>
+                                <strong>Exercise:</strong> (1) Open Workspace > Explore > SOQL. (2) Write a query:
+                                <code>SELECT Id, Name, Account.Name FROM Contact LIMIT 5</code>. (3) Run it (Ctrl+Enter
+                                or green Run button). (4) Try double-clicking a result cell to inline edit (if enabled).
+                                (5) Try filtering results using the column filter icon. (6) Export the results as CSV.
+                                This teaches the SOQL Builder end-to-end workflow.
                             </p>
                         </div>
                     </section>
 
-                    <section class="guide-card" id="trainer-notes">
-                        <h2>5. Trainer Notes</h2>
-                        <p>
-                            When users struggle, the issue is usually not feature depth. It is feature selection. The
-                            best coaching sequence is:
-                        </p>
-                        <ol>
-                            <li>Identify the user’s job to be done.</li>
-                            <li>Pick the correct surface first.</li>
-                            <li>Teach only the next two actions, not the whole product.</li>
-                            <li>Reinforce with one lab and one quiz round.</li>
-                        </ol>
+                    <!-- Best Practices Section -->
+                    <section class="guide-card" id="best-practices">
+                        <h2>⭐ Best Practices & Coaching Tips</h2>
+
+                        <h3>For Admins</h3>
+                        <ul>
+                            <li>
+                                <strong>Protect production inline edits:</strong> Always disable inline editing in
+                                Settings > Org Management for production orgs. Use dev/sandbox only for testing.
+                            </li>
+                            <li>
+                                <strong>Bookmark your most-used SOQL queries:</strong> The SOQL Builder supports
+                                multi-tab editing — create tabs for common queries (inactive users, duplicate detection,
+                                etc.)
+                            </li>
+                            <li>
+                                <strong>Use Command Palette for quick setup navigation:</strong> Instead of clicking
+                                through Setup, use Ctrl+K to search API names and jump directly.
+                            </li>
+                            <li>
+                                <strong>Export labels in bulk:</strong> Org Tools > Custom Labels lets you export all
+                                labels at once — translate offline, import back. Much faster than manual updates.
+                            </li>
+                        </ul>
+
+                        <h3>For Developers</h3>
+                        <ul>
+                            <li>
+                                <strong>Use LWC Explorer to trace requests:</strong> Filter by Apex vs. UI API vs.
+                                GraphQL to understand which layer is slow. Screenshot the trace for code reviews.
+                            </li>
+                            <li>
+                                <strong>Compare SOQL vs. GraphQL results:</strong> Use both builders to query the same
+                                object — GraphQL is often more efficient for related fields.
+                            </li>
+                            <li>
+                                <strong>Bulk-scan records with IDs:</strong> Got a list of problematic record IDs? Use
+                                Records > Bulk Scan (up to 200 IDs) to inspect them all at once. Export the results.
+                            </li>
+                            <li>
+                                <strong>Set custom keyboard shortcuts:</strong> In Settings > General, map Ctrl+Shift+T
+                                to "Toggle Show All Data" so you can inspect pages instantly.
+                            </li>
+                        </ul>
+
+                        <h3>For Trainers</h3>
+                        <ul>
+                            <li>
+                                <strong>Teach surfaces first, features second:</strong> Most user confusion comes from
+                                not knowing which surface to use, not from missing features. Start with Launcher →
+                                Workspace → Overlays.
+                            </li>
+                            <li>
+                                <strong>Use the Quiz platform:</strong> After each lab, have users take a related quiz
+                                question to reinforce learning. Track leaderboard progress.
+                            </li>
+                            <li>
+                                <strong>Customize the sidebar for your org:</strong> Settings > Sidebar lets you
+                                configure shortcuts per role. Create role-specific sidebar layouts to reduce cognitive
+                                load.
+                            </li>
+                            <li>
+                                <strong>Ask the decision-tree question:</strong> After training, ask: "When would you
+                                use Show All Data vs. Records?" or "Command Palette vs. Schema?" If they can answer
+                                clearly, they understand the model.
+                            </li>
+                        </ul>
+
+                        <h3>Universal Best Practices</h3>
+                        <ul>
+                            <li>
+                                <strong>One surface at a time:</strong> Don't try to use the Launcher, Workspace, and
+                                overlays simultaneously for a single task. Pick the right surface first.
+                            </li>
+                            <li>
+                                <strong>Reset to defaults if confused:</strong> Settings > Advanced > Cache Management
+                                can clear local storage and reset defaults. Safe for troubleshooting.
+                            </li>
+                            <li>
+                                <strong>Use dark mode in long sessions:</strong> Settings > Appearance > Dark Mode
+                                reduces eye strain during extended debugging.
+                            </li>
+                            <li>
+                                <strong>Backup settings regularly:</strong> Settings > Advanced > Backup lets you export
+                                your config. Useful before major browser updates or switching machines.
+                            </li>
+                        </ul>
+
                         <div class="guide-highlight">
-                            <strong>Best practice:</strong> after training, ask users to explain when they would use
-                            <em>Setup Search</em> versus <em>Metadata Explorer</em>, and when they would use
-                            <em>LWC Explorer</em> instead of guessing from browser network noise. If they can answer
-                            that clearly, they usually understand the broader product model too.
+                            <strong>Final coaching principle:</strong> The best learners ask "when should I use this?"
+                            not "how do I use this?" If you can help your users ask the right question first, feature
+                            mastery follows naturally.
                         </div>
                     </section>
                 </main>

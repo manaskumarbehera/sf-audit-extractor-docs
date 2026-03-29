@@ -1,259 +1,404 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Master the Command Palette in TrackForcePro. Search commands, jump to tabs, and look up records from anywhere using Ctrl+K.">
-    <title>TrackForcePro — Command Palette Guide</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
-    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-    <link rel="stylesheet" href="../shared.css">
-    <script src="../theme.js"></script>
-    <style>
-        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
-        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
-        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
-        .guide-nav { position: sticky; top: 20px; padding: 18px; }
-        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
-        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
-        .guide-nav a:hover { background: var(--bg-alt); }
-        .guide-main { display: grid; gap: 22px; }
-        .guide-card { padding: 24px 26px; }
-        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
-        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
-        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
-        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
-        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
-        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
-        .guide-lab strong { color: var(--text); }
-        .badge { display: inline-block; margin-top: 8px; padding: 4px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: linear-gradient(135deg, rgba(74,144,226,0.15), rgba(59,130,246,0.1)); color: var(--primary); }
-        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
-    </style>
-</head>
-<body>
-
-<nav class="site-nav">
-    <div class="site-nav-inner">
-        <a href="../index.html">Home</a>
-        <a href="../quick-start-guide.html">Quick Start</a>
-        <a href="../guide.html">Training Guide</a>
-        <a href="../documentation.html">Docs</a>
-        <a href="index.html" class="active">Feature Guides</a>
-        <a href="../help.html">Help</a>
-        <a href="../quiz.html">Quiz &amp; Games</a>
-        <a href="../leaderboard.html">Leaderboard</a>
-        <a href="../privacy-policy.html">Privacy</a>
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-            <span class="theme-icon"></span>
-            <span class="theme-label"></span>
-        </button>
-    </div>
-</nav>
-
-<div class="guide-shell">
-    <div class="guide-grid">
-        <nav class="guide-nav">
-            <h2>On This Page</h2>
-            <a href="#what-it-does">What It Does</a>
-            <a href="#how-to-open">How to Open</a>
-            <a href="#built-in-commands">Built-In Commands</a>
-            <a href="#record-id-detection">Record ID Detection</a>
-            <a href="#keyboard-navigation">Keyboard Navigation</a>
-            <a href="#tips">Tips &amp; Tricks</a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Use TrackForcePro's Command Palette to search commands, jump to tabs, and look up record IDs from anywhere."
+        />
+        <title>TrackForcePro — ⌨️ Command Palette Guide</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../../icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="../../icons/Icon-32.png" id="favshort" />
+        <link rel="stylesheet" href="../shared.css" />
+        <script src="../theme.js"></script>
+        <style>
+            .guide-shell {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 28px 20px 48px;
+            }
+            .guide-grid {
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+            .guide-nav,
+            .guide-card {
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow);
+            }
+            .guide-nav {
+                position: sticky;
+                top: 20px;
+                padding: 18px;
+            }
+            .guide-nav h2 {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+                color: var(--text);
+            }
+            .guide-nav a {
+                display: block;
+                padding: 8px 10px;
+                border-radius: 10px;
+                color: var(--text-link);
+                text-decoration: none;
+                font-size: 0.92rem;
+                font-weight: 600;
+            }
+            .guide-nav a:hover {
+                background: var(--bg-alt);
+            }
+            .guide-main {
+                display: grid;
+                gap: 22px;
+            }
+            .guide-card {
+                padding: 24px 26px;
+            }
+            .guide-card h2 {
+                font-size: 1.35rem;
+                color: var(--text);
+                margin-bottom: 10px;
+            }
+            .guide-card p,
+            .guide-card li {
+                color: var(--text-secondary);
+                line-height: 1.65;
+            }
+            .guide-card ul,
+            .guide-card ol {
+                margin: 14px 0 0 18px;
+            }
+            .guide-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 12px;
+            }
+            .guide-table th,
+            .guide-table td {
+                text-align: left;
+                padding: 12px 14px;
+                border-bottom: 1px solid var(--border);
+                color: var(--text-secondary);
+                vertical-align: top;
+            }
+            .guide-table th {
+                color: var(--text);
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .guide-highlight {
+                margin-top: 16px;
+                padding: 16px 18px;
+                border-left: 4px solid var(--primary);
+                border-radius: 0 12px 12px 0;
+                background: linear-gradient(135deg, rgba(1, 118, 211, 0.08), rgba(42, 115, 255, 0.04));
+            }
+            .guide-lab {
+                margin-top: 14px;
+                padding: 16px 18px;
+                border-radius: 14px;
+                background: var(--bg-alt);
+                border: 1px dashed var(--border);
+            }
+            .guide-lab strong {
+                color: var(--text);
+            }
+            code {
+                background: var(--bg-alt);
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-family: 'Monaco', 'Courier New', monospace;
+                font-size: 0.9em;
+            }
+            @media (max-width: 900px) {
+                .guide-grid {
+                    grid-template-columns: 1fr;
+                }
+                .guide-nav {
+                    position: static;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="site-nav">
+            <div class="site-nav-inner">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html" class="active">Feature Guides</a>
+                <a href="../help.html">Help</a>
+                <a href="../quiz.html">Quiz &amp; Games</a>
+                <a href="../leaderboard.html">Leaderboard</a>
+                <a href="../privacy-policy.html">Privacy</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <span class="theme-icon"></span>
+                    <span class="theme-label"></span>
+                </button>
+            </div>
         </nav>
 
-        <div class="guide-main">
-            <div class="guide-card">
-                <h1 style="font-size: 1.85rem; margin: 0 0 8px; color: var(--text);">⌨️ Command Palette Guide</h1>
-                <p style="margin: 0; color: var(--text-secondary); font-size: 1.05rem;">Search commands, jump to tabs, and look up records from anywhere in TrackForcePro using Ctrl+K.</p>
-                <span class="badge">Global Feature</span>
-            </div>
+        <div class="guide-shell">
+            <div class="guide-grid">
+                <nav class="guide-nav">
+                    <h2>Command Palette</h2>
+                    <a href="#what-it-does">What It Does</a>
+                    <a href="#why-use-it">Why Use It</a>
+                    <a href="#how-to-access">How to Access</a>
+                    <a href="#commands">Available Commands</a>
+                    <a href="#record-lookup">Record ID Lookup</a>
+                    <a href="#keyboard-nav">Keyboard Navigation</a>
+                    <a href="#tips">Tips &amp; Shortcuts</a>
+                </nav>
 
-            <div class="guide-card" id="what-it-does">
-                <h2>What It Does</h2>
-                <p>The Command Palette is a global search-and-command interface that lets you quickly access any TrackForcePro feature without clicking through tabs or menus. Press a keyboard shortcut, type what you're looking for, and jump to that feature instantly.</p>
-                <p>Think of it like a spotlight search for your tools: looking for the SOQL Builder? Type "soql" and hit Enter. Want to jump to the Records tab? Type "records". Need to look up a specific record ID? Paste the ID and the palette recognizes it automatically. Everything is keyboard-driven and stateless — no history, no retained state between uses — so you get consistent, predictable behavior every time.</p>
-            </div>
+                <div class="guide-main">
+                    <div class="guide-card">
+                        <span class="badge badge-alt">Keyboard-Driven</span>
+                        <h1 style="font-size: 1.6rem; margin-top: 12px; color: var(--text)">
+                            ⌨️ Command Palette Guide
+                        </h1>
+                    </div>
 
-            <div class="guide-card" id="how-to-open">
-                <h2>How to Open</h2>
-                <p>The Command Palette is accessible from anywhere in TrackForcePro. You have two ways to open it:</p>
-                <ol>
-                    <li><strong>Keyboard Shortcut (Fastest):</strong> Press <strong>Ctrl+K</strong> (Windows/Linux) or <strong>Cmd+K</strong> (Mac) inside the extension workspace popup. The palette appears instantly with a search field focused and ready for input. On Salesforce pages, the Command Palette shortcut must be assigned manually in Settings → General → Keyboard Shortcuts (not assigned by default).</li>
-                    <li><strong>Click the Trigger Button:</strong> Look for the Command Palette button on Salesforce pages (the position is configurable in Settings → Sidebar). Click it to open the palette.</li>
-                </ol>
-                <p>Once open, the palette shows a search box at the top with a list of available commands below. Start typing to filter the list. Your query matches command names, descriptions, and keywords.</p>
-                <p>Press <strong>Escape</strong> to close the palette immediately without executing anything. The palette closes automatically after you execute a command.</p>
-            </div>
+                    <div class="guide-card" id="what-it-does">
+                        <h2>What It Does</h2>
+                        <p>
+                            The Command Palette is a keyboard-driven search interface for accessing TrackForcePro
+                            commands, jumping to tabs, and looking up record IDs. Type a command name, select from
+                            results, and press Enter to execute. Available in the workspace popup and on Salesforce
+                            pages (if you assign a keyboard shortcut).
+                        </p>
+                    </div>
 
-            <div class="guide-card" id="built-in-commands">
-                <h2>Built-In Commands</h2>
-                <p>TrackForcePro includes 13+ built-in commands covering all major tabs and features:</p>
-                <table class="guide-table">
-                    <thead>
-                        <tr>
-                            <th>Command</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Switch to Audit Trail</strong></td>
-                            <td>Opens the Audit Trails tab. Browse and filter org-level audit trail events.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch to SOQL Builder</strong></td>
-                            <td>Switches to the SOQL Builder tab. Write, test, and execute SOQL queries with syntax highlighting and suggestions.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch to GraphQL Builder</strong></td>
-                            <td>Opens the GraphQL Builder tab. Compose and execute GraphQL queries against Salesforce with schema introspection.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch to REST Explorer</strong></td>
-                            <td>Opens the REST Explorer tab. Send custom REST API calls to Salesforce with full request/response inspection.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch to Records</strong></td>
-                            <td>Opens the Records tab (formerly Data Explorer). Look up any Salesforce record by ID or perform bulk searches.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch to Org Tools</strong></td>
-                            <td>Switches to the Org Tools tab. Access org metadata, limits, custom settings, and other utilities.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch to Platform Events</strong></td>
-                            <td>Opens the Platform Events tab. Monitor and test Platform Event publishing and subscriptions.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Switch to Settings</strong></td>
-                            <td>Navigates to the Settings tab. Configure appearance, layout, org management, and keyboard shortcuts.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Open Show All Data</strong></td>
-                            <td>Opens the Show All Data overlay on the current Salesforce record page. Shows all fields, values, types, and editability.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Open LWC Explorer</strong></td>
-                            <td>Launches the LWC Explorer component and network trace inspector on the current Salesforce page.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Toggle Sidebar</strong></td>
-                            <td>Toggles the visibility of the TrackForcePro sidebar on Salesforce pages.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Copy Record ID</strong></td>
-                            <td>Copies the current record's 18-character ID to your clipboard. No modal, instant copy.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Open Setup Search</strong></td>
-                            <td>Opens Salesforce Setup with the search field pre-focused, so you can immediately search for pages, objects, and settings.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="margin-top: 14px;">Type the name or part of the name of any command to filter the list. For example, typing "soql" shows the SOQL Builder command. Typing "switch" shows all tab-switching commands.</p>
-            </div>
+                    <div class="guide-card" id="why-use-it">
+                        <h2>Why Use It</h2>
+                        <ul>
+                            <li>
+                                <strong>Keyboard-Only Workflow</strong> — Never touch the mouse. Open palette, type
+                                command, press Enter.
+                            </li>
+                            <li><strong>Fast Navigation</strong> — Jump to any tab without clicking through the UI.</li>
+                            <li>
+                                <strong>Record ID Lookup</strong> — Paste a record ID (15 or 18 char), and the palette
+                                auto-detects and fetches the record.
+                            </li>
+                            <li>
+                                <strong>Fuzzy Search</strong> — Type partial command names (e.g., "soql" finds "SOQL
+                                Builder").
+                            </li>
+                            <li>
+                                <strong>No UI Memory Needed</strong> — Don't remember where a feature is? Search for it.
+                            </li>
+                        </ul>
+                    </div>
 
-            <div class="guide-card" id="record-id-detection">
-                <h2>Record ID Detection</h2>
-                <p>One of the most powerful Command Palette features is automatic record ID detection. You don't need to type a command — just paste or type a Salesforce record ID directly.</p>
-                <p>The palette recognizes both 15-character and 18-character record IDs. For example:</p>
-                <ul>
-                    <li><strong>15-char:</strong> <code>001D000000IRFmaIAH</code></li>
-                    <li><strong>18-char:</strong> <code>001D000000IRFmaIAH000</code> (includes checksum)</li>
-                </ul>
-                <p>When you paste or type an ID, the palette immediately detects it as a record lookup and shows "<strong>Look Up Record</strong>" as an option. <strong>Press Enter</strong> to execute the lookup. The palette switches to the Records tab and loads the record details instantly.</p>
-                <p>This is perfect for workflows where you need to inspect a specific record: paste the ID, press Enter, and you're in the Records tab viewing that record. No tab-switching, no manual searches.</p>
-                <div class="guide-highlight">
-                    <strong>Time-Saving Tip:</strong> Copy a record ID from any Salesforce page (right-click → "Copy Record ID"), switch to TrackForcePro, press Ctrl+K, paste the ID, and press Enter. You're inspecting the record in TrackForcePro within seconds.
-                </div>
-            </div>
+                    <div class="guide-card" id="how-to-access">
+                        <h2>How to Access</h2>
 
-            <div class="guide-card" id="keyboard-navigation">
-                <h2>Keyboard Navigation</h2>
-                <p>The Command Palette is designed for 100% keyboard operation. Your hands never leave the keyboard.</p>
-                <table class="guide-table">
-                    <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Ctrl+K / Cmd+K</strong></td>
-                            <td>Open the Command Palette. Works from any tab or Salesforce page.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>↑ / ↓ Arrow Keys</strong></td>
-                            <td>Navigate up or down through the command list. The selected command is highlighted.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Enter</strong></td>
-                            <td>Execute the currently selected command or record lookup. Closes the palette and performs the action.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Escape</strong></td>
-                            <td>Close the palette immediately without executing anything. Returns focus to the previous context.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Type to Search</strong></td>
-                            <td>As you type, the command list filters in real-time. Results update with each keystroke. Match is case-insensitive.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="margin-top: 14px;">The palette remembers nothing between sessions. Every time you open it, you start with a blank search and the full command list. This stateless design prevents confusion and ensures consistent behavior.</p>
-            </div>
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            In the Workspace Popup
+                        </h3>
+                        <ul>
+                            <li>
+                                <strong>Press Ctrl+K</strong> (Windows) or <strong>Cmd+K</strong> (Mac) — Default
+                                shortcut
+                            </li>
+                            <li>Or click the Command Palette icon (⌨️) in the header if visible</li>
+                        </ul>
 
-            <div class="guide-card" id="tips">
-                <h2>Tips &amp; Tricks</h2>
-                <div class="guide-lab">
-                    <strong>💡 Tip 1: Learn the Keyboard Shortcut</strong><br>
-                    Ctrl+K is blazingly fast once it becomes muscle memory. If you use TrackForcePro multiple times per day, learning this shortcut will save you significant time over a week.
-                </div>
-                <div class="guide-lab">
-                    <strong>💡 Tip 2: Tab-Switching Speed Champion</strong><br>
-                    The Command Palette is the fastest way to switch tabs. Ctrl+K, type the first letter of the tab name, press Enter — done. Faster than clicking tabs.
-                </div>
-                <div class="guide-lab">
-                    <strong>💡 Tip 3: Record ID Lookup Workflow</strong><br>
-                    Copy a record ID from any Salesforce page using "Copy Record ID" from the context menu. Ctrl+K, paste, Enter. You're looking at the record in 2 seconds.
-                </div>
-                <div class="guide-lab">
-                    <strong>💡 Tip 4: Partial Matching Works</strong><br>
-                    Don't need to type the full command name. Type "rec" to find "Records", "rest" to find "REST Explorer", or "aud" to find "Audit Trail". Substring matching is your friend.
-                </div>
-                <div class="guide-lab">
-                    <strong>💡 Tip 5: No History to Clutter Your Brain</strong><br>
-                    The palette doesn't store search history or previous commands. This simplicity is intentional — you always get the same clean list and no accumulated clutter from old searches.
-                </div>
-                <div class="guide-lab">
-                    <strong>💡 Tip 6: Customize the Shortcut in Settings</strong><br>
-                    If Ctrl+K conflicts with your browser or OS shortcuts, you can rebind the Command Palette shortcut in Settings → General → Keyboard Shortcuts. Pick a combination that works for your setup.
-                </div>
-                <div class="guide-lab">
-                    <strong>💡 Tip 7: Position Independence</strong><br>
-                    The Command Palette trigger button position (Right/Left/Bottom) is independent from the sidebar and Show All Data button. Configure all three separately in Settings → Sidebar for your perfect layout.
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            On Salesforce Pages
+                        </h3>
+                        <ul>
+                            <li>
+                                Assign a keyboard shortcut in Settings → Keyboard Shortcuts → "Command Palette (Page)"
+                            </li>
+                            <li>Then press your assigned shortcut on any Salesforce page</li>
+                        </ul>
+
+                        <p style="margin-top: 14px">
+                            The palette opens as a modal overlay with a search field and results below.
+                        </p>
+                    </div>
+
+                    <div class="guide-card" id="commands">
+                        <h2>Available Commands</h2>
+                        <p>The Command Palette includes 13+ built-in commands across all TrackForcePro features:</p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Query &amp; Data Commands
+                        </h3>
+                        <ul>
+                            <li><strong>SOQL Builder</strong> — Open the SOQL Builder tab</li>
+                            <li><strong>GraphQL Builder</strong> — Open the GraphQL Builder tab</li>
+                            <li><strong>REST Explorer</strong> — Open the REST API explorer</li>
+                            <li><strong>Records Explorer</strong> — Open the Records (Data Explorer) tab</li>
+                        </ul>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Audit &amp; Analysis Commands
+                        </h3>
+                        <ul>
+                            <li><strong>Audit Trail</strong> — Open the Audit Trail tab</li>
+                            <li><strong>Platform Events</strong> — Subscribe to Platform Events</li>
+                            <li><strong>Org Tools</strong> — Open Org Tools (labels, limits, metadata)</li>
+                        </ul>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Page &amp; Control Commands
+                        </h3>
+                        <ul>
+                            <li><strong>Toggle Sidebar</strong> — Show/hide the sidebar on current page</li>
+                            <li>
+                                <strong>Toggle Show All Data</strong> — Open/close Show All Data panel (record pages
+                                only)
+                            </li>
+                            <li>
+                                <strong>Toggle LWC Explorer</strong> — Open/close the LWC Explorer (pages with
+                                components)
+                            </li>
+                            <li><strong>Settings</strong> — Open the Settings tab</li>
+                        </ul>
+
+                        <p style="margin-top: 14px">
+                            Commands are context-aware. On record pages, you'll see record-specific commands. On list
+                            views, you'll see list commands.
+                        </p>
+                    </div>
+
+                    <div class="guide-card" id="record-lookup">
+                        <h2>Record ID Lookup</h2>
+                        <p>
+                            Paste a Salesforce record ID (15 or 18 characters) into the Command Palette, and it
+                            automatically detects it as a lookup:
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            How It Works
+                        </h3>
+                        <ol>
+                            <li>Open the Command Palette (Ctrl+K or Cmd+K)</li>
+                            <li>Paste or type a record ID (e.g., <code>001xx000000001</code>)</li>
+                            <li>The palette detects it as a record lookup and shows "Lookup Record: [ID]"</li>
+                            <li>Press Enter to open the record in Show All Data</li>
+                        </ol>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Supported ID Lengths
+                        </h3>
+                        <ul>
+                            <li><strong>15-character IDs</strong> — Salesforce's shorter format (case-sensitive)</li>
+                            <li>
+                                <strong>18-character IDs</strong> — Salesforce's longer format with check digits
+                                (case-insensitive)
+                            </li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>💡 Pro Tip:</strong> Copy an ID from anywhere (email, spreadsheet, chat), open
+                            Command Palette, paste the ID, and press Enter. The record opens instantly without any UI
+                            navigation.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="keyboard-nav">
+                        <h2>Keyboard Navigation</h2>
+                        <p>The Command Palette is fully keyboard-navigable:</p>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>↑ / ↓</strong> Arrow Keys</td>
+                                    <td>Navigate up/down through results</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Enter / Return</strong></td>
+                                    <td>Execute the selected command or lookup</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Escape</strong></td>
+                                    <td>Close the palette</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Type</strong></td>
+                                    <td>Filter commands by name. Search is fuzzy (partial matches work)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Backspace</strong></td>
+                                    <td>Delete text in search field</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="guide-lab">
+                            <strong>Workflow Example:</strong> Ctrl+K (open) → "soql" (type) → ↓ (select SOQL Builder) →
+                            Enter (open). Total time: 2 seconds.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="tips">
+                        <h2>Tips &amp; Shortcuts</h2>
+                        <ul>
+                            <li>
+                                <strong>Learn the keyboard shortcut</strong> — Ctrl+K (Cmd+K on Mac) opens the palette
+                                anywhere. Memorize it for instant access.
+                            </li>
+                            <li>
+                                <strong>Use fuzzy search</strong> — Type "rec" to find "Records Explorer" or "resting"
+                                to find "Org Testing tools". Partial matches work.
+                            </li>
+                            <li>
+                                <strong>Combine with clipboard</strong> — Copy a record ID → Ctrl+K → Paste → Enter.
+                                Opens the record instantly.
+                            </li>
+                            <li>
+                                <strong>Page context matters</strong> — On record pages, you get record-specific
+                                commands. On list views, list-specific commands. The palette is smart about context.
+                            </li>
+                            <li>
+                                <strong>Escape closes the palette</strong> — Press Escape to dismiss without selecting a
+                                command.
+                            </li>
+                            <li>
+                                <strong>Assign page shortcuts</strong> — For frequent commands on Salesforce pages,
+                                assign a dedicated keyboard shortcut (e.g., Ctrl+Shift+A for "Show All Data") instead of
+                                using Command Palette each time.
+                            </li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>Power User Habit:</strong> Every command you search for more than twice deserves its
+                            own keyboard shortcut. Instead of Command Palette for frequent actions, use dedicated
+                            shortcuts. Save Command Palette for occasional commands and record lookups.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<footer class="site-footer">
-    <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
-    <div class="site-footer-links">
-        <a href="../index.html">Home</a>
-        <a href="../quick-start-guide.html">Quick Start</a>
-        <a href="../guide.html">Training Guide</a>
-        <a href="../documentation.html">Docs</a>
-        <a href="index.html">Feature Guides</a>
-    </div>
-    <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
-</footer>
-
-</body>
+        <footer class="site-footer">
+            <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+            <div class="site-footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html">Feature Guides</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+        </footer>
+    </body>
 </html>

@@ -1,327 +1,515 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn how to configure TrackForcePro appearance, keyboard shortcuts, inline edit permissions, sidebar layout, org management, and broadcast settings to all connected tabs.">
-    <title>TrackForcePro — ⚙️ Settings Guide</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
-    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-    <link rel="stylesheet" href="../shared.css">
-    <script src="../theme.js"></script>
-    <style>
-        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
-        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
-        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
-        .guide-nav { position: sticky; top: 20px; padding: 18px; }
-        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
-        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
-        .guide-nav a:hover { background: var(--bg-alt); }
-        .guide-main { display: grid; gap: 22px; }
-        .guide-card { padding: 24px 26px; }
-        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
-        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
-        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
-        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
-        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
-        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
-        .guide-lab strong { color: var(--text); }
-        .guide-badge { display: inline-block; margin-left: 8px; padding: 4px 10px; border-radius: 20px; background: var(--primary); color: white; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
-        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
-    </style>
-</head>
-<body>
-    <nav class="site-nav">
-        <div class="site-nav-inner">
-            <a href="../index.html">Home</a>
-            <a href="../quick-start-guide.html">Quick Start</a>
-            <a href="../guide.html">Training Guide</a>
-            <a href="../documentation.html">Docs</a>
-            <a href="index.html" class="active">Feature Guides</a>
-            <a href="../help.html">Help</a>
-            <a href="../quiz.html">Quiz &amp; Games</a>
-            <a href="../leaderboard.html">Leaderboard</a>
-            <a href="../privacy-policy.html">Privacy</a>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-                <span class="theme-icon"></span>
-                <span class="theme-label"></span>
-            </button>
-        </div>
-    </nav>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Configure TrackForcePro appearance, keyboard shortcuts, inline edit permissions, sidebar, button positioning, and org management settings."
+        />
+        <title>TrackForcePro — ⚙️ Settings Guide</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../../icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="../../icons/Icon-32.png" id="favshort" />
+        <link rel="stylesheet" href="../shared.css" />
+        <script src="../theme.js"></script>
+        <style>
+            .guide-shell {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 28px 20px 48px;
+            }
+            .guide-grid {
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+            .guide-nav,
+            .guide-card {
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow);
+            }
+            .guide-nav {
+                position: sticky;
+                top: 20px;
+                padding: 18px;
+            }
+            .guide-nav h2 {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+                color: var(--text);
+            }
+            .guide-nav a {
+                display: block;
+                padding: 8px 10px;
+                border-radius: 10px;
+                color: var(--text-link);
+                text-decoration: none;
+                font-size: 0.92rem;
+                font-weight: 600;
+            }
+            .guide-nav a:hover {
+                background: var(--bg-alt);
+            }
+            .guide-main {
+                display: grid;
+                gap: 22px;
+            }
+            .guide-card {
+                padding: 24px 26px;
+            }
+            .guide-card h2 {
+                font-size: 1.35rem;
+                color: var(--text);
+                margin-bottom: 10px;
+            }
+            .guide-card p,
+            .guide-card li {
+                color: var(--text-secondary);
+                line-height: 1.65;
+            }
+            .guide-card ul,
+            .guide-card ol {
+                margin: 14px 0 0 18px;
+            }
+            .guide-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 12px;
+            }
+            .guide-table th,
+            .guide-table td {
+                text-align: left;
+                padding: 12px 14px;
+                border-bottom: 1px solid var(--border);
+                color: var(--text-secondary);
+                vertical-align: top;
+            }
+            .guide-table th {
+                color: var(--text);
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .guide-highlight {
+                margin-top: 16px;
+                padding: 16px 18px;
+                border-left: 4px solid var(--primary);
+                border-radius: 0 12px 12px 0;
+                background: linear-gradient(135deg, rgba(1, 118, 211, 0.08), rgba(42, 115, 255, 0.04));
+            }
+            .guide-lab {
+                margin-top: 14px;
+                padding: 16px 18px;
+                border-radius: 14px;
+                background: var(--bg-alt);
+                border: 1px dashed var(--border);
+            }
+            .guide-lab strong {
+                color: var(--text);
+            }
+            @media (max-width: 900px) {
+                .guide-grid {
+                    grid-template-columns: 1fr;
+                }
+                .guide-nav {
+                    position: static;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="site-nav">
+            <div class="site-nav-inner">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html" class="active">Feature Guides</a>
+                <a href="../help.html">Help</a>
+                <a href="../quiz.html">Quiz &amp; Games</a>
+                <a href="../leaderboard.html">Leaderboard</a>
+                <a href="../privacy-policy.html">Privacy</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <span class="theme-icon"></span>
+                    <span class="theme-label"></span>
+                </button>
+            </div>
+        </nav>
 
-    <div class="guide-shell">
-        <div class="guide-grid">
-            <aside class="guide-nav">
-                <h2>On This Page</h2>
-                <a href="#what-it-does">What It Does</a>
-                <a href="#how-to-access">How to Access</a>
-                <a href="#appearance">Appearance Settings</a>
-                <a href="#keyboard-shortcuts">Keyboard Shortcuts</a>
-                <a href="#inline-edit">Inline Edit Permissions</a>
-                <a href="#sidebar">Sidebar Configuration</a>
-                <a href="#button-positioning">Button Positioning</a>
-                <a href="#org-management">Org Management</a>
-                <a href="#save-apply">Save & Apply</a>
-                <a href="#tips">Tips & Best Practices</a>
-            </aside>
+        <div class="guide-shell">
+            <div class="guide-grid">
+                <nav class="guide-nav">
+                    <h2>Settings</h2>
+                    <a href="#what-it-does">What It Does</a>
+                    <a href="#how-to-access">How to Access</a>
+                    <a href="#appearance">Appearance</a>
+                    <a href="#keyboard-shortcuts">Keyboard Shortcuts</a>
+                    <a href="#sidebar">Sidebar</a>
+                    <a href="#button-positioning">Button Position</a>
+                    <a href="#inline-edit">Inline Edit</a>
+                    <a href="#org-management">Org Management</a>
+                    <a href="#save-apply">Save &amp; Apply</a>
+                    <a href="#tips">Tips &amp; Workflow</a>
+                </nav>
 
-            <main class="guide-main">
-                <div class="guide-card">
-                    <h1 style="font-size: 2rem; color: var(--text); margin-bottom: 6px;">⚙️ Settings Guide
-                        <span class="guide-badge">Workspace Tab</span>
-                    </h1>
-                    <p style="color: var(--text-secondary); font-size: 1.05rem;">Configure TrackForcePro appearance, keyboard shortcuts, inline editing permissions, sidebar layout, and org management with centralized settings.</p>
-                </div>
-
-                <div class="guide-card" id="what-it-does">
-                    <h2>What It Does</h2>
-                    <p>The Settings tab is command central for all TrackForcePro configuration. Customize appearance (theme), define keyboard shortcuts, manage per-org inline edit permissions, show/hide sidebar shortcuts, position floating buttons, and manage saved orgs. Changes are applied via the <strong>Save &amp; Apply</strong> button, which broadcasts settings to all connected Salesforce tabs and refreshes their UI in real time.</p>
-                </div>
-
-                <div class="guide-card" id="how-to-access">
-                    <h2>How to Access</h2>
-                    <p>Open the TrackForcePro workspace popup and click the <strong>Settings</strong> tab (⚙️ icon) in the main tab bar. Settings are organized into collapsible sections for easy navigation.</p>
-                </div>
-
-                <div class="guide-card" id="appearance">
-                    <h2>Appearance Settings</h2>
-                    <p>Control TrackForcePro's visual theme:</p>
-                    <ul>
-                        <li><strong>Light Mode</strong> — Bright backgrounds with dark text. Good for bright environments.</li>
-                        <li><strong>Dark Mode</strong> — Dark backgrounds with light text. Reduces eye strain in dim environments.</li>
-                        <li><strong>System</strong> — Follow your operating system's theme preference (Windows, Mac, or Linux).</li>
-                    </ul>
-                    <p>Theme changes apply immediately across all TrackForcePro surfaces (popup, sidebar, overlays). Select your preference and click <strong>Save &amp; Apply</strong> to persist the choice.</p>
-                    <div class="guide-lab">
-                        <strong>OS Integration:</strong> If you choose System theme, TrackForcePro watches your OS settings. Switch your OS to dark mode at night and TrackForcePro automatically follows.
+                <div class="guide-main">
+                    <div class="guide-card">
+                        <span class="badge badge-alt">Workspace Tab</span>
+                        <h1 style="font-size: 1.6rem; margin-top: 12px; color: var(--text)">⚙️ Settings Guide</h1>
                     </div>
-                </div>
 
-                <div class="guide-card" id="keyboard-shortcuts">
-                    <h2>Keyboard Shortcuts</h2>
-                    <p>Customize global shortcut actions to match your workflow. Only the sidebar toggle has a built-in default — all others must be assigned manually:</p>
-                    <table class="guide-table">
-                        <thead>
-                            <tr>
-                                <th>Action</th>
-                                <th>What It Does</th>
-                                <th>Default</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Toggle Sidebar</strong></td>
-                                <td>Show/hide the floating sidebar on Salesforce pages</td>
-                                <td>Ctrl+Shift+S (Win) / Cmd+Shift+S (Mac)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Toggle Show All Data</strong></td>
-                                <td>Open/close the All Fields inspector on record pages</td>
-                                <td>Not assigned by default</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Command Palette (Page)</strong></td>
-                                <td>Open the command palette on Salesforce pages</td>
-                                <td>Not assigned by default</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Command Palette (Workspace)</strong></td>
-                                <td>Open the command palette inside the extension popup</td>
-                                <td>Ctrl+K (Win) / Cmd+K (Mac)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Open Setup Search</strong></td>
-                                <td>Open Salesforce Setup search on page</td>
-                                <td>Not assigned by default</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Toggle LWC Explorer</strong></td>
-                                <td>Open/close the LWC Explorer overlay</td>
-                                <td>Not assigned by default</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Open SOQL Builder</strong></td>
-                                <td>Open the SOQL Builder from Salesforce pages</td>
-                                <td>Not assigned by default</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Open GraphQL Builder</strong></td>
-                                <td>Open the GraphQL Builder from Salesforce pages</td>
-                                <td>Not assigned by default</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">How to Record a Shortcut</h3>
-                    <ol>
-                        <li>Click the <strong>shortcut record button</strong> next to the action you want to customize</li>
-                        <li>Press your desired key combination (e.g., Ctrl+Alt+S or Cmd+Option+1)</li>
-                        <li>TrackForcePro records the combination and closes the record dialog</li>
-                        <li>Click <strong>Save &amp; Apply</strong> to activate the new shortcut</li>
-                    </ol>
-                    <p style="margin-top: 14px;"><strong>Reset to Defaults:</strong> Click the Reset button next to any shortcut to restore its default key combination.</p>
-                    <div class="guide-highlight">
-                        <strong>Platform-Aware Display:</strong> Shortcuts are shown with platform-specific notation. On Mac, you'll see "Cmd" instead of "Ctrl". On Windows, you'll see "Ctrl". Makes it easy to match your OS shortcuts.
+                    <div class="guide-card" id="what-it-does">
+                        <h2>What It Does</h2>
+                        <p>
+                            The Settings tab is command central for all TrackForcePro configuration. Customize
+                            appearance (light/dark/system theme), define keyboard shortcuts for page and workspace
+                            actions, manage per-org inline edit permissions, show/hide sidebar shortcuts, position
+                            floating buttons (sidebar, Show All Data, Command Palette), and manage saved orgs. All
+                            changes flow through a centralized <strong>Save &amp; Apply</strong> button that broadcasts
+                            settings to all connected Salesforce tabs in real time.
+                        </p>
                     </div>
-                </div>
 
-                <div class="guide-card" id="inline-edit">
-                    <h2>Inline Edit Permissions</h2>
-                    <p>Control which orgs allow inline editing (double-click to edit fields). This is crucial for preventing accidental data changes on production orgs.</p>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">How It Works</h3>
-                    <p>A per-org toggle list shows all known Salesforce orgs you've accessed. Each org has an "Allow Editing" toggle:</p>
-                    <ul>
-                        <li><strong>Toggle ON (default)</strong> — Inline editing is allowed. You can double-click to edit fields.</li>
-                        <li><strong>Toggle OFF</strong> — Inline editing is blocked. Double-click is disabled and edit buttons are hidden.</li>
-                    </ul>
-                    <p>Orgs are <strong>fail-open by default</strong> — if an org is not explicitly in the disable list, editing is allowed. This is intentional to avoid surprise blocks.</p>
-                    <div class="guide-lab">
-                        <strong>Permission Guard Locations:</strong> The inline edit permission guard is enforced at:
+                    <div class="guide-card" id="how-to-access">
+                        <h2>How to Access</h2>
+                        <p>
+                            Open the TrackForcePro workspace popup and click the <strong>Settings</strong> tab (⚙️ icon)
+                            in the main tab bar. Settings are organized into collapsible sections for easy navigation.
+                            Make your changes, then click <strong>Save &amp; Apply</strong> at the bottom to persist and
+                            broadcast them.
+                        </p>
+                    </div>
+
+                    <div class="guide-card" id="appearance">
+                        <h2>Appearance Settings</h2>
+                        <p>
+                            Control TrackForcePro's visual theme across all surfaces (popup, sidebar, in-page overlays):
+                        </p>
                         <ul>
-                            <li>Records tab (Data Explorer) — Double-click disabled if blocked</li>
-                            <li>SOQL Builder — Inline edit toggle hidden if blocked</li>
-                            <li>Show All Data overlay — Double-click disabled if blocked</li>
+                            <li>
+                                <strong>Light Mode</strong> — Bright backgrounds with dark text. Best for bright
+                                environments and daytime work.
+                            </li>
+                            <li>
+                                <strong>Dark Mode</strong> — Dark backgrounds with light text. Reduces eye strain in dim
+                                environments and nighttime work.
+                            </li>
+                            <li>
+                                <strong>System</strong> — Automatically match your operating system's theme preference
+                                (Windows, macOS, or Linux).
+                            </li>
                         </ul>
+
+                        <div class="guide-lab">
+                            <strong>OS Integration:</strong> If you choose System theme, TrackForcePro watches your OS
+                            settings. Switch your OS to dark mode at night and TrackForcePro automatically follows
+                            without any action from you.
+                        </div>
+
+                        <p style="margin-top: 14px">
+                            <strong>Where It Applies:</strong> Popup UI, sidebar on Salesforce pages, Show All Data
+                            panel, LWC Explorer, Command Palette, and all in-page overlays.
+                        </p>
                     </div>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Migration from Old Setting</h3>
-                    <p>If you previously used the old <code>tfpDisableInlineEditProd</code> boolean setting, it automatically migrates to the new per-org list on first Settings load. No manual action needed.</p>
-                </div>
 
-                <div class="guide-card" id="sidebar">
-                    <h2>Sidebar Configuration</h2>
-                    <p>Show or hide individual Sidebar shortcuts to keep your sidebar clean and focused:</p>
-                    <ul>
-                        <li><strong>Record Tools</strong> — Shortcuts for Records sub-tabs (User Manager, Security Manager)</li>
-                        <li><strong>Org Tools</strong> — Shortcuts for Org Tools panels (Custom Labels, Limits, Metadata Explorer, etc.)</li>
-                        <li><strong>Miscellaneous</strong> — Other shortcuts like Command Palette, Settings</li>
-                    </ul>
-                    <p>Toggle switches next to each shortcut control visibility. Hidden shortcuts won't appear in the floating sidebar on Salesforce pages, but you can still access them from the Workspace tabs or Command Palette.</p>
-                </div>
+                    <div class="guide-card" id="keyboard-shortcuts">
+                        <h2>Keyboard Shortcuts</h2>
+                        <p>
+                            Assign global keyboard shortcuts for quick access to TrackForcePro features from Salesforce
+                            pages and the extension popup. Click any action's button to record a custom shortcut:
+                        </p>
 
-                <div class="guide-card" id="button-positioning">
-                    <h2>Button Positioning</h2>
-                    <p>Customize where the floating buttons appear on Salesforce pages. Three buttons can be positioned independently:</p>
-                    <table class="guide-table">
-                        <thead>
-                            <tr>
-                                <th>Button</th>
-                                <th>What It Does</th>
-                                <th>Position Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Sidebar Button</strong></td>
-                                <td>Toggle the floating sidebar</td>
-                                <td>Right, Left, Bottom</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Show All Data</strong></td>
-                                <td>Open the All Fields inspector</td>
-                                <td>Right, Left, Bottom</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Command Palette</strong></td>
-                                <td>Open the command palette</td>
-                                <td>Right, Left, Bottom</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p style="margin-top: 14px;"><strong>Bottom Position:</strong> When set to Bottom, buttons render as horizontal tabs anchored to the bottom edge of the page. Useful if you prefer a taskbar-style layout.</p>
-                    <div class="guide-lab">
-                        <strong>Independent Positioning:</strong> Each button has its own position setting. You could have the Sidebar on the Right, Show All Data on the Left, and Command Palette on the Bottom simultaneously.
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Configurable Actions
+                        </h3>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Where It Works</th>
+                                    <th>Default</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Toggle Sidebar</strong></td>
+                                    <td>On Salesforce pages</td>
+                                    <td>Ctrl+Shift+S / Cmd+Shift+S</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Toggle Show All Data</strong></td>
+                                    <td>On Salesforce record pages</td>
+                                    <td>Not assigned</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Command Palette (Page)</strong></td>
+                                    <td>On Salesforce pages</td>
+                                    <td>Not assigned</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Command Palette (Workspace)</strong></td>
+                                    <td>In extension popup</td>
+                                    <td>Ctrl+K / Cmd+K</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Toggle LWC Explorer</strong></td>
+                                    <td>On Salesforce pages</td>
+                                    <td>Not assigned</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            How to Set a Shortcut
+                        </h3>
+                        <ol>
+                            <li>Click the <strong>Record Shortcut</strong> button next to any action</li>
+                            <li>A modal appears prompting you to press a key combination</li>
+                            <li>Press your desired keys (e.g., Ctrl+Shift+D, Cmd+Option+F, etc.)</li>
+                            <li>The shortcut is recorded and displayed next to the action</li>
+                            <li>Click <strong>Save &amp; Apply</strong> to persist</li>
+                        </ol>
+
+                        <div class="guide-lab">
+                            <strong>Valid Modifiers:</strong> Ctrl, Shift, Alt (Windows/Linux) or Cmd, Shift, Option
+                            (Mac). You can combine up to 3 modifiers with a key.
+                        </div>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Resetting Shortcuts
+                        </h3>
+                        <p>
+                            Click the <strong>Reset</strong> button next to any shortcut to clear it and return to the
+                            default (if one exists).
+                        </p>
+                    </div>
+
+                    <div class="guide-card" id="sidebar">
+                        <h2>Sidebar Settings</h2>
+                        <p>
+                            Control which quick-access shortcuts appear in the TrackForcePro sidebar on Salesforce
+                            pages:
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Visible Shortcuts
+                        </h3>
+                        <p>
+                            The sidebar displays a list of toggles for each available shortcut category (Records, Audit
+                            Trail, SOQL, etc.). Toggle each one on/off to show or hide it in the sidebar. Toggled-off
+                            shortcuts don't clutter your sidebar but are still accessible from the Command Palette.
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Width &amp; Position
+                        </h3>
+                        <ul>
+                            <li>
+                                <strong>Sidebar Position</strong> — Choose Right (default) or Left side of Salesforce
+                                pages
+                            </li>
+                            <li>
+                                <strong>Sidebar Width</strong> — Drag the resize handle in the sidebar to adjust width
+                                (500px to 900px)
+                            </li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>💡 Pro Tip:</strong> Disable shortcuts you don't use to keep the sidebar clean. You
+                            can always enable them later if needed.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="button-positioning">
+                        <h2>Button Position Settings</h2>
+                        <p>
+                            Each floating button (Command Palette trigger and Show All Data button) has its own
+                            independent position setting. Choose where they appear on Salesforce pages:
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Available Positions
+                        </h3>
+                        <ul>
+                            <li><strong>Right</strong> — Floating button on the right edge of the page (default)</li>
+                            <li><strong>Left</strong> — Floating button on the left edge of the page</li>
+                            <li><strong>Bottom</strong> — Horizontal tab bar anchored to the bottom of the page</li>
+                        </ul>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Independent Control
+                        </h3>
+                        <p>
+                            Show All Data button and Command Palette trigger each have their own position dropdown.
+                            Configure them independently. For example: sidebar on right, Show All Data button on bottom,
+                            Command Palette trigger on left.
+                        </p>
+
+                        <div class="guide-lab">
+                            <strong>Use Case:</strong> If you prefer your sidebar on the right and use Show All Data
+                            frequently, put the Show All Data button on the bottom for less visual clutter. Leave the
+                            Command Palette trigger on the right as a secondary option.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="inline-edit">
+                        <h2>Inline Edit Permissions</h2>
+                        <p>
+                            Control which orgs allow inline field editing in the Records tab's All Fields table and Show
+                            All Data panel. This is a per-org security control to prevent accidental edits in sensitive
+                            environments (like production).
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Managing Inline Edit per Org
+                        </h3>
+                        <ol>
+                            <li>Open the <strong>Inline Edit Permissions</strong> section in Settings</li>
+                            <li>A table shows all known orgs with their inline edit status</li>
+                            <li>Toggle <strong>Allow Editing</strong> on/off for each org</li>
+                            <li>When disabled, field inline editing is blocked with a "disabled" notification</li>
+                        </ol>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Default Behavior
+                        </h3>
+                        <ul>
+                            <li>
+                                <strong>New Orgs:</strong> Default to ENABLED. You must explicitly disable them if
+                                needed.
+                            </li>
+                            <li>
+                                <strong>Production Orgs:</strong> Consider disabling inline edit for production to
+                                prevent accidental field updates.
+                            </li>
+                            <li><strong>Sandbox Orgs:</strong> Keep enabled for safe testing and prototyping.</li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>Security Best Practice:</strong> Disable inline edit for production orgs. Enable it
+                            only for sandboxes where you're comfortable making test changes.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="org-management">
+                        <h2>Org Management</h2>
+                        <p>View and manage all orgs you've connected to TrackForcePro. The org list shows:</p>
+                        <ul>
+                            <li><strong>Org Name</strong> — Your organization's name</li>
+                            <li><strong>Instance</strong> — Salesforce instance (NA, EU, AP, etc.)</li>
+                            <li><strong>Environment</strong> — Production or Sandbox indicator</li>
+                            <li>
+                                <strong>Allow Editing</strong> — Toggle for inline edit permissions (see Inline Edit
+                                Permissions section above)
+                            </li>
+                            <li><strong>Delete</strong> — Remove an org from your saved list</li>
+                        </ul>
+
+                        <div class="guide-lab">
+                            <strong>Adding Orgs:</strong> Orgs are automatically added when you first use TrackForcePro
+                            on a new Salesforce instance. You can't manually add orgs from Settings — they're discovered
+                            automatically.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="save-apply">
+                        <h2>Save &amp; Apply Button</h2>
+                        <p>
+                            The <strong>Save &amp; Apply</strong> button at the bottom of Settings orchestrates all your
+                            changes:
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            What It Does
+                        </h3>
+                        <ol>
+                            <li>
+                                <strong>Saves all settings</strong> to local storage (persisted across browser sessions)
+                            </li>
+                            <li>
+                                <strong>Re-applies appearance</strong> settings (theme) across all TrackForcePro
+                                surfaces
+                            </li>
+                            <li>
+                                <strong>Broadcasts to Salesforce tabs</strong> via a
+                                <code>TFP_SETTINGS_CHANGED</code> message
+                            </li>
+                            <li>
+                                <strong>Triggers per-tab refresh</strong> for sidebar, buttons, and overlays to reflect
+                                new settings
+                            </li>
+                        </ol>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            When to Use It
+                        </h3>
+                        <p>
+                            Click <strong>Save &amp; Apply</strong> after making any changes to ensure they persist and
+                            take effect across all open Salesforce tabs. You don't need to close and reopen tabs — the
+                            changes apply immediately.
+                        </p>
+
+                        <div class="guide-highlight">
+                            <strong>Workflow:</strong> Change settings → Click Save &amp; Apply → Settings apply to all
+                            tabs instantly. No page reloads needed.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="tips">
+                        <h2>Tips &amp; Workflow</h2>
+                        <ul>
+                            <li>
+                                <strong>Disable inline edit in production</strong> — Make it a habit to disable inline
+                                edit for production orgs to prevent accidental data changes.
+                            </li>
+                            <li>
+                                <strong>Customize keyboard shortcuts for your workflow</strong> — If you use Show All
+                                Data frequently, assign a shortcut like Ctrl+Shift+A for quick access.
+                            </li>
+                            <li>
+                                <strong>Match sidebar and button positions to your preference</strong> — Some admins
+                                prefer sidebar on left, others on right. Same with floating buttons. Customize once,
+                                work efficiently forever.
+                            </li>
+                            <li>
+                                <strong>Use system theme for automatic day/night switching</strong> — Set theme to
+                                "System" and your OS takes care of switching between light and dark automatically.
+                            </li>
+                            <li>
+                                <strong>Review shortcut assignments periodically</strong> — If you're using
+                                TrackForcePro with multiple team members, document your shortcut assignments so everyone
+                                uses the same keys.
+                            </li>
+                            <li>
+                                <strong>Always click Save &amp; Apply after edits</strong> — Don't assume settings save
+                                automatically. The Save &amp; Apply button ensures persistence and broadcast.
+                            </li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>Pro Workflow:</strong> Set theme to System → Assign keyboard shortcuts to your
+                            most-used features → Disable inline edit for production orgs → Click Save &amp; Apply. Done.
+                            Now you can work without distractions.
+                        </div>
                     </div>
                 </div>
-
-                <div class="guide-card" id="org-management">
-                    <h2>Org Management</h2>
-                    <p>View and manage all Salesforce orgs you've connected to TrackForcePro. The Org Management section shows a table of saved orgs with:</p>
-                    <ul>
-                        <li><strong>Org Name</strong> — Display name or org ID</li>
-                        <li><strong>Environment</strong> — Production, Sandbox, Scratch, etc.</li>
-                        <li><strong>Instance</strong> — Salesforce instance (na0.salesforce.com, etc.)</li>
-                        <li><strong>Allow Editing</strong> — Toggle for inline edit permission (synced with Inline Edit Permissions section)</li>
-                        <li><strong>Delete</strong> — Button to remove the org record</li>
-                    </ul>
-                    <p>The org list is populated automatically as you access different Salesforce orgs. Toggle the <strong>Allow Editing</strong> switch to enable/disable inline editing for each org. Changes sync bidirectionally with the Inline Edit Permissions section.</p>
-                    <div class="guide-highlight">
-                        <strong>Org Detection:</strong> Orgs are identified by their instance URL. TrackForcePro automatically detects and catalogs new orgs as you log in.
-                    </div>
-                </div>
-
-                <div class="guide-card" id="save-apply">
-                    <h2>Save & Apply Button</h2>
-                    <p>All changes in Settings are applied via the <strong>✅ Save &amp; Apply</strong> button at the bottom of the Settings tab.</p>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">What It Does</h3>
-                    <ol>
-                        <li><strong>Saves all settings</strong> to <code>chrome.storage.local</code></li>
-                        <li><strong>Applies appearance settings</strong> (theme) immediately in the popup</li>
-                        <li><strong>Broadcasts <code>TFP_SETTINGS_CHANGED</code></strong> message to all connected Salesforce tabs</li>
-                        <li><strong>Dispatches per-tab refresh events</strong> so each tab re-applies the new settings</li>
-                    </ol>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Button States</h3>
-                    <table class="guide-table">
-                        <thead>
-                            <tr>
-                                <th>State</th>
-                                <th>Appearance</th>
-                                <th>Meaning</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Neutral</strong></td>
-                                <td>Light gray</td>
-                                <td>No unsaved changes</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Enabled</strong></td>
-                                <td>Blue (clickable)</td>
-                                <td>Unsaved changes detected</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Applying</strong></td>
-                                <td>Blue with spinner</td>
-                                <td>Settings are being saved and applied</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Success</strong></td>
-                                <td>Green checkmark</td>
-                                <td>Settings applied successfully</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p style="margin-top: 14px;">The button returns to Neutral after a brief success flash. If there are additional unsaved changes, it becomes Enabled again.</p>
-                </div>
-
-                <div class="guide-card" id="tips">
-                    <h2>Tips & Best Practices</h2>
-                    <ul>
-                        <li><strong>Push settings to all tabs at once</strong> — Use Save &amp; Apply to broadcast settings to every open Salesforce tab simultaneously. No need to reload each tab individually.</li>
-                        <li><strong>Block inline editing on production</strong> — As soon as you add your production org, toggle its Allow Editing switch to OFF in Org Management. Prevents accidental field edits by your team.</li>
-                        <li><strong>Customize keyboard shortcuts to your muscle memory</strong> — If you're used to different shortcuts from other tools, change them here. Muscle memory is powerful — don't fight it.</li>
-                        <li><strong>Use Dark Mode to reduce eye strain</strong> — If you're in a dim environment or work late, enable Dark Mode. Choose System to auto-switch based on your OS settings.</li>
-                        <li><strong>Hide sidebar shortcuts you don't use</strong> — Keep the sidebar lean by hiding shortcuts for features you rarely access. Less clutter = faster scanning.</li>
-                        <li><strong>Position buttons where they don't block your workflow</strong> — If the right edge is where you usually click, move buttons to the Left or Bottom to avoid accidental activation.</li>
-                        <li><strong>Check Org Management regularly</strong> — As you access new orgs, they're cataloged automatically. Review the list periodically and adjust inline edit permissions for new production orgs.</li>
-                    </ul>
-                </div>
-            </main>
+            </div>
         </div>
-    </div>
 
-    <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
-        <div class="site-footer-links">
-            <a href="../index.html">Home</a>
-            <a href="../quick-start-guide.html">Quick Start</a>
-            <a href="../guide.html">Training Guide</a>
-            <a href="../documentation.html">Docs</a>
-            <a href="index.html">Feature Guides</a>
-        </div>
-        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
-    </footer>
-</body>
+        <footer class="site-footer">
+            <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+            <div class="site-footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html">Feature Guides</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+        </footer>
+    </body>
 </html>

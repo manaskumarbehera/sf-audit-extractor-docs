@@ -1,676 +1,362 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TrackForcePro real-world use cases and debugging scenarios — learn features through practical Salesforce workflows.">
-    <title>TrackForcePro — Use Cases & Scenarios</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
-    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-    <link rel="stylesheet" href="../shared.css">
-    <script src="../theme.js"></script>
-    <style>
-        .cases-shell {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 28px 20px 48px;
-        }
-
-        .case-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            padding: 28px 30px;
-            margin-bottom: 24px;
-            border-left: 5px solid var(--primary);
-        }
-
-        .case-card h2 {
-            font-size: 1.3rem;
-            color: var(--text);
-            margin-bottom: 6px;
-        }
-
-        .case-persona {
-            display: inline-block;
-            padding: 3px 12px;
-            border-radius: 100px;
-            background: var(--bg-alt);
-            color: var(--text-muted);
-            font-size: 0.82rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-        }
-
-        .case-steps {
-            counter-reset: case-step;
-            margin: 16px 0;
-        }
-
-        .case-step {
-            display: flex;
-            gap: 14px;
-            margin-bottom: 12px;
-            align-items: flex-start;
-        }
-
-        .case-step::before {
-            counter-increment: case-step;
-            content: counter(case-step);
-            background: var(--primary);
-            color: white;
-            width: 26px;
-            height: 26px;
-            min-width: 26px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.8rem;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .case-step-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .case-result {
-            margin-top: 16px;
-            padding: 14px 18px;
-            border-left: 4px solid #2E844A;
-            border-radius: 0 10px 10px 0;
-            background: linear-gradient(135deg, rgba(46,132,74,0.08), rgba(46,132,74,0.03));
-        }
-
-        .case-result strong {
-            color: #2E844A;
-        }
-
-        .case-result p {
-            color: var(--text-secondary);
-            font-size: 0.93rem;
-            margin: 4px 0 0;
-        }
-
-        .case-tools {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 14px;
-        }
-
-        .case-tool-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 6px;
-            background: rgba(1,118,211,0.1);
-            color: var(--primary);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .case-tip {
-            margin-top: 14px;
-            padding: 12px 16px;
-            border-left: 4px solid var(--primary);
-            border-radius: 0 8px 8px 0;
-            background: linear-gradient(135deg, rgba(1,118,211,0.06), transparent);
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        [data-theme="dark"] .case-result {
-            background: linear-gradient(135deg, rgba(46,132,74,0.15), rgba(46,132,74,0.05));
-        }
-
-        [data-theme="dark"] .case-tool-badge {
-            background: rgba(27,150,255,0.15);
-        }
-
-        @media (max-width: 700px) {
-            .cases-shell {
-                padding: 16px 12px;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Real-world use cases and workflows for TrackForcePro: debugging, data analysis, security audits, and more."
+        />
+        <title>TrackForcePro — 🎯 Use Cases &amp; Scenarios Guide</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../../icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="../../icons/Icon-32.png" id="favshort" />
+        <link rel="stylesheet" href="../shared.css" />
+        <script src="../theme.js"></script>
+        <style>
+            .guide-shell {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 28px 20px 48px;
             }
-
-            .case-card {
-                padding: 20px;
+            .guide-grid {
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                gap: 24px;
+                align-items: start;
             }
-        }
-    </style>
-</head>
-<body>
-    <nav class="site-nav">
-        <div class="nav-left">
-            <a href="../../index.html" class="nav-brand">TrackForcePro</a>
-            <div class="nav-links">
-                <a href="../index.html" class="nav-link">Documentation</a>
-                <a href="../guides/index.html" class="nav-link active">Feature Guides</a>
-                <a href="../roadmap.html" class="nav-link">Roadmap</a>
-                <a href="../api.html" class="nav-link">Extension API</a>
+            .guide-nav,
+            .guide-card {
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow);
+            }
+            .guide-nav {
+                position: sticky;
+                top: 20px;
+                padding: 18px;
+            }
+            .guide-nav h2 {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+                color: var(--text);
+            }
+            .guide-nav a {
+                display: block;
+                padding: 8px 10px;
+                border-radius: 10px;
+                color: var(--text-link);
+                text-decoration: none;
+                font-size: 0.92rem;
+                font-weight: 600;
+            }
+            .guide-nav a:hover {
+                background: var(--bg-alt);
+            }
+            .guide-main {
+                display: grid;
+                gap: 22px;
+            }
+            .guide-card {
+                padding: 24px 26px;
+            }
+            .guide-card h2 {
+                font-size: 1.35rem;
+                color: var(--text);
+                margin-bottom: 10px;
+            }
+            .guide-card h3 {
+                font-size: 1.05rem;
+                color: var(--text);
+                margin-top: 14px;
+                margin-bottom: 8px;
+            }
+            .guide-card p,
+            .guide-card li {
+                color: var(--text-secondary);
+                line-height: 1.65;
+            }
+            .guide-card ul,
+            .guide-card ol {
+                margin: 14px 0 0 18px;
+            }
+            .guide-highlight {
+                margin-top: 16px;
+                padding: 16px 18px;
+                border-left: 4px solid var(--primary);
+                border-radius: 0 12px 12px 0;
+                background: linear-gradient(135deg, rgba(1, 118, 211, 0.08), rgba(42, 115, 255, 0.04));
+            }
+            .guide-lab {
+                margin-top: 14px;
+                padding: 16px 18px;
+                border-radius: 14px;
+                background: var(--bg-alt);
+                border: 1px dashed var(--border);
+            }
+            .guide-lab strong {
+                color: var(--text);
+            }
+            @media (max-width: 900px) {
+                .guide-grid {
+                    grid-template-columns: 1fr;
+                }
+                .guide-nav {
+                    position: static;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="site-nav">
+            <div class="site-nav-inner">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html" class="active">Feature Guides</a>
+                <a href="../help.html">Help</a>
+                <a href="../quiz.html">Quiz &amp; Games</a>
+                <a href="../leaderboard.html">Leaderboard</a>
+                <a href="../privacy-policy.html">Privacy</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <span class="theme-icon"></span>
+                    <span class="theme-label"></span>
+                </button>
             </div>
-        </div>
-        <div class="nav-theme-toggle">
-            <button id="theme-toggle-btn" class="theme-toggle" title="Toggle dark mode">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-            </button>
-        </div>
-    </nav>
+        </nav>
 
-    <div class="site-hero">
-        <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo">
-        <h1>Use Cases & Scenarios</h1>
-        <p>Learn TrackForcePro features through 10 real-world Salesforce workflows — from debugging slow pages to deploying custom labels.</p>
-        <span class="version-badge">Learn by Doing</span>
-    </div>
+        <div class="guide-shell">
+            <div class="guide-grid">
+                <nav class="guide-nav">
+                    <h2>Use Cases</h2>
+                    <a href="#debug-page">Debug Slow Pages</a>
+                    <a href="#audit-changes">Audit Changes</a>
+                    <a href="#bulk-export">Bulk Export Data</a>
+                    <a href="#investigate-sharing">Investigate Sharing</a>
+                    <a href="#test-integrations">Test Integrations</a>
+                    <a href="#monitor-limits">Monitor Limits</a>
+                    <a href="#compare-records">Compare Records</a>
+                    <a href="#troubleshoot-formula">Troubleshoot Formulas</a>
+                </nav>
 
-    <div class="cases-shell">
-        <!-- Case 1: LWC Explorer Performance Debugging -->
-        <div class="case-card" style="border-left-color: #7C3AED;">
-            <h2>⚡ This page is loading slowly</h2>
-            <span class="case-persona">Developer debugging a slow Lightning record page</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                Debugging with LWC Explorer — capture network traffic, identify slow Apex calls, and optimize performance.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open slow Lightning record page in Salesforce</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "LWC Explorer" from the TrackForcePro sidebar</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Enable "Auto-Capture" to start recording all network traffic</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Reload the page and watch the network activity populate in real-time</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Filter by "Apex" to isolate server-side calls</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Sort traces by duration (longest first) to find bottlenecks</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click the slowest trace to inspect the class name, method, and response time</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Found AccountController.getRelatedData takes 4.2 seconds due to unoptimized SOQL with missing indexes. Optimized query and page now loads in 600ms.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">LWC Explorer</span>
-                <span class="case-tool-badge">Auto-Capture</span>
-                <span class="case-tool-badge">Apex Filter</span>
-            </div>
-            <div class="case-tip">
-                <strong>💡 Tip:</strong> Filter by "Errors" to check for failed API calls and retries that artificially inflate page load time.
-            </div>
-        </div>
+                <div class="guide-main">
+                    <div class="guide-card">
+                        <span class="badge badge-alt">Real-World Scenarios</span>
+                        <h1 style="font-size: 1.6rem; margin-top: 12px; color: var(--text)">
+                            🎯 Use Cases &amp; Scenarios
+                        </h1>
+                    </div>
 
-        <!-- Case 2: Audit Investigation -->
-        <div class="case-card" style="border-left-color: #EA001E;">
-            <h2>🔐 Who changed the permission set?</h2>
-            <span class="case-persona">Admin investigating an unexpected permission change</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                Audit Trails investigation — search security changes and find the exact user and timestamp.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open Audit Trails tab in TrackForcePro popup</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Fetch" to load audit entries from your org</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Search for the permission set name (e.g., "Account Manager")</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Filter "Category" to "Security" to show only permission-related changes</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Expand entries to view the user, date/time, and action (e.g., "Added" or "Removed")</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Export results as CSV to include in incident report or compliance documentation</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Discovered junior admin removed "View All Data" permission set yesterday at 3:47 PM. Contacted user to understand reason and reapplied if needed.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">Audit Trails</span>
-                <span class="case-tool-badge">Search</span>
-                <span class="case-tool-badge">Category Filter</span>
-                <span class="case-tool-badge">Export CSV</span>
-            </div>
-        </div>
+                    <div class="guide-card" id="debug-page">
+                        <h2>Debug Why a Salesforce Page Loads Slowly</h2>
+                        <p>Your users complain that a record page is slow. Find the culprit in minutes.</p>
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li><strong>Open the record</strong> in Salesforce</li>
+                            <li><strong>Open LWC Explorer</strong> (keyboard shortcut or sidebar)</li>
+                            <li><strong>Select "Live Mode"</strong> to stream network traffic</li>
+                            <li>
+                                <strong>Look for slow Apex or UI API calls</strong> — Filter by "Apex" or "UI API" chips
+                            </li>
+                            <li>
+                                <strong>Identify the bottleneck</strong> — Is an Apex REST call taking 3+ seconds? Is a
+                                UI API query fetching 10k records?
+                            </li>
+                            <li>
+                                <strong>Optimize or escalate</strong> — If it's Apex, work with your dev team to
+                                optimize the code. If it's config, investigate field security or record access logic.
+                            </li>
+                        </ol>
+                        <div class="guide-lab">
+                            <strong>Pro Tip:</strong> Check the ChangeEventHeader in CDC events. If many records are
+                            being modified simultaneously, check if a batch job or integration is running.
+                        </div>
+                    </div>
 
-        <!-- Case 3: SOQL Export -->
-        <div class="case-card" style="border-left-color: #0176D3;">
-            <h2>📊 Export all contacts for quarterly report</h2>
-            <span class="case-persona">Admin preparing data export for reporting</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                SOQL Builder — craft a query, filter by date, and export records in seconds.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open SOQL Builder tab</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Select "Contact" from the object picker</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Use the field picker to select columns: Name, Email, Phone, LastActivityDate</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Add a WHERE clause to filter: CreatedDate = THIS_QUARTER</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Add ORDER BY LastName ASC to sort alphabetically</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Run Query" to execute</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Export CSV" and save to your computer</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Exported 2,347 contacts in under 60 seconds. Imported CSV into Excel, removed duplicates, and delivered to analytics team.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">SOQL Builder</span>
-                <span class="case-tool-badge">Field Picker</span>
-                <span class="case-tool-badge">Filter</span>
-                <span class="case-tool-badge">Export CSV</span>
-            </div>
-        </div>
+                    <div class="guide-card" id="audit-changes">
+                        <h2>Investigate Who Changed What and When</h2>
+                        <p>Someone changed a critical field. Track them down using Audit Trail + Show All Data.</p>
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li><strong>Open Audit Trail</strong> from sidebar or workspace</li>
+                            <li><strong>Filter by date range</strong> (narrow it to the time the change happened)</li>
+                            <li><strong>Filter by section</strong> (e.g., "Users", "Security", "Organization")</li>
+                            <li><strong>Find the relevant entry</strong> and note the user and timestamp</li>
+                            <li>
+                                <strong>If you need field history</strong>, open the record and click "Field History" in
+                                the sidebar
+                            </li>
+                            <li><strong>Export the results</strong> and attach to your compliance audit trail</li>
+                        </ol>
+                    </div>
 
-        <!-- Case 4: Security Analysis -->
-        <div class="case-card" style="border-left-color: #FE9339;">
-            <h2>🔒 Check why a user can't see a field</h2>
-            <span class="case-persona">Admin troubleshooting field-level security (FLS)</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                Security Manager — analyze field permissions and profile assignments instantly.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open Records tab and enter the record ID in the search field</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Navigate to "All Fields" section to see all record fields</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Search for the field name (e.g., "Revenue__c") in the field list</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Security Manager" sub-tab to analyze permissions</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Review FLS analysis showing which profiles have read/write access</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Check the affected user's profile in the analysis (e.g., "Standard User")</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Alternatively, use "Login As" in Org Tools to verify permissions firsthand</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Confirmed that user's "Standard User" profile has "No Access" to Revenue__c field. Updated profile FLS, user can now view field.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">Records Tab</span>
-                <span class="case-tool-badge">Security Manager</span>
-                <span class="case-tool-badge">FLS Analysis</span>
-                <span class="case-tool-badge">Org Tools Login As</span>
-            </div>
-            <div class="case-tip">
-                <strong>💡 Tip:</strong> Use "Login As" to impersonate the user and verify exactly what they can/cannot see without affecting their session.
-            </div>
-        </div>
+                    <div class="guide-card" id="bulk-export">
+                        <h2>Bulk Export Specific Records for Analysis</h2>
+                        <p>
+                            Export 1000s of records to a spreadsheet for external analysis, without navigating
+                            Salesforce UI.
+                        </p>
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li><strong>Open SOQL Builder</strong></li>
+                            <li>
+                                <strong>Write a SOQL query</strong> to select the records you want (e.g., "SELECT Id,
+                                Name, Email FROM Contact WHERE Industry = 'Technology'")
+                            </li>
+                            <li><strong>Execute the query</strong></li>
+                            <li>
+                                <strong>In the results toolbar</strong>, click <strong>Export → CSV Download</strong>
+                            </li>
+                            <li><strong>Open the CSV</strong> in Excel, Google Sheets, or your analysis tool</li>
+                        </ol>
+                        <div class="guide-lab">
+                            <strong>Faster than Data Export:</strong> The standard Salesforce Data Export tool can take
+                            hours for large orgs. TrackForcePro's SOQL export is instant.
+                        </div>
+                    </div>
 
-        <!-- Case 5: Platform Events Monitoring -->
-        <div class="case-card" style="border-left-color: #06B6D4;">
-            <h2>📡 Monitor integration events in real-time</h2>
-            <span class="case-persona">Integration developer testing event-based integrations</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                Platform Events — subscribe to custom events and inspect payloads as they publish.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open Platform Events tab in TrackForcePro popup</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Fetch" to load all available platform events from the org</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Find and click your custom event (e.g., "Order_Placed__e")</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Subscribe" to start listening for new events</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Trigger your integration workflow in Salesforce (e.g., create a test order)</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Watch the event log populate in real-time with incoming events</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Expand and inspect the event payload to verify field types and data</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Confirmed that Order_Placed__e events publish correctly, but discovered Amount field is sent as a string ("1500.00") instead of a number. Updated trigger to cast field correctly before publishing.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">Platform Events</span>
-                <span class="case-tool-badge">Subscribe</span>
-                <span class="case-tool-badge">Payload Inspection</span>
-            </div>
-            <div class="case-tip">
-                <strong>💡 Tip:</strong> Keep Platform Events open in a separate popup window while testing your integration to monitor event flow in real-time.
-            </div>
-        </div>
+                    <div class="guide-card" id="investigate-sharing">
+                        <h2>Investigate Record Sharing &amp; Access Issues</h2>
+                        <p>A user can't see a record they should have access to. Debug the sharing rules.</p>
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li><strong>Open the record</strong> in Salesforce</li>
+                            <li><strong>Click "Sharing" in the sidebar</strong></li>
+                            <li>
+                                <strong>Review who has access</strong> — Check if the user is in the list, their access
+                                level (View Only vs. Edit), and through what mechanism (direct share, public group, role
+                                hierarchy)
+                            </li>
+                            <li>
+                                <strong>If access is missing</strong>, check:
+                                <ul>
+                                    <li>Is the user's role higher in the hierarchy than the record owner?</li>
+                                    <li>Is the user in a public group that should have access?</li>
+                                    <li>Are there org-wide defaults limiting access?</li>
+                                </ul>
+                            </li>
+                            <li><strong>Add access manually or fix the rules</strong> in Salesforce Setup</li>
+                        </ol>
+                    </div>
 
-        <!-- Case 6: REST Explorer Prototyping -->
-        <div class="case-card" style="border-left-color: #2E844A;">
-            <h2>🚀 Test this API endpoint before coding</h2>
-            <span class="case-persona">Developer prototyping API integration</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                REST Explorer — prototype CRUD operations and build reusable collections.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open REST Explorer tab</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Select "POST" method and change the resource path to "/sobjects/Account"</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Paste a JSON body with new account data (Name, BillingCity, Industry, etc.)</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Send Request" and verify a 201 Created response with the new ID</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Change method to "PATCH" with the ID and update a field (e.g., Revenue)</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Verify the PATCH succeeds with a 204 No Content response</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Test DELETE with the same ID to confirm record removal</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Save this sequence to a collection for future reference</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Prototyped full CRUD cycle in under 3 minutes. Saved as reusable collection "Account_API_Tests" for integration development.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">REST Explorer</span>
-                <span class="case-tool-badge">Collections</span>
-                <span class="case-tool-badge">Request Builder</span>
-            </div>
-        </div>
+                    <div class="guide-card" id="test-integrations">
+                        <h2>Test Salesforce API Integrations Before Deployment</h2>
+                        <p>You're integrating with a third-party API. Test the REST endpoints quickly.</p>
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li><strong>Open REST Explorer</strong></li>
+                            <li>
+                                <strong>Find the Salesforce API docs</strong> for the endpoint you need (e.g., Leads,
+                                Accounts)
+                            </li>
+                            <li><strong>In REST Explorer, enter the method</strong> (GET, POST, PATCH)</li>
+                            <li>
+                                <strong>Enter the endpoint URL</strong> (e.g.,
+                                `/services/data/v60.0/sobjects/Account/create`)
+                            </li>
+                            <li><strong>Enter request body</strong> (JSON with fields to create/update)</li>
+                            <li>
+                                <strong>Execute and check response</strong> — If you get 201 Created, your integration
+                                logic is correct. If 400, debug the request format.
+                            </li>
+                            <li>
+                                <strong>Once working, pass this REST Explorer request to your dev team</strong> as
+                                documentation of what works
+                            </li>
+                        </ol>
+                    </div>
 
-        <!-- Case 7: Custom Labels Deployment -->
-        <div class="case-card" style="border-left-color: #D97706;">
-            <h2>🌐 Deploy custom labels to a new locale</h2>
-            <span class="case-persona">Admin deploying multi-language labels</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                Org Tools — export, translate, and batch-import custom labels across languages.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open Org Tools tab → Custom Labels panel</div>
+                    <div class="guide-card" id="monitor-limits">
+                        <h2>Monitor Org Limits Before Large Operations</h2>
+                        <p>You're about to run a bulk data load. Make sure you have capacity.</p>
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li><strong>Open Org Tools → Org Limits</strong></li>
+                            <li>
+                                <strong>Check API Calls remaining</strong> — If you're at 90% of your daily limit, pause
+                                and wait for the reset
+                            </li>
+                            <li>
+                                <strong>Check Data Storage</strong> — If you're at 95%, you might not have room for bulk
+                                inserts
+                            </li>
+                            <li>
+                                <strong>Check File Storage</strong> — If bulk operation involves attachments, verify
+                                space
+                            </li>
+                            <li>
+                                <strong>If limits are tight</strong>, split the operation into smaller chunks spread
+                                over multiple days
+                            </li>
+                        </ol>
+                        <div class="guide-highlight">
+                            <strong>Best Practice:</strong> Check limits before starting ANY large operation (bulk
+                            update, batch job, integration sync). Takes 10 seconds and prevents hours of
+                            troubleshooting.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="compare-records">
+                        <h2>Compare Field Values Across Multiple Records</h2>
+                        <p>Three accounts look similar. Find the differences.</p>
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li><strong>Open Show All Data</strong> on the first record</li>
+                            <li><strong>Search for the field you want to compare</strong> (e.g., "BillingCity")</li>
+                            <li><strong>Copy the value</strong> (click to copy)</li>
+                            <li><strong>Navigate to the second record</strong> using the breadcrumb or search</li>
+                            <li><strong>Show All Data opens on the new record</strong></li>
+                            <li><strong>Search for the same field</strong> and compare values</li>
+                            <li><strong>Repeat for the third record</strong></li>
+                        </ol>
+                        <div class="guide-lab">
+                            <strong>Alternative:</strong> Use SOQL Builder to query all three records in one go, then
+                            compare in the results table.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="troubleshoot-formula">
+                        <h2>Troubleshoot Formula Field Logic</h2>
+                        <p>A formula field shows unexpected results. Debug it.</p>
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li><strong>Open Show All Data</strong> on the record with the formula field</li>
+                            <li><strong>Search for the formula field</strong> (e.g., "Total_Price__c")</li>
+                            <li><strong>See the current value</strong> — Is it what you expect?</li>
+                            <li>
+                                <strong>Check the component fields</strong> that feed the formula (e.g., if Total =
+                                Price × Quantity, check Price and Quantity values)
+                            </li>
+                            <li>
+                                <strong>If values are wrong</strong>, check:
+                                <ul>
+                                    <li>Did a workflow/flow recently update these fields?</li>
+                                    <li>Are there rounding or data type issues in the formula?</li>
+                                    <li>Is the formula referencing a lookup field that might be NULL?</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>View the formula definition</strong> in Salesforce Setup (Setup → Object Fields
+                                → Formula Field) and run through the logic manually
+                            </li>
+                        </ol>
+                    </div>
                 </div>
-                <div class="case-step">
-                    <div class="case-step-text">Export all labels as a translation template (CSV format)</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Send the CSV to your translation vendor or use Google Translate API</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Receive translated CSV with Spanish, French, German, or other locales</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Use the import feature to validate and parse the translated file</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Review the parsed label list for correct language mapping</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Apply" to batch-create all 150+ labels in Salesforce</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Deployed 150 Spanish translations in one batch operation. All labels published to production and instantly available across the org.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">Org Tools</span>
-                <span class="case-tool-badge">Custom Labels</span>
-                <span class="case-tool-badge">Import/Export</span>
-            </div>
-            <div class="case-tip">
-                <strong>💡 Tip:</strong> Always test custom labels in a non-production org first to verify translation quality and formatting before deploying to production.
             </div>
         </div>
 
-        <!-- Case 8: Record Comparison -->
-        <div class="case-card" style="border-left-color: #7C3AED;">
-            <h2>🔍 Compare two records for data discrepancies</h2>
-            <span class="case-persona">Support agent investigating data inconsistencies</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                Records Compare mode — side-by-side field analysis with difference highlighting.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open Records tab in TrackForcePro</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Enable "Compare Mode" toggle at the top of the tab</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Enter the first record ID in the left search field</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Enter the second record ID in the right search field</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">The tool renders both records side-by-side with matching fields in rows</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Differences are highlighted in yellow/red to make discrepancies obvious</div>
-                </div>
+        <footer class="site-footer">
+            <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+            <div class="site-footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html">Feature Guides</a>
             </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Found billing address difference causing customer's invoice routing to an old warehouse. Updated address field and corrected future invoice delivery.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">Records Tab</span>
-                <span class="case-tool-badge">Compare Mode</span>
-                <span class="case-tool-badge">Difference Highlighting</span>
-            </div>
-        </div>
-
-        <!-- Case 9: Trigger Debugging -->
-        <div class="case-card" style="border-left-color: #EA001E;">
-            <h2>🐛 Debug an Apex trigger not firing</h2>
-            <span class="case-persona">Developer debugging trigger logic</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                Debug Logs + LWC Explorer — capture execution flow and identify filtering issues.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open Org Tools tab → Debug Logs panel</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Create a new Trace Flag for your user with DEBUG log level</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Open the Salesforce record page in a new tab alongside LWC Explorer</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">In LWC Explorer, enable "Auto-Capture" to monitor all network traffic</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Perform the action that should trigger the trigger (e.g., update a field)</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Filter LWC Explorer by "Apex" to see the trigger execution trace</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Check the captured debug log for entry/exit logs and error messages</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Review the trace to identify where execution stops or unexpected logic branches occur</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Debug logs revealed sharing rule filtered record before trigger could execute. Updated sharing rule, trigger now fires correctly on all qualifying records.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">Org Tools Debug Logs</span>
-                <span class="case-tool-badge">LWC Explorer</span>
-                <span class="case-tool-badge">Apex Filter</span>
-                <span class="case-tool-badge">Auto-Capture</span>
-            </div>
-            <div class="case-tip">
-                <strong>💡 Tip:</strong> Always check Sharing Rules and Org-wide defaults before debugging trigger logic — they can silently filter records before your code runs.
-            </div>
-        </div>
-
-        <!-- Case 10: Team Configuration -->
-        <div class="case-card" style="border-left-color: #0176D3;">
-            <h2>⚙️ Set up TrackForcePro for a team</h2>
-            <span class="case-persona">Lead admin configuring TrackForcePro standards</span>
-            <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 0.95rem;">
-                Settings — appearance, shortcuts, and security configuration for team consistency.
-            </p>
-            <div class="case-steps">
-                <div class="case-step">
-                    <div class="case-step-text">Open Settings tab (⚙️ icon) in TrackForcePro popup</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Navigate to "Appearance" sub-tab and choose your preferred theme (Light/Dark/Auto)</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Go to "Keyboard Shortcuts" sub-tab and configure custom shortcuts for common tasks</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Navigate to "General" sub-tab and disable inline editing for production orgs</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Open "Sidebar" sub-tab to hide unused features and customize button positions</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Review "Org Management" to see connected orgs and toggle edit access per-org</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Click "Save & Apply" to apply all settings</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Export all settings as a JSON backup (coming in v2.0)</div>
-                </div>
-                <div class="case-step">
-                    <div class="case-step-text">Share backup file with team members to import identical configuration</div>
-                </div>
-            </div>
-            <div class="case-result">
-                <strong>✓ Result:</strong>
-                <p>Entire team configured consistently with dark theme, disabled prod editing, and shared keyboard shortcuts. Reduced setup time from 30 min per person to 2 min via configuration sharing.</p>
-            </div>
-            <div class="case-tools">
-                <span class="case-tool-badge">Settings Tab</span>
-                <span class="case-tool-badge">Appearance</span>
-                <span class="case-tool-badge">Keyboard Shortcuts</span>
-                <span class="case-tool-badge">Org Management</span>
-                <span class="case-tool-badge">Sidebar Configuration</span>
-            </div>
-            <div class="case-tip">
-                <strong>💡 Tip:</strong> Always disable inline editing on production orgs to prevent accidental data modifications. Keep it enabled only in sandboxes for testing.
-            </div>
-        </div>
-    </div>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Learn</h3>
-                <a href="../index.html">Documentation</a>
-                <a href="../guides/index.html">Feature Guides</a>
-                <a href="./use-cases.html" style="font-weight: 600; color: var(--primary);">Use Cases</a>
-                <a href="../roadmap.html">Roadmap</a>
-            </div>
-            <div class="footer-section">
-                <h3>API</h3>
-                <a href="../api.html">Extension API</a>
-                <a href="../api/commands.html">Commands Reference</a>
-                <a href="../api/messages.html">Message Protocol</a>
-            </div>
-            <div class="footer-section">
-                <h3>Community</h3>
-                <a href="https://github.com/TrackForcePro/trackforcepro" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://github.com/TrackForcePro/trackforcepro/issues" target="_blank" rel="noopener noreferrer">Report Issue</a>
-                <a href="https://github.com/TrackForcePro/trackforcepro/discussions" target="_blank" rel="noopener noreferrer">Discussions</a>
-            </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <a href="../../LICENSE.md">License</a>
-                <a href="../../CONTRIBUTING.md">Contributing</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>TrackForcePro — Open-source Salesforce extension for Chrome, Edge, Firefox, and Opera</p>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">© 2024–2026 TrackForcePro Contributors. Licensed under MIT.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Theme toggle functionality
-        const themeToggleBtn = document.getElementById('theme-toggle-btn');
-
-        themeToggleBtn?.addEventListener('click', () => {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('tfp-docs-theme', newTheme);
-        });
-
-        // Initialize theme from localStorage or system preference
-        const savedTheme = localStorage.getItem('tfp-docs-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', initialTheme);
-    </script>
-</body>
+            <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+        </footer>
+    </body>
 </html>

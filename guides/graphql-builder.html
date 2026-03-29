@@ -1,192 +1,604 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Compose and execute Salesforce GraphQL queries with syntax highlighting, variable support, and a formatted response explorer.">
-    <title>TrackForcePro — ⚡ GraphQL Builder Guide</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
-    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-    <link rel="stylesheet" href="../shared.css">
-    <script src="../theme.js"></script>
-    <style>
-        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
-        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
-        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
-        .guide-nav { position: sticky; top: 20px; padding: 18px; }
-        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
-        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
-        .guide-nav a:hover { background: var(--bg-alt); }
-        .guide-main { display: grid; gap: 22px; }
-        .guide-card { padding: 24px 26px; }
-        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
-        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
-        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
-        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
-        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
-        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
-        .guide-lab strong { color: var(--text); }
-        code { background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; font-family: 'Monaco', 'Courier New', monospace; font-size: 0.9em; }
-        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
-    </style>
-</head>
-<body>
-    <nav class="site-nav">
-        <div class="site-nav-inner">
-            <a href="../index.html">Home</a>
-            <a href="../quick-start-guide.html">Quick Start</a>
-            <a href="../guide.html">Training Guide</a>
-            <a href="../documentation.html">Docs</a>
-            <a href="index.html" class="active">Feature Guides</a>
-            <a href="../help.html">Help</a>
-            <a href="../quiz.html">Quiz &amp; Games</a>
-            <a href="../leaderboard.html">Leaderboard</a>
-            <a href="../privacy-policy.html">Privacy</a>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-                <span class="theme-icon"></span>
-                <span class="theme-label"></span>
-            </button>
-        </div>
-    </nav>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Compose and execute Salesforce GraphQL queries with syntax highlighting, variable support, and a formatted response explorer."
+        />
+        <title>TrackForcePro — ⚡ GraphQL Builder Guide</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../../icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="../../icons/Icon-32.png" id="favshort" />
+        <link rel="stylesheet" href="../shared.css" />
+        <script src="../theme.js"></script>
+        <style>
+            .guide-shell {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 28px 20px 48px;
+            }
+            .guide-grid {
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+            .guide-nav,
+            .guide-card {
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow);
+            }
+            .guide-nav {
+                position: sticky;
+                top: 20px;
+                padding: 18px;
+            }
+            .guide-nav h2 {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+                color: var(--text);
+            }
+            .guide-nav a {
+                display: block;
+                padding: 8px 10px;
+                border-radius: 10px;
+                color: var(--text-link);
+                text-decoration: none;
+                font-size: 0.92rem;
+                font-weight: 600;
+            }
+            .guide-nav a:hover {
+                background: var(--bg-alt);
+            }
+            .guide-main {
+                display: grid;
+                gap: 22px;
+            }
+            .guide-card {
+                padding: 24px 26px;
+            }
+            .guide-card h2 {
+                font-size: 1.35rem;
+                color: var(--text);
+                margin-bottom: 10px;
+            }
+            .guide-card p,
+            .guide-card li {
+                color: var(--text-secondary);
+                line-height: 1.65;
+            }
+            .guide-card ul,
+            .guide-card ol {
+                margin: 14px 0 0 18px;
+            }
+            .guide-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 12px;
+            }
+            .guide-table th,
+            .guide-table td {
+                text-align: left;
+                padding: 12px 14px;
+                border-bottom: 1px solid var(--border);
+                color: var(--text-secondary);
+                vertical-align: top;
+            }
+            .guide-table th {
+                color: var(--text);
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .guide-highlight {
+                margin-top: 16px;
+                padding: 16px 18px;
+                border-left: 4px solid var(--primary);
+                border-radius: 0 12px 12px 0;
+                background: linear-gradient(135deg, rgba(1, 118, 211, 0.08), rgba(42, 115, 255, 0.04));
+            }
+            .guide-lab {
+                margin-top: 14px;
+                padding: 16px 18px;
+                border-radius: 14px;
+                background: var(--bg-alt);
+                border: 1px dashed var(--border);
+            }
+            .guide-lab strong {
+                color: var(--text);
+            }
+            code {
+                background: var(--bg-alt);
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-family: 'Monaco', 'Courier New', monospace;
+                font-size: 0.9em;
+            }
+            @media (max-width: 900px) {
+                .guide-grid {
+                    grid-template-columns: 1fr;
+                }
+                .guide-nav {
+                    position: static;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="site-nav">
+            <div class="site-nav-inner">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html" class="active">Feature Guides</a>
+                <a href="../help.html">Help</a>
+                <a href="../quiz.html">Quiz &amp; Games</a>
+                <a href="../leaderboard.html">Leaderboard</a>
+                <a href="../privacy-policy.html">Privacy</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <span class="theme-icon"></span>
+                    <span class="theme-label"></span>
+                </button>
+            </div>
+        </nav>
 
-    <div class="guide-shell">
-        <div class="guide-grid">
-            <nav class="guide-nav">
-                <h2>GraphQL Builder</h2>
-                <a href="#what-it-does">What It Does</a>
-                <a href="#how-to-access">How to Access</a>
-                <a href="#query-editor">Query Editor</a>
-                <a href="#variables">Variables Panel</a>
-                <a href="#executing">Executing Queries</a>
-                <a href="#response-explorer">Response Explorer</a>
-                <a href="#tips">Tips</a>
-            </nav>
+        <div class="guide-shell">
+            <div class="guide-grid">
+                <nav class="guide-nav">
+                    <h2>GraphQL Builder</h2>
+                    <a href="#what-it-does">What It Does</a>
+                    <a href="#how-to-access">How to Access</a>
+                    <a href="#query-editor">Query Editor</a>
+                    <a href="#variables">Variables Panel</a>
+                    <a href="#executing">Executing Queries</a>
+                    <a href="#response-explorer">Response Explorer</a>
+                    <a href="#tips">Tips</a>
+                </nav>
 
-            <div class="guide-main">
-                <div class="guide-card">
-                    <span class="badge badge-alt">Workspace Tab</span>
-                    <h1 style="font-size: 1.6rem; margin-top: 12px; color: var(--text);">⚡ GraphQL Builder Guide</h1>
-                </div>
-
-                <div class="guide-card" id="what-it-does">
-                    <h2>What It Does</h2>
-                    <p>The GraphQL Builder lets you compose and execute Salesforce GraphQL queries directly from TrackForcePro. Write queries with syntax highlighting and smart formatting, define variables for reusable queries, and explore formatted responses with error highlighting.</p>
-                    <p>Salesforce GraphQL (via the UI API) is a powerful alternative to SOQL for fetching record data and metadata. Use it to retrieve related records efficiently in a single request, or to build more flexible queries than SOQL allows.</p>
-                </div>
-
-                <div class="guide-card" id="how-to-access">
-                    <h2>How to Access</h2>
-                    <p>Open the TrackForcePro workspace and click the <strong>GraphQL</strong> tab. You'll see the query editor on the left and the response panel on the right (initially empty until you run a query).</p>
-                </div>
-
-                <div class="guide-card" id="query-editor">
-                    <h2>Query Editor</h2>
-                    <p>The left panel is a full-featured CodeMirror 6 editor built specifically for GraphQL:</p>
-                    <ul>
-                        <li><strong>Syntax Highlighting</strong> — GraphQL keywords, fields, and types are color-coded for readability.</li>
-                        <li><strong>Auto-Indentation</strong> — The editor automatically indents nested structures.</li>
-                        <li><strong>Bracket Matching</strong> — Hovering over or selecting a bracket highlights its pair.</li>
-                        <li><strong>Line Numbers</strong> — Line numbers on the left help you reference query sections.</li>
-                        <li><strong>Dark Theme Support</strong> — The editor adapts to your theme preference (light/dark).</li>
-                    </ul>
-                    <p>Paste or type your Salesforce GraphQL query directly into the editor. The query must follow Salesforce GraphQL schema.</p>
-
-                    <div class="guide-lab">
-                        <strong>Example query structure:</strong><br>
-                        <code>query GetAccounts { uiapi { query { Account { edges { node { Id Name BillingCity } } } } } }</code>
+                <div class="guide-main">
+                    <div class="guide-card">
+                        <span class="badge badge-alt">Workspace Tab</span>
+                        <h1 style="font-size: 1.6rem; margin-top: 12px; color: var(--text)">
+                            ⚡ GraphQL Builder Guide
+                        </h1>
                     </div>
-                </div>
 
-                <div class="guide-card" id="variables">
-                    <h2>Variables Panel</h2>
-                    <p>The variables panel (right side of the query editor) accepts JSON that defines reusable variables for your query. Variables allow you to parameterize queries so you can reuse the same query structure with different data.</p>
-                    <ul>
-                        <li><strong>JSON Format</strong> — Enter variables as valid JSON (e.g., <code>{ "accountId": "001xx000..." }</code>).</li>
-                        <li><strong>Reference in Query</strong> — Use <code>$variableName</code> in your GraphQL query to reference a variable.</li>
-                        <li><strong>Reusable Queries</strong> — Keep the query template the same and swap variables for different inputs.</li>
-                    </ul>
-                    <p>If your query doesn't use variables, leave the variables panel empty. Variables are optional.</p>
+                    <div class="guide-card" id="what-it-does">
+                        <h2>What It Does</h2>
+                        <p>
+                            GraphQL Builder is a dedicated tool for composing and executing Salesforce GraphQL queries.
+                            Built on CodeMirror 6, it provides syntax highlighting, smart formatting, variable support,
+                            and real-time error detection — everything you need to explore your org's data and metadata
+                            through Salesforce's GraphQL API.
+                        </p>
+                        <p>
+                            Salesforce GraphQL (built on the UI API) is a powerful alternative to SOQL. Use it to fetch
+                            related records efficiently in a single request, query metadata alongside data, or build
+                            more flexible queries with complex filtering and nested selections that would require
+                            multiple SOQL queries.
+                        </p>
 
-                    <div class="guide-lab">
-                        <strong>Example:</strong><br>
-                        Variables: <code>{ "searchTerm": "Acme" }</code><br>
-                        Query: <code>query SearchAccounts($term: String) { uiapi { query { Account(where: { Name: { like: $term } }) { ... } } } }</code>
+                        <div class="guide-highlight">
+                            <strong>When to use GraphQL:</strong> Fetching related records (e.g., Account with
+                            Opportunities and Contacts in one request), querying records with complex relationships,
+                            exploring metadata, testing UI API implementations.
+                        </div>
                     </div>
-                </div>
 
-                <div class="guide-card" id="executing">
-                    <h2>Executing Queries</h2>
-                    <p>Once your query is ready:</p>
-                    <ul>
-                        <li>Click the <strong>Run</strong> button (usually at the top of the editor), or</li>
-                        <li>Use the keyboard shortcut (typically <strong>Ctrl+Enter</strong> or <strong>Cmd+Enter</strong>).</li>
-                    </ul>
-                    <p>TrackForcePro sends your query and variables to Salesforce's GraphQL endpoint. The response appears in the response panel on the right.</p>
-                </div>
-
-                <div class="guide-card" id="response-explorer">
-                    <h2>Response Explorer</h2>
-                    <p>The response panel displays the result of your GraphQL query in several formats:</p>
-                    <ul>
-                        <li><strong>Formatted JSON</strong> — Your response is pretty-printed with syntax coloring and proper indentation for readability.</li>
-                        <li><strong>Error Highlighting</strong> — If the query fails, errors appear with clear messages explaining what went wrong (e.g., schema validation errors, field not found).</li>
-                        <li><strong>Collapsible Sections</strong> — Nested objects and arrays can be collapsed/expanded to focus on relevant data.</li>
-                        <li><strong>Status Info</strong> — The panel shows the HTTP status code and execution time.</li>
-                    </ul>
-                    <p>You can copy response sections or export the entire response for further analysis.</p>
-
-                    <div class="guide-highlight">
-                        <strong>Common GraphQL Errors:</strong>
-                        <ul style="margin-top: 10px;">
-                            <li><code>Cannot query field "xxx" on type "yyy"</code> — The field doesn't exist on that object. Check the Salesforce GraphQL schema.</li>
-                            <li><code>Expected Name, found "}"</code> — Syntax error in your query. Check brackets and commas.</li>
-                            <li><code>Invalid variable</code> — A variable reference is missing a definition in the variables panel.</li>
+                    <div class="guide-card" id="how-to-access">
+                        <h2>Getting Started</h2>
+                        <p>
+                            Open the TrackForcePro workspace and click the <strong>GraphQL</strong> tab. You'll see a
+                            two-pane layout:
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Left Pane</strong> — Query editor (CodeMirror 6) where you write your GraphQL
+                                query.
+                            </li>
+                            <li>
+                                <strong>Right Pane</strong> — Variables panel (JSON) and response explorer. Responses
+                                appear here after you run your query.
+                            </li>
                         </ul>
+                        <p>
+                            No setup needed — just start writing a query and you're ready to execute against your org.
+                        </p>
                     </div>
-                </div>
 
-                <div class="guide-card" id="tips">
-                    <h2>Tips &amp; Best Practices</h2>
-                    <ul>
-                        <li><strong>Start Simple</strong> — Salesforce GraphQL has specific schema rules. Build a simple query first (e.g., fetch 5 Account records), verify it works, then expand to complex nested queries.</li>
-                        <li><strong>UI API Pattern</strong> — Most Salesforce GraphQL queries follow the <code>uiapi</code> pattern. If you're unfamiliar, look for Salesforce GraphQL documentation or examples in your org's GraphQL endpoint schema explorer.</li>
-                        <li><strong>Use Variables for Reusability</strong> — If you'll run similar queries multiple times with different parameters, define variables. This keeps your query template clean.</li>
-                        <li><strong>Test on Small Data Sets</strong> — Add WHERE clauses or LIMIT equivalents to test queries before fetching large result sets.</li>
-                        <li><strong>GraphQL vs. SOQL</strong> — GraphQL is stronger for fetching related records in a single request. SOQL is better for simple record queries. Use both when appropriate.</li>
-                        <li><strong>Response Size</strong> — Large GraphQL responses can take longer to render. If your response is very large, try narrowing the field selection or adding filters.</li>
-                    </ul>
+                    <div class="guide-card" id="query-editor">
+                        <h2>Code Editor (CodeMirror 6)</h2>
+                        <p>
+                            The query editor on the left is a professional code editor built for GraphQL. Write queries
+                            directly or paste them from other tools. The editor supports Salesforce's GraphQL schema and
+                            provides intelligent assistance.
+                        </p>
 
-                    <div class="guide-highlight">
-                        <strong>💡 Pro Tip:</strong> Save your successful query templates as notes or in a text editor. GraphQL schema is consistent within your org — reusing proven templates saves time and reduces syntax errors.
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Editor Features
+                        </h3>
+                        <ul>
+                            <li>
+                                <strong>Syntax Highlighting</strong> — GraphQL keywords (query, mutation, subscription),
+                                field names, types, and variables are color-coded for readability and error detection.
+                            </li>
+                            <li>
+                                <strong>Auto-Indentation</strong> — The editor automatically indents nested query
+                                structures as you type, making complex queries readable.
+                            </li>
+                            <li>
+                                <strong>Bracket Matching</strong> — Click or hover over curly braces or parentheses to
+                                highlight their matching pair. Helps catch missing brackets.
+                            </li>
+                            <li>
+                                <strong>Line Numbers</strong> — Reference specific query lines when discussing or
+                                debugging syntax errors.
+                            </li>
+                            <li>
+                                <strong>Theme Adaptation</strong> — The editor respects your light/dark mode preference
+                                for comfortable coding at any time of day.
+                            </li>
+                        </ul>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Query Structure
+                        </h3>
+                        <p>
+                            Salesforce GraphQL queries follow the UI API pattern. Most queries start with the
+                            <code>uiapi</code> root, followed by the operation (query, mutation, etc.):
+                        </p>
+
+                        <div class="guide-lab">
+                            <strong>Basic pattern:</strong><br />
+                            <code
+                                >query GetAccounts { uiapi { query { Account { edges { node { Id Name BillingCity } } }
+                                } } }</code
+                            >
+                            <br /><br />
+                            <strong>With relationships:</strong><br />
+                            <code
+                                >query GetAccountsWithOpps { uiapi { query { Account { edges { node { Id Name
+                                Opportunities { edges { node { Id StageName } } } } } } } } }</code
+                            >
+                        </div>
+
+                        <p style="margin-top: 14px">
+                            <strong>Tip:</strong> Copy working queries from other GraphQL clients (like Salesforce's own
+                            GraphQL endpoint explorer or Postman) and paste them here. TrackForcePro executes them
+                            against your org immediately.
+                        </p>
                     </div>
-                </div>
 
-                <div class="guide-card">
-                    <h2>GraphQL Resources</h2>
-                    <p>To learn more about Salesforce GraphQL:</p>
-                    <ul>
-                        <li><strong>Salesforce GraphQL Documentation</strong> — Official guide on Salesforce's developer site.</li>
-                        <li><strong>UI API Schema</strong> — Explore the available objects and fields via Salesforce's schema documentation.</li>
-                        <li><strong>Example Queries</strong> — Many third-party Salesforce tools publish example GraphQL queries online.</li>
-                    </ul>
+                    <div class="guide-card" id="variables">
+                        <h2>Variables &amp; Parameterized Queries</h2>
+                        <p>
+                            The Variables panel (top-right) holds JSON-formatted variable definitions that parameterize
+                            your GraphQL query. This pattern lets you keep your query template static and swap in
+                            different values without rewriting the entire query.
+                        </p>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            How Variables Work
+                        </h3>
+                        <ul>
+                            <li>
+                                <strong>Define Variables as JSON</strong> — Enter variable definitions as a valid JSON
+                                object. Each key-value pair becomes a variable available in your query.
+                            </li>
+                            <li>
+                                <strong>Reference with $</strong> — In your GraphQL query, reference variables using
+                                <code>$variableName</code> syntax.
+                            </li>
+                            <li>
+                                <strong>Type Safety</strong> — GraphQL validates that variable types match the query's
+                                parameter types. Type mismatches produce clear error messages.
+                            </li>
+                            <li>
+                                <strong>Optional Variables</strong> — Leave the Variables panel empty if your query has
+                                no parameters. Variables are entirely optional.
+                            </li>
+                        </ul>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Examples
+                        </h3>
+
+                        <div class="guide-lab">
+                            <strong>Simple Variable:</strong><br />
+                            <br />Variables: <code>{ "accountId": "001D000000IRFmaIAH" }</code> <br /><br />Query:
+                            <code
+                                >query GetAccount($id: String!) { uiapi { query { Account(where: { Id: { eq: $id } }) {
+                                edges { node { Id Name } } } } } }</code
+                            >
+                        </div>
+
+                        <div class="guide-lab" style="margin-top: 14px">
+                            <strong>Search with Pattern:</strong><br />
+                            <br />Variables: <code>{ "searchTerm": "Acme" }</code> <br /><br />Query:
+                            <code
+                                >query SearchAccounts($term: String!) { uiapi { query { Account(where: { Name: { like:
+                                $term } }) { edges { node { Id Name BillingCity } } } } } }</code
+                            >
+                        </div>
+
+                        <p style="margin-top: 14px">
+                            <strong>Workflow:</strong> Write a parameterized query once, then change only the variables
+                            to run the same query against different data. Perfect for repeated analysis or batch
+                            operations.
+                        </p>
+                    </div>
+
+                    <div class="guide-card" id="executing">
+                        <h2>Running Queries</h2>
+                        <p>Execute your GraphQL query against your Salesforce org using either method:</p>
+                        <ul>
+                            <li>Click the <strong>Run</strong> button at the top of the editor pane.</li>
+                            <li>
+                                Press <strong>Ctrl+Enter</strong> (Windows/Linux) or <strong>Cmd+Enter</strong> (macOS).
+                            </li>
+                        </ul>
+
+                        <p style="margin-top: 14px">
+                            GraphQL Builder validates your query syntax and variables before sending them to Salesforce.
+                            If there are validation errors (missing fields, type mismatches, schema violations), you'll
+                            see a clear error message. Once validated and executed, your response appears in the right
+                            panel.
+                        </p>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            What Happens Behind the Scenes
+                        </h3>
+                        <ol>
+                            <li>
+                                Your query and variables are sent to Salesforce's GraphQL endpoint via your
+                                authenticated session.
+                            </li>
+                            <li>Salesforce validates the query against the org's schema and executes it.</li>
+                            <li>
+                                The response (data or errors) returns and is displayed with formatting and error
+                                highlighting.
+                            </li>
+                            <li>
+                                Execution time and HTTP status code appear in the response header for performance
+                                analysis.
+                            </li>
+                        </ol>
+
+                        <div class="guide-lab">
+                            <strong>First-time tip:</strong> Start with a simple query (e.g., fetch 5 Account records
+                            with just Id and Name). This verifies your connection works before building complex nested
+                            queries.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="response-explorer">
+                        <h2>Response Explorer &amp; Error Handling</h2>
+                        <p>
+                            The response panel displays the result of your GraphQL query with professional formatting
+                            and error detection. Whether your query succeeds or fails, you get clear, actionable
+                            feedback.
+                        </p>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Success Responses
+                        </h3>
+                        <ul>
+                            <li>
+                                <strong>Formatted JSON</strong> — Results are pretty-printed with color-coded syntax
+                                highlighting and smart indentation for readability.
+                            </li>
+                            <li>
+                                <strong>Collapsible Sections</strong> — Expand or collapse nested objects and arrays to
+                                drill into the parts you care about. Useful for exploring complex relationship
+                                hierarchies.
+                            </li>
+                            <li>
+                                <strong>Status Header</strong> — Shows HTTP status code (200 OK), execution time in
+                                milliseconds, and response size.
+                            </li>
+                            <li>
+                                <strong>Copy Functions</strong> — Select and copy response sections for use in other
+                                tools or documentation.
+                            </li>
+                        </ul>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Error Responses
+                        </h3>
+                        <p>When a query fails, errors appear with detailed explanations. Common errors include:</p>
+
+                        <div class="guide-highlight">
+                            <table class="guide-table" style="margin-top: 10px">
+                                <thead>
+                                    <tr>
+                                        <th>Error Message</th>
+                                        <th>Cause &amp; Fix</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>Cannot query field "X" on type "Y"</code></td>
+                                        <td>
+                                            Field doesn't exist or is not queryable on that object. Check the Salesforce
+                                            GraphQL schema or Field-level Security permissions.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Expected Name, found "}"</code></td>
+                                        <td>
+                                            Syntax error in your query (missing field name, mismatched brackets). Review
+                                            the line number and check brackets and commas.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Variable $X is not defined</code></td>
+                                        <td>
+                                            Your query references a variable that isn't in the Variables panel. Add it
+                                            to the Variables JSON object.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Type mismatch for variable $X</code></td>
+                                        <td>
+                                            Variable value type doesn't match the query's parameter type (e.g., passing
+                                            a string where an integer is expected). Check the query type definition and
+                                            variable value.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Access denied</code></td>
+                                        <td>
+                                            Your user lacks permission to query that field or object. Check Field-Level
+                                            Security and Object permissions in Setup.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p style="margin-top: 14px">
+                            <strong>Debugging tip:</strong> Copy the error message and use Salesforce's GraphQL
+                            documentation to validate your query structure. The line number in the error message points
+                            you to the problem area.
+                        </p>
+                    </div>
+
+                    <div class="guide-card" id="tips">
+                        <h2>Tips, Tricks &amp; Best Practices</h2>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 0; margin-bottom: 12px">
+                            Query Construction
+                        </h3>
+                        <ul style="margin: 0">
+                            <li>
+                                <strong>Start Minimal, Build Up</strong> — Begin with the simplest possible query: fetch
+                                3–5 Account records with just <code>Id</code> and <code>Name</code>. Verify it works,
+                                then add relationships and fields incrementally. This prevents getting buried in complex
+                                syntax errors.
+                            </li>
+                            <li>
+                                <strong>UI API Pattern</strong> — Most Salesforce GraphQL queries follow the
+                                <code>uiapi { query { ObjectName { edges { node { fields } } } } }</code> pattern. If
+                                you're new to Salesforce GraphQL, study this structure in the documentation.
+                            </li>
+                            <li>
+                                <strong>Use WHERE Clauses for Filtering</strong> — Add filtering logic in your GraphQL
+                                query (e.g., <code>Account(where: { Name: { like: "Acme" } })</code>) rather than
+                                fetching all records and filtering client-side. Salesforce filters on the server, which
+                                is much faster.
+                            </li>
+                        </ul>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 12px">
+                            Variables &amp; Parameterization
+                        </h3>
+                        <ul style="margin: 0">
+                            <li>
+                                <strong>Variables for Reusability</strong> — If you'll run the same query 5+ times with
+                                different IDs or search terms, define variables. Update only the Variables JSON instead
+                                of rewriting the entire query each time.
+                            </li>
+                            <li>
+                                <strong>Variable Naming</strong> — Use descriptive variable names
+                                (<code>$accountId</code>, <code>$searchTerm</code>, <code>$pageSize</code>) to make
+                                parameterized queries self-documenting.
+                            </li>
+                            <li>
+                                <strong>Type Definitions</strong> — In your query, declare variable types explicitly
+                                (e.g., <code>query($id: String!)</code>). The <code>!</code> means required; omit it for
+                                optional variables.
+                            </li>
+                        </ul>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 12px">
+                            Performance &amp; Optimization
+                        </h3>
+                        <ul style="margin: 0">
+                            <li>
+                                <strong>Select Only Needed Fields</strong> — GraphQL's strength is precise data
+                                fetching. Include only fields you actually need in your response. Fewer fields = smaller
+                                response size = faster response time.
+                            </li>
+                            <li>
+                                <strong>Limit Related Records</strong> — When fetching relationships (e.g.,
+                                Opportunities for an Account), use pagination or LIMIT-like constructs to avoid
+                                returning 10,000 related records. A query like
+                                <code>Opportunities(first: 10)</code> returns only the first 10.
+                            </li>
+                            <li>
+                                <strong>Test Before Large Queries</strong> — Always validate your query on a small
+                                sample first (e.g., fetch 1 Account with all your relationships). Once you confirm it
+                                works, you can scale safely.
+                            </li>
+                        </ul>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 12px">
+                            GraphQL vs. SOQL
+                        </h3>
+                        <ul style="margin: 0">
+                            <li>
+                                <strong>Use GraphQL for Relationships</strong> — Fetching an Account with its
+                                Opportunities, Contacts, and Cases in one request is much cleaner in GraphQL than SOQL
+                                (which requires 4 separate queries).
+                            </li>
+                            <li>
+                                <strong>Use SOQL for Simple Bulk Queries</strong> — If you need 5000 Accounts in a
+                                simple list, SOQL is faster and simpler than GraphQL. GraphQL is more powerful but
+                                slightly more verbose for bulk data extraction.
+                            </li>
+                            <li>
+                                <strong>Metadata Queries</strong> — GraphQL is excellent for querying both data and
+                                metadata together (e.g., a Contact's fields and available field values in a single
+                                request).
+                            </li>
+                        </ul>
+
+                        <h3 style="font-size: 1.1rem; color: var(--text); margin-top: 16px; margin-bottom: 12px">
+                            Common Patterns
+                        </h3>
+
+                        <div class="guide-lab">
+                            <strong>Fetch Account with Recent Opportunities:</strong><br />
+                            <code
+                                >query { uiapi { query { Account(where: {Id: {eq: "001..."}}) { edges { node { Id Name
+                                Opportunities(first: 5) { edges { node { Id Name StageName } } } } } } } } }</code
+                            >
+                        </div>
+
+                        <div class="guide-lab" style="margin-top: 14px">
+                            <strong>Search Contacts by Email Domain:</strong><br />
+                            <code
+                                >query($domain: String!) { uiapi { query { Contact(where: {Email: {like: $domain}}) {
+                                edges { node { Id Name Email } } } } } }</code
+                            ><br />
+                            <br />Variables: <code>{ "domain": "%@acme.com" }</code>
+                        </div>
+
+                        <div class="guide-highlight" style="margin-top: 16px">
+                            <strong>💡 Pro Tip:</strong> Save successful query templates in a text file or wiki. GraphQL
+                            schema is stable within your org — reusing proven templates saves 10+ minutes per query and
+                            virtually eliminates syntax errors. Build a personal library of common patterns.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
-        <div class="site-footer-links">
-            <a href="../index.html">Home</a>
-            <a href="../quick-start-guide.html">Quick Start</a>
-            <a href="../guide.html">Training Guide</a>
-            <a href="../documentation.html">Docs</a>
-            <a href="index.html">Feature Guides</a>
-        </div>
-        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
-    </footer>
-</body>
+        <footer class="site-footer">
+            <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+            <div class="site-footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html">Feature Guides</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+        </footer>
+    </body>
 </html>

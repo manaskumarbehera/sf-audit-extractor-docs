@@ -5,259 +5,153 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="TrackForcePro complete documentation — launcher, workspace, in-page overlays, metadata search, shortcuts, and settings explained for Salesforce admins and developers."
+            content="TrackForcePro Documentation — complete feature reference, keyboard shortcuts, storage keys, configuration, architecture, and changelog for Salesforce admin and developer toolkit."
         />
-        <title>TrackForcePro Documentation — Complete Feature Guide</title>
+        <title>TrackForcePro - Complete Documentation</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32" />
         <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16" />
         <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort" />
-        <script src="theme.js"></script>
         <link rel="stylesheet" href="shared.css" />
+        <script src="theme.js"></script>
         <style>
-            /* ── Documentation Layout ── */
-            .header {
-                background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-                color: white;
-                padding: 28px 40px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            .docs-shell {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 36px 24px 48px;
             }
-            .header h1 {
-                font-size: 24px;
-                font-weight: 700;
-                display: flex;
-                align-items: center;
-                gap: 12px;
+            .docs-grid {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                gap: 28px;
+                align-items: start;
             }
-            .header .logo {
-                width: 40px;
-                height: 40px;
-                background: white;
-                border-radius: 8px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: bold;
-                color: var(--primary);
-                font-size: 14px;
-            }
-            .version-badge {
-                background: rgba(255, 255, 255, 0.2);
-                color: white;
-                padding: 6px 14px;
-                border-radius: 20px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: 0.05em;
-            }
-            .content {
-                max-width: 920px;
-                margin: 40px auto;
-                padding: 0 20px;
-            }
-
-            /* Table of Contents */
-            .toc {
+            .docs-sidebar {
+                position: sticky;
+                top: 20px;
                 background: var(--card-bg);
                 border: 1px solid var(--border);
                 border-radius: var(--radius-lg);
-                padding: 28px 32px;
-                margin-bottom: 48px;
+                padding: 24px;
                 box-shadow: var(--shadow);
+                max-height: calc(100vh - 100px);
+                overflow-y: auto;
             }
-            .toc h2 {
-                font-size: 1.2rem;
+            .docs-sidebar h3 {
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--text-muted);
                 font-weight: 700;
-                margin-bottom: 16px;
-                color: var(--text);
+                margin: 18px 0 12px;
             }
-            .toc-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-                gap: 8px 24px;
+            .docs-sidebar h3:first-child {
+                margin-top: 0;
             }
-            .toc a {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                padding: 6px 0;
+            .docs-sidebar a {
+                display: block;
+                padding: 8px 12px;
+                border-radius: 6px;
                 color: var(--text-link);
                 text-decoration: none;
-                font-size: 0.92rem;
-                font-weight: 500;
-                transition: color var(--transition-fast);
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+                transition:
+                    background var(--transition-fast),
+                    color var(--transition-fast);
             }
-            .toc a:hover {
-                color: var(--primary-dark);
-                text-decoration: underline;
+            .docs-sidebar a:hover {
+                background: var(--bg-alt);
+                color: var(--primary);
             }
-            .toc .toc-emoji {
-                font-size: 1rem;
+            .docs-sidebar a.active {
+                background: var(--primary);
+                color: white;
+                font-weight: 600;
             }
-            .toc .toc-divider {
-                grid-column: 1 / -1;
-                border-top: 1px solid var(--border);
-                margin: 8px 0;
+            .docs-content {
+                display: grid;
+                gap: 32px;
             }
-
-            /* Section styles */
-            .section {
-                margin-bottom: 52px;
-                padding-bottom: 36px;
-                border-bottom: 1px solid var(--border);
+            .docs-section {
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                padding: 32px;
+                box-shadow: var(--shadow);
+                scroll-margin-top: 100px;
             }
-            .section:last-child {
-                border-bottom: none;
-            }
-            .section h2 {
-                font-size: 1.8rem;
-                font-weight: 700;
+            .docs-section h2 {
+                font-size: 1.5rem;
                 color: var(--text);
-                margin-bottom: 12px;
+                margin-bottom: 16px;
                 display: flex;
                 align-items: center;
                 gap: 12px;
             }
-            .section h2 .emoji {
-                font-size: 1.6rem;
-            }
-            .section h3 {
-                font-size: 1.15rem;
-                font-weight: 700;
+            .docs-section h3 {
+                font-size: 1.1rem;
                 color: var(--text);
-                margin: 24px 0 10px;
-            }
-            .section-intro {
-                color: var(--text-secondary);
-                font-size: 1rem;
-                line-height: 1.65;
-                margin-bottom: 24px;
-            }
-
-            /* Steps */
-            .steps {
-                counter-reset: step-counter;
-                margin: 20px 0;
-            }
-            .step {
-                display: flex;
-                gap: 16px;
-                margin-bottom: 18px;
-                align-items: flex-start;
-            }
-            .step::before {
-                counter-increment: step-counter;
-                content: counter(step-counter);
-                background: var(--primary);
-                color: white;
-                width: 30px;
-                height: 30px;
-                min-width: 30px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                margin: 28px 0 12px;
                 font-weight: 700;
-                font-size: 0.85rem;
-                flex-shrink: 0;
-                margin-top: 2px;
+                border-bottom: 2px solid var(--border);
+                padding-bottom: 8px;
             }
-            .step-content h4 {
+            .docs-section h4 {
+                font-size: 0.95rem;
+                color: var(--text);
+                margin: 18px 0 8px;
                 font-weight: 700;
-                color: var(--text);
-                margin-bottom: 3px;
-                font-size: 0.97rem;
             }
-            .step-content p {
+            .docs-section p,
+            .docs-section li {
                 color: var(--text-secondary);
-                font-size: 0.93rem;
-                line-height: 1.55;
-                margin: 0;
+                line-height: 1.7;
+                margin-bottom: 12px;
             }
-
-            /* Tips & Warnings */
-            .site-tip,
-            .site-warning {
-                font-size: 0.93rem;
-                line-height: 1.6;
+            .docs-section ul,
+            .docs-section ol {
+                margin: 14px 0 0 20px;
             }
-            .site-tip strong,
-            .site-warning strong {
-                display: block;
-                margin-bottom: 4px;
-                color: var(--text);
-            }
-
-            /* Feature highlights */
-            .highlight {
-                background: var(--bg-alt);
-                border-left: 4px solid var(--primary);
-                padding: 12px 16px;
-                margin: 10px 0;
-                border-radius: 0 4px 4px 0;
-                font-size: 0.93rem;
-                color: var(--text-secondary);
-            }
-            .highlight em {
-                color: var(--primary);
-                font-style: italic;
-            }
-
-            /* Sub-feature cards */
-            .sub-feature-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 14px;
+            .docs-table {
+                width: 100%;
+                border-collapse: collapse;
                 margin: 16px 0;
+                font-size: 0.9rem;
             }
-            .sub-card {
+            .docs-table th,
+            .docs-table td {
+                padding: 12px 14px;
+                border-bottom: 1px solid var(--border);
+                text-align: left;
+            }
+            .docs-table th {
+                background: var(--bg-alt);
+                color: var(--text);
+                font-weight: 700;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .docs-table td {
+                color: var(--text-secondary);
+            }
+            .docs-table td:first-child {
+                font-weight: 600;
+                color: var(--text);
+                width: 160px;
+            }
+            .code-block {
                 background: var(--bg-alt);
                 border: 1px solid var(--border);
-                border-radius: var(--radius);
-                padding: 16px 18px;
-                transition:
-                    transform var(--transition-fast),
-                    box-shadow var(--transition-fast);
-            }
-            .sub-card:hover {
-                transform: translateY(-2px);
-                box-shadow: var(--shadow-md);
-            }
-            .sub-card h4 {
-                font-size: 0.93rem;
-                font-weight: 700;
-                color: var(--primary);
-                margin-bottom: 6px;
-            }
-            .sub-card p {
-                font-size: 0.87rem;
-                color: var(--text-muted);
-                margin: 0;
+                border-radius: 8px;
+                padding: 14px 16px;
+                font-family: 'SF Mono', 'Fira Code', monospace;
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+                overflow-x: auto;
+                margin: 12px 0;
                 line-height: 1.5;
             }
-
-            /* Panel list */
-            .panel-list {
-                list-style: none;
-                padding: 0;
-                margin: 14px 0;
-            }
-            .panel-list li {
-                padding: 10px 14px;
-                border-left: 3px solid var(--primary);
-                margin-bottom: 10px;
-                background: var(--bg-alt);
-                border-radius: 0 var(--radius) var(--radius) 0;
-                font-size: 0.93rem;
-                color: var(--text-secondary);
-            }
-            .panel-list li strong {
-                color: var(--text);
-            }
-
-            /* Keyboard shortcut inline */
             kbd {
                 background: var(--bg-alt);
                 border: 1px solid var(--border);
@@ -267,17 +161,64 @@
                 font-family: 'SF Mono', 'Fira Code', monospace;
                 color: var(--text);
                 box-shadow: 0 1px 0 var(--border);
+                display: inline-block;
+                margin: 0 2px;
             }
-
-            a[href^='http'] {
-                word-break: break-word;
+            .feature-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+                margin: 14px 0;
             }
-
-            @media (max-width: 640px) {
-                .toc-grid {
+            .feature-card {
+                background: linear-gradient(135deg, var(--bg-alt), rgba(0, 0, 0, 0.02));
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 14px 16px;
+            }
+            .feature-card h4 {
+                margin-top: 0;
+                font-size: 0.9rem;
+            }
+            .feature-card p {
+                font-size: 0.85rem;
+                margin: 0;
+            }
+            .storage-key {
+                background: var(--bg-alt);
+                border-left: 3px solid var(--primary);
+                padding: 12px 14px;
+                border-radius: 0 6px 6px 0;
+                margin: 12px 0;
+                font-family: 'SF Mono', 'Fira Code', monospace;
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+            }
+            .version-entry {
+                border-left: 4px solid var(--primary);
+                padding: 14px 16px;
+                margin: 12px 0;
+                background: linear-gradient(135deg, rgba(1, 118, 211, 0.04), transparent);
+                border-radius: 0 8px 8px 0;
+            }
+            .version-entry strong {
+                color: var(--text);
+                display: block;
+                margin-bottom: 4px;
+            }
+            .version-entry p {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+            @media (max-width: 1024px) {
+                .docs-grid {
                     grid-template-columns: 1fr;
                 }
-                .sub-feature-grid {
+                .docs-sidebar {
+                    position: static;
+                    max-height: none;
+                }
+                .feature-row {
                     grid-template-columns: 1fr;
                 }
             }
@@ -302,1472 +243,895 @@
             </div>
         </nav>
 
-        <div class="header">
-            <h1>
-                <img src="../icons/Icon-32.png" alt="TrackForcePro" class="logo" />
-                Documentation
-            </h1>
-            <span class="version-badge">v2.1.5</span>
-            <div style="margin-top: 6px; font-size: 0.95rem; color: var(--text-secondary)">
-                What's new: Virtualized SOQL result table with 1000+ row performance, compact icon toolbar, pop-out
-                results window, and 6 suggestion engine bug fixes.
-            </div>
+        <div class="site-hero">
+            <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
+            <h1>Complete Documentation</h1>
+            <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
+            <span class="version-badge">Version 2.1.6</span>
         </div>
 
-        <div class="content">
-            <!-- ═══ TABLE OF CONTENTS ═══ -->
-            <div class="toc">
-                <h2>Table of Contents</h2>
-                <div class="toc-grid">
-                    <a href="#audit-trails"><span class="toc-emoji">🔍</span> Audit Trails</a>
-                    <a href="#soql-builder"><span class="toc-emoji">📊</span> SOQL Builder</a>
-                    <a href="#graphql-builder"><span class="toc-emoji">🔗</span> GraphQL Builder</a>
-                    <a href="#records"><span class="toc-emoji">🔬</span> Records</a>
-                    <a href="#user-manager"><span class="toc-emoji">👥</span> User Manager</a>
-                    <a href="#security-manager"><span class="toc-emoji">🔐</span> Security Manager</a>
-                    <a href="#org-tools"><span class="toc-emoji">🏢</span> Org Tools (7 Panels)</a>
-                    <a href="#org-favicon"><span class="toc-emoji">🎨</span> Org &amp; Favicon</a>
-                    <a href="#rest-explorer"><span class="toc-emoji">⚡</span> REST Explorer</a>
-                    <a href="#platform-events"><span class="toc-emoji">📡</span> Platform Events</a>
-                    <a href="#lms"><span class="toc-emoji">💬</span> Lightning Message Service</a>
-                    <a href="#settings"><span class="toc-emoji">⚙️</span> Settings (7 Sub-tabs)</a>
-                    <div class="toc-divider"></div>
-                    <a href="#show-all-data"><span class="toc-emoji">👁️</span> Show All Data (On-Page)</a>
-                    <a href="#sidebar"><span class="toc-emoji">🧭</span> TF Sidebar</a>
-                    <a href="#lwc-explorer"><span class="toc-emoji">🧩</span> LWC Explorer</a>
-                    <a href="#command-palette"><span class="toc-emoji">⌨️</span> Command Palette</a>
-                    <a href="#context-menu"><span class="toc-emoji">🖱️</span> Context Menu</a>
-                    <a href="#keyboard-shortcuts"><span class="toc-emoji">🎹</span> Keyboard Shortcuts</a>
-                </div>
-            </div>
+        <div class="docs-shell">
+            <div class="docs-grid">
+                <!-- Sidebar Navigation -->
+                <aside class="docs-sidebar">
+                    <h3>Reference</h3>
+                    <a href="#features">Features by Mode</a>
+                    <a href="#surfaces">All Surfaces</a>
+                    <a href="#shortcuts">All Shortcuts</a>
+                    <a href="#storage">Storage Keys</a>
+                    <a href="#config">Configuration</a>
 
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 1. AUDIT TRAILS -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="audit-trails">
-                <h2><span class="emoji">🔍</span> Audit Trails</h2>
-                <p class="section-intro">
-                    Fetch, search, filter, and export Salesforce Setup Audit Trail logs. Perfect for compliance reviews,
-                    change tracking, and troubleshooting who changed what and when.
-                </p>
+                    <h3>Technical</h3>
+                    <a href="#architecture">Architecture</a>
+                    <a href="#permissions">Permissions</a>
+                    <a href="#browser-compat">Browser Compat</a>
 
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Open the Audit Trails Tab</h4>
-                            <p>
-                                Click the Audit Trails icon in the popup. The extension connects to your active
-                                Salesforce session automatically.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Fetch Audit Logs</h4>
-                            <p>Click the Refresh button to retrieve the latest audit logs from your org.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Filter by Category</h4>
-                            <p>
-                                Use the category dropdown to narrow results: <em>All Categories</em>,
-                                <em>User Management</em>, <em>Security</em>, or <em>Object Changes</em>. A real-time
-                                search box also lets you find specific entries.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Review Statistics</h4>
-                            <p>
-                                Statistics cards at the top display the total count, user management changes, security
-                                changes, and object changes at a glance.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Export to CSV</h4>
-                            <p>
-                                Click the Export button to download the filtered results as a CSV file for use in Excel,
-                                Google Sheets, or compliance tools.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                    <h3>History</h3>
+                    <a href="#changelog">Changelog</a>
+                    <a href="#migration">Migration Guide</a>
+                </aside>
 
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use the search box to find specific audit records by user name, field
-                    name, or action type. The API version selector (v60.0–v66.0) lets you match your org's metadata API
-                    version.
-                </div>
-            </div>
+                <!-- Main Content -->
+                <main class="docs-content">
+                    <!-- Features by Mode Section -->
+                    <section class="docs-section" id="features">
+                        <h2>🎯 Complete Feature Reference</h2>
 
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 2. SOQL BUILDER -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="soql-builder">
-                <h2><span class="emoji">📊</span> SOQL Builder</h2>
-                <p class="section-intro">
-                    A full-featured visual SOQL query builder with searchable object selection, field suggestions,
-                    real-time guidance, multi-tab editing, query history, inline result editing, and five export
-                    formats.
-                </p>
+                        <h3>Explore Mode (Blue) — Querying &amp; Data</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Description</th>
+                                    <th>Entry Point</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>SOQL Builder</td>
+                                    <td>
+                                        Visual query editor with searchable objects, field suggestions, guidance engine
+                                        (6 rule types), multi-tab queries, inline result editing on compatible fields,
+                                        virtual table with 1000+ row support, column pinning (max 3), global search with
+                                        highlighting, per-column filtering, smart view (auto-hide nulls), 5 export
+                                        formats (JSON, CSV, TSV, Excel, copy)
+                                    </td>
+                                    <td>Workspace > Explore > SOQL</td>
+                                </tr>
+                                <tr>
+                                    <td>GraphQL Builder</td>
+                                    <td>
+                                        Three-pane editor (query, variables, response) with CodeMirror 6 autocomplete,
+                                        real-time validation, pagination support, relationship field navigation, inline
+                                        edit (if enabled), export to CSV/Excel/JSON
+                                    </td>
+                                    <td>Workspace > Explore > GraphQL</td>
+                                </tr>
+                                <tr>
+                                    <td>Records (Data Explorer)</td>
+                                    <td>
+                                        Record scanner with ID input, bulk scan (up to 200 IDs), All Fields table
+                                        paginated at 100 per page, inline edit (type-aware), breadcrumb lookup
+                                        navigation, pinned records (org-scoped), 25-item history, search, comparison
+                                        mode, related records
+                                    </td>
+                                    <td>Workspace > Explore > Records</td>
+                                </tr>
+                                <tr>
+                                    <td>REST Explorer</td>
+                                    <td>
+                                        Method selector (GET/POST/PATCH/DELETE), headers editor, body editor with syntax
+                                        highlighting, environment variables, collections, request history (per org),
+                                        chain mode, cURL import/export, Salesforce API catalog, sandbox selection
+                                    </td>
+                                    <td>Workspace > Explore > REST</td>
+                                </tr>
+                                <tr>
+                                    <td>Metadata Explorer (Schema)</td>
+                                    <td>
+                                        Search all objects by API name with case-insensitive matching, field properties
+                                        (type, length, updateable, createable), validation rules, flows, permission
+                                        sets, custom settings, quick Setup links
+                                    </td>
+                                    <td>Workspace > Explore > Schema</td>
+                                </tr>
+                                <tr>
+                                    <td>User Manager</td>
+                                    <td>
+                                        Search users by username/email, bulk update profiles/roles/language, permission
+                                        matrix drill-down, session manager (sessions per user), freeze/unfreeze actions,
+                                        access summary (profiles + permission sets), user comparison (up to 5 users),
+                                        login as
+                                    </td>
+                                    <td>Workspace > Explore > Users</td>
+                                </tr>
+                                <tr>
+                                    <td>Security Manager</td>
+                                    <td>
+                                        Browse all Profiles, Permission Sets, Permission Set Groups, view assignments
+                                        with drill-down, copy API name, quick Setup links
+                                    </td>
+                                    <td>Workspace > Explore > Security</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                <h3>Building a Query</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Select an Object</h4>
-                            <p>
-                                Type in the searchable combobox to filter Salesforce objects (Account, Contact, Lead,
-                                custom objects, etc.). Matching names are highlighted as you type. Toggle the
-                                <em>Tooling API</em> switch to query metadata objects instead.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Choose Fields</h4>
-                            <p>
-                                Open the field selector to pick fields with checkboxes. Tabs let you browse All,
-                                Standard, or Custom fields. Use the search box to find specific fields. You can also
-                                select <em>FIELDS(ALL)</em>, <em>FIELDS(STANDARD)</em>, or <em>FIELDS(CUSTOM)</em> modes
-                                for quick selection.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Add Filters (WHERE Clause)</h4>
-                            <p>
-                                Build WHERE conditions row by row. Pick a field, set the operator (equals, not equals,
-                                contains, starts with, greater than, IN, etc.), and enter a value. Add multiple filters
-                                combined with AND/OR logic.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Set Ordering &amp; Limits</h4>
-                            <p>
-                                Configure ORDER BY with ascending or descending direction. Set a record limit (1–5,000).
-                                The limit input is in the toolbar for quick access.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Execute the Query</h4>
-                            <p>
-                                Click <strong>Run</strong> or press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute. Results
-                                appear instantly in a sortable table below. Toggle between table view and raw JSON
-                                output.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                        <h3>Debug Mode (Amber) — Events &amp; Logs</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Description</th>
+                                    <th>Entry Point</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Platform Events</td>
+                                    <td>
+                                        CometD streaming with real-time event list, event type filtering (dropdown),
+                                        pause/resume controls, auto-scroll toggle, event payload viewer, log export,
+                                        event search by topic/timestamp
+                                    </td>
+                                    <td>Workspace > Debug > Platform Events</td>
+                                </tr>
+                                <tr>
+                                    <td>Debug Logs</td>
+                                    <td>
+                                        Fetch Setup Audit Trail-style logs filtered by class/method/level (DEBUG, INFO,
+                                        WARN, ERROR), search, date range filter, stack trace inspection, export to
+                                        CSV/JSON
+                                    </td>
+                                    <td>Workspace > Debug > Debug Logs</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                <h3>Advanced Capabilities</h3>
-                <div class="sub-feature-grid">
-                    <div class="sub-card">
-                        <h4>📑 Multi-Tab Editing</h4>
+                        <h3>Analyze Mode (Green) — Audit &amp; Administration</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Description</th>
+                                    <th>Entry Point</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Audit Trail</td>
+                                    <td>
+                                        Setup Audit Trail viewer with category filter (Config, Metadata, Monitoring,
+                                        etc.), date range picker, search by user/action, result count, CSV export,
+                                        pagination
+                                    </td>
+                                    <td>Workspace > Analyze > Audit</td>
+                                </tr>
+                                <tr>
+                                    <td>Org Health</td>
+                                    <td>
+                                        Real-time org limits card (API requests, bulk API, etc.), storage breakdown
+                                        (data, file, etc.), active sessions count, API usage graph, performance metrics
+                                    </td>
+                                    <td>Workspace > Analyze > Org Health</td>
+                                </tr>
+                                <tr>
+                                    <td>Org Tools (7 Panels)</td>
+                                    <td>
+                                        (1) Login As — sign in as any user; (2) Custom Labels — search, export all
+                                        (CSV), bulk import, translate; (3) Deployments — check recent deploy status; (4)
+                                        Scheduled Jobs — view, cancel, reschedule; (5) Debug Logs — fetch and view; (6)
+                                        Org Limits — real-time limits; (7) Admin Utils — 15 quick setup links (profiles,
+                                        permission sets, custom settings, etc.)
+                                    </td>
+                                    <td>Workspace > Analyze > Org Tools</td>
+                                </tr>
+                                <tr>
+                                    <td>Org &amp; Favicon</td>
+                                    <td>
+                                        Custom favicon editor: 8 shape options (circle, square, diamond, etc.), 8
+                                        colors, 6 environment presets (prod=red, sandbox=blue, dev=green, etc.), badge
+                                        label (text up to 3 chars), live tab title and logo updates
+                                    </td>
+                                    <td>Workspace > Analyze > Org &amp; Favicon</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>In-Page Overlays (On Salesforce Pages)</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Description</th>
+                                    <th>How to Access</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Show All Data</td>
+                                    <td>
+                                        Floating panel on record detail pages: view all fields (including hidden),
+                                        search by name, filter by updateable, inline edit (type-aware: text, boolean
+                                        select, textarea), breadcrumb navigation to related records, copy field
+                                        name/value, field history quick link
+                                    </td>
+                                    <td>Right-click > Show All Data, or button, or Ctrl+Shift+D</td>
+                                </tr>
+                                <tr>
+                                    <td>TF Sidebar</td>
+                                    <td>
+                                        Quick-access panel on every Salesforce page: configurable shortcuts to SOQL,
+                                        Schema, Records, REPL, Audit, User Manager, etc. Position: Right/Left/Bottom.
+                                        Visibility toggle, width adjustment (500px–900px), collapse/expand
+                                    </td>
+                                    <td>Ctrl+Shift+S or sidebar button</td>
+                                </tr>
+                                <tr>
+                                    <td>Command Palette</td>
+                                    <td>
+                                        Global feature search: search all tabs and views by name, record ID detection
+                                        (15-18 char IDs auto-launch Records), arrow key navigation, Enter to select,
+                                        Escape to close, recent searches, favorites
+                                    </td>
+                                    <td>Ctrl+K (browser may intercept) or click trigger button</td>
+                                </tr>
+                                <tr>
+                                    <td>Context Menu</td>
+                                    <td>
+                                        Right-click on record pages for 5 quick actions: Show All Data, Field History,
+                                        Sharing, SOQL Builder (pre-fill object), Copy Record ID
+                                    </td>
+                                    <td>Right-click on record page</td>
+                                </tr>
+                                <tr>
+                                    <td>LWC Explorer</td>
+                                    <td>
+                                        Page-side inspector: component tree view, trace filtering (All, Apex, UI API,
+                                        GraphQL, Fetch/API, Errors), request/response inspection, edit code/apex links,
+                                        performance metrics per component, activity feed with timestamps
+                                    </td>
+                                    <td>Sidebar or Ctrl+K "LWC"</td>
+                                </tr>
+                                <tr>
+                                    <td>LMS (Beta)</td>
+                                    <td>
+                                        Lightning Message Service monitor: subscribe/unsubscribe to channels, publish
+                                        messages with JSON payload editor, activity log with timestamps and payloads,
+                                        channel list with field count badges, subscribe status indicator
+                                    </td>
+                                    <td>LWC Explorer > LMS pill</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- All Surfaces Section -->
+                    <section class="docs-section" id="surfaces">
+                        <h2>🏗️ Three-Surface Model</h2>
+
+                        <h3>1. Launcher Popup</h3>
                         <p>
-                            Open multiple query tabs to work on several queries in parallel. Add and remove tabs from
-                            the tab bar.
+                            Quick-access menu shown by clicking the extension icon. Appears as a compact popup (~240px
+                            wide).
                         </p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>🕐 Query History</h4>
+                        <ul>
+                            <li><strong>Current Org Display:</strong> Shows org name, instance URL, and favicon</li>
+                            <li>
+                                <strong>Quick Jump Buttons:</strong> SOQL, GraphQL, Records, Schema, REST, Audit, Debug
+                                Logs
+                            </li>
+                            <li>
+                                <strong>Resume Workspace:</strong> Button to open the last-used workspace tab (if
+                                exists)
+                            </li>
+                            <li><strong>Open Full Workspace:</strong> Link to new full workspace tab</li>
+                            <li><strong>Settings Gear:</strong> Quick link to Settings tab</li>
+                        </ul>
+
+                        <h3>2. Workspace Tab</h3>
+                        <p>Full-screen browser tab for serious work. URL: chrome-extension://[ID]/popup.html</p>
+                        <ul>
+                            <li>
+                                <strong>Header:</strong> Brand logo, mode pill selector (Explore/Debug/Analyze), view
+                                tabs, search bar, theme toggle
+                            </li>
+                            <li><strong>Mode Bar:</strong> Switch between 3 modes; mode persists across sessions</li>
+                            <li>
+                                <strong>View Tabs:</strong> Per-mode tabs visible only in active mode (7 tabs in
+                                Explore, 2 in Debug, 4 in Analyze)
+                            </li>
+                            <li>
+                                <strong>Settings Drawer:</strong> Slide-over drawer (not a tab) for all configuration
+                            </li>
+                            <li><strong>Persistence:</strong> Last-used mode and view tab remembered per session</li>
+                        </ul>
+
+                        <h3>3. In-Page Overlays</h3>
+                        <p>Floating panels and menus injected onto Salesforce pages via content script.</p>
+                        <ul>
+                            <li>
+                                <strong>Show All Data Panel:</strong> Floating inspector on record pages; position
+                                configurable (right/left/bottom)
+                            </li>
+                            <li>
+                                <strong>Sidebar:</strong> Floating shortcut panel (right/left/bottom), width
+                                500px–900px, collapse button
+                            </li>
+                            <li>
+                                <strong>Command Palette:</strong> Modal search overlay (Ctrl+K); triggered position
+                                customizable
+                            </li>
+                            <li>
+                                <strong>Context Menu:</strong> Native right-click menu injected by chrome.contextMenus
+                                API
+                            </li>
+                            <li>
+                                <strong>LWC Explorer:</strong> Right-side dock panel (~600px wide) with tree + detail
+                                pane
+                            </li>
+                            <li><strong>LMS Monitor:</strong> Sub-panel inside LWC Explorer dock</li>
+                        </ul>
+                    </section>
+
+                    <!-- All Keyboard Shortcuts Section -->
+                    <section class="docs-section" id="shortcuts">
+                        <h2>⌨️ Complete Keyboard Shortcuts</h2>
+
+                        <h3>Browser-Native Shortcuts (Built-In)</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Windows/Linux</th>
+                                    <th>macOS</th>
+                                    <th>Scope</th>
+                                    <th>Configurable</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Show Sidebar</td>
+                                    <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td>
+                                    <td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td>
+                                    <td>Salesforce pages</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Show All Data</td>
+                                    <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></td>
+                                    <td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></td>
+                                    <td>Record detail pages</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Command Palette</td>
+                                    <td><kbd>Ctrl</kbd>+<kbd>K</kbd></td>
+                                    <td><kbd>Cmd</kbd>+<kbd>K</kbd></td>
+                                    <td>Workspace + Salesforce pages (browser may intercept)</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Run Query (SOQL/GraphQL/REST)</td>
+                                    <td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td>
+                                    <td><kbd>Cmd</kbd>+<kbd>Enter</kbd></td>
+                                    <td>Query builder tabs only</td>
+                                    <td>No</td>
+                                </tr>
+                                <tr>
+                                    <td>Save Settings</td>
+                                    <td><kbd>Ctrl</kbd>+<kbd>S</kbd></td>
+                                    <td><kbd>Cmd</kbd>+<kbd>S</kbd></td>
+                                    <td>Settings tab</td>
+                                    <td>No</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Customizable Shortcuts (Settings > General)</h3>
+                        <p>Three actions can be customized with any key combination:</p>
+                        <ul>
+                            <li>
+                                <strong>Toggle Sidebar:</strong> Default Ctrl+Shift+S — customize, then reset button
+                            </li>
+                            <li>
+                                <strong>Toggle Show All Data:</strong> Default Ctrl+Shift+D — customize, then reset
+                                button
+                            </li>
+                            <li><strong>Command Palette:</strong> Default Ctrl+K — customize, then reset button</li>
+                        </ul>
+
+                        <h3>In-Query Editor Shortcuts</h3>
+                        <ul>
+                            <li><kbd>Ctrl</kbd>+<kbd>Space</kbd> — Autocomplete (SOQL/GraphQL)</li>
+                            <li><kbd>Ctrl</kbd>+<kbd>/</kbd> — Toggle comment line (SOQL/GraphQL)</li>
+                            <li><kbd>Ctrl</kbd>+<kbd>F</kbd> — Find in query (SOQL/GraphQL)</li>
+                        </ul>
+
+                        <h3>SOQL Result Table Shortcuts</h3>
+                        <ul>
+                            <li><kbd>↑</kbd> / <kbd>↓</kbd> — Navigate rows</li>
+                            <li><kbd>←</kbd> / <kbd>→</kbd> — Navigate columns</li>
+                            <li><kbd>Enter</kbd> — Select row or drill into linked record</li>
+                            <li><kbd>Escape</kbd> — Deselect</li>
+                            <li><kbd>Space</kbd> — Toggle row checkbox</li>
+                            <li><kbd>Ctrl</kbd>+<kbd>A</kbd> — Select all visible rows</li>
+                        </ul>
+                    </section>
+
+                    <!-- Storage Keys Section -->
+                    <section class="docs-section" id="storage">
+                        <h2>💾 Storage Keys Reference</h2>
                         <p>
-                            Access previously executed queries with timestamps. Filter history by date. Click any past
-                            query to reload it instantly.
+                            All user data is stored in chrome.storage.local (or browser equivalent). Keys are org-scoped
+                            to prevent cross-org data leaks.
                         </p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>✏️ Inline Result Editing</h4>
+
+                        <h3>Settings &amp; Preferences</h3>
+                        <div class="storage-key">tfp_appearance_theme: 'light' | 'dark' | 'system'</div>
+                        <div class="storage-key">tfp_appearance_font_size: number (12-18px)</div>
+                        <div class="storage-key">tfp_sidebar_width: number (500-900px)</div>
+                        <div class="storage-key">tfp_sidebar_position: 'right' | 'left' | 'hidden'</div>
+                        <div class="storage-key">tfp_sad_panel_settings: { position: 'right' | 'left' | 'bottom' }</div>
+                        <div class="storage-key">
+                            tfp_cp_trigger_settings: { position: 'right' | 'left' | 'bottom' }
+                        </div>
+                        <div class="storage-key">
+                            tfpCustomShortcuts: { [actionId]: { key, ctrl, shift, alt, meta } }
+                        </div>
+
+                        <h3>Org &amp; Session Data</h3>
+                        <div class="storage-key">
+                            orgRecords: [{ orgId, hostname, name, favicon, environment, ... }]
+                        </div>
+                        <div class="storage-key">tfpInlineEditDisabledOrgs: { [orgId]: true }</div>
+                        <div class="storage-key">tfp_pinned_records_[orgId]: [{ recordId, name, type, ... }]</div>
+                        <div class="storage-key">
+                            tfp_record_history_[orgId]: [{ recordId, name, type, timestamp }] (25 items max)
+                        </div>
+
+                        <h3>Workspace State</h3>
+                        <div class="storage-key">tfp_last_mode: 'explore' | 'debug' | 'analyze'</div>
+                        <div class="storage-key">tfp_last_view: string (e.g., 'soql', 'records', 'audit')</div>
+                        <div class="storage-key">
+                            tfp_soql_queries_[orgId]: [{ id, name, query, created }] (multi-tab)
+                        </div>
+                        <div class="storage-key">tfp_graphql_queries_[orgId]: [{ id, name, query, variables }]</div>
+                        <div class="storage-key">tfp_rest_collections_[orgId]: [{ id, name, requests }]</div>
+                        <div class="storage-key">tfp_rest_history_[orgId]: [{ id, method, url, timestamp }]</div>
+
+                        <h3>Layout &amp; Customization</h3>
+                        <div class="storage-key">tfp_column_widths_[orgId]: { [columnKey]: widthPx }</div>
+                        <div class="storage-key">tfp_lwc_dock_mode: 'open' | 'closed'</div>
+                        <div class="storage-key">tfp_sidebar_shortcuts_[orgId]: [{ id, type, label, feature }]</div>
+
+                        <h3>Session &amp; Transient Data</h3>
+                        <div class="storage-key">
+                            tfp_soql_popout: { query, results, state } (auto-deleted after read)
+                        </div>
+                        <div class="storage-key">
+                            tfp_session_cache_[orgId]: { accessToken, instanceUrl, expiresAt }
+                        </div>
+
+                        <h3>Cache &amp; Index</h3>
+                        <div class="storage-key">
+                            tfp_describe_cache_[orgId:objectName]: { fields, fieldPaths, ... }
+                        </div>
+                        <div class="storage-key">tfp_soql_guidance_index: { ruleId, rule, examples }</div>
+                    </section>
+
+                    <!-- Configuration Section -->
+                    <section class="docs-section" id="config">
+                        <h2>⚙️ Configuration &amp; Settings</h2>
+
+                        <h3>Settings Tab Structure</h3>
+                        <ul>
+                            <li>
+                                <strong>General:</strong> Configurable keyboard shortcuts, tab visibility toggles
+                                (show/hide per tab)
+                            </li>
+                            <li>
+                                <strong>Org Management:</strong> Saved orgs list with environment label and per-org
+                                inline edit toggle
+                            </li>
+                            <li><strong>Appearance:</strong> Theme (light/dark/system), font size (12-18px)</li>
+                            <li>
+                                <strong>Sidebar:</strong> Position (right/left/hidden), width (500-900px clamp),
+                                quick-tool shortcuts, Show All Data button position, Command Palette trigger position
+                            </li>
+                            <li>
+                                <strong>Layout:</strong> Result view density (Normal 38px / Compact 26px / Dense 20px),
+                                SOQL column widths (persisted per org)
+                            </li>
+                            <li>
+                                <strong>Advanced:</strong> Cache management (clear cache, reset to defaults),
+                                backup/restore (JSON export/import)
+                            </li>
+                        </ul>
+
+                        <h3>Org Management Per-Org Toggles</h3>
+                        <ul>
+                            <li><strong>Org ID:</strong> 15-char or 18-char SF org ID</li>
+                            <li><strong>Org Name:</strong> Display name from org records</li>
+                            <li><strong>Environment:</strong> Prod, Sandbox, Dev Org, Scratch Org (label only)</li>
+                            <li><strong>Instance:</strong> US, EU, Asia, China, etc.</li>
+                            <li>
+                                <strong>Allow Editing:</strong> Boolean toggle for inline edit protection (fail-open if
+                                not in list)
+                            </li>
+                            <li><strong>Delete Button:</strong> Removes org from saved list</li>
+                        </ul>
+
+                        <h3>Inline Edit Protection</h3>
                         <p>
-                            Toggle inline edit mode to double-click any cell in the results table and update the record
-                            directly in Salesforce. Per-org guards protect production data.
+                            Inline editing is disabled by org ID. If an org ID is NOT in the tfpInlineEditDisabledOrgs
+                            map, editing is allowed.
                         </p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>🧭 SOQL Guidance Engine</h4>
+                        <ul>
+                            <li>Check on load: Compare session org ID (both 15 and 18-char) against the map</li>
+                            <li>Show warning toast if blocked: "Inline editing is disabled for this org"</li>
+                            <li>
+                                Per-tab guards: Data Explorer, SOQL Builder, Show All Data all check the same protection
+                            </li>
+                        </ul>
+
+                        <h3>Sidebar Quick-Tool Customization</h3>
+                        <p>Configure shortcuts in Settings > Sidebar. Each shortcut can point to:</p>
+                        <ul>
+                            <li>A workspace feature (SOQL, Records, Schema, etc.)</li>
+                            <li>A Salesforce page (Setup, Reports, etc.)</li>
+                            <li>A saved SOQL query</li>
+                            <li>A custom command (record lookup, etc.)</li>
+                        </ul>
+                    </section>
+
+                    <!-- Architecture Section -->
+                    <section class="docs-section" id="architecture">
+                        <h2>🏛️ Architecture Overview</h2>
+
+                        <h3>Three-Layer Extension Model</h3>
+                        <div class="feature-row">
+                            <div class="feature-card">
+                                <h4>Service Worker (background.js)</h4>
+                                <p>
+                                    Orchestrates API calls, session management, tab tracking, message routing. ES
+                                    modules. Imports: bg_session_auth.js, bg_sf_api.js, bg_org_tab_tracking.js,
+                                    bg_popup_windows.js, bg_context_menus.js, bg_streaming.js, bg_command_dispatch.js
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Popup UI (popup.html/popup.js)</h4>
+                                <p>
+                                    Main workspace tab. IIFE + window globals. Loads 25+ helper scripts via script tags.
+                                    Renders 3-mode, 9-tab interface with settings drawer.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Content Script (content.js)</h4>
+                                <p>
+                                    Injects overlays on Salesforce pages. IIFE. Detects SF pages, sends messages to
+                                    background.js, renders Show All Data, Sidebar, LWC Explorer, context menus.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <h4>Helper Scripts</h4>
+                                <p>
+                                    Modular task handlers (IIFE pattern). soql_helper.js, graphql_helper.js,
+                                    audit_helper.js, data_explorer_helper.js, user_manager_helper.js,
+                                    security_helper.js, org_tools_helper.js, settings_helper.js, etc.
+                                </p>
+                            </div>
+                        </div>
+
+                        <h3>Module Systems</h3>
                         <p>
-                            Real-time validation panel that checks your query for common issues, best practices, and
-                            syntax errors as you build.
+                            <strong>Background (Service Worker):</strong> ES modules (import/export).
+                            <strong>Popup + Content:</strong> IIFE + window globals (no import/export).
                         </p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>💡 Field Suggestions</h4>
+
+                        <h3>Data Flow</h3>
+                        <ol>
+                            <li>User interacts with Workspace or Salesforce page</li>
+                            <li>UI sends message via chrome.runtime.sendMessage() to background.js</li>
+                            <li>
+                                Background.js routes to appropriate handler (bg_sf_api.js, bg_org_tab_tracking.js, etc.)
+                            </li>
+                            <li>
+                                Handler calls Salesforce REST/Tooling/GraphQL API with session from bg_session_auth.js
+                            </li>
+                            <li>Result cached in chrome.storage.local (org-scoped by ID)</li>
+                            <li>Response sent back to popup or content script</li>
+                        </ol>
+
+                        <h3>Session Management</h3>
+                        <p>Session detected from Salesforce cookies (sid, sfdc, etc.). Flows:</p>
+                        <ol>
+                            <li>Content script detects SF page → sends session to background.js</li>
+                            <li>Background stores in orgInstanceMap (one per org)</li>
+                            <li>Popup requests session via GET_SESSION message</li>
+                            <li>Fallback: Utils.getSessionFromCookies() if service worker is crashed</li>
+                        </ol>
+
+                        <h3>Permissions</h3>
+                        <p>See Permissions section below.</p>
+                    </section>
+
+                    <!-- Permissions Section -->
+                    <section class="docs-section" id="permissions">
+                        <h2>🔐 Permissions Explained</h2>
+
+                        <h3>Required Permissions</h3>
+                        <ul>
+                            <li><code>storage</code> — Local storage for settings, cache, workspace state</li>
+                            <li><code>tabs</code> — Tab management, URL detection for Salesforce pages</li>
+                            <li><code>scripting</code> — Inject content script into Salesforce pages</li>
+                            <li>
+                                <code>webRequest</code> (background only) — Optional monitoring of Salesforce API calls
+                            </li>
+                            <li><code>contextMenus</code> — Right-click menu on record pages</li>
+                        </ul>
+
+                        <h3>Host Permissions</h3>
+                        <div class="code-block">
+                            https://*.salesforce.com/* https://*.lightning.force.com/* https://*.visual.force.com/*
+                            https://developer.salesforce.com/*
+                        </div>
+
+                        <h3>Why We Ask for What We Ask</h3>
+                        <ul>
+                            <li>
+                                <strong>Cookies:</strong> We read browser cookies to detect Salesforce session (sid),
+                                not to track you
+                            </li>
+                            <li>
+                                <strong>Scripts:</strong> We inject the content script only on Salesforce pages to
+                                enable overlays
+                            </li>
+                            <li>
+                                <strong>Storage:</strong> All settings are stored locally in your browser, not sent to
+                                any server
+                            </li>
+                            <li>
+                                <strong>Network:</strong> We only make CORS requests to your Salesforce instance (not
+                                cross-origin)
+                            </li>
+                        </ul>
+
+                        <h3>What We DON'T Do</h3>
+                        <ul>
+                            <li>We don't collect usage analytics</li>
+                            <li>We don't send your data to external servers</li>
+                            <li>We don't modify Salesforce UI without your explicit action</li>
+                            <li>We don't store API responses beyond your current session</li>
+                        </ul>
+                    </section>
+
+                    <!-- Browser Compatibility Section -->
+                    <section class="docs-section" id="browser-compat">
+                        <h2>🌐 Browser Compatibility</h2>
+
+                        <h3>Supported Browsers</h3>
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Browser</th>
+                                    <th>Min Version</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Chrome</td>
+                                    <td>88+ (Jan 2021)</td>
+                                    <td>Full support, native MV3</td>
+                                </tr>
+                                <tr>
+                                    <td>Edge</td>
+                                    <td>88+ (Jan 2021)</td>
+                                    <td>Full support, native MV3</td>
+                                </tr>
+                                <tr>
+                                    <td>Firefox</td>
+                                    <td>109+ (Jan 2023)</td>
+                                    <td>Full support with polyfills for chrome.* APIs</td>
+                                </tr>
+                                <tr>
+                                    <td>Opera</td>
+                                    <td>74+ (Jan 2021)</td>
+                                    <td>Full support, Chromium-based</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Known Issues by Browser</h3>
+                        <ul>
+                            <li>
+                                <strong>Firefox:</strong> Content script context may invalidate during SPA navigation.
+                                Reload the Salesforce page if "Extension context invalidated" appears. Gecko ID required
+                                in manifest.json.
+                            </li>
+                            <li><strong>Opera:</strong> No known issues. Chromium-based, full Chrome API support.</li>
+                            <li>
+                                <strong>Edge:</strong> Requires Microsoft Store installation or manual developer mode
+                                loading. Full API support.
+                            </li>
+                        </ul>
+
+                        <h3>API Polyfills</h3>
                         <p>
-                            As you type in the query editor, a suggestion dropdown appears with matching field names,
-                            types, and descriptions.
+                            Firefox doesn't use the chrome.* namespace natively; it uses browser.*. The extension maps
+                            chrome.* → browser.* automatically at build time via manifest build script.
                         </p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>🔧 Tooling API</h4>
+                    </section>
+
+                    <!-- Changelog Section -->
+                    <section class="docs-section" id="changelog">
+                        <h2>📋 Version History &amp; Changelog</h2>
+
+                        <div class="version-entry">
+                            <strong>v2.1.6 (Current)</strong>
+                            <p>
+                                <strong>Improvements:</strong> Documentation accuracy pass — keyboard shortcut
+                                references validated against codebase; Settings guide corrected (Ctrl+Shift+S default,
+                                unassigned defaults clarified); Chrome Web Store submission updated with full feature
+                                coverage, all 7 host permissions, and contextMenus permission; Version consistency
+                                maintenance.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.1.5</strong>
+                            <p>
+                                <strong>Features:</strong> Two-row header layout with tab scrolling; LMS Explorer
+                                redesign with detail pane; SOQL virtualized table with column pinning and smart view;
+                                Compact result toolbar; Pop-out results window; Collapsible query editor; Bug fixes in
+                                suggestion engine.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.1.3</strong>
+                            <p>
+                                <strong>Features:</strong> Independent button positioning (Show All Data, Command
+                                Palette); LMS bridge rewrite with 4 real Aura strategies; Subscribe/unsubscribe UI; LMS
+                                status pill with activity log; Full dark theme for LMS.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.0.7</strong>
+                            <p>
+                                <strong>Features:</strong> Configurable keyboard shortcuts; Per-org inline edit toggles;
+                                Tab reorganization (Data Explorer → Records, Org Tools → top-level); Org Management
+                                table in Settings.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.0.0</strong>
+                            <p>
+                                <strong>Major Release:</strong> Complete 3-mode architecture (Explore/Debug/Analyze);
+                                Launcher popup redesign; Workspace tab consolidation; Settings tab redesign; 9-tab
+                                interface; Cross-browser support (Chrome, Edge, Firefox, Opera).
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v1.9.7</strong>
+                            <p>
+                                <strong>Features:</strong> Virtualized SOQL result table with 1000+ row support; Column
+                                pinning, filtering, sorting; Compact toolbar with density modes; Full-screen and focus
+                                modes; Inline edit callback delegation.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v1.9.6</strong>
+                            <p>
+                                <strong>Features:</strong> LMS Explorer detail pane; Context-aware empty state; Beta
+                                badge on LMS; Network detail overflow fix; Extension context invalidated error fix.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v1.9.5</strong>
+                            <p>
+                                <strong>Features:</strong> SOQL relationship field links (dot-notation); LWC Explorer
+                                live mode (3s polling); Labeled buttons; Dock persistence; LMS bridge rewrite; Two-row
+                                header layout.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v1.8.6</strong>
+                            <p>
+                                <strong>Features:</strong> Independent button positioning for Show All Data and Command
+                                Palette; Bottom position support.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v1.8.2</strong>
+                            <p>
+                                <strong>Features:</strong> Save &amp; Apply button; Org Management table with inline
+                                edit toggles; Multi-source org ID resolution.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v1.8.0</strong>
+                            <p>
+                                <strong>Features:</strong> Per-org inline edit toggles; Configurable keyboard shortcuts;
+                                Tab reorganization; Org Tools promoted to top-level tab.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v1.5.0</strong>
+                            <p>
+                                <strong>Features:</strong> Show All Data floating panel; Content script injection;
+                                Inline field editing; Command Palette; Context menu.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v1.0.0</strong>
+                            <p>
+                                <strong>Initial Release:</strong> SOQL Builder, GraphQL Builder, Records, REST Explorer,
+                                Audit Trail, Platform Events, Org Tools, Settings.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Migration Guide Section -->
+                    <section class="docs-section" id="migration">
+                        <h2>🔄 Migration Guides</h2>
+
+                        <h3>Upgrading from v1.x to v2.0+</h3>
                         <p>
-                            Toggle to query Salesforce metadata objects (ApexClass, CustomField, Flow, etc.) via the
-                            Tooling API endpoint.
+                            <strong>What Changed:</strong> Major UI reorganization (3-mode architecture, Launcher popup,
+                            Settings redesign).
                         </p>
-                    </div>
-                </div>
-
-                <h3>Export Options</h3>
-                <div class="highlight">
-                    Five export formats: <em>JSON (clipboard)</em>, <em>CSV (clipboard)</em>,
-                    <em>TSV/Excel (clipboard)</em>, <em>CSV file download</em>, and <em>JSON file download</em>. Click
-                    the export dropdown to choose your preferred format.
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use the <strong>Select All</strong> control in the field selector to
-                    grab all visible fields quickly. Then copy the generated SOQL to the Developer Console, VS Code, or
-                    your CI scripts.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 3. GRAPHQL BUILDER -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="graphql-builder">
-                <h2>
-                    <span class="emoji">🔗</span> GraphQL Builder
-                    <span
-                        style="
-                            font-size: 0.7rem;
-                            background: var(--warning);
-                            color: #fff;
-                            padding: 3px 10px;
-                            border-radius: 12px;
-                            margin-left: 8px;
-                            vertical-align: middle;
-                        "
-                        >BETA</span
-                    >
-                </h2>
-                <p class="section-intro">
-                    Build and execute Salesforce UI API GraphQL queries with a three-screen guided workflow, a full
-                    CodeMirror 6 editor with syntax highlighting, draggable split panes, and comprehensive export
-                    options.
-                </p>
-
-                <h3>Three-Screen Workflow</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Screen 1 — Object Selection</h4>
-                            <p>
-                                Browse a tile-based grid of Salesforce objects. Use the search box to filter by name.
-                                Click an object to proceed to the query builder. Click <em>Refresh Objects</em> to
-                                reload the schema.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Screen 2 — Query Builder</h4>
-                            <p>
-                                Select fields with checkboxes, add filters with AND/OR logic, configure sorting and
-                                pagination (limit, offset, or cursor-based). Expand the <em>Related Objects</em> section
-                                to add child relationship queries. Toggle the builder panel to switch to the raw editor
-                                view.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Screen 3 — Results</h4>
-                            <p>
-                                View results in a formatted table or raw JSON. The endpoint banner displays the URL,
-                                object name, body size, and HTTP method. Navigate pages with First / Previous / Next
-                                buttons.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Editor Features</h3>
-                <div class="sub-feature-grid">
-                    <div class="sub-card">
-                        <h4>🎨 CodeMirror 6 Editor</h4>
-                        <p>
-                            Syntax-highlighted query editor with autocompletion. Press <kbd>Ctrl</kbd>+<kbd>Space</kbd>
-                            for suggestions.
-                        </p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>↔️ Draggable Splitters</h4>
-                        <p>
-                            Vertical splitter between Query and Variables editors. Horizontal splitter between Variables
-                            and Results. Drag to resize.
-                        </p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>📐 Format Query</h4>
-                        <p>
-                            Press <kbd>Ctrl</kbd>+<kbd>B</kbd> (or <kbd>Cmd</kbd>+<kbd>B</kbd>) to auto-format both
-                            query and variables for readability.
-                        </p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>📋 Advanced Mode</h4>
-                        <p>Switch to raw GraphQL editing mode for complex queries that go beyond the visual builder.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>🕐 Query History</h4>
-                        <p>Toggle the history panel to see and reload past GraphQL queries. History is org-scoped.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h4>📦 Export Options</h4>
-                        <p>Export results as CSV, Excel (TSV), JSON, or copy to clipboard with one click.</p>
-                    </div>
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> GraphQL queries can return nested related records in a single call —
-                    far more efficient than multiple SOQL queries. Use the Related Objects section in the builder to add
-                    child relationships.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 4. RECORDS (DATA EXPLORER) -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="records">
-                <h2><span class="emoji">🔬</span> Records</h2>
-                <p class="section-intro">
-                    Look up any Salesforce record by ID, view every field (including hidden and system fields), edit
-                    values inline, navigate related records via lookups, pin favourites, compare records, and scan up to
-                    200 IDs in bulk.
-                </p>
-
-                <h3>Record Scanner</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Look Up a Record</h4>
-                            <p>
-                                Enter a 15- or 18-character Salesforce record ID in the search box and press Enter. The
-                                record's object type is auto-detected.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>View All Fields</h4>
-                            <p>
-                                Every field on the record is displayed in a paginated table (100 fields per page) —
-                                including formula fields, system fields (CreatedDate, LastModifiedById), and fields
-                                hidden by page layouts.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Search &amp; Filter Fields</h4>
-                            <p>
-                                Use the field search box to find fields by API name, label, or value. Results update in
-                                real-time as you type.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Edit Fields Inline</h4>
-                            <p>
-                                Double-click any editable field to change its value. The editor is type-aware: text
-                                inputs for strings, dropdowns for booleans, textareas for long text. Press
-                                <kbd>Enter</kbd> to save or <kbd>Esc</kbd> to cancel. Changes write directly via the
-                                Salesforce REST API.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Navigate Lookup Fields</h4>
-                            <p>
-                                Click any lookup field to jump to the related record. A breadcrumb trail tracks your
-                                navigation history — click any breadcrumb to go back.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Pin Records</h4>
-                            <p>
-                                Click the pin icon to save frequently-accessed records. Pinned records appear at the top
-                                of the Records tab for instant re-access. Pins are org-scoped.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Bulk Record Scanner</h3>
-                <div class="highlight">
-                    Paste up to <strong>200 record IDs</strong> to scan them all at once. Results display in a sortable
-                    table. Processing uses rate-limited batches of 5 concurrent requests to stay within API limits. A
-                    live progress indicator shows scan status.
-                </div>
-
-                <h3>Record History</h3>
-                <div class="highlight">
-                    The last <strong>25 records</strong> you looked up are saved in your history (per org). Click any
-                    history entry to reload the record instantly.
-                </div>
-
-                <div class="site-warning">
-                    <strong>⚠️ Inline Edit Safety:</strong> In <strong>Settings &gt; Org Management</strong>, you can
-                    disable inline editing per org to prevent accidental changes in production. Sandboxes remain fully
-                    editable.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 5. USER MANAGER -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="user-manager">
-                <h2><span class="emoji">👥</span> User Manager</h2>
-                <p class="section-intro">
-                    Search users, view detailed profiles, manage permissions, freeze or unfreeze accounts, compare users
-                    side-by-side, and perform bulk updates — all without leaving the extension.
-                </p>
-
-                <h3>Core Features</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Current User Card</h4>
-                            <p>Displays your logged-in user details, profile, and role at a glance.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Find a User</h4>
-                            <p>
-                                Search by name, email, or username. Filter by active or inactive status. Click a user to
-                                load their full profile.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Update User Details</h4>
-                            <p>
-                                Change a user's Profile, Role, or Language directly from the extension. Select new
-                                values from dropdowns and click Update.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Enhancement Panels</h3>
-                <p style="color: var(--text-secondary); font-size: 0.93rem; margin-bottom: 14px">
-                    Six collapsible panels provide advanced user management capabilities:
-                </p>
-                <ul class="panel-list">
-                    <li>
-                        <strong>Permission Matrix</strong> — Consolidated view of all permissions from the user's
-                        profile, permission sets, and permission set groups. Filter by source (All / Profile /
-                        Permission Sets / PS Groups).
-                    </li>
-                    <li>
-                        <strong>Session Manager</strong> — View and revoke active user sessions. See login times, source
-                        IP, and session type.
-                    </li>
-                    <li>
-                        <strong>Freeze / Unfreeze</strong> — Temporarily disable a user account without deleting it.
-                        One-click freeze/unfreeze toggle.
-                    </li>
-                    <li>
-                        <strong>Access Summary</strong> — Per-object breakdown of what the user can access (CRUD
-                        permissions) across all sources.
-                    </li>
-                    <li>
-                        <strong>Bulk User Update</strong> — Update multiple users at once. Paste CSV data or enter
-                        records manually. Validate before applying.
-                    </li>
-                    <li>
-                        <strong>User Comparison</strong> — Side-by-side comparison of two users. See differences in
-                        profiles, roles, permissions, and assignments.
-                    </li>
-                </ul>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use the Permission Matrix to audit a user's effective permissions
-                    before a security review. Filter by "Permission Sets" to see what was granted beyond the base
-                    profile.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 6. SECURITY MANAGER -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="security-manager">
-                <h2><span class="emoji">🔐</span> Security Manager</h2>
-                <p class="section-intro">
-                    Browse and analyze your org's security model: Profiles, Permission Sets, and Permission Set Groups —
-                    with search, drill-down, and assignment views.
-                </p>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Toggle Between Views</h4>
-                            <p>
-                                Panel toggle buttons at the top let you switch between <strong>Profiles</strong>,
-                                <strong>Permission Sets</strong>, and <strong>Permission Set Groups</strong>.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Search &amp; Browse</h4>
-                            <p>
-                                Each panel has its own search input. Filter by name to find specific profiles or
-                                permission sets in large orgs.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>View Assignments</h4>
-                            <p>
-                                Click any profile or permission set to drill down and see which users are assigned to
-                                it.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Inspect Permission Set Groups</h4>
-                            <p>
-                                See which permission sets are bundled into each group and which users are assigned to
-                                the group.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use this tool alongside User Manager to audit specific users — check
-                    Security Manager for the "what" and User Manager for the "who."
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 7. ORG TOOLS -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="org-tools">
-                <h2><span class="emoji">🏢</span> Org Tools</h2>
-                <p class="section-intro">
-                    A top-level tab with seven panels for org-wide administration: Login As, Custom Labels, Deployment
-                    Monitor, Scheduled Jobs, Debug Logs, Org Limits, and Admin Utilities.
-                </p>
-
-                <h3>7 Panels</h3>
-                <ul class="panel-list">
-                    <li>
-                        <strong>🔓 Login As</strong> — Search for a user and log in as them. Opens in a new Incognito
-                        window. Recent "Login As" history is saved for quick repeat access.
-                    </li>
-                    <li>
-                        <strong>🏷️ Custom Labels</strong> — Search, create, edit, and delete custom labels. Filter by
-                        category. Bulk import from CSV or JSON with validation. Bulk export. Full translation workflow:
-                        export a translation template, import translations, and deploy — all from one panel. Paginated
-                        at 100 labels per page.
-                    </li>
-                    <li>
-                        <strong>🚀 Deployments</strong> — Live deployment monitor with auto-refresh (10-second
-                        interval). Filter by status: Succeeded, Failed, InProgress, Canceled, Pending. Toggle to
-                        show/hide validate-only deployments. Click any deployment for detailed drill-down. Includes a
-                        searchable Deployment Guide with metadata type reference.
-                    </li>
-                    <li>
-                        <strong>📅 Scheduled Jobs</strong> — View all scheduled Apex jobs with search, sort by execution
-                        order (ASC/DESC), status display, and detail drill-down.
-                    </li>
-                    <li>
-                        <strong>🐛 Debug Logs</strong> — Manage trace flags for debug logging. Quick Enable button
-                        auto-creates a 30-minute trace flag for the current user. Create custom trace flags with Entity
-                        ID, Debug Level, Log Type (USER_DEBUG, DEVELOPER_LOG, CLASS_TRACING), and expiration time. View
-                        and delete existing trace flags.
-                    </li>
-                    <li>
-                        <strong>📊 Org Limits</strong> — Real-time dashboard showing API calls used, data storage, file
-                        storage, and all other org limits with percentage indicators. Sortable table with refresh
-                        button.
-                    </li>
-                    <li>
-                        <strong>⚡ Admin Utils</strong> — View recent Apex jobs.
-                        <strong>15 Quick Setup Links</strong> for one-click navigation to: Profiles, Permission Sets, PS
-                        Groups, Users, Login History, Installed Packages, Custom Labels, Apex Classes, Custom Settings,
-                        Custom Metadata, Deploy Status, Storage, Health Check, Session Management, Named Credentials,
-                        and Email Templates.
-                    </li>
-                </ul>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use the Debug Logs "Quick Enable" button to start logging immediately
-                    when troubleshooting an issue — no need to navigate to Salesforce Setup.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 8. ORG & FAVICON -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="org-favicon">
-                <h2><span class="emoji">🎨</span> Org &amp; Favicon</h2>
-                <p class="section-intro">
-                    Customize browser favicons and tab titles for each Salesforce org. Instantly distinguish between
-                    Production, Sandbox, UAT, and Dev environments by colour, shape, and label.
-                </p>
-
-                <h3>Three-Column Layout</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Saved Orgs (Left Column)</h4>
-                            <p>
-                                Browse and search your saved orgs. Click the + button to add the currently connected
-                                org. Select an org to load its favicon settings.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Favicon Editor (Centre Column)</h4>
-                            <p>
-                                Design a custom favicon with a live 64×64 canvas preview. Choose from 6 environment
-                                presets (DEV, UAT, PROD, QA, TRN, SBX), 8 colour swatches, 8 shapes (circle, square,
-                                rounded, cloud, SF cloud, diamond, hexagon, shield), and a 3-character badge label.
-                                Toggle text colour between auto and custom. Preview against light or dark backgrounds.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Org Details (Right Column)</h4>
-                            <p>
-                                View org name, environment type (colour-coded badge), instance URL, API version, locale,
-                                connection status, hostname, Org ID (15 &amp; 18 char), created date, last seen, and
-                                notes. A live indicator shows if this is the currently active org.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="highlight">
-                    <strong>Live Favicon Application:</strong> Click <em>Save &amp; Apply</em> to update all open
-                    Salesforce tabs for that org instantly — including the tab title and the Salesforce logo colour on
-                    the page itself.
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use distinct shapes and colours per environment (e.g. red hexagon for
-                    Production, green circle for Dev). The favicon label (e.g. "PRD", "DEV") appears inside the shape
-                    for instant recognition.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 9. PLATFORM EVENTS -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="platform-events">
-                <h2><span class="emoji">📡</span> Platform Events</h2>
-                <p class="section-intro">
-                    Subscribe to Salesforce Platform Events in real-time using CometD streaming. Monitor event messages
-                    as they arrive, with filters, pause/resume, and auto-scroll.
-                </p>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Discover Events</h4>
-                            <p>
-                                The left panel lists all Platform Event definitions in your org. Click Refresh to reload
-                                the list.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Subscribe to an Event</h4>
-                            <p>
-                                Click any event to subscribe. The extension opens a CometD streaming connection to
-                                receive messages in real-time.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Monitor the Event Stream</h4>
-                            <p>
-                                Incoming events appear in the right panel log. Filter the log by type: All, Events,
-                                System, Subscribe, Unsubscribe, or Errors.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Pause, Resume &amp; Clear</h4>
-                            <p>
-                                Pause logging to freeze the view, resume to continue, or clear the log entirely. Toggle
-                                auto-scroll to keep the latest events visible.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use Platform Events monitoring to debug integrations, test event-driven
-                    automation, and verify that your Apex triggers and flows are publishing events correctly.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 10. LIGHTNING MESSAGE SERVICE (LMS) -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="lms">
-                <h2><span class="emoji">💬</span> Lightning Message Service</h2>
-                <p class="section-intro">
-                    Subscribe to and publish messages on Lightning Message Service (LMS) channels. Test inter-component
-                    communication in Lightning without deploying code changes.
-                </p>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Discover LMS Channels</h4>
-                            <p>The left panel lists all LMS channels in your org. Click Refresh to update the list.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Subscribe to a Channel</h4>
-                            <p>
-                                Click a channel to start listening. Incoming messages appear in the log with timestamps.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Publish a Test Message</h4>
-                            <p>
-                                Click <strong>Publish</strong> to open a modal dialog. Enter a JSON payload in the
-                                editor and send it to the channel. Use the copy button to save your payload for reuse.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Filter &amp; Review</h4>
-                            <p>
-                                Filter log entries by type: All, Info, System, Success, or Errors. Pause/resume logging
-                                and toggle auto-scroll.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use LMS testing to verify that your Lightning Web Components respond
-                    correctly to channel messages before deploying to production.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- REST EXPLORER -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="rest-explorer">
-                <h2><span class="emoji">⚡</span> REST Explorer</h2>
-                <p class="section-intro">
-                    A full-featured API workbench for Salesforce REST endpoints. Send requests, organise collections,
-                    chain calls together, import cURL commands, and browse the Salesforce API catalog — all with your
-                    active session credentials. REST Explorer is visible by default in the workspace tab bar.
-                </p>
-
-                <h3>Sending a Request</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Choose Method and URL</h4>
-                            <p>
-                                Select GET, POST, PATCH, PUT, or DELETE. Enter a path like
-                                <code>/services/data/v62.0/sobjects/Account</code> or use a full URL. The base URL
-                                auto-fills from your connected org.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Configure Headers, Params, Body, and Auth</h4>
-                            <p>
-                                Use the tabbed editor to add query parameters, custom headers, a JSON body, or switch
-                                authentication modes. Environment variables (<code>{{varName}}</code>) are substituted
-                                automatically.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Send and Inspect the Response</h4>
-                            <p>
-                                Click <strong>Send</strong> to execute. The response viewer shows status, headers,
-                                timing, and an interactive JSON tree with expand/collapse, search, and copy actions.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Collections</h3>
-                <div class="highlight">
-                    Save requests into named collections. Each collection has an emoji label, and you can import/export
-                    collections as JSON for sharing with teammates.
-                </div>
-
-                <h3>History</h3>
-                <div class="highlight">
-                    Every request is automatically saved (up to 500 entries per org). Filter by method, status, or
-                    search text. Click any history entry to replay it instantly.
-                </div>
-
-                <h3>Environment Variables</h3>
-                <div class="highlight">
-                    Define key-value pairs and reference them in URLs, headers, or body with
-                    <code>{{variableName}}</code>. Variables are org-scoped and persist across sessions.
-                </div>
-
-                <h3>Chain Mode</h3>
-                <div class="highlight">
-                    Link multiple requests together and pass data between them. Each step can reference the previous
-                    step's response using template expressions. Ideal for multi-step API workflows like creating a
-                    record and then querying it.
-                </div>
-
-                <h3>cURL Import &amp; Export</h3>
-                <div class="highlight">
-                    Paste a cURL command to import it as a request. Export any request as cURL to share or use in
-                    scripts.
-                </div>
-
-                <h3>API Catalog</h3>
-                <div class="highlight">
-                    Browse the built-in Salesforce API endpoint catalog. Search by keyword, filter by category, and
-                    click any endpoint to pre-fill the request editor.
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Use environment variables for values like record IDs or API versions
-                    that change between orgs, then switch orgs without editing every request.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- 11. SETTINGS -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="settings">
-                <h2><span class="emoji">⚙️</span> Settings</h2>
-                <p class="section-intro">
-                    Seven sub-tabs for complete customization: Org Management, Appearance, General, Sidebar, Layout,
-                    Backup, and About.
-                </p>
-
-                <h3>Org Management</h3>
-                <div class="highlight">
-                    View current org info, manage saved organisations (edit/delete), review per-org data storage, and
-                    configure <strong>inline editing safety per org</strong>. Quick-action buttons link to Edit Favicon,
-                    Org Tools, Org Limits, and Open Setup.
-                </div>
-
-                <h3>Appearance</h3>
-                <div class="highlight">
-                    <strong>Text Size:</strong> Five levels (XS, S, M, L, XL) with live preview.
-                    <strong>Editor Font Size:</strong> Slider (10–20px) for SOQL/GraphQL editors.
-                    <strong>Theme:</strong> Light or Dark with visual preview cards. Preferences persist automatically.
-                </div>
-
-                <h3>General</h3>
-                <div class="highlight">
-                    <strong>Configurable Keyboard Shortcuts:</strong> Settings &gt; General now supports click-to-record
-                    shortcuts across multiple groups: main actions, page actions, workspace tabs, Records tools, and Org
-                    Tools panels. Each shortcut supports Ctrl, Shift, Alt, and Meta modifiers. Reset individual
-                    shortcuts to defaults with one click. Display is platform-aware (Mac shows ⌘, Windows shows Ctrl).
-                </div>
-
-                <h3>Sidebar</h3>
-                <div class="highlight">
-                    Choose sidebar position (Left or Right). Enable or disable the sidebar entirely. Configure collapse
-                    state preference and quick access menu items.
-                    <br /><br />
-                    <strong>Independent Button Positioning:</strong> The Show All Data button and Command Palette
-                    trigger each have their own position setting — Left, Right, or Bottom — independent of the sidebar.
-                    Bottom places buttons as horizontal tabs along the bottom edge of the screen.
-                </div>
-
-                <h3>Layout</h3>
-                <div class="highlight">
-                    Drag sliders to adjust column widths in the Org &amp; Favicon editor (Saved Orgs: 15–60%, Org Info:
-                    15–40%) and User Manager (Left Column: 20–60%). Changes preview in real-time. Reset to defaults
-                    available.
-                </div>
-
-                <h3>Backup</h3>
-                <div class="highlight">
-                    <strong>Quick Export:</strong> One-click download of all settings as JSON.
-                    <strong>Quick Import:</strong> Select a JSON file to restore. Full backup includes per-org data,
-                    query history, shortcuts, appearance, and layout settings. Perfect for migrating between browsers or
-                    computers.
-                </div>
-
-                <h3>About</h3>
-                <div class="highlight">
-                    Developer info, version number, links to the Chrome Web Store, official website, GitHub issue
-                    tracker, Help &amp; Support, Quick Start Guide, Training Guide, Documentation, Quiz, and
-                    Leaderboard.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- ON-PAGE FEATURES -->
-            <!-- ═══════════════════════════════════════════════════ -->
-
-            <div style="margin: 48px 0 32px">
-                <h2
-                    style="
-                        font-size: 1.5rem;
-                        font-weight: 800;
-                        color: var(--primary);
-                        text-transform: uppercase;
-                        letter-spacing: 0.05em;
-                        margin-bottom: 6px;
-                    "
-                >
-                    On-Page Features
-                </h2>
-                <p style="color: var(--text-muted); font-size: 0.93rem">
-                    These features work directly on Salesforce pages — no popup required.
-                </p>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- SHOW ALL DATA -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="show-all-data">
-                <h2><span class="emoji">👁️</span> Show All Data</h2>
-                <p class="section-intro">
-                    A floating inspector injected on every Salesforce record detail page. View all fields (including
-                    hidden and system fields), search and filter, edit inline, and navigate related records — without
-                    leaving the Salesforce page.
-                </p>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Navigate to Any Record Page</h4>
-                            <p>
-                                Open any record in Salesforce (Account, Contact, Opportunity, Case, custom objects,
-                                etc.).
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Click the Floating TFP Button</h4>
-                            <p>
-                                A floating "TFP Show All Data" button appears on the page edge. Click it to open the
-                                side panel, or assign a page shortcut in Settings &gt; General if you want keyboard
-                                access. You can change the button position (Right, Left, or Bottom) in Settings &gt;
-                                Sidebar.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Search &amp; Browse Fields</h4>
-                            <p>
-                                The side panel shows every field on the record. Use the search box to filter by field
-                                name or value.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Edit Fields Inline</h4>
-                            <p>
-                                Double-click any editable field. Type-aware editors appear: text for strings, dropdowns
-                                for booleans, textareas for long text. Press <kbd>Enter</kbd> to save or
-                                <kbd>Esc</kbd> to cancel. Changes write via PATCH to the Salesforce REST API.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Navigate Related Records</h4>
-                            <p>
-                                Click lookup fields to jump to related records. A breadcrumb trail tracks your
-                                navigation — click any breadcrumb to go back.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="site-warning">
-                    <strong>⚠️ Production Safety:</strong> If inline editing is disabled for the current org (Settings
-                    &gt; Org Management), a warning notification appears and edits are blocked. Sandboxes remain fully
-                    editable.
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Show All Data reveals formula results, system fields (CreatedDate,
-                    CreatedById, SystemModstamp), and fields hidden by page layouts — essential for debugging and data
-                    verification.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- TF SIDEBAR -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="sidebar">
-                <h2><span class="emoji">🧭</span> TF Sidebar</h2>
-                <p class="section-intro">
-                    A floating shortcut panel on every Salesforce page. Access your favorite tools without leaving
-                    Salesforce. Configurable position, shortcuts, and visibility.
-                </p>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Toggle the Sidebar</h4>
-                            <p>
-                                Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> (or your custom shortcut) on any
-                                Salesforce page. The sidebar slides in from the side.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Use Quick Tools</h4>
-                            <p>
-                                The top section includes quick-action tools: Show All Data, Language Switcher, Cache
-                                Clearer, and more.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Access Feature Shortcuts</h4>
-                            <p>
-                                Click any shortcut to open that tool in the launcher/workspace flow. Categories include
-                                Records tools (Record Scanner, User Manager, Security Manager) and Org Tools (Login As,
-                                Custom Labels, Deployments, etc.).
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Customize in Settings</h4>
-                            <p>
-                                Configure sidebar position (Left/Right), enable/disable it, and choose which shortcuts
-                                appear. Set independent positions (Left/Right/Bottom) for the Show All Data button and
-                                Command Palette trigger. Settings persist across sessions.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> The sidebar persists through Salesforce SPA navigation — it stays
-                    visible as you move between pages without reloading.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- LWC EXPLORER -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="lwc-explorer">
-                <h2><span class="emoji">🧩</span> LWC Explorer</h2>
-                <p class="section-intro">
-                    A page-side troubleshooting overlay for Lightning pages. Inspect the custom component tree,
-                    highlight components in place, review categorized request traces, and open LWC or Apex code without
-                    leaving the page.
-                </p>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Scan the Page</h4>
-                            <p>
-                                Open LWC Explorer from the sidebar or your assigned shortcut. The tree focuses on custom
-                                Lightning components and keeps the inspection row intentionally simple: component name,
-                                copy, and <em>Highlight on page</em>.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Review Real Source Categories</h4>
-                            <p>
-                                Use the filter chips to separate <strong>Apex</strong>, <strong>UI API</strong>,
-                                <strong>GraphQL</strong>, <strong>Fetch/API</strong>, and <strong>Errors</strong>. Only
-                                imperative calls imported from <code>@salesforce/apex</code> are shown as Apex, which
-                                prevents framework noise from being mislabeled.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Inspect Payloads Faster</h4>
-                            <p>
-                                Each entry shows the component, source type, class or module, method or operation,
-                                inputs, response, errors, duration, and timestamp. UI API and GraphQL traces prioritize
-                                the simplified primary payload first so admins can read the result quickly.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Edit From the Explorer</h4>
-                            <p>
-                                Use <em>Edit Code</em> for the selected LWC bundle or <em>Edit Apex</em> from an Apex
-                                trace. Both actions open the large TrackForcePro editor window directly inside the
-                                explorer so you can save changes without context switching.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> If a page issue is unclear, compare one Apex trace with one UI API or
-                    GraphQL trace from the same component before changing code. The category split usually shows whether
-                    the problem is server logic, data adapter behavior, or a client-side fetch path.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- COMMAND PALETTE -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="command-palette">
-                <h2><span class="emoji">⌨️</span> Command Palette</h2>
-                <p class="section-intro">
-                    TrackForcePro uses <strong>two Command Palettes</strong>. The
-                    <strong>launcher/workspace Command Palette</strong> is for cross-feature navigation inside the
-                    extension, while <strong>Command Palette (Page)</strong> is for page-aware actions on Salesforce
-                    pages. Setup Search is a separate page tool for Setup navigation plus metadata discovery.
-                </p>
-
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Open the Launcher/Workspace Palette</h4>
-                            <p>
-                                Click the header trigger or use your saved shortcut from the launcher or workspace. In
-                                launcher popup mode, treat <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> as optional
-                                rather than guaranteed because the browser may intercept it first.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Search Commands</h4>
-                            <p>
-                                Type to search: "Audit," "SOQL," "Security," "Login As," "Limits," and more. Matching
-                                commands appear instantly and route you into the right workspace area.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Navigate &amp; Execute</h4>
-                            <p>
-                                Use arrow keys to move between results. Press <kbd>Enter</kbd> to execute the selected
-                                command. Press <kbd>Esc</kbd> to close. On Salesforce pages, use
-                                <strong>Command Palette (Page)</strong> when page context matters.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-content">
-                            <h4>Record ID Lookup</h4>
-                            <p>
-                                Type a 15- or 18-character record ID directly into the palette. It auto-detects the ID
-                                and triggers a record lookup in the Records tab.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Think of the surfaces this way:
-                    <strong>launcher/workspace Command Palette</strong> for navigating the app,
-                    <strong>Command Palette (Page)</strong> for page-aware actions, and
-                    <strong>Setup Search (Page)</strong> for setup-plus-metadata discovery.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- CONTEXT MENU -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="context-menu">
-                <h2><span class="emoji">🖱️</span> Context Menu</h2>
-                <p class="section-intro">
-                    Right-click on any Salesforce record page for quick access to five TrackForcePro actions. The
-                    context menu auto-detects the current record ID and object type.
-                </p>
-
-                <h3>5 Context Menu Actions</h3>
-                <ul class="panel-list">
-                    <li>
-                        <strong>Show All Data</strong> — Opens the Records tab with the current record's All Fields
-                        view.
-                    </li>
-                    <li>
-                        <strong>View Field History</strong> — Displays the field audit trail for the current record.
-                    </li>
-                    <li>
-                        <strong>Check Sharing</strong> — Shows sharing rules and record access details for the current
-                        record.
-                    </li>
-                    <li>
-                        <strong>Open in SOQL Builder</strong> — Pre-loads the SOQL Builder with the current record's
-                        object type.
-                    </li>
-                    <li>
-                        <strong>Copy Record ID</strong> — Copies the current record's 15/18-character ID to your
-                        clipboard.
-                    </li>
-                </ul>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> Right-click is faster than opening the popup when you just need to
-                    quickly inspect a record's fields or copy its ID.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- KEYBOARD SHORTCUTS -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="keyboard-shortcuts">
-                <h2><span class="emoji">🎹</span> Keyboard Shortcuts</h2>
-                <p class="section-intro">
-                    All primary shortcuts are customizable in Settings &gt; General. Fixed shortcuts work in specific
-                    contexts (query builders, editors, etc.).
-                </p>
-
-                <h3>Customizable Shortcuts</h3>
-                <table class="site-table" style="margin: 16px 0">
-                    <thead>
-                        <tr>
-                            <th>Default Shortcut</th>
-                            <th>Action</th>
-                            <th>Where</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td>
-                            <td>Toggle TF Sidebar</td>
-                            <td>Any Salesforce page</td>
-                        </tr>
-                        <tr>
-                            <td>Not assigned by default</td>
-                            <td>Toggle Show All Data</td>
-                            <td>Record pages; assign it in Settings &gt; General if you want keyboard access</td>
-                        </tr>
-                        <tr>
-                            <td>Header trigger or assigned shortcut</td>
-                            <td>Open launcher/workspace Command Palette</td>
-                            <td>
-                                Extension UI; browser may intercept <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd> in
-                                launcher popup mode
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Not assigned by default</td>
-                            <td>Open Command Palette (Page)</td>
-                            <td>Any Salesforce page</td>
-                        </tr>
-                        <tr>
-                            <td>Not assigned by default</td>
-                            <td>Open Setup Search (Page)</td>
-                            <td>Any Salesforce page</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 10px">
-                    Additional shortcut groups in <strong>Settings &gt; General</strong> cover workspace tabs, Records
-                    tools, Org Tools panels, and page actions.
-                </p>
-
-                <h3>Fixed Shortcuts</h3>
-                <table class="site-table" style="margin: 16px 0">
-                    <thead>
-                        <tr>
-                            <th>Shortcut</th>
-                            <th>Action</th>
-                            <th>Where</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><kbd>Ctrl</kbd>+<kbd>Enter</kbd></td>
-                            <td>Execute query</td>
-                            <td>SOQL / GraphQL Builder</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Ctrl</kbd>+<kbd>Space</kbd></td>
-                            <td>Trigger autocomplete</td>
-                            <td>GraphQL Editor</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Ctrl</kbd>+<kbd>B</kbd></td>
-                            <td>Format query &amp; variables</td>
-                            <td>GraphQL Editor</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Double-click</kbd></td>
-                            <td>Inline edit field value</td>
-                            <td>Records / SOQL results / Show All Data</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Enter</kbd></td>
-                            <td>Save inline edit</td>
-                            <td>Any inline edit</td>
-                        </tr>
-                        <tr>
-                            <td><kbd>Esc</kbd></td>
-                            <td>Cancel edit / close panel</td>
-                            <td>Global</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="site-tip">
-                    <strong>💡 Pro Tip:</strong> On Mac, substitute <kbd>Cmd</kbd> for <kbd>Ctrl</kbd>. The shortcut
-                    display in Settings automatically adapts to your platform.
-                </div>
-            </div>
-
-            <!-- ═══════════════════════════════════════════════════ -->
-            <!-- CROSS-BROWSER SUPPORT -->
-            <!-- ═══════════════════════════════════════════════════ -->
-            <div class="section" id="cross-browser">
-                <h2><span class="emoji">🌐</span> Cross-Browser Support</h2>
-                <p class="section-intro">
-                    TrackForcePro is published through the Chrome Web Store and Firefox Add-ons. Edge remains a
-                    placeholder in the docs until the Edge Add-ons listing is live.
-                </p>
-
-                <div class="browser-availability">
-                    <a
-                        href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk"
-                        target="_blank"
-                        class="browser-store-card is-link"
-                    >
-                        <span class="browser-store-main">
-                            <span class="browser-store-icon chrome" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" fill="#FABB05"></circle>
-                                    <path d="M12 2a10 10 0 0 1 8.66 5H12Z" fill="#EA4335"></path>
-                                    <path d="M3.34 7A10 10 0 0 0 12 22l4.33-7.5Z" fill="#34A853"></path>
-                                    <circle
-                                        cx="12"
-                                        cy="12"
-                                        r="4.2"
-                                        fill="#4285F4"
-                                        stroke="white"
-                                        stroke-width="1.4"
-                                    ></circle>
-                                </svg>
-                            </span>
-                            <span class="browser-store-copy">
-                                <span class="browser-store-name">Chrome Web Store</span>
-                                <span class="browser-store-meta">Primary install path</span>
-                            </span>
-                        </span>
-                        <span class="site-badge success">Available now</span>
-                    </a>
-                    <a
-                        href="https://addons.mozilla.org/en-US/firefox/addon/trackforcepro/"
-                        target="_blank"
-                        class="browser-store-card is-link"
-                    >
-                        <span class="browser-store-main">
-                            <span class="browser-store-icon firefox" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none">
-                                    <path
-                                        d="M18.8 15.3c0 3.5-2.9 6.2-6.7 6.2-3.7 0-6.6-2.5-6.6-6.1 0-2.7 1.7-5.1 4.2-6.1-.2.7-.1 1.5.3 2.1.8-1.7 2.5-3.1 4.7-3.7-.3.6-.3 1.1-.2 1.5 2.2.5 4.3 2.8 4.3 6.1Z"
-                                        fill="#FF7139"
-                                    ></path>
-                                    <path
-                                        d="M14.5 4.2c1.8.3 3.6 1.7 4.5 3.5-.5-.1-1.1 0-1.6.3.6.4 1.2 1.3 1.4 2.1-.6-.2-1.3-.2-1.9.1"
-                                        stroke="#FFD9C8"
-                                        stroke-width="1.4"
-                                        stroke-linecap="round"
-                                    ></path>
-                                </svg>
-                            </span>
-                            <span class="browser-store-copy">
-                                <span class="browser-store-name">Firefox Add-ons</span>
-                                <span class="browser-store-meta">Mozilla listing</span>
-                            </span>
-                        </span>
-                        <span class="site-badge success">Available now</span>
-                    </a>
-                    <div class="browser-store-card is-placeholder">
-                        <span class="browser-store-main">
-                            <span class="browser-store-icon edge" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none">
-                                    <path
-                                        d="M19 16.2c0 3.1-2.6 5.6-6 5.6-4 0-7-3-7-7.1 0-4.2 3.1-7.5 7.2-7.5 2.4 0 4.5 1.1 5.8 2.9-1.1-.4-2.5-.2-3.5.5 2.2.1 4 1.8 4 5.6Z"
-                                        fill="#0AA0F6"
-                                    ></path>
-                                    <path
-                                        d="M7 14.5c.7 1.4 2.2 2.4 4.2 2.4 2.3 0 4-1.1 4.8-2.6-.8 3-3.3 5-6.5 5-3.7 0-6.5-2.7-6.5-6.4 0-3.4 2.3-6.1 5.7-6.8-1.6 1.1-2.3 2.6-2.3 4.3 0 1.5.3 2.8.6 4.1Z"
-                                        fill="#0DBD8B"
-                                    ></path>
-                                </svg>
-                            </span>
-                            <span class="browser-store-copy">
-                                <span class="browser-store-name">Edge Add-ons</span>
-                                <span class="browser-store-meta">Listing coming soon</span>
-                            </span>
-                        </span>
-                        <span class="site-badge warning">Coming soon</span>
-                    </div>
-                </div>
+                        <ul>
+                            <li>Your existing SOQL queries and REST collections are automatically migrated</li>
+                            <li>
+                                Inline edit setting (old tfpDisableInlineEditProd boolean) is auto-migrated to per-org
+                                map
+                            </li>
+                            <li>
+                                Sidebar shortcuts are renamed: old "de-tool" → "rec-tool" (Records), "org-panel" →
+                                "org-tool" (Org Tools)
+                            </li>
+                            <li>No manual action needed — upgrade seamlessly</li>
+                        </ul>
+
+                        <h3>Switching Machines</h3>
+                        <p><strong>How to transfer settings:</strong></p>
+                        <ol>
+                            <li>On old machine: Settings > Advanced > Backup → Export JSON</li>
+                            <li>Install extension on new machine</li>
+                            <li>On new machine: Settings > Advanced > Restore → Import JSON</li>
+                        </ol>
+
+                        <h3>Clearing Cache &amp; Resetting Defaults</h3>
+                        <ol>
+                            <li>Settings > Advanced > Cache Management</li>
+                            <li>Click "Clear All Cache" — removes describe results, search history, workspace state</li>
+                            <li>Click "Reset to Defaults" — restores all settings to initial state</li>
+                        </ol>
+                    </section>
+                </main>
             </div>
         </div>
 
         <footer class="site-footer">
-            <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
-            <div class="footer-links">
-                <a
-                    href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk"
-                    target="_blank"
-                    >Chrome Web Store</a
-                >
-                <span class="sep">·</span>
-                <a href="help.html">Help</a>
-                <span class="sep">·</span>
-                <a href="leaderboard.html">Leaderboard</a>
-                <span class="sep">·</span>
-                <a href="guide.html">Training Guide</a>
-                <span class="sep">·</span>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <span class="sep">·</span>
+            <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+            <div class="site-footer-links">
+                <a href="index.html">Home</a>
                 <a href="quick-start-guide.html">Quick Start</a>
-            </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
-                <span class="sep">·</span>
-                <a href="https://buymeacoffee.com/manaskumarbehera" target="_blank" rel="noopener"
-                    >Buy Me a Coffee ☕</a
-                >
-                <span class="sep">·</span>
-                <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">Portfolio</a>
+                <a href="guide.html">Training Guide</a>
+                <a href="documentation.html">Docs</a>
+                <a href="guides/index.html">Feature Guides</a>
+                <a href="quiz.html">Quiz</a>
             </div>
             <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
         </footer>

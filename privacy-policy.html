@@ -1,169 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - TrackForcePro</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
-    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-    <link rel="stylesheet" href="shared.css">
-    <style>
-        .site-section p { margin-bottom: 12px; color: var(--text-secondary); line-height: 1.7; }
-        .site-section ul { margin-top: 12px; padding-left: 20px; }
-        .site-section li { margin-bottom: 8px; color: var(--text-secondary); line-height: 1.6; }
-        .site-section li strong { color: var(--text); }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Privacy Policy - TrackForcePro</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort" />
+        <link rel="stylesheet" href="shared.css" />
+        <style>
+            .site-section p {
+                margin-bottom: 12px;
+                color: var(--text-secondary);
+                line-height: 1.7;
+            }
+            .site-section ul {
+                margin-top: 12px;
+                padding-left: 20px;
+            }
+            .site-section li {
+                margin-bottom: 8px;
+                color: var(--text-secondary);
+                line-height: 1.6;
+            }
+            .site-section li strong {
+                color: var(--text);
+            }
 
-        .privacy-shield {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 20px 24px;
-            background: var(--bg-alt);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border);
-            margin-bottom: 24px;
-        }
-        .privacy-shield .shield-icon { font-size: 2.5rem; flex-shrink: 0; }
-        .privacy-shield .shield-text { font-size: 0.95rem; color: var(--text-secondary); }
-        .privacy-shield .shield-text strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 1rem; }
-    </style>
-    <script src="theme.js"></script>
-</head>
-<body>
+            .privacy-shield {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 20px 24px;
+                background: var(--bg-alt);
+                border-radius: var(--radius-lg);
+                border: 1px solid var(--border);
+                margin-bottom: 24px;
+            }
+            .privacy-shield .shield-icon {
+                font-size: 2.5rem;
+                flex-shrink: 0;
+            }
+            .privacy-shield .shield-text {
+                font-size: 0.95rem;
+                color: var(--text-secondary);
+            }
+            .privacy-shield .shield-text strong {
+                color: var(--text);
+                display: block;
+                margin-bottom: 4px;
+                font-size: 1rem;
+            }
+        </style>
+        <script src="theme.js"></script>
+    </head>
+    <body>
+        <nav class="site-nav">
+            <div class="site-nav-inner">
+                <a href="index.html">Home</a>
+                <a href="quick-start-guide.html">Quick Start</a>
+                <a href="guide.html">Training Guide</a>
+                <a href="documentation.html">Docs</a>
+                <a href="guides/index.html">Feature Guides</a>
+                <a href="help.html">Help</a>
+                <a href="quiz.html">Quiz &amp; Games</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="privacy-policy.html" class="active">Privacy</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <span class="theme-icon"></span>
+                    <span class="theme-label"></span>
+                </button>
+            </div>
+        </nav>
 
-    <nav class="site-nav">
-        <div class="site-nav-inner">
-            <a href="index.html">Home</a>
-            <a href="quick-start-guide.html">Quick Start</a>
-            <a href="guide.html">Training Guide</a>
-            <a href="documentation.html">Docs</a>
-            <a href="guides/index.html">Feature Guides</a>
-            <a href="help.html">Help</a>
-            <a href="quiz.html">Quiz &amp; Games</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a href="privacy-policy.html" class="active">Privacy</a>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-                <span class="theme-icon"></span>
-                <span class="theme-label"></span>
-            </button>
+        <div class="site-hero">
+            <img
+                src="../icons/Icon-128.png"
+                alt="TrackForcePro"
+                class="hero-logo"
+                id="header-logo"
+                style="width: 64px; height: 64px"
+            />
+            <h1>Privacy Policy</h1>
+            <p>How TrackForcePro handles your data — transparently and securely</p>
+            <span class="version-badge">Last updated: March 29, 2026</span>
         </div>
-    </nav>
 
-    <div class="site-hero">
-        <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" style="width: 64px; height: 64px;">
-        <h1>Privacy Policy</h1>
-        <p>How TrackForcePro handles your data — transparently and securely</p>
-        <span class="version-badge">Last updated: March 28, 2026</span>
-    </div>
+        <div class="site-container narrow">
+            <div class="privacy-shield animate-in">
+                <div class="shield-icon">🛡️</div>
+                <div class="shield-text">
+                    <strong>Zero Data Collection</strong>
+                    TrackForcePro does not collect, store, or transmit any personal data to external servers. All data
+                    processing happens locally in your browser.
+                </div>
+            </div>
 
-    <div class="site-container narrow">
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">Introduction</h2>
+                <p>
+                    TrackForcePro is a browser extension built to help Salesforce administrators and developers work
+                    more efficiently. Whether you're auditing data, building queries, or exploring records, this
+                    extension keeps everything under your control—right in your browser.
+                </p>
+            </div>
 
-        <div class="privacy-shield animate-in">
-            <div class="shield-icon">🛡️</div>
-            <div class="shield-text">
-                <strong>Zero Data Collection</strong>
-                TrackForcePro does not collect, store, or transmit any personal data to external servers. All data processing happens locally in your browser.
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">What We Don't Collect</h2>
+                <p>
+                    <strong>We don't collect any personal data.</strong> Not your queries, not your audit trails, not
+                    your Salesforce credentials. The extension never sends information to us or to any external servers.
+                    Everything stays on your device, in your browser, under your control.
+                </p>
+            </div>
+
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">How Your Data Stays Local</h2>
+                <p>When you use TrackForcePro:</p>
+                <ul>
+                    <li>
+                        <strong>Authentication:</strong> Your Salesforce session is used only to authenticate with
+                        Salesforce's own APIs. We never see your credentials.
+                    </li>
+                    <li>
+                        <strong>Query Results:</strong> Data you retrieve is displayed in the extension and isn't stored
+                        unless you export it yourself.
+                    </li>
+                    <li>
+                        <strong>Your Preferences:</strong> Settings like theme choice, column widths, and shortcuts are
+                        saved locally in your browser, not on our servers.
+                    </li>
+                    <li>
+                        <strong>Audit & Explorer Data:</strong> All searches, record lookups, and data explorations
+                        happen between your browser and Salesforce only.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">Browser Permissions Explained</h2>
+                <p>TrackForcePro needs a few permissions to work. Here's what each one does in plain English:</p>
+                <ul>
+                    <li>
+                        <strong>Tab Access:</strong> Lets us detect when you're on a Salesforce page so we can offer
+                        helpful features right where you need them.
+                    </li>
+                    <li>
+                        <strong>Cookies:</strong> Helps us read your Salesforce session info so you don't have to log in
+                        twice. Also serves as a fallback if the service worker restarts.
+                    </li>
+                    <li>
+                        <strong>Local Storage:</strong> Saves your preferences — theme, keyboard shortcuts, query
+                        history, per-org settings, and saved queries — on your device only.
+                    </li>
+                    <li>
+                        <strong>Content Scripting:</strong> Lets us inject helpful tools directly on Salesforce pages —
+                        the Show All Data panel, TF Sidebar, and custom favicons.
+                    </li>
+                    <li>
+                        <strong>Context Menus:</strong> Enables the right-click menu on Salesforce pages for quick
+                        access to Show All Data, Field History, Sharing, SOQL Builder, and Copy Record ID.
+                    </li>
+                    <li>
+                        <strong>Browsing Data:</strong> Used only for cache management features within the extension. We
+                        never clear your browsing data without your action.
+                    </li>
+                    <li>
+                        <strong>Salesforce Domains:</strong> Allows the extension to communicate with Salesforce APIs
+                        (*.salesforce.com, *.force.com, *.lightning.force.com, *.visualforce.com) when you use query
+                        builders, records explorer, org tools, and audit features.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">Cross-Browser Support</h2>
+                <p>
+                    TrackForcePro is currently available on the Chrome Web Store and on Firefox Add-ons, while Edge
+                    remains a docs placeholder until that listing is live. No matter which browser you use, the same
+                    privacy principles apply: your data stays local, no external collection, no tracking. The extension
+                    uses Manifest V3 — the latest and most secure extension framework.
+                </p>
+            </div>
+
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">Third-Party Services</h2>
+                <p>
+                    We don't use any analytics, tracking pixels, advertising networks, or third-party services. The only
+                    place TrackForcePro communicates with is Salesforce—the org you're already logged into. That's it.
+                </p>
+            </div>
+
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">Data You Control</h2>
+                <p>Your preferences and saved data are yours to manage:</p>
+                <ul>
+                    <li>
+                        Export all settings, query history, and per-org data as JSON (Settings &gt; Backup &gt; Quick
+                        Export)
+                    </li>
+                    <li>
+                        Import settings from a backup file to restore or migrate (Settings &gt; Backup &gt; Quick
+                        Import)
+                    </li>
+                    <li>Clear all data directly in the Settings tab</li>
+                    <li>Uninstall the extension at any time — all local data is removed automatically</li>
+                    <li>Your Salesforce data is never stored unless you explicitly export it</li>
+                    <li>Inline editing can be disabled per org for extra safety (Settings &gt; Org Management)</li>
+                </ul>
+            </div>
+
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">Updates to This Policy</h2>
+                <p>
+                    If we make changes to this policy, we'll update the "Last updated" date at the top of this page.
+                    Your continued use of TrackForcePro means you accept any updates.
+                </p>
+            </div>
+
+            <div class="site-contact animate-in">
+                <h2 class="site-section-title">Questions?</h2>
+                <p>If you have questions about privacy or how TrackForcePro handles your data, reach out:</p>
+                <p style="margin-top: 12px"><strong>Developer:</strong> Manas Kumar Behera</p>
+                <p>
+                    <strong>LinkedIn:</strong>
+                    <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener"
+                        >linkedin.com/in/manas-behera-68607547</a
+                    >
+                </p>
+                <p>
+                    <strong>Website:</strong>
+                    <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">manaskumarbehera.com</a>
+                </p>
             </div>
         </div>
 
-        <div class="site-section animate-in">
-            <h2 class="site-section-title">Introduction</h2>
-            <p>TrackForcePro is a browser extension built to help Salesforce administrators and developers work more efficiently. Whether you're auditing data, building queries, or exploring records, this extension keeps everything under your control—right in your browser.</p>
-        </div>
-
-        <div class="site-section animate-in">
-            <h2 class="site-section-title">What We Don't Collect</h2>
-            <p><strong>We don't collect any personal data.</strong> Not your queries, not your audit trails, not your Salesforce credentials. The extension never sends information to us or to any external servers. Everything stays on your device, in your browser, under your control.</p>
-        </div>
-
-        <div class="site-section animate-in">
-            <h2 class="site-section-title">How Your Data Stays Local</h2>
-            <p>When you use TrackForcePro:</p>
-            <ul>
-                <li><strong>Authentication:</strong> Your Salesforce session is used only to authenticate with Salesforce's own APIs. We never see your credentials.</li>
-                <li><strong>Query Results:</strong> Data you retrieve is displayed in the extension and isn't stored unless you export it yourself.</li>
-                <li><strong>Your Preferences:</strong> Settings like theme choice, column widths, and shortcuts are saved locally in your browser, not on our servers.</li>
-                <li><strong>Audit & Explorer Data:</strong> All searches, record lookups, and data explorations happen between your browser and Salesforce only.</li>
-            </ul>
-        </div>
-
-        <div class="site-section animate-in">
-            <h2 class="site-section-title">Browser Permissions Explained</h2>
-            <p>TrackForcePro needs a few permissions to work. Here's what each one does in plain English:</p>
-            <ul>
-                <li><strong>Tab Access:</strong> Lets us detect when you're on a Salesforce page so we can offer helpful features right where you need them.</li>
-                <li><strong>Cookies:</strong> Helps us read your Salesforce session info so you don't have to log in twice. Also serves as a fallback if the service worker restarts.</li>
-                <li><strong>Local Storage:</strong> Saves your preferences — theme, keyboard shortcuts, query history, per-org settings, and saved queries — on your device only.</li>
-                <li><strong>Content Scripting:</strong> Lets us inject helpful tools directly on Salesforce pages — the Show All Data panel, TF Sidebar, and custom favicons.</li>
-                <li><strong>Context Menus:</strong> Enables the right-click menu on Salesforce pages for quick access to Show All Data, Field History, Sharing, SOQL Builder, and Copy Record ID.</li>
-                <li><strong>Browsing Data:</strong> Used only for cache management features within the extension. We never clear your browsing data without your action.</li>
-                <li><strong>Salesforce Domains:</strong> Allows the extension to communicate with Salesforce APIs (*.salesforce.com, *.force.com, *.lightning.force.com, *.visualforce.com) when you use query builders, records explorer, org tools, and audit features.</li>
-            </ul>
-        </div>
-
-        <div class="site-section animate-in">
-            <h2 class="site-section-title">Cross-Browser Support</h2>
-            <p>TrackForcePro is currently available on the Chrome Web Store and on Firefox Add-ons, while Edge remains a docs placeholder until that listing is live. No matter which browser you use, the same privacy principles apply: your data stays local, no external collection, no tracking. The extension uses Manifest V3 — the latest and most secure extension framework.</p>
-        </div>
-
-        <div class="site-section animate-in">
-            <h2 class="site-section-title">Third-Party Services</h2>
-            <p>We don't use any analytics, tracking pixels, advertising networks, or third-party services. The only place TrackForcePro communicates with is Salesforce—the org you're already logged into. That's it.</p>
-        </div>
-
-        <div class="site-section animate-in">
-            <h2 class="site-section-title">Data You Control</h2>
-            <p>Your preferences and saved data are yours to manage:</p>
-            <ul>
-                <li>Export all settings, query history, and per-org data as JSON (Settings &gt; Backup &gt; Quick Export)</li>
-                <li>Import settings from a backup file to restore or migrate (Settings &gt; Backup &gt; Quick Import)</li>
-                <li>Clear all data directly in the Settings tab</li>
-                <li>Uninstall the extension at any time — all local data is removed automatically</li>
-                <li>Your Salesforce data is never stored unless you explicitly export it</li>
-                <li>Inline editing can be disabled per org for extra safety (Settings &gt; Org Management)</li>
-            </ul>
-        </div>
-
-        <div class="site-section animate-in">
-            <h2 class="site-section-title">Updates to This Policy</h2>
-            <p>If we make changes to this policy, we'll update the "Last updated" date at the top of this page. Your continued use of TrackForcePro means you accept any updates.</p>
-        </div>
-
-        <div class="site-contact animate-in">
-            <h2 class="site-section-title">Questions?</h2>
-            <p>If you have questions about privacy or how TrackForcePro handles your data, reach out:</p>
-            <p style="margin-top: 12px;"><strong>Developer:</strong> Manas Kumar Behera</p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">linkedin.com/in/manas-behera-68607547</a></p>
-            <p><strong>Website:</strong> <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">manaskumarbehera.com</a></p>
-        </div>
-
-    </div>
-
-    <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
-        <div class="footer-links">
-            <a href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk" target="_blank">Chrome Web Store</a>
-            <span class="sep">·</span>
-            <a href="help.html">Help</a>
-            <span class="sep">·</span>
-            <a href="leaderboard.html">Leaderboard</a>
-            <span class="sep">·</span>
-            <a href="guide.html">Training Guide</a>
-            <span class="sep">·</span>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <span class="sep">·</span>
-            <a href="quick-start-guide.html">Quick Start</a>
-        </div>
-        <div class="footer-social">
-            <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
-            <span class="sep">·</span>
-            <a href="https://buymeacoffee.com/manaskumarbehera" target="_blank" rel="noopener">Buy Me a Coffee ☕</a>
-            <span class="sep">·</span>
-            <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">Portfolio</a>
-        </div>
-        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
-    </footer>
-
-</body>
+        <footer class="site-footer">
+            <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
+            <div class="footer-links">
+                <a
+                    href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk"
+                    target="_blank"
+                    >Chrome Web Store</a
+                >
+                <span class="sep">·</span>
+                <a href="help.html">Help</a>
+                <span class="sep">·</span>
+                <a href="leaderboard.html">Leaderboard</a>
+                <span class="sep">·</span>
+                <a href="guide.html">Training Guide</a>
+                <span class="sep">·</span>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <span class="sep">·</span>
+                <a href="quick-start-guide.html">Quick Start</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="sep">·</span>
+                <a href="https://buymeacoffee.com/manaskumarbehera" target="_blank" rel="noopener"
+                    >Buy Me a Coffee ☕</a
+                >
+                <span class="sep">·</span>
+                <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">Portfolio</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+        </footer>
+    </body>
 </html>

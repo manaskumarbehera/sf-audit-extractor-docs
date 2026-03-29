@@ -1,217 +1,511 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn how to use Org Tools to manage custom labels, monitor org limits, explore metadata, manage debug logs, and deploy metadata across Salesforce orgs.">
-    <title>TrackForcePro — 🏢 Org Tools Guide</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32">
-    <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16">
-    <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort">
-    <link rel="stylesheet" href="../shared.css">
-    <script src="../theme.js"></script>
-    <style>
-        .guide-shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px 48px; }
-        .guide-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
-        .guide-nav, .guide-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
-        .guide-nav { position: sticky; top: 20px; padding: 18px; }
-        .guide-nav h2 { font-size: 0.95rem; margin-bottom: 12px; color: var(--text); }
-        .guide-nav a { display: block; padding: 8px 10px; border-radius: 10px; color: var(--text-link); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
-        .guide-nav a:hover { background: var(--bg-alt); }
-        .guide-main { display: grid; gap: 22px; }
-        .guide-card { padding: 24px 26px; }
-        .guide-card h2 { font-size: 1.35rem; color: var(--text); margin-bottom: 10px; }
-        .guide-card p, .guide-card li { color: var(--text-secondary); line-height: 1.65; }
-        .guide-card ul, .guide-card ol { margin: 14px 0 0 18px; }
-        .guide-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-        .guide-table th, .guide-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
-        .guide-table th { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .guide-highlight { margin-top: 16px; padding: 16px 18px; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; background: linear-gradient(135deg, rgba(1,118,211,0.08), rgba(42,115,255,0.04)); }
-        .guide-lab { margin-top: 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg-alt); border: 1px dashed var(--border); }
-        .guide-lab strong { color: var(--text); }
-        .guide-badge { display: inline-block; margin-left: 8px; padding: 4px 10px; border-radius: 20px; background: var(--primary); color: white; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
-        @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; } .guide-nav { position: static; } }
-    </style>
-</head>
-<body>
-    <nav class="site-nav">
-        <div class="site-nav-inner">
-            <a href="../index.html">Home</a>
-            <a href="../quick-start-guide.html">Quick Start</a>
-            <a href="../guide.html">Training Guide</a>
-            <a href="../documentation.html">Docs</a>
-            <a href="index.html" class="active">Feature Guides</a>
-            <a href="../help.html">Help</a>
-            <a href="../quiz.html">Quiz &amp; Games</a>
-            <a href="../leaderboard.html">Leaderboard</a>
-            <a href="../privacy-policy.html">Privacy</a>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-                <span class="theme-icon"></span>
-                <span class="theme-label"></span>
-            </button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Manage custom labels, org limits, metadata, debug logs, and deployment tools with TrackForcePro's Org Tools suite."
+        />
+        <title>TrackForcePro — 🏢 Org Tools Guide</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../../icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="../../icons/Icon-32.png" id="favshort" />
+        <link rel="stylesheet" href="../shared.css" />
+        <script src="../theme.js"></script>
+        <style>
+            .guide-shell {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 28px 20px 48px;
+            }
+            .guide-grid {
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+            .guide-nav,
+            .guide-card {
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow);
+            }
+            .guide-nav {
+                position: sticky;
+                top: 20px;
+                padding: 18px;
+            }
+            .guide-nav h2 {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+                color: var(--text);
+            }
+            .guide-nav a {
+                display: block;
+                padding: 8px 10px;
+                border-radius: 10px;
+                color: var(--text-link);
+                text-decoration: none;
+                font-size: 0.92rem;
+                font-weight: 600;
+            }
+            .guide-nav a:hover {
+                background: var(--bg-alt);
+            }
+            .guide-main {
+                display: grid;
+                gap: 22px;
+            }
+            .guide-card {
+                padding: 24px 26px;
+            }
+            .guide-card h2 {
+                font-size: 1.35rem;
+                color: var(--text);
+                margin-bottom: 10px;
+            }
+            .guide-card p,
+            .guide-card li {
+                color: var(--text-secondary);
+                line-height: 1.65;
+            }
+            .guide-card ul,
+            .guide-card ol {
+                margin: 14px 0 0 18px;
+            }
+            .guide-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 12px;
+            }
+            .guide-table th,
+            .guide-table td {
+                text-align: left;
+                padding: 12px 14px;
+                border-bottom: 1px solid var(--border);
+                color: var(--text-secondary);
+                vertical-align: top;
+            }
+            .guide-table th {
+                color: var(--text);
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .guide-highlight {
+                margin-top: 16px;
+                padding: 16px 18px;
+                border-left: 4px solid var(--primary);
+                border-radius: 0 12px 12px 0;
+                background: linear-gradient(135deg, rgba(1, 118, 211, 0.08), rgba(42, 115, 255, 0.04));
+            }
+            .guide-lab {
+                margin-top: 14px;
+                padding: 16px 18px;
+                border-radius: 14px;
+                background: var(--bg-alt);
+                border: 1px dashed var(--border);
+            }
+            .guide-lab strong {
+                color: var(--text);
+            }
+            @media (max-width: 900px) {
+                .guide-grid {
+                    grid-template-columns: 1fr;
+                }
+                .guide-nav {
+                    position: static;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="site-nav">
+            <div class="site-nav-inner">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html" class="active">Feature Guides</a>
+                <a href="../help.html">Help</a>
+                <a href="../quiz.html">Quiz &amp; Games</a>
+                <a href="../leaderboard.html">Leaderboard</a>
+                <a href="../privacy-policy.html">Privacy</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <span class="theme-icon"></span>
+                    <span class="theme-label"></span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="guide-shell">
+            <div class="guide-grid">
+                <nav class="guide-nav">
+                    <h2>Org Tools</h2>
+                    <a href="#what-it-does">What It Does</a>
+                    <a href="#why-use-it">Why Use It</a>
+                    <a href="#how-to-access">How to Access</a>
+                    <a href="#custom-labels">Custom Labels</a>
+                    <a href="#org-limits">Org Limits</a>
+                    <a href="#metadata-explorer">Metadata Explorer</a>
+                    <a href="#debug-logs">Debug Logs</a>
+                    <a href="#org-identity">Org Identity</a>
+                    <a href="#tips">Tips &amp; Best Practices</a>
+                </nav>
+
+                <div class="guide-main">
+                    <div class="guide-card">
+                        <span class="badge badge-alt">Workspace Tab</span>
+                        <h1 style="font-size: 1.6rem; margin-top: 12px; color: var(--text)">🏢 Org Tools Guide</h1>
+                    </div>
+
+                    <div class="guide-card" id="what-it-does">
+                        <h2>What It Does</h2>
+                        <p>
+                            Org Tools is a comprehensive suite of organization-level administration utilities. Manage
+                            custom labels and translations, monitor org limits and governor quotas in real time, search
+                            metadata across your org, create and manage debug logs, and view org identity and
+                            configuration. All tools are accessible from a single tabbed interface without navigating to
+                            Salesforce Setup.
+                        </p>
+                    </div>
+
+                    <div class="guide-card" id="why-use-it">
+                        <h2>Why Use It</h2>
+                        <p>Org Tools saves time and keeps you focused:</p>
+                        <ul>
+                            <li>
+                                <strong>Avoid Setup Navigation</strong> — Access org-level tools without digging through
+                                Salesforce Setup menus
+                            </li>
+                            <li>
+                                <strong>Bulk Label Management</strong> — Export custom labels for team translation, then
+                                import them back
+                            </li>
+                            <li>
+                                <strong>Real-Time Org Limits</strong> — Monitor API usage, storage, and governor limits
+                                before running bulk operations
+                            </li>
+                            <li>
+                                <strong>Cross-Org Metadata Search</strong> — Find objects, classes, flows, and fields by
+                                API name quickly
+                            </li>
+                            <li>
+                                <strong>Debug Log Management</strong> — Create trace flags and access debug logs without
+                                Setup access
+                            </li>
+                            <li>
+                                <strong>Org Configuration Snapshot</strong> — View org edition, API version, org ID, and
+                                instance URL at a glance
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-card" id="how-to-access">
+                        <h2>How to Access</h2>
+                        <p>
+                            Open the TrackForcePro workspace popup and click the <strong>Org Tools</strong> tab (🏢
+                            icon) in the main tab bar. The tab displays a panel toggle bar at the top with buttons for
+                            each of the five tool panels. Click any button to switch between panels.
+                        </p>
+                        <p>
+                            You can also access specific Org Tools from the Sidebar on any Salesforce page by clicking
+                            "Org Tools" in the quick-access shortcuts.
+                        </p>
+                    </div>
+
+                    <div class="guide-card" id="custom-labels">
+                        <h2>Custom Labels Panel</h2>
+                        <p>
+                            View, search, and manage custom labels directly from TrackForcePro without visiting Setup.
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Key Features
+                        </h3>
+                        <ul>
+                            <li><strong>Search &amp; Filter</strong> — Find labels by name, key, or category</li>
+                            <li>
+                                <strong>📤 Export Labels</strong> — Download labels as CSV for bulk editing or external
+                                translation
+                            </li>
+                            <li><strong>📥 Import Labels</strong> — Upload translated labels back to your org</li>
+                            <li><strong>🌐 Bulk Operations</strong> — Update multiple labels at once from CSV</li>
+                            <li><strong>View Details</strong> — See label key, value, language, and category</li>
+                        </ul>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Translation Workflow
+                        </h3>
+                        <ol>
+                            <li>
+                                <strong>Export:</strong> Click <strong>Export</strong> to download all custom labels as
+                                CSV
+                            </li>
+                            <li>
+                                <strong>Translate:</strong> Share the CSV with your translation team or use an external
+                                translation service
+                            </li>
+                            <li>
+                                <strong>Import:</strong> Upload the translated CSV back to your org via
+                                <strong>Import</strong> button
+                            </li>
+                            <li><strong>Verify:</strong> Check that translations appear correctly in the label list</li>
+                        </ol>
+
+                        <div class="guide-highlight">
+                            <strong>💡 Pro Tip:</strong> Exporting labels for team translation is much safer than having
+                            multiple people edit in Setup simultaneously. Avoids conflicts and makes translation easier
+                            to track.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="org-limits">
+                        <h2>Org Limits Panel</h2>
+                        <p>
+                            Real-time dashboard of your Salesforce org's governor limits and current usage as a
+                            percentage of each limit.
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Monitored Limits
+                        </h3>
+                        <table class="guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Limit</th>
+                                    <th>What It Tracks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>API Calls</strong></td>
+                                    <td>
+                                        Daily limit on REST/SOAP/Tooling API calls. Critical before bulk operations.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>File Storage</strong></td>
+                                    <td>Files and documents quota (in MB). Useful when bulk-uploading files.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Data Storage</strong></td>
+                                    <td>Records and custom objects quota (in MB). Monitor before large data loads.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Metadata API</strong></td>
+                                    <td>Concurrent deploy/retrieve limits. Important for CI/CD pipelines.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Batch Size Limits</strong></td>
+                                    <td>Records per batch in Batch Apex. Affects Batch Job scheduling.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>SOQL Row Count</strong></td>
+                                    <td>Maximum records returned by a single query. Affects pagination logic.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p style="margin-top: 14px">
+                            <strong>When to Check:</strong> Before running large data migrations, bulk API operations,
+                            or batch Apex jobs. Also useful for monitoring API usage trends over time.
+                        </p>
+
+                        <div class="guide-lab">
+                            <strong>Red Zone Alert:</strong> If any limit shows &gt; 80% usage, consider optimizing your
+                            operations or contacting Salesforce to request a limit increase.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="metadata-explorer">
+                        <h2>Metadata Explorer Panel</h2>
+                        <p>
+                            Search metadata across your entire org. Find custom objects, Apex classes, flows, permission
+                            sets, custom fields, and more by API name.
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            How It Works
+                        </h3>
+                        <ol>
+                            <li>Enter a search term (e.g., "Account", "CustomField__c", "MyBatchJob")</li>
+                            <li>
+                                Select a metadata type to filter (Optional: select "All Types" to search across all)
+                            </li>
+                            <li>Click <strong>Search</strong></li>
+                            <li>
+                                Results display API names, types, and key metadata. Click any result to view details.
+                            </li>
+                        </ol>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            What You Can Find
+                        </h3>
+                        <ul>
+                            <li><strong>Custom Objects</strong> — API names, creation date, accessibility</li>
+                            <li><strong>Custom Fields</strong> — Field name, data type, and parent object</li>
+                            <li><strong>Apex Classes</strong> — Class name, namespace, and version</li>
+                            <li><strong>Flows</strong> — Flow name, type (Cloud, Visual, etc.), and status</li>
+                            <li><strong>Permission Sets</strong> — Permission set name and description</li>
+                            <li><strong>Profiles</strong> — Profile name and object/field access levels</li>
+                            <li>
+                                <strong>Custom Metadata Types</strong> — Custom metadata API names and record counts
+                            </li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>vs. Setup Search:</strong> Metadata Explorer is for deep, cross-object searches by
+                            API name. Setup Search (native Salesforce) is for quick "where is this page?" lookups. Use
+                            the right tool for the right job.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="debug-logs">
+                        <h2>Debug Logs Panel</h2>
+                        <p>
+                            Create and manage debug log trace flags without visiting Salesforce Setup. Enable logging
+                            for specific users, set log levels, and download logs for offline analysis.
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Creating Debug Logs
+                        </h3>
+                        <ol>
+                            <li>Click <strong>New Trace Flag</strong></li>
+                            <li>Select a user to enable logging for</li>
+                            <li>Choose a log level: Debug, Info, Warn, or Error</li>
+                            <li>Set expiration (logs expire after 30 minutes by default)</li>
+                            <li>Click <strong>Create</strong></li>
+                        </ol>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Log Levels Explained
+                        </h3>
+                        <ul>
+                            <li>
+                                <strong>Debug</strong> — Most verbose. Captures all method calls, variable assignments,
+                                and system calls. Useful for deep troubleshooting.
+                            </li>
+                            <li>
+                                <strong>Info</strong> — Medium verbosity. Captures main flow and important state
+                                changes.
+                            </li>
+                            <li><strong>Warn</strong> — Lower verbosity. Only captures warnings and errors.</li>
+                            <li><strong>Error</strong> — Least verbose. Only captures errors and exceptions.</li>
+                        </ul>
+
+                        <div class="guide-lab">
+                            <strong>Salesforce Limits:</strong> Each org can have max 20 active trace flags at one time.
+                            Logs are retained for 1000 lines or 24 hours, whichever comes first. Old logs are
+                            automatically purged.
+                        </div>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 14px; margin-bottom: 8px">
+                            Viewing &amp; Downloading Logs
+                        </h3>
+                        <ul>
+                            <li>Click <strong>View Log</strong> to see log contents inline with syntax highlighting</li>
+                            <li>
+                                Click <strong>Download</strong> to save the log file to your computer for offline
+                                analysis
+                            </li>
+                            <li>Logs are displayed in reverse chronological order (newest first)</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-card" id="org-identity">
+                        <h2>Org Identity Panel</h2>
+                        <p>
+                            View your org's configuration at a glance: edition, API version, org ID, instance URL, and
+                            other key metadata.
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Information Displayed
+                        </h3>
+                        <ul>
+                            <li><strong>Org Name</strong> — Your org's official name</li>
+                            <li>
+                                <strong>Org ID</strong> — 18-character unique identifier. Copy for support tickets or
+                                API calls.
+                            </li>
+                            <li>
+                                <strong>Instance</strong> — Which Salesforce instance your org runs on (NA, EU, AP,
+                                etc.)
+                            </li>
+                            <li><strong>API Version</strong> — Current API version (e.g., v60.0)</li>
+                            <li>
+                                <strong>Edition</strong> — Org edition (Developer, Professional, Enterprise, Unlimited,
+                                etc.)
+                            </li>
+                            <li>
+                                <strong>Feature Licenses</strong> — Active licenses (Einstein Analytics, Platform
+                                Events, etc.)
+                            </li>
+                            <li><strong>Created Date</strong> — Org creation timestamp</li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>💡 Pro Tip:</strong> Copy your Org ID and instance URL from the Org Identity panel.
+                            These are useful for support tickets, documentation, and integration configuration.
+                        </div>
+                    </div>
+
+                    <div class="guide-card" id="tips">
+                        <h2>Tips &amp; Best Practices</h2>
+                        <ul>
+                            <li>
+                                <strong>Export labels for safe translation</strong> — Rather than translating in Setup,
+                                export to CSV, collaborate with your team externally, and import back. Avoids
+                                concurrent-edit conflicts.
+                            </li>
+                            <li>
+                                <strong>Monitor limits before bulk operations</strong> — Check the Org Limits panel
+                                before running large data migrations, bulk updates, or Batch Apex jobs. Prevents hitting
+                                limits mid-operation.
+                            </li>
+                            <li>
+                                <strong>Use Metadata Explorer for comprehensive searches</strong> — Finding all
+                                references to a custom field or flow? Metadata Explorer is faster than multiple Setup
+                                searches.
+                            </li>
+                            <li>
+                                <strong>Create debug logs from TrackForcePro</strong> — Much faster than navigating
+                                Setup when you need to debug a specific user's action.
+                            </li>
+                            <li>
+                                <strong>Check org limits weekly</strong> — If your org has high API usage or large data
+                                volumes, monitor limits regularly to catch trends early.
+                            </li>
+                            <li>
+                                <strong>Bookmark your Org Identity info</strong> — Save your org ID and instance URL
+                                somewhere accessible. You'll reference them often in documentation and support tickets.
+                            </li>
+                        </ul>
+
+                        <div class="guide-highlight">
+                            <strong>Best Practice:</strong> Before starting any org-wide operation (data migration, bulk
+                            API calls, deployments), open the Org Limits panel and verify you have headroom. It takes 30
+                            seconds and prevents many troubleshooting hours.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
 
-    <div class="guide-shell">
-        <div class="guide-grid">
-            <aside class="guide-nav">
-                <h2>On This Page</h2>
-                <a href="#what-it-does">What It Does</a>
-                <a href="#how-to-access">How to Access</a>
-                <a href="#custom-labels">Custom Labels</a>
-                <a href="#org-limits">Org Limits</a>
-                <a href="#metadata-explorer">Metadata Explorer</a>
-                <a href="#debug-logs">Debug Logs</a>
-                <a href="#deployment-tools">Deployment Tools</a>
-                <a href="#tips">Tips & Best Practices</a>
-            </aside>
-
-            <main class="guide-main">
-                <div class="guide-card">
-                    <h1 style="font-size: 2rem; color: var(--text); margin-bottom: 6px;">🏢 Org Tools Guide
-                        <span class="guide-badge">Workspace Tab</span>
-                    </h1>
-                    <p style="color: var(--text-secondary); font-size: 1.05rem;">Comprehensive org-level administration tools for custom labels, org limits, metadata exploration, debug logs, and deployments.</p>
-                </div>
-
-                <div class="guide-card" id="what-it-does">
-                    <h2>What It Does</h2>
-                    <p>Org Tools is a comprehensive suite of organization-level administration utilities. Manage custom labels and translations, monitor org limits and governor quotas, search metadata across your org, manage debug logs, and deploy metadata between orgs. Promoted to a top-level tab in v1.8.0, Org Tools provides seven specialized panels accessible from a toggle bar.</p>
-                </div>
-
-                <div class="guide-card" id="how-to-access">
-                    <h2>How to Access</h2>
-                    <p>Open the TrackForcePro workspace popup and click the <strong>Org Tools</strong> tab (🏢 icon) in the main tab bar. The tab displays a panel toggle bar at the top with buttons for each of the seven tool panels. Click any button to switch between panels.</p>
-                    <p>You can also access org tools from the Sidebar or Command Palette on any Salesforce page.</p>
-                </div>
-
-                <div class="guide-card" id="custom-labels">
-                    <h2>Custom Labels Panel</h2>
-                    <p>View, search, export, and import custom labels directly from TrackForcePro without visiting Setup.</p>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Key Features</h3>
-                    <ul>
-                        <li><strong>Search &amp; Filter</strong> — Find labels by name or category</li>
-                        <li><strong>📤 Export</strong> — Download labels as CSV for bulk editing or translation</li>
-                        <li><strong>📥 Import</strong> — Upload translated labels back to your org</li>
-                        <li><strong>🌐 Translate</strong> — Mark labels for translation workflows</li>
-                        <li><strong>Bulk Operations</strong> — Update multiple labels at once</li>
-                    </ul>
-                    <div class="guide-lab">
-                        <strong>Translation Workflow:</strong> Export labels → translate externally or with your team → import back to your org. This is the safest way to manage translations at scale without manual Setup entry.
-                    </div>
-                </div>
-
-                <div class="guide-card" id="org-limits">
-                    <h2>Org Limits Panel</h2>
-                    <p>Real-time dashboard of your Salesforce org's governor limits and usage. Displays current utilization as a percentage of each limit.</p>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Monitored Limits</h3>
-                    <ul>
-                        <li><strong>API Calls</strong> — Daily limit on REST/Soap/Tooling API calls</li>
-                        <li><strong>File Storage</strong> — Files and documents quota</li>
-                        <li><strong>Data Storage</strong> — Records and custom objects quota</li>
-                        <li><strong>Metadata API</strong> — Concurrent deploy/retrieve limits</li>
-                        <li><strong>Batch Size</strong> — Records per batch in Batch Apex</li>
-                        <li><strong>Soql Row Count</strong> — Query result set limit</li>
-                    </ul>
-                    <p style="margin-top: 14px;">Data updates in real time from the Salesforce Limits REST endpoint. Use this to track API usage and plan bulk operations.</p>
-                </div>
-
-                <div class="guide-card" id="metadata-explorer">
-                    <h2>Metadata Explorer Panel</h2>
-                    <p>Broad metadata search across your entire org. Find custom objects, Apex classes, flows, permission sets, custom fields, and more by API name.</p>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">What Makes It Different from Setup Search</h3>
-                    <table class="guide-table">
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Metadata Explorer</th>
-                                <th>Setup Search</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Search Scope</strong></td>
-                                <td>Multiple metadata types (objects, classes, flows, etc.)</td>
-                                <td>Salesforce pages and links</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Query By</strong></td>
-                                <td>API name or partial substring</td>
-                                <td>Page title or label</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Results Detail</strong></td>
-                                <td>Full metadata details and attributes</td>
-                                <td>Quick page navigation</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Use Case</strong></td>
-                                <td>Deep dives and bulk research</td>
-                                <td>Quick Setup page location</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="guide-highlight">
-                        <strong>Tip:</strong> Use Metadata Explorer when you need comprehensive cross-object searches. Use Setup Search (native Salesforce, accessed via sidebar in TrackForcePro) for quick "where is this page?" lookups.
-                    </div>
-                </div>
-
-                <div class="guide-card" id="debug-logs">
-                    <h2>Debug Logs Panel</h2>
-                    <p>Manage debug log trace flags without visiting Setup. Create new logs for specific users, view active logging levels, and download log content.</p>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Key Features</h3>
-                    <ul>
-                        <li><strong>View Active Trace Flags</strong> — See which users have debug logging enabled and at what level</li>
-                        <li><strong>Create New Trace Flags</strong> — Enable logging for a user without going to Setup</li>
-                        <li><strong>Set Log Levels</strong> — Choose Debug, Info, Warn, or Error level per user</li>
-                        <li><strong>Download Logs</strong> — Download log files to review locally</li>
-                        <li><strong>View Log Content</strong> — Inline log viewer with syntax highlighting</li>
-                    </ul>
-                    <div class="guide-lab">
-                        <strong>Debug Log Limits:</strong> Salesforce stores the last 20 debug logs per org (or 1000 lines per log, whichever is smaller). Old logs are automatically deleted as new ones are created.
-                    </div>
-                </div>
-
-                <div class="guide-card" id="deployment-tools">
-                    <h2>Deployment Tools Panel</h2>
-                    <p>Deploy metadata between Salesforce orgs, validate deployments before committing, and track deployment history.</p>
-                    <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px;">Common Workflows</h3>
-                    <ul>
-                        <li><strong>Sandbox to Production</strong> — Package changes from dev sandbox and deploy to production</li>
-                        <li><strong>Validation Deploy</strong> — Test deployment without committing. Useful for risky changes.</li>
-                        <li><strong>Rollback</strong> — Restore previous deployment state by re-deploying old versions</li>
-                        <li><strong>Metadata Subset</strong> — Deploy only specific components (classes, flows, objects) instead of everything</li>
-                    </ul>
-                    <div class="guide-highlight">
-                        <strong>🚀 Deploy Button:</strong> Click the Deploy button to start a new deployment. Select your source org, target org, and components. Confirm the deployment, and TrackForcePro handles the rest via the Metadata API.
-                    </div>
-                </div>
-
-                <div class="guide-card" id="tips">
-                    <h2>Tips & Best Practices</h2>
-                    <ul>
-                        <li><strong>Use Metadata Explorer for broad org research</strong> — Finding all references to a custom field or flow? Metadata Explorer is faster than multiple Setup searches.</li>
-                        <li><strong>Export custom labels for team translation</strong> — Rather than translating in Setup, export to CSV, share with your team, and import back. Avoids concurrent-edit conflicts.</li>
-                        <li><strong>Monitor org limits before bulk operations</strong> — Check the Org Limits panel before running large data loads or Batch Apex jobs. Prevents hitting limits mid-job.</li>
-                        <li><strong>Create debug logs from TrackForcePro</strong> — Faster than Setup when you need to debug a specific user's action. No Setup navigation needed.</li>
-                        <li><strong>Validate deployments before production</strong> — Use the Validation Deploy option to test metadata changes without committing. Catches errors before they go live.</li>
-                        <li><strong>Setup Search is still your friend</strong> — For quick "where is X page?" lookups, Setup Search (native Salesforce, accessed via sidebar) is faster than Metadata Explorer. Use the right tool for the right job.</li>
-                    </ul>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <footer class="site-footer">
-        <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
-        <div class="site-footer-links">
-            <a href="../index.html">Home</a>
-            <a href="../quick-start-guide.html">Quick Start</a>
-            <a href="../guide.html">Training Guide</a>
-            <a href="../documentation.html">Docs</a>
-            <a href="index.html">Feature Guides</a>
-        </div>
-        <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
-    </footer>
-</body>
+        <footer class="site-footer">
+            <p><strong>TrackForcePro</strong> — Salesforce Admin &amp; Developer Toolkit</p>
+            <div class="site-footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../quick-start-guide.html">Quick Start</a>
+                <a href="../guide.html">Training Guide</a>
+                <a href="../documentation.html">Docs</a>
+                <a href="index.html">Feature Guides</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+        </footer>
+    </body>
 </html>

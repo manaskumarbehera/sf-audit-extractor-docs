@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Get TrackForcePro installed and ready in minutes. Step-by-step guide for Salesforce admins and developers."
+            content="Get TrackForcePro installed and ready in minutes. Premium quick-start guide for Salesforce admins and developers."
         />
         <title>TrackForcePro - Quick Start Guide</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32" />
@@ -146,26 +146,229 @@
                 line-height: 1.5;
             }
 
-            .qs-table {
-                width: 100%;
-                border-collapse: collapse;
+            .browser-links {
+                display: flex;
+                gap: 12px;
+                margin: 20px 0;
+                flex-wrap: wrap;
+            }
+            .browser-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 18px;
+                background: var(--bg-alt);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                color: var(--text-link);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition:
+                    background var(--transition-fast),
+                    border-color var(--transition-fast),
+                    transform var(--transition-fast);
+            }
+            .browser-link:hover {
+                background: var(--card-bg);
+                border-color: var(--primary);
+                transform: translateY(-1px);
+                box-shadow: var(--shadow);
+                text-decoration: none;
+            }
+            .browser-icon {
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+            }
+
+            .surfaces-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 16px;
+                margin: 24px 0;
+            }
+            .surface-card {
+                background: var(--bg-alt);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 20px;
+                transition:
+                    border-color var(--transition-fast),
+                    box-shadow var(--transition-fast);
+            }
+            .surface-card:hover {
+                border-color: var(--primary);
+                box-shadow: var(--shadow-md);
+            }
+            .surface-card h4 {
+                color: var(--primary);
+                margin-bottom: 10px;
+                font-weight: 700;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .surface-card p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            .modes-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 16px;
+                margin: 24px 0;
+            }
+            .mode-card {
+                background: var(--bg-alt);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 20px;
+                transition:
+                    border-color var(--transition-fast),
+                    box-shadow var(--transition-fast);
+            }
+            .mode-card:hover {
+                border-color: var(--primary);
+                box-shadow: var(--shadow-md);
+            }
+            .mode-header {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+            .mode-badge {
+                display: inline-flex;
+                align-items: center;
+                padding: 4px 10px;
+                border-radius: var(--radius-pill);
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+            .mode-badge.explore {
+                background: rgba(1, 118, 211, 0.1);
+                color: var(--primary);
+            }
+            .mode-badge.debug {
+                background: rgba(254, 147, 57, 0.1);
+                color: var(--warning);
+            }
+            .mode-badge.analyze {
+                background: rgba(46, 132, 74, 0.1);
+                color: var(--success);
+            }
+            [data-theme='dark'] .mode-badge.explore {
+                background: rgba(27, 150, 255, 0.15);
+            }
+            [data-theme='dark'] .mode-badge.debug {
+                background: rgba(251, 180, 73, 0.15);
+            }
+            [data-theme='dark'] .mode-badge.analyze {
+                background: rgba(69, 198, 90, 0.15);
+            }
+            .mode-card h4 {
+                color: var(--text);
+                margin: 0 0 10px 0;
+                font-weight: 700;
+                font-size: 1rem;
+            }
+            .mode-card p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            .getting-started-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 14px;
                 margin: 20px 0;
             }
-            .qs-table th,
-            .qs-table td {
-                padding: 12px 15px;
-                text-align: left;
-                border-bottom: 1px solid var(--border);
-                font-size: 0.9rem;
-                color: var(--text-secondary);
+            .getting-started-card {
+                background: var(--bg-alt);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 16px;
+                cursor: pointer;
+                transition: all var(--transition-fast);
             }
-            .qs-table th {
-                background: var(--bg);
-                font-weight: 700;
+            .getting-started-card:hover {
+                background: var(--card-bg);
+                border-color: var(--primary);
+                transform: translateY(-2px);
+                box-shadow: var(--shadow);
+            }
+            .getting-started-card .emoji {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+                display: block;
+            }
+            .getting-started-card h4 {
                 color: var(--text);
+                margin: 0 0 4px 0;
+                font-weight: 700;
+                font-size: 0.95rem;
             }
-            .qs-table tr:hover {
-                background: var(--card-bg-hover);
+            .getting-started-card p {
+                color: var(--text-muted);
+                font-size: 0.85rem;
+                margin: 0;
+                line-height: 1.5;
+            }
+
+            .whats-next {
+                background: linear-gradient(135deg, #f0f9ff, #f5f1ff);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                padding: 28px;
+                margin-top: 32px;
+                text-align: center;
+            }
+            [data-theme='dark'] .whats-next {
+                background: linear-gradient(135deg, rgba(1, 118, 211, 0.08), rgba(6, 182, 212, 0.08));
+            }
+            .whats-next h3 {
+                color: var(--primary);
+                margin-bottom: 16px;
+                font-size: 1.2rem;
+            }
+            .whats-next p {
+                color: var(--text-secondary);
+                margin-bottom: 20px;
+            }
+            .whats-next-links {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .whats-next-link {
+                display: inline-block;
+                padding: 10px 18px;
+                background: var(--primary);
+                color: white;
+                text-decoration: none;
+                border-radius: var(--radius);
+                font-weight: 500;
+                font-size: 0.9rem;
+                transition:
+                    background var(--transition-fast),
+                    transform var(--transition-fast);
+            }
+            .whats-next-link:hover {
+                background: var(--primary-hover);
+                transform: translateY(-1px);
+                text-decoration: none;
             }
 
             .tip {
@@ -179,74 +382,6 @@
             }
             [data-theme='dark'] .tip {
                 background: rgba(69, 198, 90, 0.08);
-            }
-
-            .warning {
-                background: linear-gradient(135deg, #fff5e6, #fef3c7);
-                border-left: 4px solid var(--warning);
-                padding: 16px 20px;
-                margin: 20px 0;
-                border-radius: 0 var(--radius) var(--radius) 0;
-                color: var(--text-secondary);
-                font-size: 0.93rem;
-            }
-            [data-theme='dark'] .warning {
-                background: rgba(251, 180, 73, 0.08);
-            }
-
-            .pro-tips {
-                background: var(--bg-alt);
-                border-radius: var(--radius);
-                padding: 20px;
-                border: 1px solid var(--border);
-                margin: 20px 0;
-            }
-            .pro-tips h4 {
-                color: var(--primary);
-                margin-bottom: 12px;
-                font-weight: 700;
-            }
-            .pro-tips ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-            .pro-tips li {
-                padding: 6px 0;
-                color: var(--text-secondary);
-                font-size: 0.9rem;
-            }
-            .pro-tips li::before {
-                content: '⭐ ';
-                margin-right: 8px;
-            }
-
-            .cta-banner {
-                background: linear-gradient(135deg, #032d60, #0176d3, #1b96ff);
-                color: white;
-                border-radius: var(--radius-xl);
-                text-align: center;
-                padding: 40px 30px;
-                margin-top: 24px;
-                position: relative;
-                overflow: hidden;
-            }
-            [data-theme='dark'] .cta-banner {
-                background: linear-gradient(135deg, #0b2645, #0176d3);
-            }
-            .cta-banner::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background-image:
-                    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-                background-size: 40px 40px;
-                pointer-events: none;
-            }
-            .cta-banner > * {
-                position: relative;
-                z-index: 1;
             }
 
             kbd {
@@ -265,9 +400,14 @@
                     padding: 20px;
                 }
                 .instruction-step {
+                    gap: 16px;
+                }
+                .browser-links {
                     flex-direction: column;
-                    align-items: center;
-                    text-align: center;
+                }
+                .browser-link {
+                    width: 100%;
+                    justify-content: center;
                 }
             }
             @media print {
@@ -306,12 +446,11 @@
         <div class="site-hero">
             <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Quick Start Guide</h1>
-            <p>Get TrackForcePro installed and ready in minutes</p>
-            <span class="version-badge">Version 2.1.5</span>
-            <div style="margin-top: 8px; font-size: 0.9rem; color: var(--text-muted)">
-                <strong>What's new:</strong> LWC Explorer now separates Apex, UI API, GraphQL, and Fetch/API traffic,
-                and both edit actions open the large in-page editor window.
-            </div>
+            <p>
+                Get TrackForcePro installed and ready in minutes. Premium toolkit for Salesforce admin and developer
+                workflows.
+            </p>
+            <span class="version-badge">Version 2.1.6</span>
         </div>
 
         <div class="qs-container">
@@ -321,137 +460,78 @@
                     <h2><span class="step-number">1</span> Install the Extension</h2>
                 </div>
                 <div class="section-content">
-                    <h3>Install from Chrome or Firefox</h3>
+                    <h3>One-Click Installation</h3>
                     <p>
-                        TrackForcePro is available on the Chrome Web Store and on Firefox Add-ons. Edge stays a
-                        placeholder in the docs until that store listing is live.
+                        TrackForcePro is available on all major browser extension stores. Choose your browser and click
+                        to install:
                     </p>
 
-                    <p style="margin: 20px 0 20px 0">
-                        Choose your browser from the availability row below. Chrome and Firefox are available now, and
-                        Edge will appear here once the listing is live.
-                    </p>
-
-                    <div class="browser-availability">
+                    <div class="browser-links">
                         <a
                             href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk"
                             target="_blank"
-                            class="browser-store-card is-link"
+                            rel="noopener noreferrer"
+                            class="browser-link"
                         >
-                            <span class="browser-store-main">
-                                <span class="browser-store-icon chrome" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="12" r="10" fill="#FABB05"></circle>
-                                        <path d="M12 2a10 10 0 0 1 8.66 5H12Z" fill="#EA4335"></path>
-                                        <path d="M3.34 7A10 10 0 0 0 12 22l4.33-7.5Z" fill="#34A853"></path>
-                                        <circle
-                                            cx="12"
-                                            cy="12"
-                                            r="4.2"
-                                            fill="#4285F4"
-                                            stroke="white"
-                                            stroke-width="1.4"
-                                        ></circle>
-                                    </svg>
-                                </span>
-                                <span class="browser-store-copy">
-                                    <span class="browser-store-name">Chrome Web Store</span>
-                                    <span class="browser-store-meta">Primary install path</span>
-                                </span>
-                            </span>
-                            <span class="site-badge success">Available now</span>
+                            <span class="browser-icon">🌐</span>
+                            <span>Chrome Web Store</span>
+                        </a>
+                        <a
+                            href="https://microsoftedge.microsoft.com/addons/detail/trackforcepro/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="browser-link"
+                        >
+                            <span class="browser-icon">🔷</span>
+                            <span>Edge Add-ons</span>
                         </a>
                         <a
                             href="https://addons.mozilla.org/en-US/firefox/addon/trackforcepro/"
                             target="_blank"
-                            class="browser-store-card is-link"
+                            rel="noopener noreferrer"
+                            class="browser-link"
                         >
-                            <span class="browser-store-main">
-                                <span class="browser-store-icon firefox" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <path
-                                            d="M19 8.4c-1-2.4-3.5-4.1-6.4-4.1-4 0-7.2 3.1-7.2 7.1 0 4.6 3.4 8 8.1 8 3.3 0 5.7-1.5 6.7-4.4-.9 1-2.4 1.7-4.3 1.7-3 0-5.1-1.8-5.1-4.6 0-2.5 1.9-4.4 4.7-4.4 1.2 0 2.4.3 3.5.7Z"
-                                            fill="#FF7139"
-                                        ></path>
-                                        <path
-                                            d="M13.8 4.5c1.8.2 3.7 1.3 5 3.1-.6-.1-1.3 0-1.8.3.7.5 1.3 1.2 1.5 2-.7-.2-1.4-.2-2 .2"
-                                            stroke="#FFF2EA"
-                                            stroke-width="1.8"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        ></path>
-                                    </svg>
-                                </span>
-                                <span class="browser-store-copy">
-                                    <span class="browser-store-name">Firefox Add-ons</span>
-                                    <span class="browser-store-meta">Mozilla listing</span>
-                                </span>
-                            </span>
-                            <span class="site-badge success">Available now</span>
+                            <span class="browser-icon">🦊</span>
+                            <span>Firefox Add-ons</span>
                         </a>
-                        <div class="browser-store-card is-placeholder">
-                            <span class="browser-store-main">
-                                <span class="browser-store-icon edge" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <path
-                                            d="M19.7 15.7c0 3.4-2.8 6.1-6.5 6.1-4.2 0-7.5-3.1-7.5-7.4 0-4.5 3.3-7.9 7.9-7.9 2.9 0 5.2 1.2 6.6 3.4-1.1-.6-2.7-.8-4-.2-2 .8-3.1 2.4-3.1 4.7 0 .4 0 .8.1 1.3Z"
-                                            fill="#0AA0F6"
-                                        ></path>
-                                        <path
-                                            d="M6.8 14c.8 1.9 2.8 3.3 5.4 3.3 2.4 0 4.3-.8 5.6-2.2-.8 2.7-3.5 4.6-6.8 4.6-4 0-6.9-2.8-6.9-6.7 0-3.2 2-5.9 5-6.8-1.5 1.1-2.4 2.8-2.4 4.8 0 .9.1 1.8.3 3Z"
-                                            fill="#16C189"
-                                        ></path>
-                                        <path
-                                            d="M9.2 10.6c.8-.9 2.1-1.5 3.7-1.5 1.7 0 3 .5 4 1.4"
-                                            stroke="#EAFBFF"
-                                            stroke-width="1.6"
-                                            stroke-linecap="round"
-                                        ></path>
-                                    </svg>
-                                </span>
-                                <span class="browser-store-copy">
-                                    <span class="browser-store-name">Edge Add-ons</span>
-                                    <span class="browser-store-meta">Listing coming soon</span>
-                                </span>
-                            </span>
-                            <span class="site-badge warning">Coming soon</span>
-                        </div>
+                        <a
+                            href="https://addons.opera.com/en/extensions/details/trackforcepro/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="browser-link"
+                        >
+                            <span class="browser-icon">⭕</span>
+                            <span>Opera Add-ons</span>
+                        </a>
                     </div>
 
-                    <div class="instructions" style="margin-top: 24px">
+                    <div class="instructions">
                         <div class="instruction-step">
                             <div class="instruction-content">
-                                <h4>Visit the Chrome Web Store</h4>
+                                <h4>Click "Add to Chrome" (or your browser)</h4>
+                                <p>You'll see a permissions dialog. Review and confirm to install.</p>
+                            </div>
+                        </div>
+                        <div class="instruction-step">
+                            <div class="instruction-content">
+                                <h4>Pin the extension to your toolbar</h4>
                                 <p>
-                                    Search for "TrackForcePro" or use the direct link above to go straight to the
-                                    listing.
+                                    Click the Extensions menu in your browser, find TrackForcePro, and pin it for quick
+                                    access.
                                 </p>
                             </div>
                         </div>
                         <div class="instruction-step">
                             <div class="instruction-content">
-                                <h4>Click "Add to Browser"</h4>
-                                <p>
-                                    Accept the required permissions. TrackForcePro needs access to Salesforce domains to
-                                    function — it never collects or sends data to external servers.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="instruction-step">
-                            <div class="instruction-content">
-                                <h4>Pin the Extension</h4>
-                                <p>
-                                    Click the puzzle piece (extensions) icon in your toolbar and pin TrackForcePro for
-                                    quick one-click access.
-                                </p>
+                                <h4>You're done</h4>
+                                <p>The extension is ready to connect to Salesforce. No additional setup required.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="tip">
-                        <strong>Trainer note:</strong> Chrome and Firefox are the current direct-install paths. Keep
-                        Edge labeled as a placeholder in training materials until the Edge Add-ons listing is actually
-                        published.
+                        <strong>Tip:</strong> On Firefox, the extension will show a notification the first time you
+                        visit Salesforce confirming that it's active.
                     </div>
                 </div>
             </div>
@@ -462,472 +542,247 @@
                     <h2><span class="step-number">2</span> Connect to Salesforce</h2>
                 </div>
                 <div class="section-content">
+                    <h3>Automatic Session Detection</h3>
                     <p>
-                        TrackForcePro automatically detects your Salesforce session from open browser tabs. No extra
-                        login required.
+                        TrackForcePro requires no separate login. It detects your Salesforce session automatically using
+                        browser cookies.
                     </p>
 
                     <div class="instructions">
                         <div class="instruction-step">
                             <div class="instruction-content">
-                                <h4>Log in to Salesforce</h4>
+                                <h4>Navigate to your Salesforce org</h4>
+                                <p>Open any Salesforce org (prod, sandbox, scratch org, etc.) in your browser.</p>
+                            </div>
+                        </div>
+                        <div class="instruction-step">
+                            <div class="instruction-content">
+                                <h4>Watch for the connection indicator</h4>
                                 <p>
-                                    Open a browser tab, navigate to your Salesforce org, and log in as you normally
-                                    would
+                                    The TrackForcePro extension icon will show a green dot when your session is
+                                    detected. This means the toolkit is ready to use.
                                 </p>
                             </div>
                         </div>
                         <div class="instruction-step">
                             <div class="instruction-content">
-                                <h4>Keep the Salesforce Tab Open</h4>
+                                <h4>You're connected</h4>
                                 <p>
-                                    The extension reads your session from the open tab — don't close it while using
-                                    TrackForcePro
-                                </p>
-                            </div>
-                        </div>
-                        <div class="instruction-step">
-                            <div class="instruction-content">
-                                <h4>Open TrackForcePro</h4>
-                                <p>
-                                    Click the TrackForcePro icon in your browser toolbar. A green indicator means you're
-                                    connected and ready
+                                    If the indicator is gray, refresh the Salesforce page or check that you're logged
+                                    in. The extension will auto-detect once authenticated.
                                 </p>
                             </div>
                         </div>
                     </div>
 
+                    <div class="tip">
+                        <strong>Security note:</strong> TrackForcePro uses your existing Salesforce session cookies for
+                        authentication. It never stores your password, and all API calls use your org's access token.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Choose Your Surface -->
+            <div class="qs-section" id="surfaces">
+                <div class="section-header">
+                    <h2><span class="step-number">3</span> Choose Your Surface</h2>
+                </div>
+                <div class="section-content">
+                    <h3>Three Ways to Interact with TrackForcePro</h3>
+                    <p>The extension works across three surfaces. Choose based on your task:</p>
+
+                    <div class="surfaces-grid">
+                        <div class="surface-card">
+                            <h4>🚀 Launcher</h4>
+                            <p>
+                                Click the TrackForcePro icon in your toolbar for quick actions: query history, pinned
+                                records, sidebar toggle, and command palette. Perfect for fast context switching.
+                            </p>
+                        </div>
+                        <div class="surface-card">
+                            <h4>💼 Workspace</h4>
+                            <p>
+                                Full-featured tab in your browser with all tools: SOQL/GraphQL builders, record
+                                explorer, audit trails, org health, platform events, and debug logs. Your primary
+                                workspace.
+                            </p>
+                        </div>
+                        <div class="surface-card">
+                            <h4>⚡ In-Page</h4>
+                            <p>
+                                Keyboard shortcuts and overlays on Salesforce pages: <kbd>Ctrl+Shift+S</kbd> for
+                                sidebar, <kbd>Ctrl+K</kbd> for command palette, or double-click record fields to inspect
+                                all data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 28px">Quick Reference</h3>
                     <table class="qs-table">
                         <thead>
                             <tr>
-                                <th>Status</th>
-                                <th>Meaning</th>
-                                <th>Action</th>
+                                <th>Surface</th>
+                                <th>When to Use</th>
+                                <th>Access</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>🟢 Green</td>
-                                <td>Connected to Salesforce</td>
-                                <td>You're ready to use all features</td>
+                                <td><strong>Launcher</strong></td>
+                                <td>Quick actions, history, search</td>
+                                <td>Click extension icon</td>
                             </tr>
                             <tr>
-                                <td>🔴 Red</td>
-                                <td>No Salesforce session detected</td>
-                                <td>Log into Salesforce in another tab and refresh</td>
+                                <td><strong>Workspace</strong></td>
+                                <td>Deep work, complex queries, analysis</td>
+                                <td>Click "Open Workspace" or pin as tab</td>
                             </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="warning">
-                        <strong>Important:</strong> TrackForcePro requires an active, logged-in Salesforce tab. If your
-                        session expires, log in again and the extension will reconnect automatically.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 3: The Main Interface -->
-            <div class="qs-section" id="interface">
-                <div class="section-header">
-                    <h2><span class="step-number">3</span> Explore the Main Interface</h2>
-                </div>
-                <div class="section-content">
-                    <p>
-                        TrackForcePro works across <strong>3 surfaces</strong>: a launcher popup for quick entry, a
-                        workspace for deep tasks, and in-page overlays for contextual work. The workspace includes the
-                        core feature areas below.
-                    </p>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h4>🔍 Audit Trails</h4>
-                            <p>Fetch, filter, and export Setup Audit Trail logs for compliance and change tracking</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>📊 SOQL Builder</h4>
-                            <p>
-                                Visual query builder with searchable objects, field suggestions, multi-tab editing, and
-                                5 export formats
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🔗 GraphQL Builder</h4>
-                            <p>
-                                Three-screen workflow with CodeMirror editor, autocomplete, draggable split panes, and
-                                export
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🔬 Records</h4>
-                            <p>
-                                Look up records by ID, view all fields, edit inline, navigate lookups, pin favourites,
-                                bulk scan 200 IDs
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🏢 Org Tools</h4>
-                            <p>
-                                7 panels: Login As, Custom Labels, Deployments, Scheduled Jobs, Debug Logs, Org Limits,
-                                Admin Utils
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🎨 Org &amp; Favicon</h4>
-                            <p>
-                                Design custom favicons per org to visually distinguish Production, Sandbox, UAT, and Dev
-                                environments
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>⚡ REST Explorer</h4>
-                            <p>
-                                Send any Salesforce REST API request, organise collections, chain requests, import cURL,
-                                and browse the API catalog
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>📡 Platform Events</h4>
-                            <p>Subscribe to and monitor Platform Events in real-time with CometD streaming</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>💬 LMS</h4>
-                            <p>Subscribe to and publish Lightning Message Service channels for component testing</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>⚙️ Settings</h4>
-                            <p>
-                                Configure org management, appearance, general controls, sidebar behavior, layout,
-                                backup, and cross-surface apply behavior
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>❓ Help</h4>
-                            <p>Documentation links, quick tips, and troubleshooting guides</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🗂️ Setup Search</h4>
-                            <p>
-                                Search Setup pages and metadata by API name directly from Salesforce pages, then jump
-                                into the workspace when the task gets deeper
-                            </p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🧩 LWC Explorer</h4>
-                            <p>
-                                Inspect the component tree on Salesforce pages, review cleaner request traces by source
-                                type, and open LWC or Apex code in the full editor window
-                            </p>
-                        </div>
-                    </div>
-
-                    <p style="margin-top: 8px; color: var(--text-muted); font-size: 0.88rem">
-                        Within Records, you also get sub-tabs for <strong>User Manager</strong>,
-                        <strong>Security Manager</strong>, and advanced metadata tools.
-                    </p>
-
-                    <div class="tip">
-                        <strong>Quick navigation:</strong> TrackForcePro gives you
-                        <strong>two Command Palettes</strong>: the
-                        <strong>launcher/workspace Command Palette</strong> for cross-feature navigation and the
-                        <strong>Command Palette (Page)</strong> for page-aware Salesforce actions. Use
-                        <strong>Setup Search (Page)</strong> separately when you want Setup navigation plus metadata
-                        search by API name.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 4: Show All Data -->
-            <div class="qs-section" id="show-all-data">
-                <div class="section-header">
-                    <h2><span class="step-number">4</span> Use Show All Data on Record Pages</h2>
-                </div>
-                <div class="section-content">
-                    <p>
-                        When viewing any Salesforce record detail page, you'll see a floating
-                        <strong>TFP button</strong> on the page edge. This works directly on the page — no popup needed.
-                        You can change the button position (Right, Left, or Bottom) in Settings &gt; Sidebar.
-                    </p>
-
-                    <div class="instructions">
-                        <div class="instruction-step">
-                            <div class="instruction-content">
-                                <h4>Open Any Record</h4>
-                                <p>
-                                    Navigate to any Account, Contact, Opportunity, Case, or custom object record in
-                                    Salesforce
-                                </p>
-                            </div>
-                        </div>
-                        <div class="instruction-step">
-                            <div class="instruction-content">
-                                <h4>Click the TFP Button (or use your assigned shortcut)</h4>
-                                <p>
-                                    The All Fields inspector opens as a side panel — showing every field on the record,
-                                    including hidden and system fields
-                                </p>
-                            </div>
-                        </div>
-                        <div class="instruction-step">
-                            <div class="instruction-content">
-                                <h4>Search, Edit, Navigate</h4>
-                                <p>
-                                    Search fields by name, double-click to edit values inline, click lookup fields to
-                                    jump to related records with breadcrumb navigation
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tip">
-                        <strong>Keyboard shortcut:</strong> Show All Data can be assigned in
-                        <strong>Settings &gt; General</strong>. It is best treated as an optional page-action shortcut
-                        rather than a built-in default.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 5: TF Sidebar -->
-            <div class="qs-section" id="sidebar">
-                <div class="section-header">
-                    <h2><span class="step-number">5</span> Access the TF Sidebar</h2>
-                </div>
-                <div class="section-content">
-                    <p>
-                        The TF Sidebar gives you quick access to tools on every Salesforce page without leaving
-                        Salesforce first.
-                    </p>
-
-                    <div class="instructions">
-                        <div class="instruction-step">
-                            <div class="instruction-content">
-                                <h4>Open the Sidebar</h4>
-                                <p>
-                                    Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> (or your custom shortcut) on any
-                                    Salesforce page
-                                </p>
-                            </div>
-                        </div>
-                        <div class="instruction-step">
-                            <div class="instruction-content">
-                                <h4>Quick Tools at the Top</h4>
-                                <p>
-                                    Language Switcher, Cache Clearer, Login As, and other quick-action tools appear at
-                                    the top of the sidebar
-                                </p>
-                            </div>
-                        </div>
-                        <div class="instruction-step">
-                            <div class="instruction-content">
-                                <h4>Feature Shortcuts Below</h4>
-                                <p>
-                                    Click any shortcut to open that tool in the workspace or launcher flow. Categories
-                                    include Records tools and Org Tools, while page overlays remain best for
-                                    context-first tasks.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tip">
-                        <strong>Stays visible:</strong> The sidebar persists through Salesforce SPA navigation — it
-                        remains open as you move between pages.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 6: Right-Click Context Menu -->
-            <div class="qs-section" id="context-menu">
-                <div class="section-header">
-                    <h2><span class="step-number">6</span> Right-Click for Quick Actions</h2>
-                </div>
-                <div class="section-content">
-                    <p>Right-click on any Salesforce record page to access five TrackForcePro actions instantly:</p>
-
-                    <table class="qs-table">
-                        <thead>
                             <tr>
-                                <th>Action</th>
-                                <th>What It Does</th>
+                                <td><strong>Sidebar</strong></td>
+                                <td>Stay on Salesforce while exploring</td>
+                                <td><kbd>Ctrl+Shift+S</kbd> on SF pages</td>
                             </tr>
-                        </thead>
-                        <tbody>
+                            <tr>
+                                <td><strong>Command Palette</strong></td>
+                                <td>Jump to any feature fast</td>
+                                <td><kbd>Ctrl+K</kbd> on any SF page</td>
+                            </tr>
                             <tr>
                                 <td><strong>Show All Data</strong></td>
-                                <td>Opens the All Fields inspector for the current record</td>
-                            </tr>
-                            <tr>
-                                <td><strong>View Field History</strong></td>
-                                <td>Shows the field audit trail for the current record</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Check Sharing</strong></td>
-                                <td>Displays sharing rules and access details</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Open in SOQL Builder</strong></td>
-                                <td>Pre-loads SOQL Builder with the current object type</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Copy Record ID</strong></td>
-                                <td>Copies the 15/18-character record ID to clipboard</td>
+                                <td>Inspect & edit record fields</td>
+                                <td>Double-click any record field</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Step 7: Customise -->
-            <div class="qs-section" id="customize">
+            <!-- Step 4: Explore the Modes -->
+            <div class="qs-section" id="modes">
                 <div class="section-header">
-                    <h2><span class="step-number">7</span> Customise Your Experience</h2>
+                    <h2><span class="step-number">4</span> Explore the Modes</h2>
                 </div>
                 <div class="section-content">
-                    <p>
-                        Open the extension and click the <strong>Settings</strong> tab. Seven sub-tabs let you tailor
-                        everything:
-                    </p>
+                    <h3>Three Workflow Modes</h3>
+                    <p>The Workspace tab uses a 3-mode navigation model. Switch modes to focus on your current task:</p>
 
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h4>🏢 Org Management</h4>
-                            <p>Per-org inline edit safety, saved orgs, and quick links to Org Tools and Setup</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>🎨 Appearance</h4>
-                            <p>Light/Dark theme, text size (5 levels), and editor font size with live preview</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>⌨️ General</h4>
+                    <div class="modes-grid">
+                        <div class="mode-card">
+                            <div class="mode-header">
+                                <h4>Explore</h4>
+                                <span class="mode-badge explore">🔵 Explore</span>
+                            </div>
                             <p>
-                                Customize shortcuts for main actions, page actions, workspace tabs, Records tools, and
-                                Org Tools panels
+                                <strong>For query and record exploration.</strong> Includes SOQL builder, GraphQL
+                                builder, REST explorer, Records (data explorer with inline edit), Schema browser, Users
+                                & Security, and field/object search.
                             </p>
                         </div>
-                        <div class="feature-card">
-                            <h4>📌 Sidebar</h4>
-                            <p>Position (Left/Right), enable/disable, and configure which shortcuts appear</p>
+                        <div class="mode-card">
+                            <div class="mode-header">
+                                <h4>Debug</h4>
+                                <span class="mode-badge debug">🟠 Debug</span>
+                            </div>
+                            <p>
+                                <strong>For monitoring and troubleshooting.</strong> Platform Event streaming (LMS
+                                Explorer), debug logs (real-time capture & analysis), and network trace inspection.
+                                Watch events flow and debug issues live.
+                            </p>
                         </div>
-                        <div class="feature-card">
-                            <h4>📐 Layout</h4>
-                            <p>Adjust column widths in Org &amp; Favicon editor and User Manager</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>💾 Backup</h4>
-                            <p>One-click export/import of all settings. Migrate between browsers or computers</p>
+                        <div class="mode-card">
+                            <div class="mode-header">
+                                <h4>Analyze</h4>
+                                <span class="mode-badge analyze">🟢 Analyze</span>
+                            </div>
+                            <p>
+                                <strong>For audits and health checks.</strong> Audit Trail (login history, config
+                                changes), Org Health (limits, metadata usage), Admin checks, and Org Identity (instance,
+                                org ID, feature flags).
+                            </p>
                         </div>
                     </div>
 
-                    <div class="tip">
-                        All customisations are saved to your browser automatically and persist across sessions.
-                    </div>
+                    <p style="margin-top: 24px">
+                        Click the mode pill at the top of the Workspace to switch. Each mode has its own set of tabs and
+                        features tailored to that workflow.
+                    </p>
                 </div>
             </div>
 
-            <!-- Pro Tips -->
-            <div class="qs-section">
+            <!-- Step 5: Try These First -->
+            <div class="qs-section" id="getting-started">
                 <div class="section-header">
-                    <h2>⚡ Pro Tips</h2>
+                    <h2><span class="step-number">5</span> Try These First</h2>
                 </div>
                 <div class="section-content">
-                    <div class="pro-tips">
-                        <h4>Keyboard Shortcuts Save Time</h4>
-                        <ul>
-                            <li>
-                                Open the popup Command Palette from the header trigger or your saved shortcut. In popup
-                                mode, browsers may intercept <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd>.
-                            </li>
-                            <li>
-                                <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> toggles the sidebar on Salesforce pages
-                            </li>
-                            <li>
-                                Assign a shortcut for <strong>Show All Data</strong> in
-                                <strong>Settings &gt; General</strong> if you want page-level keyboard access.
-                            </li>
-                            <li>
-                                Use <strong>Command Palette (Page)</strong> and <strong>Setup Search (Page)</strong> on
-                                Salesforce pages when page context matters
-                            </li>
-                            <li><kbd>Ctrl</kbd>+<kbd>Enter</kbd> executes queries in SOQL and GraphQL builders</li>
-                        </ul>
-                    </div>
+                    <h3>Five Quick Wins to Get Comfortable</h3>
+                    <p>Here are the best starting points for learning TrackForcePro:</p>
 
-                    <div class="pro-tips">
-                        <h4>Inline Editing is Powerful — and Safe</h4>
-                        <ul>
-                            <li>Double-click any field in Records, SOQL results, or Show All Data to edit directly</li>
-                            <li>Changes save instantly to Salesforce via the REST API</li>
-                            <li>Disable editing per org in Settings &gt; Org Management to protect production data</li>
-                        </ul>
-                    </div>
-
-                    <div class="pro-tips">
-                        <h4>Org &amp; Favicon Differentiates Your Environments</h4>
-                        <ul>
-                            <li>Assign distinct colours and shapes to Production vs. Sandbox</li>
-                            <li>Custom favicons update all open tabs for that org instantly</li>
-                            <li>Never accidentally work in the wrong environment again</li>
-                        </ul>
-                    </div>
-
-                    <div class="pro-tips">
-                        <h4>Keep Your Session Alive</h4>
-                        <ul>
-                            <li>Always keep your Salesforce tab open — the extension depends on it</li>
-                            <li>If you see "Not Connected," refresh the Salesforce page or log in again</li>
-                            <li>
-                                The extension automatically recovers from service worker crashes using cookie fallback
-                            </li>
-                        </ul>
+                    <div class="getting-started-grid">
+                        <div class="getting-started-card">
+                            <span class="emoji">📝</span>
+                            <h4>Run Your First Query</h4>
+                            <p>
+                                Open Workspace → Explore → SOQL Builder. Type a simple query like
+                                <code>SELECT Name FROM Account LIMIT 5</code> and click Execute. See results instantly.
+                            </p>
+                        </div>
+                        <div class="getting-started-card">
+                            <span class="emoji">🔍</span>
+                            <h4>Inspect a Record</h4>
+                            <p>
+                                Go to any Salesforce record. Press <kbd>Ctrl+Shift+S</kbd> to open the sidebar, or click
+                                the "Show All Data" button. See all fields, values, and edit inline without leaving the
+                                page.
+                            </p>
+                        </div>
+                        <div class="getting-started-card">
+                            <span class="emoji">⚡</span>
+                            <h4>Open Command Palette</h4>
+                            <p>
+                                Press <kbd>Ctrl+K</kbd> on any Salesforce page. Type a command name like "SOQL" or
+                                "Audit" to jump to any feature. Great for power users.
+                            </p>
+                        </div>
+                        <div class="getting-started-card">
+                            <span class="emoji">📊</span>
+                            <h4>Check Org Health</h4>
+                            <p>
+                                Open Workspace → Analyze → Org Health. See your org's limits, storage usage, API call
+                                counts, and feature flags at a glance.
+                            </p>
+                        </div>
+                        <div class="getting-started-card">
+                            <span class="emoji">🔐</span>
+                            <h4>Audit Login History</h4>
+                            <p>
+                                Open Workspace → Analyze → Audit Trail. View login history, config changes, and data
+                                modifications with timestamps and user info.
+                            </p>
+                        </div>
+                        <div class="getting-started-card">
+                            <span class="emoji">⚙️</span>
+                            <h4>Customize Settings</h4>
+                            <p>
+                                Open Workspace → Settings. Toggle themes, adjust sidebar position, configure per-org
+                                inline edit permissions, and set custom keyboard shortcuts.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- CTA Banner -->
-            <div class="cta-banner">
-                <div style="font-size: 3rem; margin-bottom: 12px">📖</div>
-                <h2 style="margin-bottom: 8px; font-size: 1.5rem">Want the Full Details?</h2>
-                <p style="opacity: 0.9; margin-bottom: 24px">
-                    Read the complete documentation for every tab, panel, shortcut, and setting.
-                </p>
-                <a
-                    href="documentation.html"
-                    class="site-btn site-btn-lg site-btn-pill"
-                    style="background: white; color: #032d60; font-weight: 700"
-                >
-                    Full Documentation
-                </a>
+            <!-- What's Next -->
+            <div class="whats-next">
+                <h3>What's Next?</h3>
+                <p>You're ready to start. Explore the guides below to master each feature:</p>
+                <div class="whats-next-links">
+                    <a href="guides/index.html" class="whats-next-link">📚 Feature Guides</a>
+                    <a href="documentation.html" class="whats-next-link">📖 Full Documentation</a>
+                    <a href="guide.html" class="whats-next-link">🎓 Training Guide</a>
+                    <a href="help.html" class="whats-next-link">❓ Help & FAQ</a>
+                </div>
             </div>
         </div>
-
-        <footer class="site-footer">
-            <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
-            <div class="footer-links">
-                <a
-                    href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk"
-                    target="_blank"
-                    >Chrome Web Store</a
-                >
-                <span class="sep">·</span>
-                <a href="help.html">Help</a>
-                <span class="sep">·</span>
-                <a href="leaderboard.html">Leaderboard</a>
-                <span class="sep">·</span>
-                <a href="guide.html">Training Guide</a>
-                <span class="sep">·</span>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <span class="sep">·</span>
-                <a href="quick-start-guide.html">Quick Start</a>
-            </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/manas-behera-68607547/" target="_blank" rel="noopener">LinkedIn</a>
-                <span class="sep">·</span>
-                <a href="https://buymeacoffee.com/manaskumarbehera" target="_blank" rel="noopener"
-                    >Buy Me a Coffee ☕</a
-                >
-                <span class="sep">·</span>
-                <a href="https://www.manaskumarbehera.com/" target="_blank" rel="noopener">Portfolio</a>
-            </div>
-            <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
-        </footer>
     </body>
 </html>
