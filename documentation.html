@@ -309,7 +309,7 @@
                                     <td>Workspace > Explore > GraphQL</td>
                                 </tr>
                                 <tr>
-                                    <td>Records (Data Explorer)</td>
+                                    <td>Records</td>
                                     <td>
                                         Record scanner with ID input, bulk scan (up to 200 IDs), All Fields table
                                         paginated at 100 per page, inline edit (type-aware), breadcrumb lookup
@@ -456,10 +456,13 @@
                                         select, textarea), breadcrumb navigation to related records, copy field
                                         name/value, field history quick link
                                     </td>
-                                    <td>Right-click > Show All Data, or button, or Ctrl+Shift+D</td>
+                                    <td>
+                                        Right-click > Show All Data, floating button on record pages, or configurable
+                                        keyboard shortcut
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>TF Sidebar</td>
+                                    <td>Sidebar</td>
                                     <td>
                                         Quick-access panel on every Salesforce page: configurable shortcuts to SOQL,
                                         Schema, Records, REPL, Audit, User Manager, etc. Position: Right/Left/Bottom.
@@ -491,7 +494,7 @@
                                         GraphQL, Fetch/API, Errors), request/response inspection, edit code/apex links,
                                         performance metrics per component, activity feed with timestamps
                                     </td>
-                                    <td>Sidebar or Ctrl+K "LWC"</td>
+                                    <td>Sidebar or Command Palette (Ctrl+K > "LWC")</td>
                                 </tr>
                                 <tr>
                                     <td>LMS (Beta)</td>
@@ -599,8 +602,8 @@
                                 </tr>
                                 <tr>
                                     <td>Show All Data</td>
-                                    <td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></td>
-                                    <td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></td>
+                                    <td>Configurable</td>
+                                    <td>Configurable</td>
                                     <td>Record detail pages</td>
                                     <td>Yes</td>
                                 </tr>
@@ -632,13 +635,18 @@
                         <p>Three actions can be customized with any key combination:</p>
                         <ul>
                             <li>
-                                <strong>Toggle Sidebar:</strong> Default Ctrl+Shift+S — customize, then reset button
+                                <strong>Toggle Sidebar:</strong> Default Ctrl+Shift+S — customize in Settings > General
+                                > Keyboard Shortcuts, then reset button
                             </li>
                             <li>
-                                <strong>Toggle Show All Data:</strong> Default Ctrl+Shift+D — customize, then reset
-                                button
+                                <strong>Toggle Show All Data:</strong> No default shortcut — set in Settings > General >
+                                Keyboard Shortcuts. Primary access is via the floating button on record detail pages or
+                                the right-click context menu.
                             </li>
-                            <li><strong>Command Palette:</strong> Default Ctrl+K — customize, then reset button</li>
+                            <li>
+                                <strong>Command Palette:</strong> Default Ctrl+K — customize in Settings > General >
+                                Keyboard Shortcuts, then reset button
+                            </li>
                         </ul>
 
                         <h3>In-Query Editor Shortcuts</h3>
@@ -724,17 +732,17 @@
                     <section class="docs-section" id="config">
                         <h2>⚙️ Configuration &amp; Settings</h2>
 
-                        <h3>Settings Tab Structure</h3>
+                        <h3>Settings Sub-Tabs</h3>
                         <ul>
-                            <li>
-                                <strong>General:</strong> Configurable keyboard shortcuts, tab visibility toggles
-                                (show/hide per tab)
-                            </li>
                             <li>
                                 <strong>Org Management:</strong> Saved orgs list with environment label and per-org
                                 inline edit toggle
                             </li>
                             <li><strong>Appearance:</strong> Theme (light/dark/system), font size (12-18px)</li>
+                            <li>
+                                <strong>General:</strong> Configurable keyboard shortcuts, tab visibility toggles
+                                (show/hide per tab)
+                            </li>
                             <li>
                                 <strong>Sidebar:</strong> Position (right/left/hidden), width (500-900px clamp),
                                 quick-tool shortcuts, Show All Data button position, Command Palette trigger position
@@ -744,7 +752,7 @@
                                 SOQL column widths (persisted per org)
                             </li>
                             <li>
-                                <strong>Advanced:</strong> Cache management (clear cache, reset to defaults),
+                                <strong>Backup:</strong> Cache management (clear cache, reset to defaults),
                                 backup/restore (JSON export/import)
                             </li>
                         </ul>
@@ -770,9 +778,7 @@
                         <ul>
                             <li>Check on load: Compare session org ID (both 15 and 18-char) against the map</li>
                             <li>Show warning toast if blocked: "Inline editing is disabled for this org"</li>
-                            <li>
-                                Per-tab guards: Data Explorer, SOQL Builder, Show All Data all check the same protection
-                            </li>
+                            <li>Per-tab guards: Records, SOQL Builder, Show All Data all check the same protection</li>
                         </ul>
 
                         <h3>Sidebar Quick-Tool Customization</h3>
@@ -1014,8 +1020,8 @@
                             <strong>v2.0.7</strong>
                             <p>
                                 <strong>Features:</strong> Configurable keyboard shortcuts; Per-org inline edit toggles;
-                                Tab reorganization (Data Explorer → Records, Org Tools → top-level); Org Management
-                                table in Settings.
+                                Tab reorganization (Records promoted, Org Tools → top-level); Org Management table in
+                                Settings.
                             </p>
                         </div>
 
@@ -1102,7 +1108,7 @@
                         <h3>Upgrading from v1.x to v2.0+</h3>
                         <p>
                             <strong>What Changed:</strong> Major UI reorganization (3-mode architecture, Launcher popup,
-                            Settings redesign).
+                            Settings redesign, tab reorganization).
                         </p>
                         <ul>
                             <li>Your existing SOQL queries and REST collections are automatically migrated</li>
@@ -1114,6 +1120,7 @@
                                 Sidebar shortcuts are renamed: old "de-tool" → "rec-tool" (Records), "org-panel" →
                                 "org-tool" (Org Tools)
                             </li>
+                            <li>Data Explorer tab is now called Records; Org & Favicon is now Org Management</li>
                             <li>No manual action needed — upgrade seamlessly</li>
                         </ul>
 
