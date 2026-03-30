@@ -148,6 +148,7 @@
                     <a href="#how-to-access">How to Access</a>
                     <a href="#appearance">Appearance</a>
                     <a href="#keyboard-shortcuts">Keyboard Shortcuts</a>
+                    <a href="#privacy">Privacy &amp; Data</a>
                     <a href="#sidebar">Sidebar</a>
                     <a href="#button-positioning">Button Position</a>
                     <a href="#inline-edit">Inline Edit</a>
@@ -286,6 +287,35 @@
                             Click the <strong>Reset</strong> button next to any shortcut to clear it and return to the
                             default (if one exists).
                         </p>
+                    </div>
+
+                    <div class="guide-card" id="privacy">
+                        <h2>Privacy &amp; Data</h2>
+                        <p>
+                            TrackForcePro is privacy-first. All data stays in your browser — no external servers, no
+                            accounts, no sign-ups.
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: var(--text); margin-top: 16px; margin-bottom: 8px">
+                            Usage Analytics
+                        </h3>
+                        <p>
+                            An optional toggle lets you share anonymous usage data (feature usage counts, no personal
+                            information) to help improve TrackForcePro. This is <strong>enabled by default</strong> but
+                            can be turned off at any time in Settings → General → Privacy & Data.
+                        </p>
+                        <p>
+                            Analytics uses the GA4 Measurement Protocol. Credentials are stored in a separate
+                            <code>analytics_config.js</code> file that is gitignored and never committed to the
+                            repository. If no credentials are configured, no network requests are made. All analytics
+                            calls are routed through the background service worker to avoid CORS issues.
+                        </p>
+
+                        <div class="guide-highlight">
+                            <strong>What is collected:</strong> Feature usage counts (e.g., "SOQL Builder opened"), tab
+                            switches, export actions. <strong>What is never collected:</strong> Org IDs, usernames,
+                            emails, record IDs, query content, tokens, or any personally identifiable information.
+                        </div>
                     </div>
 
                     <div class="guide-card" id="sidebar">

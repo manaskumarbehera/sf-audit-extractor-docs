@@ -769,31 +769,33 @@
             <h2 class="site-section-title" style="margin-top: 56px; margin-bottom: 24px">What's New</h2>
             <div class="changelog-grid animate-in">
                 <div class="changelog-item">
-                    <div class="changelog-version">v1.9.7 — Latest (Mar 25)</div>
+                    <div class="changelog-version">v2.1.7 — Latest (Mar 30)</div>
+                    <div class="changelog-title">Analytics &amp; Build Fixes</div>
+                    <ul>
+                        <li>GA4 credentials extracted into separate <code>analytics_config.js</code> (gitignored)</li>
+                        <li>Fixed CORS errors — analytics routed through background service worker</li>
+                        <li>
+                            Fixed missing content script in build output; locale description trimmed to 132-char limit
+                        </li>
+                        <li>Chrome Web Store submission fully updated with all permissions and features</li>
+                    </ul>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-version">v2.1.6 — Mar 30</div>
+                    <div class="changelog-title">Documentation Accuracy</div>
+                    <ul>
+                        <li>Keyboard shortcut references validated against codebase across all doc pages</li>
+                        <li>Settings guide corrected (Ctrl+Shift+S default, unassigned defaults clarified)</li>
+                        <li>Full Chrome Web Store submission rewrite with all 7 host permissions</li>
+                    </ul>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-version">v2.1.5 — Mar 29</div>
                     <div class="changelog-title">Virtualized SOQL Results</div>
                     <ul>
-                        <li>New <code>SoqlVirtualTable</code> engine for 1000+ rows and 50+ columns</li>
-                        <li>Three density modes, column pinning, per-column filtering</li>
-                        <li>Compact 30px toolbar, pop-out results window, collapsible editor</li>
-                        <li>6 suggestion engine bug fixes</li>
-                    </ul>
-                </div>
-                <div class="changelog-item">
-                    <div class="changelog-version">v1.9.6 — Mar 25</div>
-                    <div class="changelog-title">LMS Explorer Redesign</div>
-                    <ul>
-                        <li>Channels in tree pane, schema &amp; activity in detail pane</li>
-                        <li>LMS moves to Beta phase with purple badge</li>
-                        <li>Fixed extension context invalidation errors</li>
-                    </ul>
-                </div>
-                <div class="changelog-item">
-                    <div class="changelog-version">v1.9.5 — Mar 25</div>
-                    <div class="changelog-title">LMS Bridge &amp; LWC Live Mode</div>
-                    <ul>
-                        <li>LMS publish now works via real Aura <code>$A</code> framework</li>
-                        <li>LWC Explorer live mode with 3-second polling</li>
-                        <li>SOQL relationship links, two-row header layout</li>
+                        <li>Two-row header layout with tab scrolling; LMS Explorer redesign</li>
+                        <li>SOQL virtualized table with column pinning and smart view</li>
+                        <li>Compact result toolbar, pop-out results window, collapsible editor</li>
                     </ul>
                 </div>
             </div>
@@ -817,7 +819,7 @@
 
             <!-- Version Info -->
             <div class="version-info">
-                <span class="version-badge">v2.1.6</span>
+                <span class="version-badge">v2.1.7</span>
                 <strong>TrackForcePro</strong> — Free, open-source Salesforce admin &amp; developer toolkit. Zero data
                 collection. All processing stays local.
             </div>
