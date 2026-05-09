@@ -8,12 +8,11 @@
             content="TrackForcePro Documentation — complete feature reference, keyboard shortcuts, storage keys, configuration, architecture, and changelog for Salesforce admin and developer toolkit."
         />
         <title>TrackForcePro - Complete Documentation</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32" />
-        <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16" />
-        <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort" />
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="icons/Icon-32.png" id="favshort" />
         <link rel="stylesheet" href="shared.css" />
         <script src="theme.js"></script>
-        <script src="gtag-config.js" defer></script>
         <style>
             .docs-shell {
                 max-width: 1200px;
@@ -245,10 +244,10 @@
         </nav>
 
         <div class="site-hero">
-            <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
+            <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.1.9</span>
+            <span class="version-badge">Version 2.3.0</span>
         </div>
 
         <div class="docs-shell">
@@ -958,8 +957,13 @@
                             </li>
                             <li><strong>Opera:</strong> No known issues. Chromium-based, full Chrome API support.</li>
                             <li>
-                                <strong>Edge:</strong> Requires Microsoft Store installation or manual developer mode
-                                loading. Full API support.
+                                <strong>Edge:</strong> Install from the
+                                <a
+                                    href="https://microsoftedge.microsoft.com/addons/detail/trackforcepro/pndaeodanekhegknfnhbdioeglidjjcn"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >Edge Add-ons Store</a
+                                >. Full API support.
                             </li>
                         </ul>
 
@@ -975,7 +979,40 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.1.8 (Current)</strong>
+                            <strong>v2.3.0 (Current)</strong>
+                            <p>
+                                <strong>Version Bump &amp; Maintenance:</strong> Incremental release with version
+                                consistency updates across all documentation surfaces; continued platform hardening and
+                                multi-agent OS improvements.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.2.0</strong>
+                            <p>
+                                <strong>LWC Explorer &amp; Platform Hardening:</strong> LWC Explorer now auto-loads LMS
+                                channels on activation and captures all UI API and Visualforce Remoting traffic
+                                automatically; Lightning Setup links use encoded paths so deep links route reliably
+                                across all setup nodes; Replaced inline DOM event handlers with CSP-safe delegation
+                                using <code>data-action</code> attributes (no more inline-handler CSP violations);
+                                Removed legacy TFPAnalytics tracking and initialization from all UI scripts; Added
+                                multi-agent OS protocols, agent personas, workflows, and memory structure for AI-
+                                assisted development; Icon path consistency pass across HTML surfaces.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.1.9</strong>
+                            <p>
+                                <strong>Docs &amp; Distribution:</strong> Added Edge Add-ons store listing link across
+                                all documentation pages; Updated browser availability cards with live Edge download
+                                link; Fixed browser store icon styling for authentic logo rendering; Added automated
+                                Heroku deployment to docs CI/CD workflow; Documentation version consistency maintenance.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.1.8</strong>
                             <p>
                                 <strong>Analytics &amp; Build Fixes:</strong> Extracted GA4 credentials into separate
                                 <code>analytics_config.js</code> (gitignored) with template file and full setup

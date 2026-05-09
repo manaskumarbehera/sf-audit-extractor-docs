@@ -8,12 +8,11 @@
             content="TrackForcePro: The complete Salesforce admin and developer toolkit. Query, explore, debug, and analyze your org with a launcher popup, workspace tab, and intelligent in-page overlays. Free, open-source, zero data collection."
         />
         <title>TrackForcePro - Salesforce Admin &amp; Developer Toolkit</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="../icons/Icon-32.png" id="fav32" />
-        <link rel="icon" type="image/png" sizes="16x16" href="../icons/Icon-16.png" id="fav16" />
-        <link rel="shortcut icon" href="../icons/Icon-32.png" id="favshort" />
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="icons/Icon-32.png" id="favshort" />
         <link rel="stylesheet" href="shared.css" />
         <script src="theme.js"></script>
-        <script src="gtag-config.js" defer></script>
         <style>
             /* ── Page Enhancements ── */
             .hero-tagline {
@@ -396,7 +395,7 @@
 
         <!-- Hero Section -->
         <div class="site-hero">
-            <img src="../icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
+            <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>TrackForcePro</h1>
             <p>
                 The complete Salesforce admin &amp; developer toolkit. Query, explore, debug, and analyze your org from
@@ -470,7 +469,11 @@
                     </span>
                     <span class="site-badge success">Available</span>
                 </a>
-                <div class="browser-store-card is-placeholder">
+                <a
+                    href="https://microsoftedge.microsoft.com/addons/detail/trackforcepro/pndaeodanekhegknfnhbdioeglidjjcn"
+                    target="_blank"
+                    class="browser-store-card is-link"
+                >
                     <span class="browser-store-main">
                         <span class="browser-store-icon edge" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none">
@@ -492,11 +495,11 @@
                         </span>
                         <span class="browser-store-copy">
                             <span class="browser-store-name">Edge Add-ons</span>
-                            <span class="browser-store-meta">Coming soon</span>
+                            <span class="browser-store-meta">Microsoft Edge Add-ons</span>
                         </span>
                     </span>
-                    <span class="site-badge warning">Soon</span>
-                </div>
+                    <span class="site-badge success">Available</span>
+                </a>
             </div>
         </div>
 
@@ -770,7 +773,28 @@
             <h2 class="site-section-title" style="margin-top: 56px; margin-bottom: 24px">What's New</h2>
             <div class="changelog-grid animate-in">
                 <div class="changelog-item">
-                    <div class="changelog-version">v2.1.7 — Latest (Mar 30)</div>
+                    <div class="changelog-version">v2.2.0 — Latest (Apr 28)</div>
+                    <div class="changelog-title">LWC Explorer &amp; Platform Hardening</div>
+                    <ul>
+                        <li>LWC Explorer auto-loads LMS channels and captures UI API + Visualforce Remoting traffic</li>
+                        <li>Lightning Setup links now use encoded paths for reliable deep linking</li>
+                        <li>
+                            CSP-safe event delegation using <code>data-action</code> attributes — no inline handlers
+                        </li>
+                        <li>Removed legacy TFPAnalytics tracking; added multi-agent OS protocols and personas</li>
+                    </ul>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-version">v2.1.9 — Apr 27</div>
+                    <div class="changelog-title">Docs &amp; Distribution</div>
+                    <ul>
+                        <li>Edge Add-ons store listing link added across all documentation pages</li>
+                        <li>Browser availability cards updated with live Edge download link</li>
+                        <li>Automated Heroku deployment added to docs CI/CD workflow</li>
+                    </ul>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-version">v2.1.7 — Mar 30</div>
                     <div class="changelog-title">Analytics &amp; Build Fixes</div>
                     <ul>
                         <li>GA4 credentials extracted into separate <code>analytics_config.js</code> (gitignored)</li>
@@ -778,25 +802,6 @@
                         <li>
                             Fixed missing content script in build output; locale description trimmed to 132-char limit
                         </li>
-                        <li>Chrome Web Store submission fully updated with all permissions and features</li>
-                    </ul>
-                </div>
-                <div class="changelog-item">
-                    <div class="changelog-version">v2.1.6 — Mar 30</div>
-                    <div class="changelog-title">Documentation Accuracy</div>
-                    <ul>
-                        <li>Keyboard shortcut references validated against codebase across all doc pages</li>
-                        <li>Settings guide corrected (Ctrl+Shift+S default, unassigned defaults clarified)</li>
-                        <li>Full Chrome Web Store submission rewrite with all 7 host permissions</li>
-                    </ul>
-                </div>
-                <div class="changelog-item">
-                    <div class="changelog-version">v2.1.5 — Mar 29</div>
-                    <div class="changelog-title">Virtualized SOQL Results</div>
-                    <ul>
-                        <li>Two-row header layout with tab scrolling; LMS Explorer redesign</li>
-                        <li>SOQL virtualized table with column pinning and smart view</li>
-                        <li>Compact result toolbar, pop-out results window, collapsible editor</li>
                     </ul>
                 </div>
             </div>
@@ -820,7 +825,7 @@
 
             <!-- Version Info -->
             <div class="version-info">
-                <span class="version-badge">v2.1.9</span>
+                <span class="version-badge">v2.3.0</span>
                 <strong>TrackForcePro</strong> — Free, open-source Salesforce admin &amp; developer toolkit. Zero data
                 collection. All processing stays local.
             </div>
@@ -834,6 +839,12 @@
                     href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk"
                     target="_blank"
                     >Chrome Web Store</a
+                >
+                <span class="sep">·</span>
+                <a
+                    href="https://microsoftedge.microsoft.com/addons/detail/trackforcepro/pndaeodanekhegknfnhbdioeglidjjcn"
+                    target="_blank"
+                    >Edge Add-ons</a
                 >
                 <span class="sep">·</span>
                 <a href="help.html">Help</a>

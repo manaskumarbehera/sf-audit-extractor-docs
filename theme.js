@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════
    TrackForcePro — Shared Theme Toggle + Utilities
    ═══════════════════════════════════════════════════ */
-(function() {
+(function () {
     'use strict';
 
     /* ── Apply saved theme instantly (call in <head> to prevent flash) ── */
@@ -10,20 +10,23 @@
         document.documentElement.setAttribute('data-theme', 'dark');
     }
 
-    /* ── GitHub Pages icon fix ── */
-    if (window.location.hostname.includes('github.io')) {
-        var repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
-        var basePath = '/' + repoName + '/icons/';
+    /* ── Favicon path fix (GitHub Pages & Heroku) ── */
+    (function fixFavicons() {
         var fav32 = document.getElementById('fav32');
         var fav16 = document.getElementById('fav16');
         var favshort = document.getElementById('favshort');
+        var basePath = 'icons/';
+        if (window.location.hostname.includes('github.io')) {
+            var repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
+            basePath = '/' + repoName + '/icons/';
+        }
         if (fav32) fav32.href = basePath + 'Icon-32.png';
         if (fav16) fav16.href = basePath + 'Icon-16.png';
         if (favshort) favshort.href = basePath + 'Icon-32.png';
-    }
+    })();
 
     /* ── Theme Toggle ── */
-    window.toggleTheme = function() {
+    window.toggleTheme = function () {
         var html = document.documentElement;
         var current = html.getAttribute('data-theme');
         var next = current === 'dark' ? 'light' : 'dark';
@@ -39,7 +42,7 @@
     function updateThemeToggle() {
         var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         var btns = document.querySelectorAll('.theme-toggle');
-        btns.forEach(function(btn) {
+        btns.forEach(function (btn) {
             var icon = btn.querySelector('.theme-icon');
             var label = btn.querySelector('.theme-label');
             if (icon) icon.textContent = isDark ? '☀️' : '🌙';
@@ -47,40 +50,48 @@
         });
     }
 
-    /* ── GitHub Pages logo fix (after DOM) ── */
-    function fixGitHubLogos() {
-        if (!window.location.hostname.includes('github.io')) return;
-        var repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
-        var basePath = '/' + repoName + '/icons/';
+    /* ── Logo path fix (GitHub Pages, Heroku, local) ── */
+    function fixLogos() {
         var logo = document.getElementById('header-logo');
-        if (logo) logo.src = basePath + 'Icon-128.png';
+        if (!logo) return;
+        var basePath = 'icons/';
+        if (window.location.hostname.includes('github.io')) {
+            var repoName = window.location.pathname.split('/')[1] || 'sf-audit-extractor-docs';
+            basePath = '/' + repoName + '/icons/';
+        }
+        logo.src = basePath + 'Icon-128.png';
     }
 
     /* ── Scroll Reveal Animation ── */
     function initScrollReveal() {
         var els = document.querySelectorAll('.reveal');
         if (!els.length) return;
-        var obs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        els.forEach(function(el) { obs.observe(el); });
+        var obs = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+        els.forEach(function (el) {
+            obs.observe(el);
+        });
     }
 
     /* ── Init ── */
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             updateThemeToggle();
-            fixGitHubLogos();
+            fixLogos();
             initScrollReveal();
         });
     } else {
         updateThemeToggle();
-        fixGitHubLogos();
+        fixLogos();
         initScrollReveal();
     }
 })();
