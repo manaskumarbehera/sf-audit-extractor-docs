@@ -247,7 +247,7 @@
             <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.4.2</span>
+            <span class="version-badge">Version 2.4.3</span>
         </div>
 
         <div class="docs-shell">
@@ -979,7 +979,25 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.4.2 (Current)</strong>
+                            <strong>v2.4.3 (Current)</strong>
+                            <p>
+                                <strong>UI bug fixes &amp; a calmer first impression:</strong>
+                                Disconnected users now see a calm "Not Connected — connect to a Salesforce org"
+                                state instead of a scary red error card across Audit, Records, Platform Events,
+                                Security, and Event Logs. First run opens coherently on Explore › Query (no stray
+                                background error), onboarding now walks through concrete tasks ("Run a SOQL query",
+                                "Export your audit trail") ending in a one-click "Run your first query," and the
+                                workspace header uses the full width. The command palette gained a proper focus
+                                trap, Escape-to-close, focus restore, a dark theme, and no longer duplicates on
+                                rapid re-toggle; the Settings drawer open/close race is fixed; the Quick Action Bar
+                                rebuilds correctly on change and reacts to theme switches; and your last query
+                                method (SOQL/GraphQL/REST) is now remembered. Also fixed: an OAuth token-store hang,
+                                a layout-width type bug, and removed stray debug logging from shipped code.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.4.2</strong>
                             <p>
                                 <strong>Leaner code, stronger tests &amp; one-tag releases:</strong>
                                 Internal cleanup removed unshipped scaffolding/dead code (no user-facing change), and
