@@ -247,7 +247,7 @@
             <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.4.6</span>
+            <span class="version-badge">Version 2.4.7</span>
         </div>
 
         <div class="docs-shell">
@@ -979,14 +979,29 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.4.6 (Current)</strong>
+                            <strong>v2.4.7 (Current)</strong>
+                            <p>
+                                <strong>SOQL Builder generates valid queries again:</strong>
+                                Several builder inputs produced SOQL that Salesforce rejected. "Is null" / "is not null"
+                                filters now generate <code>= null</code> / <code>!= null</code> (SOQL has no
+                                <code>IS NULL</code>); child-subquery filters with <code>IN</code>/<code>NOT IN</code>
+                                lists and null checks now match the main query; and values containing a backslash (e.g.
+                                a Windows path) or apostrophe (e.g. <em>O'Brien</em>) are escaped correctly instead of
+                                breaking the query. Recovery is friendlier too: the "Not connected" screen and a failed
+                                GraphQL field load now offer a <strong>Retry</strong> action, and the LWC Explorer no
+                                longer leaks a keyboard listener on each open/close.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.4.6</strong>
                             <p>
                                 <strong>SOQL Builder is friendly again:</strong>
-                                The #1 reason people bounced off SOQL — a failed query dumped a raw JSON error blob —
-                                is fixed. A bad query now shows a clean, human message with a hint
-                                (e.g. <em>"No such column 'Foo' on entity 'Account'. [INVALID_FIELD]"</em>) instead of
-                                an unreadable error. Opening SOQL with no Salesforce session shows a friendly
-                                "Not connected" guide rather than a red error, the empty editor now greets you with a
+                                The #1 reason people bounced off SOQL — a failed query dumped a raw JSON error blob — is
+                                fixed. A bad query now shows a clean, human message with a hint (e.g.
+                                <em>"No such column 'Foo' on entity 'Account'. [INVALID_FIELD]"</em>) instead of an
+                                unreadable error. Opening SOQL with no Salesforce session shows a friendly "Not
+                                connected" guide rather than a red error, the empty editor now greets you with a
                                 runnable sample query (click to insert), and queries auto-retry at a lower API version
                                 on older orgs instead of failing. Internal quality also improved (popup/settings
                                 coverage raised, a dead code path cleaned up).
@@ -998,15 +1013,17 @@
                             <p>
                                 <strong>LWC Explorer fixes &amp; bug squashing:</strong>
                                 The LWC Explorer network panel now respects dark mode (it previously stayed light on
-                                dark Salesforce themes), internal Salesforce framework traffic
-                                (<code>serviceComponent://</code> fingerprint/instrumentation calls) no longer leaks
-                                into the Fetch/API list, the live-capture buffer is consistently capped, and a couple
-                                of live-mode glitches (an unhandled poll error and an interval that lingered after the
-                                explorer closed) are fixed. Also squashed four bugs surfaced by expanded testing: a
-                                GraphQL builder crash on an empty related-object row, a favicon-preset click that
-                                threw, a SOQL result-table sort handler that multiplied across re-renders, and SOQL
-                                field-prefix suggestions that never appeared. Under the hood, test coverage nearly
-                                doubled (32% → 59% statements, whole-project).
+                                dark Salesforce themes), internal Salesforce framework traffic (<code
+                                    >serviceComponent://</code
+                                >
+                                fingerprint/instrumentation calls) no longer leaks into the Fetch/API list, the
+                                live-capture buffer is consistently capped, and a couple of live-mode glitches (an
+                                unhandled poll error and an interval that lingered after the explorer closed) are fixed.
+                                Also squashed four bugs surfaced by expanded testing: a GraphQL builder crash on an
+                                empty related-object row, a favicon-preset click that threw, a SOQL result-table sort
+                                handler that multiplied across re-renders, and SOQL field-prefix suggestions that never
+                                appeared. Under the hood, test coverage nearly doubled (32% → 59% statements,
+                                whole-project).
                             </p>
                         </div>
 
@@ -1030,17 +1047,17 @@
                             <strong>v2.4.3</strong>
                             <p>
                                 <strong>UI bug fixes &amp; a calmer first impression:</strong>
-                                Disconnected users now see a calm "Not Connected — connect to a Salesforce org"
-                                state instead of a scary red error card across Audit, Records, Platform Events,
-                                Security, and Event Logs. First run opens coherently on Explore › Query (no stray
-                                background error), onboarding now walks through concrete tasks ("Run a SOQL query",
-                                "Export your audit trail") ending in a one-click "Run your first query," and the
-                                workspace header uses the full width. The command palette gained a proper focus
-                                trap, Escape-to-close, focus restore, a dark theme, and no longer duplicates on
-                                rapid re-toggle; the Settings drawer open/close race is fixed; the Quick Action Bar
-                                rebuilds correctly on change and reacts to theme switches; and your last query
-                                method (SOQL/GraphQL/REST) is now remembered. Also fixed: an OAuth token-store hang,
-                                a layout-width type bug, and removed stray debug logging from shipped code.
+                                Disconnected users now see a calm "Not Connected — connect to a Salesforce org" state
+                                instead of a scary red error card across Audit, Records, Platform Events, Security, and
+                                Event Logs. First run opens coherently on Explore › Query (no stray background error),
+                                onboarding now walks through concrete tasks ("Run a SOQL query", "Export your audit
+                                trail") ending in a one-click "Run your first query," and the workspace header uses the
+                                full width. The command palette gained a proper focus trap, Escape-to-close, focus
+                                restore, a dark theme, and no longer duplicates on rapid re-toggle; the Settings drawer
+                                open/close race is fixed; the Quick Action Bar rebuilds correctly on change and reacts
+                                to theme switches; and your last query method (SOQL/GraphQL/REST) is now remembered.
+                                Also fixed: an OAuth token-store hang, a layout-width type bug, and removed stray debug
+                                logging from shipped code.
                             </p>
                         </div>
 
@@ -1049,14 +1066,14 @@
                             <p>
                                 <strong>Leaner code, stronger tests &amp; one-tag releases:</strong>
                                 Internal cleanup removed unshipped scaffolding/dead code (no user-facing change), and
-                                the test suite gained an org-variation matrix covering Classic vs Lightning and
-                                multiple Salesforce API versions, a coverage ratchet so quality can't silently
-                                regress, and an explicit request-timeout test. The accessibility pass is now complete
-                                (JavaScript-driven motion honors reduced-motion, and keyboard semantics were added to
-                                custom controls), and genuine first-run users start in a focused Explore view while
-                                returning users keep their last-used view — no features removed. Behind the scenes, a
-                                new tag-driven, all-store release pipeline with a mandatory changelog gate replaces
-                                manual uploads. No new permissions; no breaking changes.
+                                the test suite gained an org-variation matrix covering Classic vs Lightning and multiple
+                                Salesforce API versions, a coverage ratchet so quality can't silently regress, and an
+                                explicit request-timeout test. The accessibility pass is now complete (JavaScript-driven
+                                motion honors reduced-motion, and keyboard semantics were added to custom controls), and
+                                genuine first-run users start in a focused Explore view while returning users keep their
+                                last-used view — no features removed. Behind the scenes, a new tag-driven, all-store
+                                release pipeline with a mandatory changelog gate replaces manual uploads. No new
+                                permissions; no breaking changes.
                             </p>
                         </div>
 
@@ -1064,16 +1081,16 @@
                             <strong>v2.4.1</strong>
                             <p>
                                 <strong>Faster first load, calmer page &amp; stickier data features:</strong>
-                                The content script now loads only in the page's top frame (no longer injected into
-                                every Salesforce iframe) and ships minified, cutting first-load cost on every page —
-                                biggest wins on iframe-heavy Setup and Lightning pages. The toolbar icon now delivers
-                                value on the first click, routing straight to your last (or primary) task instead of a
-                                meta-menu, with a clear "open a Salesforce org" state when none is detected. On-page
-                                overlays (Show All Data, Command Palette, Quick Actions) consolidate into a single
-                                unobtrusive handle by default — nothing removed. The SOQL/GraphQL Run button can no
-                                longer get stuck disabled (surfaces a "No response — retry" state), and Salesforce
-                                API-version resolution is centralized with automatic downshift so data features keep
-                                working on orgs running an older API version.
+                                The content script now loads only in the page's top frame (no longer injected into every
+                                Salesforce iframe) and ships minified, cutting first-load cost on every page — biggest
+                                wins on iframe-heavy Setup and Lightning pages. The toolbar icon now delivers value on
+                                the first click, routing straight to your last (or primary) task instead of a meta-menu,
+                                with a clear "open a Salesforce org" state when none is detected. On-page overlays (Show
+                                All Data, Command Palette, Quick Actions) consolidate into a single unobtrusive handle
+                                by default — nothing removed. The SOQL/GraphQL Run button can no longer get stuck
+                                disabled (surfaces a "No response — retry" state), and Salesforce API-version resolution
+                                is centralized with automatic downshift so data features keep working on orgs running an
+                                older API version.
                             </p>
                         </div>
 
@@ -1086,12 +1103,11 @@
                                 cleanly; an expired Salesforce session now shows a clear recovery banner instead of
                                 silently failing. Data features now surface the real underlying error instead of a
                                 misleading "no data" state, and the History Timeline date-range no longer drops valid
-                                records. New opt-in, local-only anonymous usage metrics (no data ever leaves the
-                                device) plus an uninstall feedback link. Accessibility baseline added
-                                (reduced-motion, high-contrast, forced-colors, visible keyboard focus) and launcher
-                                polish. "Clear cache" now requests the <code>browsingData</code> permission only when
-                                used — no new required permissions, so existing installs are never auto-disabled on
-                                update.
+                                records. New opt-in, local-only anonymous usage metrics (no data ever leaves the device)
+                                plus an uninstall feedback link. Accessibility baseline added (reduced-motion,
+                                high-contrast, forced-colors, visible keyboard focus) and launcher polish. "Clear cache"
+                                now requests the <code>browsingData</code> permission only when used — no new required
+                                permissions, so existing installs are never auto-disabled on update.
                             </p>
                         </div>
 
