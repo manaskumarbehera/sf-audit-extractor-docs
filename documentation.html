@@ -247,7 +247,7 @@
             <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.7.0</span>
+            <span class="version-badge">Version 2.8.0</span>
         </div>
 
         <div class="docs-shell">
@@ -979,7 +979,22 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.7.0 (Current)</strong>
+                            <strong>v2.8.0 (Current)</strong>
+                            <p>
+                                <strong>Export your entire query, not just the first page:</strong>
+                                The SOQL results grid still shows up to 5,000 rows for speed, but the Export menu now
+                                has
+                                <em>Export ALL rows (CSV)</em> and <em>Export ALL rows (Excel/TSV)</em> &mdash; these
+                                stream every record your query returns straight to a downloaded file, no matter how many
+                                (matching, and going past, what Salesforce Inspector Reloaded does). A live progress
+                                counter and Cancel button keep you in control, very large exports ask for confirmation
+                                first (and fetch nothing more until you agree), and your own <code>LIMIT</code> is
+                                always respected. Excel/TSV export now also correctly quotes values containing tabs.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.7.0</strong>
                             <p>
                                 <strong>Edit lookups by name, not Id:</strong>
                                 When you inline-edit a lookup / reference field (in the Records inspector or the in-page
