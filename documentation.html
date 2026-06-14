@@ -247,7 +247,7 @@
             <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.6.0</span>
+            <span class="version-badge">Version 2.7.0</span>
         </div>
 
         <div class="docs-shell">
@@ -979,7 +979,21 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.6.0 (Current)</strong>
+                            <strong>v2.7.0 (Current)</strong>
+                            <p>
+                                <strong>Edit lookups by name, not Id:</strong>
+                                When you inline-edit a lookup / reference field (in the Records inspector or the in-page
+                                &ldquo;Show All Data&rdquo; panel), just start typing a name &mdash; TrackForcePro
+                                searches the related object and shows a dropdown of matching records (Name + Id). Pick
+                                one with the mouse or the &uarr;/&darr; + Enter keys; the field saves the record&rsquo;s
+                                Id while you see its name. Pasting a raw 15/18-char Id still works, clearing the field
+                                sets it blank, and lookups with no name field (or polymorphic lookups) fall back to the
+                                classic Id box. No more hunting for record Ids to set a lookup.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.6.0</strong>
                             <p>
                                 <strong>Edit any field type inline:</strong>
                                 Double-click a field value in the Records inspector or the in-page &ldquo;Show All
