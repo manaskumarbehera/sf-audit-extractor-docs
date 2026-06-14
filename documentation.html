@@ -247,7 +247,7 @@
             <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.4.7</span>
+            <span class="version-badge">Version 2.4.8</span>
         </div>
 
         <div class="docs-shell">
@@ -979,7 +979,19 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.4.7 (Current)</strong>
+                            <strong>v2.4.8 (Current)</strong>
+                            <p>
+                                <strong>Window restore &amp; larger trace capture:</strong>
+                                Reopening the extension after minimizing its popup/app window now restores the window
+                                instead of leaving it minimized (it previously appeared to do nothing). In the LWC
+                                Explorer, network-trace request/response payloads are now captured up to 50&nbsp;KB (was
+                                8&nbsp;KB) so large Salesforce GraphQL/Aura responses render as a navigable JSON tree
+                                instead of truncated, unparseable text.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.4.7</strong>
                             <p>
                                 <strong>SOQL Builder generates valid queries again:</strong>
                                 Several builder inputs produced SOQL that Salesforce rejected. "Is null" / "is not null"
