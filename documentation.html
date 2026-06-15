@@ -247,7 +247,7 @@
             <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.8.1</span>
+            <span class="version-badge">Version 2.9.0</span>
         </div>
 
         <div class="docs-shell">
@@ -979,7 +979,24 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.8.1 (Current)</strong>
+                            <strong>v2.9.0 (Current)</strong>
+                            <p>
+                                <strong>GraphQL mutations + reliability hardening:</strong>
+                                The GraphQL builder gains a MUTATION panel that composes create / update / delete
+                                mutations into the editor (with a one-time production-org confirmation before any
+                                mutation runs, since mutations write data). GraphQL results and variables are now
+                                properly visible with an empty state, run-status line, and the real HTTP status (200 OK
+                                / 401) alongside record count and timing. App-wide reliability fixes: stale-response
+                                races where a slower older request could overwrite a newer one (GraphQL Run, REST Send,
+                                record lookup/bulk scan, per-profile FLS); the in-page &ldquo;Show All Data&rdquo;
+                                inline editor now confirms before writing to production; and several silently-broken
+                                actions (REST&nbsp;&rarr;&nbsp;Records jump, SOQL builder toggle, favicon status) were
+                                restored.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.8.1</strong>
                             <p>
                                 <strong>Version display fix:</strong>
                                 The version shown in <code>chrome://extensions</code> had drifted to an older release
