@@ -247,7 +247,7 @@
             <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.9.1</span>
+            <span class="version-badge">Version 2.9.2</span>
         </div>
 
         <div class="docs-shell">
@@ -979,7 +979,26 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.9.1 (Current)</strong>
+                            <strong>v2.9.2 (Current)</strong>
+                            <p>
+                                <strong>Security, discoverability &amp; workspace customization:</strong>
+                                Hardened User Manager (escaped a cross-site-scripting hole in the user detail card,
+                                fixed SOQL string/LIKE escaping in user search and compare, rate-limited bulk user
+                                updates, and locked action buttons during in-flight requests) and neutralized CSV
+                                formula injection on Custom Labels export. Custom Labels are now discoverable from
+                                <strong>Schema &rarr; Metadata Explorer</strong> with a one-click deep-link into the Org
+                                Tools workbench, and the Schema Visualizer object picker became a searchable combobox.
+                                Custom Labels bulk import gained a Cancel control and a &ldquo;Select all
+                                filtered&rdquo; action. Tab/tool visibility was reworked: the Feature Visibility control
+                                now actually shows/hides the views you navigate (with Reset to defaults), a dead command
+                                that silently misrouted to the SOQL builder was removed, and the in-page tool catalog
+                                was unified into a single source of truth. Plus the SOQL/GraphQL guided builder now
+                                starts <strong>off by default</strong>.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.9.1</strong>
                             <p>
                                 <strong>Cleanup &amp; follow-up fixes:</strong>
                                 REST Explorer Cancel now actually aborts the in-flight network request (not just the
