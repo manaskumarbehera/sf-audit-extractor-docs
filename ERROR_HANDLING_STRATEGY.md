@@ -307,7 +307,6 @@ Priority order based on risk and usage frequency:
 |------|-------|-------|---------|
 | `tfp_error.js` | 380 | 74 | Central error handler with IIFE pattern |
 | `tests/tfp_error.test.js` | 470 | 74 | Full test coverage of all APIs |
-| `error_handling_migrations.js` | 290 | — | 10 concrete before/after refactoring examples |
 | `docs/ERROR_HANDLING_STRATEGY.md` | — | — | This document |
 
 ### `tfp_error.js` API Surface
