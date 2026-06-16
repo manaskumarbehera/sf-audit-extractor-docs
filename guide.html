@@ -631,6 +631,24 @@
                                 component source or Apex class
                             </div>
                         </div>
+                        <div class="step-row">
+                            <div class="step-num">5</div>
+                            <div class="step-text">
+                                <strong>Explain this Page (X-Ray):</strong> Turn on the X-Ray chip to get a plain-English
+                                inventory of which components ran on the page and the Apex, UI API, GraphQL, and SOQL each
+                                one invoked. Use it to confirm whether the broken component is even the one issuing the
+                                failing call.
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">6</div>
+                            <div class="step-text">
+                                <strong>Errors → Root Cause:</strong> When a page action fails, enable the Root Cause
+                                chip — it correlates the failed action to the specific Apex/UI API/GraphQL call that
+                                broke, the component that triggered it, and the readable error body, so you can skip the
+                                guesswork and go straight to the cause.
+                            </div>
+                        </div>
 
                         <h3>Workflow 4: Triage a Failing Automation</h3>
                         <div class="step-row">
@@ -661,6 +679,24 @@
                                 report
                             </div>
                         </div>
+                        <div class="step-row">
+                            <div class="step-num">5</div>
+                            <div class="step-text">
+                                <strong>Trace the Flows (beta):</strong> On the Salesforce page, open LWC Explorer and
+                                turn on the Flow &amp; Automation trace chip to see which Flows ran on the interaction,
+                                with timing and any faults. This pinpoints whether the failing automation is even firing
+                                — and where it stalls.
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">6</div>
+                            <div class="step-text">
+                                <strong>Profile the page:</strong> Enable the Performance Profiler chip to aggregate the
+                                captured page traffic into the slowest Apex calls, N+1 (repeated-call) detection, and a
+                                round-trip/type breakdown — so a "failing" automation that's really just timing out
+                                becomes obvious.
+                            </div>
+                        </div>
 
                         <h3>Workflow 5: Translate or Update Labels Safely</h3>
                         <div class="step-row">
@@ -688,6 +724,45 @@
                                 <strong>Import back:</strong> Click "Import" and upload your updated CSV — changes are
                                 applied in batch
                             </div>
+                        </div>
+
+                        <h3>Workflow 6: Bulk Data Changes Safely</h3>
+                        <div class="step-row">
+                            <div class="step-num">1</div>
+                            <div class="step-text">
+                                <strong>Open CSV Import:</strong> Workspace > Explore > Records > 📥 Import. Pick the
+                                target SObject and an operation: Insert, Update, Upsert, or Delete.
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">2</div>
+                            <div class="step-text">
+                                <strong>Map and preview:</strong> Upload your CSV, map each column to a field, then review
+                                the preview before anything is written. Writes are batched, and you get per-row results
+                                plus a downloadable error-report CSV for any rows that fail.
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">3</div>
+                            <div class="step-text">
+                                <strong>Or edit in place from a query:</strong> Run a SOQL query, select rows in the
+                                results grid, and use the bulk grid actions to mass Update, Set-null, or Delete. Bulk
+                                actions require <code>Id</code> in your query so each row can be targeted precisely.
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">4</div>
+                            <div class="step-text">
+                                <strong>Confirm and run:</strong> Review the affected record count, then execute. Watch
+                                the per-row results and export the error report if anything needs follow-up.
+                            </div>
+                        </div>
+                        <div class="guide-highlight">
+                            <strong>Production safety:</strong> Both CSV Import and the bulk grid actions are
+                            production-gated — writing to a production org requires an explicit confirmation step before
+                            any records change. v2.10.0 also added a production-edit confirmation directly on the SOQL
+                            results grid. Treat these prompts as your last checkpoint: read the operation and record
+                            count, and only proceed when both are exactly what you intend.
                         </div>
                     </section>
 
@@ -744,7 +819,11 @@
                                 Launch LWC Explorer (sidebar or Ctrl+K). (3) Select a component from the tree. (4)
                                 Compare one Apex action (descriptor starts with apex://) with one UI API trace. (5) Can
                                 you spot the difference in request/response format? (6) Try filtering by "Apex" only,
-                                then "UI API" only. (7) This teaches network analysis and component debugging.
+                                then "UI API" only. (7) Now pick any captured call and use Capture → Replay to open it as
+                                an editable request in the REST, GraphQL, or SOQL builder — notice that session secrets
+                                are stripped automatically. Tweak a parameter and re-run it to reproduce the issue
+                                in isolation. (8) This teaches network analysis, component debugging, and turning a live
+                                capture into a repeatable test.
                             </p>
                         </div>
 
@@ -756,7 +835,27 @@
                                 <code>SELECT Id, Name, Account.Name FROM Contact LIMIT 5</code>. (3) Run it (Ctrl+Enter
                                 or green Run button). (4) Try double-clicking a result cell to inline edit (if enabled).
                                 (5) Try filtering results using the column filter icon. (6) Export the results as CSV.
-                                This teaches the SOQL Builder end-to-end workflow.
+                                (7) Save the query to the Saved query library — give it a name, then clear the editor and
+                                reload it from the library by searching its name. (8) Export the library as JSON (handy
+                                for sharing a query set with a teammate or importing it in another org). This teaches the
+                                SOQL Builder end-to-end workflow and how to build a reusable query catalog.
+                            </p>
+                        </div>
+
+                        <h3>Lab F: Find Unused Fields &amp; Compare Access</h3>
+                        <div class="guide-lab">
+                            <strong>Objective:</strong> Use the analyzers to make data-quality and security decisions with
+                            evidence, not guesswork
+                            <p>
+                                <strong>Exercise:</strong> (1) Open Workspace > Explore > Records > 📊 Fill Rate and pick
+                                a busy SObject (e.g. Account or Contact). (2) Let the field fill-rate analyzer run its
+                                batched COUNT() aggregates, then sort by fill rate to surface fields that are effectively
+                                unused. (3) Filter the list and export it — this is your evidence for a field-cleanup
+                                proposal. (4) Now open Records > Security Manager > ⚖️ Compare and pick two permission
+                                sets or profiles. (5) Read the diff of object CRUD and field-level security (FLS) between
+                                them — which one grants more, and where? (6) Discuss: how would you use the fill-rate
+                                report and the permission diff together before deprecating a field? This teaches
+                                evidence-based data hygiene and access review.
                             </p>
                         </div>
                     </section>
@@ -847,6 +946,12 @@
                             <li>
                                 <strong>Backup settings regularly:</strong> Settings > Advanced > Backup lets you export
                                 your config. Useful before major browser updates or switching machines.
+                            </li>
+                            <li>
+                                <strong>Trust the safety prompts:</strong> v2.10.0 hardened security across the board —
+                                XSS and SOQL-injection fixes, cross-org state isolation so one org's data never bleeds
+                                into another, and production-edit confirmation on the SOQL results grid. The
+                                confirmations exist to protect you; read them before you click through.
                             </li>
                         </ul>
 

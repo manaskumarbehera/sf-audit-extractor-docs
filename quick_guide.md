@@ -26,7 +26,20 @@ Daily wins
 - Find a flow or permission set by API name from Setup Search.
 - Inspect a record from the page with Show All Data.
 - Test a Salesforce REST endpoint in REST Explorer with collections, chain mode, and cURL import.
+- Import a CSV into any SObject from Records -> Import (Insert/Update/Upsert/Delete, with mapping, preview, and a production-write confirmation).
+- Find unused fields on an SObject with Records -> Fill Rate, then export the result.
+- Compare two permission sets or profiles from Records -> Security Manager -> Compare (object CRUD + field FLS diff).
+- Save, search, and reload your common queries from the saved query library in the SOQL and GraphQL builders.
+- Select rows in the SOQL results grid for a mass Update/Set-null/Delete (needs Id in the query; production-gated).
 - Jump into workspace tools when the task becomes multi-step.
+
+In-page diagnostics (LWC Explorer)
+- Open the LWC Explorer overlay on a Salesforce page, then turn on the opt-in diagnostics chips (built on its live network capture).
+- Performance Profiler: spot the slowest Apex and likely N+1 calls.
+- Capture -> Replay: open a captured call as an editable request in the REST/GraphQL/SOQL builder (session secrets stripped).
+- Errors -> Root Cause: trace a failed page action to the failing call, component, and readable error body.
+- Explain this Page (X-Ray): see which components ran and the Apex/UI API/GraphQL/SOQL each invoked.
+- Flow & Automation trace (beta): see which Flows ran, with timing and faults.
 
 Version
 - Keep this file aligned with the version shown in `manifest.json` and the public docs pages.

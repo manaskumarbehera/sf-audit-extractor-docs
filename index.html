@@ -507,7 +507,7 @@
         <div class="site-container narrow" style="padding-bottom: 0">
             <div class="stats-banner animate-in">
                 <div class="stat-pill">
-                    <div class="stat-num">15+</div>
+                    <div class="stat-num">25+</div>
                     <div class="stat-label">Core Features</div>
                 </div>
                 <div class="stat-pill">
@@ -740,6 +740,114 @@
                 </div>
             </div>
 
+            <!-- Page Diagnostics (v2.10.0) -->
+            <div class="mode-section animate-in">
+                <h2>
+                    <span class="mode-indicator debug">🩺</span>
+                    Page Diagnostics — Understand &amp; Fix (in LWC Explorer)
+                </h2>
+                <div class="feature-grid-3col">
+                    <div class="feature-card">
+                        <span class="feature-icon">⏱️</span>
+                        <h3>Performance Profiler</h3>
+                        <p>
+                            Surfaces the slowest Apex calls, detects N+1 patterns, and breaks down round-trip time by
+                            type — all from the LWC Explorer's captured page traffic. Opt-in.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔁</span>
+                        <h3>Capture → Replay</h3>
+                        <p>
+                            Open any captured network call as an editable request in the REST, GraphQL, or SOQL builder.
+                            Secrets are stripped automatically so you can iterate safely.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🧩</span>
+                        <h3>Errors → Root Cause</h3>
+                        <p>
+                            Correlates a failed action to the failing Apex or UI API call, the component that triggered
+                            it, and the underlying error body — so you find the cause, not just the symptom.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔬</span>
+                        <h3>Explain this Page (X-Ray)</h3>
+                        <p>
+                            A plain-language inventory of every component on the page and the Apex methods and queries
+                            each one ran. Understand an unfamiliar page in seconds.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🌊</span>
+                        <h3>Flow &amp; Automation Trace</h3>
+                        <p>
+                            See which Flows ran during an interaction, with per-step timing and faults. Beta —
+                            built on the LWC Explorer's live network capture.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Tools (v2.10.0) -->
+            <div class="mode-section animate-in">
+                <h2>
+                    <span class="mode-indicator explore">🗂️</span>
+                    Data Tools — Move &amp; Audit Records at Scale
+                </h2>
+                <div class="feature-grid-3col">
+                    <div class="feature-card">
+                        <span class="feature-icon">📥</span>
+                        <h3>CSV Import</h3>
+                        <p>
+                            Import a CSV into any SObject (Insert, Update, Upsert, or Delete) from Records → Import. Map
+                            columns, preview before you commit, and download an error-report CSV. Production-gated.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">✅</span>
+                        <h3>Bulk Grid Actions</h3>
+                        <p>
+                            Select rows directly in the SOQL results grid and mass Update, Set-null, or Delete them. A
+                            confirmation gate protects production orgs.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💾</span>
+                        <h3>Saved Query Library</h3>
+                        <p>
+                            Save, search, and reload your SOQL and GraphQL queries. Export and import the whole library
+                            as JSON to share with your team or move between machines.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📊</span>
+                        <h3>Field Fill-Rate Analyzer</h3>
+                        <p>
+                            Find unused fields on any object via batched COUNT() aggregates. See fill rates at a glance
+                            from Records → Fill Rate to plan cleanups and migrations.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">⚖️</span>
+                        <h3>Permission Set / Profile Compare</h3>
+                        <p>
+                            Diff CRUD and field-level security across permission sets and profiles in Records → Security
+                            Manager → Compare. Spot access drift instantly.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🛡️</span>
+                        <h3>Security Hardening</h3>
+                        <p>
+                            v2.10.0 tightened the platform: XSS and SOQL-injection fixes, stronger cross-org isolation,
+                            and a confirmation prompt before any production edit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Quick Links -->
             <h2 class="site-section-title" style="margin-top: 56px; margin-bottom: 24px">Start Exploring</h2>
             <div class="quick-links animate-in">
@@ -773,7 +881,20 @@
             <h2 class="site-section-title" style="margin-top: 56px; margin-bottom: 24px">What's New</h2>
             <div class="changelog-grid animate-in">
                 <div class="changelog-item">
-                    <div class="changelog-version">v2.2.0 — Latest (Apr 28)</div>
+                    <div class="changelog-version">v2.10.0 — Latest</div>
+                    <div class="changelog-title">Diagnostics Suite &amp; Data Tooling</div>
+                    <ul>
+                        <li>
+                            In-page diagnostics in LWC Explorer: Performance Profiler, Capture → Replay, Errors → Root
+                            Cause, Explain this Page (X-Ray), and Flow &amp; Automation trace (beta)
+                        </li>
+                        <li>CSV Import for any SObject (Insert/Update/Upsert/Delete) with mapping, preview &amp; error report</li>
+                        <li>Bulk grid actions, Saved query library, Field fill-rate analyzer, and permission set / profile compare</li>
+                        <li>Security sweep: XSS &amp; SOQL-injection fixes, cross-org isolation, production-edit confirmation</li>
+                    </ul>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-version">v2.2.0 — Apr 28</div>
                     <div class="changelog-title">LWC Explorer &amp; Platform Hardening</div>
                     <ul>
                         <li>LWC Explorer auto-loads LMS channels and captures UI API + Visualforce Remoting traffic</li>

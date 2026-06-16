@@ -256,6 +256,8 @@
                 <aside class="docs-sidebar">
                     <h3>Reference</h3>
                     <a href="#features">Features by Mode</a>
+                    <a href="#diagnostics">In-Page Diagnostics</a>
+                    <a href="#data-tooling">Data Tooling</a>
                     <a href="#surfaces">All Surfaces</a>
                     <a href="#shortcuts">All Shortcuts</a>
                     <a href="#storage">Storage Keys</a>
@@ -294,7 +296,9 @@
                                         (6 rule types), multi-tab queries, inline result editing on compatible fields,
                                         virtual table with 1000+ row support, column pinning (max 3), global search with
                                         highlighting, per-column filtering, smart view (auto-hide nulls), 5 export
-                                        formats (JSON, CSV, TSV, Excel, copy)
+                                        formats (JSON, CSV, TSV, Excel, copy), bulk grid actions (select rows &rarr; mass
+                                        Update / Set-null / Delete, production-gated), and a saved query library (name,
+                                        search, reload, export/import as JSON)
                                     </td>
                                     <td>Workspace > Explore > SOQL</td>
                                 </tr>
@@ -303,7 +307,8 @@
                                     <td>
                                         Three-pane editor (query, variables, response) with CodeMirror 6 autocomplete,
                                         real-time validation, pagination support, relationship field navigation, inline
-                                        edit (if enabled), export to CSV/Excel/JSON
+                                        edit (if enabled), export to CSV/Excel/JSON, and a saved query library (name,
+                                        search, reload, export/import as JSON)
                                     </td>
                                     <td>Workspace > Explore > GraphQL</td>
                                 </tr>
@@ -313,7 +318,9 @@
                                         Record scanner with ID input, bulk scan (up to 200 IDs), All Fields table
                                         paginated at 100 per page, inline edit (type-aware), breadcrumb lookup
                                         navigation, pinned records (org-scoped), 25-item history, search, comparison
-                                        mode, related records
+                                        mode, related records, CSV Import (&#128229; Import &mdash; insert / update /
+                                        upsert / delete with mapping &amp; preview), and a field fill-rate analyzer
+                                        (&#128202; Fill Rate &mdash; find unused fields via batched COUNT() aggregates)
                                     </td>
                                     <td>Workspace > Explore > Records</td>
                                 </tr>
@@ -349,7 +356,9 @@
                                     <td>Security Manager</td>
                                     <td>
                                         Browse all Profiles, Permission Sets, Permission Set Groups, view assignments
-                                        with drill-down, copy API name, quick Setup links
+                                        with drill-down, copy API name, quick Setup links, and a permission set / profile
+                                        comparison (&#9878; Compare &mdash; diff object CRUD + field FLS between two
+                                        permission sets / profiles)
                                     </td>
                                     <td>Workspace > Explore > Security</td>
                                 </tr>
@@ -491,7 +500,11 @@
                                     <td>
                                         Page-side inspector: component tree view, trace filtering (All, Apex, UI API,
                                         GraphQL, Fetch/API, Errors), request/response inspection, edit code/apex links,
-                                        performance metrics per component, activity feed with timestamps
+                                        performance metrics per component, activity feed with timestamps. Opt-in
+                                        diagnostics chips built on the live network capture &mdash; Performance Profiler,
+                                        Capture&rarr;Replay, Errors&rarr;Root Cause, Explain this Page (X-Ray), and a
+                                        Flow &amp; Automation trace (beta). See
+                                        <a href="#diagnostics">In-Page Diagnostics</a> below.
                                     </td>
                                     <td>Sidebar or Command Palette (Ctrl+K > "LWC")</td>
                                 </tr>
@@ -503,6 +516,181 @@
                                         channel list with field count badges, subscribe status indicator
                                     </td>
                                     <td>LWC Explorer > LMS pill</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- In-Page Diagnostics Section -->
+                    <section class="docs-section" id="diagnostics">
+                        <h2>🩺 In-Page Diagnostics (LWC Explorer)</h2>
+                        <p>
+                            New in v2.10.0, the <strong>LWC Explorer</strong> overlay adds a set of
+                            <strong>opt-in diagnostics chips</strong> built on its live network capture. They run
+                            on demand against the traffic the explorer has already captured on the current page &mdash;
+                            no extra permissions, no servers, and nothing runs until you click a chip. They are a
+                            separate layer from the existing trace-filter chips (All, Apex, UI API, GraphQL, Fetch/API,
+                            Errors), which keep working as before.
+                        </p>
+
+                        <h3>Performance Profiler</h3>
+                        <p>
+                            Surfaces the <strong>slowest Apex calls</strong> on the page, flags likely
+                            <strong>N+1 patterns</strong>, and breaks captured traffic down by round-trip and request
+                            type so you can see where the page actually spends its time.
+                        </p>
+
+                        <h3>Capture &rarr; Replay</h3>
+                        <p>
+                            Opens a captured network call as an <strong>editable request</strong> in the
+                            REST / GraphQL / SOQL builder, so you can tweak and re-run it from the workspace. Session
+                            secrets are <strong>stripped</strong> before the request is handed off.
+                        </p>
+
+                        <h3>Errors &rarr; Root Cause</h3>
+                        <p>
+                            Correlates a <strong>failed page action</strong> to the failing Apex / UI&nbsp;API / GraphQL
+                            call, the <strong>triggering component</strong>, and the readable error body &mdash; turning
+                            a vague &ldquo;something went wrong&rdquo; into a concrete cause.
+                        </p>
+
+                        <h3>Explain this Page (X-Ray)</h3>
+                        <p>
+                            Produces an <strong>inventory of which components ran</strong> on the page and the
+                            Apex / UI&nbsp;API / GraphQL / SOQL each one invoked &mdash; a fast map of what a Lightning
+                            page is really doing under the hood.
+                        </p>
+
+                        <h3>Flow &amp; Automation Trace (Beta)</h3>
+                        <p>
+                            Shows <strong>which Flows ran</strong> on the interaction, with timing and faults. This
+                            diagnostic is in <strong>beta</strong>.
+                        </p>
+
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Diagnostic</th>
+                                    <th>What it tells you</th>
+                                    <th>Entry Point</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Performance Profiler</td>
+                                    <td>Slowest Apex, N+1 detection, round-trip / type breakdown</td>
+                                    <td>LWC Explorer &rarr; diagnostics chip</td>
+                                </tr>
+                                <tr>
+                                    <td>Capture &rarr; Replay</td>
+                                    <td>Open a captured call in the REST/GraphQL/SOQL builder (secrets stripped)</td>
+                                    <td>LWC Explorer &rarr; diagnostics chip</td>
+                                </tr>
+                                <tr>
+                                    <td>Errors &rarr; Root Cause</td>
+                                    <td>Failed action &rarr; failing call + component + readable error body</td>
+                                    <td>LWC Explorer &rarr; diagnostics chip</td>
+                                </tr>
+                                <tr>
+                                    <td>Explain this Page (X-Ray)</td>
+                                    <td>Inventory of components that ran and the Apex/UI&nbsp;API/GraphQL/SOQL they invoked</td>
+                                    <td>LWC Explorer &rarr; diagnostics chip</td>
+                                </tr>
+                                <tr>
+                                    <td>Flow &amp; Automation Trace (Beta)</td>
+                                    <td>Which Flows ran on the interaction, with timing + faults</td>
+                                    <td>LWC Explorer &rarr; diagnostics chip</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Data Tooling Section -->
+                    <section class="docs-section" id="data-tooling">
+                        <h2>🧰 Data Tooling</h2>
+                        <p>
+                            New in v2.10.0, a set of data tools across the Records, SOQL, GraphQL, and Security
+                            surfaces. Writes are <strong>production-gated</strong>: editing or importing into a
+                            production org asks for an explicit confirmation first.
+                        </p>
+
+                        <h3>CSV Import</h3>
+                        <p>
+                            Import a CSV into <strong>any SObject</strong> from <strong>Records &rarr; &#128229; Import</strong>.
+                            Choose an operation &mdash; <strong>Insert</strong>, <strong>Update</strong>,
+                            <strong>Upsert</strong>, or <strong>Delete</strong> &mdash; map CSV columns to fields, and
+                            preview before running. Rows are written in <strong>batched composite</strong> calls, with
+                            <strong>per-row results</strong>, a downloadable <strong>error-report CSV</strong>, and a
+                            <strong>production-write confirmation</strong> before any data is written.
+                        </p>
+
+                        <h3>Bulk Grid Actions</h3>
+                        <p>
+                            In the <strong>SOQL results grid</strong>, select rows and apply a mass
+                            <strong>Update</strong>, <strong>Set-null</strong>, or <strong>Delete</strong>. The query
+                            must include <code>Id</code> for the records to be addressable, and the action is
+                            <strong>production-gated</strong>.
+                        </p>
+
+                        <h3>Saved Query Library</h3>
+                        <p>
+                            In the <strong>SOQL and GraphQL builders</strong>, <strong>name</strong>,
+                            <strong>search</strong>, and <strong>reload</strong> queries from a saved library, and
+                            <strong>export / import</strong> the whole library as JSON to move it between machines or
+                            share it.
+                        </p>
+
+                        <h3>Field Fill-Rate Analyzer</h3>
+                        <p>
+                            From <strong>Records &rarr; &#128202; Fill Rate</strong>, find <strong>unused fields</strong>
+                            on any SObject. The analyzer runs <strong>batched COUNT() aggregates</strong> per field and
+                            returns a <strong>sorted, filterable, exportable</strong> list so you can spot fields no one
+                            populates.
+                        </p>
+
+                        <h3>Permission Set / Profile Comparison</h3>
+                        <p>
+                            From <strong>Records &rarr; Security Manager &rarr; &#9878; Compare</strong>, diff
+                            <strong>object CRUD</strong> and <strong>field FLS</strong> between two permission sets or
+                            profiles to see exactly where their access differs.
+                        </p>
+
+                        <table class="docs-table">
+                            <thead>
+                                <tr>
+                                    <th>Tool</th>
+                                    <th>Description</th>
+                                    <th>Entry Point</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CSV Import</td>
+                                    <td>
+                                        Insert / Update / Upsert / Delete into any SObject; mapping, preview, batched
+                                        composite writes, per-row results, error-report CSV, production-write confirmation
+                                    </td>
+                                    <td>Records &rarr; &#128229; Import</td>
+                                </tr>
+                                <tr>
+                                    <td>Bulk Grid Actions</td>
+                                    <td>Select rows &rarr; mass Update / Set-null / Delete (requires Id), production-gated</td>
+                                    <td>SOQL results grid</td>
+                                </tr>
+                                <tr>
+                                    <td>Saved Query Library</td>
+                                    <td>Name, search, reload queries; export / import as JSON</td>
+                                    <td>SOQL &amp; GraphQL builders</td>
+                                </tr>
+                                <tr>
+                                    <td>Field Fill-Rate Analyzer</td>
+                                    <td>Find unused fields via batched COUNT() aggregates; sorted, filterable, exportable</td>
+                                    <td>Records &rarr; &#128202; Fill Rate</td>
+                                </tr>
+                                <tr>
+                                    <td>Permission Set / Profile Comparison</td>
+                                    <td>Diff object CRUD + field FLS between two permission sets / profiles</td>
+                                    <td>Records &rarr; Security Manager &rarr; &#9878; Compare</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -908,6 +1096,10 @@
                             <li>We don't send your data to external servers</li>
                             <li>We don't modify Salesforce UI without your explicit action</li>
                             <li>We don't store API responses beyond your current session</li>
+                            <li>
+                                We don't write to your org silently &mdash; inline edits, SOQL-grid bulk actions, and
+                                CSV imports against a production org all ask for confirmation first
+                            </li>
                         </ul>
                     </section>
 

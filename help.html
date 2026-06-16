@@ -453,7 +453,10 @@
                                     <td>
                                         Visual editor with searchable objects, field suggestions, guidance engine,
                                         multi-tab queries, inline result editing, virtual table with 1000+ row support,
-                                        and 5 export formats (JSON, CSV, TSV, Excel, copy)
+                                        and 5 export formats (JSON, CSV, TSV, Excel, copy). A saved query library lets you
+                                        name, search, reload, and export/import queries as JSON. In the results grid,
+                                        select rows for bulk grid actions — mass Update, Set-null, or Delete (requires Id
+                                        in the query, production-gated)
                                     </td>
                                     <td><span class="feature-badge badge-stable">Stable</span></td>
                                 </tr>
@@ -461,8 +464,9 @@
                                     <td>GraphQL Builder</td>
                                     <td>
                                         Three-pane editor (query, variables, response) with CodeMirror 6, live
-                                        validation, pagination, export to CSV/Excel/JSON, and relationship field
-                                        navigation
+                                        validation, pagination, export to CSV/Excel/JSON, relationship field navigation,
+                                        and a saved query library to name, search, reload, and export/import queries as
+                                        JSON
                                     </td>
                                     <td><span class="feature-badge badge-beta">Beta</span></td>
                                 </tr>
@@ -471,7 +475,11 @@
                                     <td>
                                         Record scanner with paginated All Fields table (100 fields per page), inline
                                         editing, breadcrumb lookup navigation, pinned records, bulk scan up to 200 IDs,
-                                        25-item history, and search
+                                        25-item history, and search. 📥 Import brings a CSV into any SObject
+                                        (Insert/Update/Upsert/Delete) with column mapping, preview, batched writes,
+                                        per-row results, an error-report CSV, and production-write confirmation. 📊 Fill
+                                        Rate finds unused fields on any SObject via batched COUNT() aggregates — sorted,
+                                        filterable, and exportable
                                     </td>
                                     <td><span class="feature-badge badge-stable">Stable</span></td>
                                 </tr>
@@ -504,7 +512,8 @@
                                     <td>Security Manager</td>
                                     <td>
                                         Browse Profiles, Permission Sets, and Permission Set Groups with drill-down
-                                        assignment view
+                                        assignment view. ⚖️ Compare diffs object CRUD and field-level security (FLS)
+                                        between two permission sets or profiles
                                     </td>
                                     <td><span class="feature-badge badge-stable">Stable</span></td>
                                 </tr>
@@ -640,6 +649,63 @@
                             </tbody>
                         </table>
 
+                        <h3>LWC Explorer Diagnostics (v2.10.0)</h3>
+                        <p>
+                            Opt-in diagnostics chips inside the LWC Explorer overlay, built on its live network capture.
+                            Turn one on and it analyzes the traffic the Explorer already recorded for the page.
+                        </p>
+                        <table class="help-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>What It Does</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Performance Profiler</td>
+                                    <td>
+                                        Aggregates captured page traffic into the slowest Apex calls, N+1 (repeated-call)
+                                        detection, and a round-trip/type breakdown
+                                    </td>
+                                    <td><span class="feature-badge badge-stable">Stable</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Capture → Replay</td>
+                                    <td>
+                                        Opens any captured network call as an editable request in the REST, GraphQL, or
+                                        SOQL builder so you can tweak and re-run it — session secrets are stripped
+                                    </td>
+                                    <td><span class="feature-badge badge-stable">Stable</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Errors → Root Cause</td>
+                                    <td>
+                                        Correlates a failed page action to the failing Apex/UI API/GraphQL call, the
+                                        triggering component, and the readable error body
+                                    </td>
+                                    <td><span class="feature-badge badge-stable">Stable</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Explain this Page (X-Ray)</td>
+                                    <td>
+                                        Inventories which components ran on the page and the Apex/UI API/GraphQL/SOQL each
+                                        one invoked
+                                    </td>
+                                    <td><span class="feature-badge badge-stable">Stable</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Flow &amp; Automation Trace</td>
+                                    <td>
+                                        Shows which Flows ran on the interaction, with timing and faults, to triage
+                                        failing automation
+                                    </td>
+                                    <td><span class="feature-badge badge-beta">Beta</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                         <h3>Settings &amp; Configuration</h3>
                         <p>Centralized Settings tab includes:</p>
                         <ul>
@@ -743,6 +809,20 @@
                                 Some features work in Classic (SOQL, REST Explorer, Org Tools, Audit Trail), but in-page
                                 overlays like Show All Data and LWC Explorer are designed for Lightning only. We
                                 recommend using Lightning UI for the full experience.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-q">
+                                Why does TrackForcePro ask me to confirm before writing to a production org?
+                            </div>
+                            <div class="faq-a">
+                                v2.10.0 added production-write confirmation to the riskier data tools — CSV Import, the
+                                SOQL results grid (inline edit), and the bulk grid actions (mass Update/Set-null/Delete).
+                                When the active org is a production org, you'll see an explicit confirmation showing the
+                                operation and the affected record count before anything changes. This release also
+                                hardened security more broadly: XSS and SOQL-injection fixes, and cross-org state
+                                isolation so one org's data and saved state never leak into another.
                             </div>
                         </div>
 
