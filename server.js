@@ -32,6 +32,29 @@ function writeLeaderboard(entries) {
     fs.writeFileSync(LB_FILE, JSON.stringify(entries), 'utf-8');
 }
 
+/* ── Uninstall feedback data file ── */
+// Lazily created on first write (keeps module import side-effect-free for tests)
+// and mirrors the leaderboard read/append/write/size-cap pattern.
+const UF_FILE = path.join(ROOT, 'data', 'uninstall-feedback.json');
+
+function readUninstallFeedback() {
+    try {
+        const raw = fs.readFileSync(UF_FILE, 'utf-8');
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function writeUninstallFeedback(entries) {
+    const dir = path.dirname(UF_FILE);
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(UF_FILE, JSON.stringify(entries), 'utf-8');
+}
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -70,13 +93,21 @@ function sendFile(filePath, res) {
   });
 }
 
-function routeToFile(urlPath) {
+function routeToFile(rawUrl) {
+  // Strip the query string before matching. The extension's uninstall URL always
+  // carries `?v=<version>` (e.g. /uninstall-feedback?v=2.10.0), so equality
+  // checks must compare the path only — otherwise the alias never matches.
+  const urlPath = String(rawUrl).split('?')[0];
   if (urlPath === '/' || urlPath === '') {
     // Keep root stable for Heroku/GitHub Pages even if landing.html is removed.
     return 'index.html';
   }
   if (urlPath === '/docs' || urlPath === '/docs/') {
     return 'index.html';
+  }
+  // Extensionless alias: the published uninstall URL has no `.html` suffix.
+  if (urlPath === '/uninstall-feedback' || urlPath === '/uninstall-feedback/') {
+    return 'uninstall-feedback.html';
   }
   return urlPath;
 }
@@ -188,6 +219,44 @@ async function handleApi(req, res) {
         }
     }
 
+    // POST /api/uninstall-feedback — record why a user uninstalled
+    if (urlPath === '/api/uninstall-feedback' && method === 'POST') {
+        try {
+            const raw = await readBody(req);
+            let entry = {};
+            try { entry = JSON.parse(raw) || {}; } catch (e) { entry = {}; }
+
+            // Normalize reasons to a capped array of short strings.
+            let reasons = entry.reasons;
+            if (typeof reasons === 'string') { reasons = [reasons]; }
+            if (!Array.isArray(reasons)) { reasons = []; }
+            reasons = reasons
+                .filter(r => typeof r === 'string' && r.trim())
+                .slice(0, 12)
+                .map(r => String(r).substring(0, 60));
+
+            const sanitized = {
+                reasons: reasons,
+                comment: String(entry.comment || '').substring(0, 2000),
+                email: String(entry.email || '').substring(0, 100),
+                version: String(entry.version || '').substring(0, 20),
+                date: new Date().toISOString()
+            };
+
+            const all = readUninstallFeedback();
+            all.push(sanitized);
+            // Keep the most recent 2000 submissions to bound the file size.
+            const trimmed = all.slice(-2000);
+            writeUninstallFeedback(trimmed);
+
+            sendJson(res, 201, { ok: true });
+            return true;
+        } catch (e) {
+            sendJson(res, 400, { ok: false, error: 'Invalid request' });
+            return true;
+        }
+    }
+
     return false; // Not an API route
 }
 
@@ -238,8 +307,15 @@ const server = http.createServer(async (req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`TrackForcePro Web Hub running on http://localhost:${PORT}`);
-  console.log(`Leaderboard API: http://localhost:${PORT}/api/leaderboard`);
-});
+// Only start listening when run directly (`node server.js`, as the Procfile
+// does). When required from a test, expose the pure helpers without binding a
+// port so the import has no side effects.
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`TrackForcePro Web Hub running on http://localhost:${PORT}`);
+    console.log(`Leaderboard API: http://localhost:${PORT}/api/leaderboard`);
+  });
+}
+
+module.exports = { routeToFile, safeResolve };
 

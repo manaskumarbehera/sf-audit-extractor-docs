@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Uninstall Feedback - TrackForcePro</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/Icon-32.png" id="fav32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/Icon-16.png" id="fav16" />
+        <link rel="shortcut icon" href="icons/Icon-32.png" id="favshort" />
+        <link rel="stylesheet" href="shared.css" />
+        <style>
+            .uf-intro {
+                color: var(--text-secondary);
+                line-height: 1.7;
+                margin-bottom: 8px;
+            }
+            .uf-version {
+                font-size: 0.85rem;
+                color: var(--text-muted);
+            }
+            .uf-field {
+                margin-bottom: 22px;
+            }
+            .uf-label {
+                display: block;
+                font-weight: 700;
+                color: var(--text);
+                margin-bottom: 10px;
+                font-size: 0.95rem;
+            }
+            .uf-label .uf-optional {
+                font-weight: 500;
+                color: var(--text-muted);
+                font-size: 0.85rem;
+            }
+            .uf-reasons {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 10px;
+            }
+            .uf-reason {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 14px;
+                background: var(--bg-alt);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                cursor: pointer;
+                transition:
+                    border-color var(--transition-fast),
+                    background var(--transition-fast);
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+            .uf-reason:hover {
+                border-color: var(--primary);
+            }
+            .uf-reason input {
+                width: 16px;
+                height: 16px;
+                accent-color: var(--primary);
+                flex-shrink: 0;
+                cursor: pointer;
+            }
+            .uf-input,
+            .uf-textarea {
+                width: 100%;
+                padding: 12px 14px;
+                background: var(--bg);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                color: var(--text);
+                font-family: inherit;
+                font-size: 0.95rem;
+                box-sizing: border-box;
+                transition:
+                    border-color var(--transition-fast),
+                    box-shadow var(--transition-fast);
+            }
+            .uf-textarea {
+                min-height: 110px;
+                resize: vertical;
+                line-height: 1.6;
+            }
+            .uf-input:focus,
+            .uf-textarea:focus {
+                outline: none;
+                border-color: var(--primary);
+                box-shadow: var(--shadow-focus);
+            }
+            .uf-actions {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                flex-wrap: wrap;
+                margin-top: 6px;
+            }
+            .uf-error {
+                color: var(--text-muted);
+                font-size: 0.85rem;
+            }
+            .uf-thanks {
+                text-align: center;
+                padding: 24px 8px;
+            }
+            .uf-thanks .uf-thanks-icon {
+                font-size: 3rem;
+                line-height: 1;
+                margin-bottom: 14px;
+            }
+            .uf-thanks h2 {
+                color: var(--text);
+                margin-bottom: 10px;
+                font-size: 1.4rem;
+            }
+            .uf-thanks p {
+                color: var(--text-secondary);
+                line-height: 1.7;
+                margin-bottom: 8px;
+            }
+            .uf-hidden {
+                display: none;
+            }
+        </style>
+        <script src="theme.js"></script>
+    </head>
+    <body>
+        <nav class="site-nav">
+            <div class="site-nav-inner">
+                <a href="index.html">Home</a>
+                <a href="quick-start-guide.html">Quick Start</a>
+                <a href="guide.html">Training Guide</a>
+                <a href="documentation.html">Docs</a>
+                <a href="guides/index.html">Feature Guides</a>
+                <a href="help.html">Help</a>
+                <a href="quiz.html">Quiz &amp; Games</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <span class="theme-icon"></span>
+                    <span class="theme-label"></span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="site-hero">
+            <img
+                src="icons/Icon-128.png"
+                alt="TrackForcePro"
+                class="hero-logo"
+                id="header-logo"
+                style="width: 64px; height: 64px"
+            />
+            <h1>Sorry to see you go</h1>
+            <p>TrackForcePro has been uninstalled. A few seconds of feedback helps us make it better.</p>
+        </div>
+
+        <div class="site-container narrow">
+            <div class="site-section animate-in">
+                <h2 class="site-section-title">Tell us what happened</h2>
+                <p class="uf-intro">
+                    This form is completely optional and anonymous. We only collect what you type below — no extension
+                    data, no browsing history, nothing else.
+                </p>
+                <p class="uf-version" id="uf-version"></p>
+
+                <form id="uf-form" novalidate>
+                    <div class="uf-field">
+                        <span class="uf-label">What led you to uninstall? <span class="uf-optional">(select any that apply)</span></span>
+                        <div class="uf-reasons">
+                            <label class="uf-reason">
+                                <input type="checkbox" name="reason" value="missing-feature" />
+                                <span>Missing a feature I needed</span>
+                            </label>
+                            <label class="uf-reason">
+                                <input type="checkbox" name="reason" value="too-complex" />
+                                <span>Too complex / hard to use</span>
+                            </label>
+                            <label class="uf-reason">
+                                <input type="checkbox" name="reason" value="found-alternative" />
+                                <span>Found a better alternative</span>
+                            </label>
+                            <label class="uf-reason">
+                                <input type="checkbox" name="reason" value="performance" />
+                                <span>Performance or stability issues</span>
+                            </label>
+                            <label class="uf-reason">
+                                <input type="checkbox" name="reason" value="just-testing" />
+                                <span>Just testing it out</span>
+                            </label>
+                            <label class="uf-reason">
+                                <input type="checkbox" name="reason" value="other" />
+                                <span>Other</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="uf-field">
+                        <label class="uf-label" for="uf-comment"
+                            >Anything else? <span class="uf-optional">(optional)</span></label
+                        >
+                        <textarea
+                            id="uf-comment"
+                            class="uf-textarea"
+                            maxlength="2000"
+                            placeholder="What could we have done better? What feature were you missing?"
+                        ></textarea>
+                    </div>
+
+                    <div class="uf-field">
+                        <label class="uf-label" for="uf-email"
+                            >Email <span class="uf-optional">(optional — only if you'd like a reply)</span></label
+                        >
+                        <input
+                            id="uf-email"
+                            class="uf-input"
+                            type="email"
+                            maxlength="100"
+                            autocomplete="email"
+                            placeholder="you@example.com"
+                        />
+                    </div>
+
+                    <div class="uf-actions">
+                        <button type="submit" class="site-btn site-btn-primary site-btn-lg" id="uf-submit">
+                            Send feedback
+                        </button>
+                        <span class="uf-error uf-hidden" id="uf-error" role="status"></span>
+                    </div>
+                </form>
+
+                <div class="uf-thanks uf-hidden" id="uf-thanks">
+                    <div class="uf-thanks-icon">🙏</div>
+                    <h2>Thank you</h2>
+                    <p>Your feedback has been received and will help shape what comes next.</p>
+                    <p>
+                        Changed your mind? You can
+                        <a
+                            href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk"
+                            target="_blank"
+                            rel="noopener"
+                            >reinstall from the Chrome Web Store</a
+                        >
+                        any time.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <p><strong>TrackForcePro</strong> — Free Salesforce Admin &amp; Developer Toolkit</p>
+            <div class="footer-links">
+                <a
+                    href="https://chromewebstore.google.com/detail/trackforcepro/eombeiphccjbnndbabnkimdlkpaooipk"
+                    target="_blank"
+                    rel="noopener"
+                    >Chrome Web Store</a
+                >
+                <span class="sep">·</span>
+                <a href="help.html">Help</a>
+                <span class="sep">·</span>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <span class="sep">·</span>
+                <a href="quick-start-guide.html">Quick Start</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 TrackForcePro. All rights reserved.</p>
+        </footer>
+
+        <script>
+            (function () {
+                'use strict';
+
+                // Read the extension version from ?v= and surface it (also sent in the payload).
+                function getVersion() {
+                    try {
+                        var v = new URLSearchParams(window.location.search).get('v') || '';
+                        return v.substring(0, 20);
+                    } catch (e) {
+                        return '';
+                    }
+                }
+
+                var version = getVersion();
+                var versionEl = document.getElementById('uf-version');
+                if (versionEl && version) {
+                    versionEl.textContent = 'Extension version: ' + version;
+                }
+
+                // Same-origin API base. On GitHub Pages there is no server, so skip the
+                // network call and still show the thank-you state.
+                var API_BASE = (function () {
+                    var origin = window.location.origin;
+                    if (!origin || origin.indexOf('github.io') >= 0) return null;
+                    return origin + '/api/uninstall-feedback';
+                })();
+
+                var form = document.getElementById('uf-form');
+                var thanks = document.getElementById('uf-thanks');
+                var submitBtn = document.getElementById('uf-submit');
+
+                function showThanks() {
+                    if (form) form.classList.add('uf-hidden');
+                    if (thanks) thanks.classList.remove('uf-hidden');
+                }
+
+                function collectReasons() {
+                    var boxes = form.querySelectorAll('input[name="reason"]:checked');
+                    var out = [];
+                    for (var i = 0; i < boxes.length; i++) {
+                        out.push(boxes[i].value);
+                    }
+                    return out;
+                }
+
+                if (form) {
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        var payload = {
+                            reasons: collectReasons(),
+                            comment: (document.getElementById('uf-comment').value || '').substring(0, 2000),
+                            email: (document.getElementById('uf-email').value || '').substring(0, 100),
+                            version: version
+                        };
+
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = 'Sending…';
+                        }
+
+                        // Degrade gracefully: whether the POST succeeds, fails, or the
+                        // API is unavailable, the user still sees the thank-you state.
+                        if (!API_BASE || !window.fetch) {
+                            showThanks();
+                            return;
+                        }
+
+                        fetch(API_BASE, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        })
+                            .catch(function () {
+                                /* network/API errors are non-fatal here */
+                            })
+                            .then(function () {
+                                showThanks();
+                            });
+                    });
+                }
+            })();
+        </script>
+    </body>
+</html>
