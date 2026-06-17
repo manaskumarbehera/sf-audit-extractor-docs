@@ -247,7 +247,7 @@
             <img src="icons/Icon-128.png" alt="TrackForcePro" class="hero-logo" id="header-logo" />
             <h1>Complete Documentation</h1>
             <p>Comprehensive API reference, configuration, architecture, and changelog for TrackForcePro</p>
-            <span class="version-badge">Version 2.10.0</span>
+            <span class="version-badge">Version 2.11.0</span>
         </div>
 
         <div class="docs-shell">
@@ -1171,7 +1171,20 @@
                         <h2>📋 Version History &amp; Changelog</h2>
 
                         <div class="version-entry">
-                            <strong>v2.10.0 (Current)</strong>
+                            <strong>v2.11.0 (Current)</strong>
+                            <p>
+                                <strong>Salesforce API v67.0 support:</strong>
+                                The API-version selector in the workspace popup and the in-page sidebar now offers
+                                <strong>v67.0</strong> (Summer&nbsp;'26), selected by default. Orgs still on an older
+                                release keep working &mdash; an automatic version-downshift falls back to a supported
+                                version if an org rejects v67.0. Internally, the default API version is now centralized
+                                into canonical per-module sources kept in lockstep by a sync test, so it can no longer
+                                drift between the background, popup, and content scripts.
+                            </p>
+                        </div>
+
+                        <div class="version-entry">
+                            <strong>v2.10.0</strong>
                             <p>
                                 <strong>Live-page diagnostics, data tooling &amp; a security sweep:</strong>
                                 New in-page diagnostics in the LWC Explorer powered by live network capture &mdash;
